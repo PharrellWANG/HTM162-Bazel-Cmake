@@ -29,6 +29,8 @@ FAQs for every one
 
 5. Why do you want to use both Bazel and CMake for compiling the HTM encoder binary?
 
+    Here is a link to an open-source project:
+
     `Build shared library for using the TensorFlow C++ library <https://github.com/FloopCZ/tensorflow_cc>`_
 
     The above link is pointing to an open-source project which makes possible the usage of
