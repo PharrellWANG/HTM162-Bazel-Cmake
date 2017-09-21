@@ -161,6 +161,9 @@
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppClassifier/main.cpp">
 			<Option target="TAppClassifer"/>
 		</Unit>
+		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppClassifier/strtk.hpp">
+			<Option target="TAppClassifer"/>
+		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder/TAppEncCfg.cpp">
 			<Option target="TAppEncoder"/>
 		</Unit>

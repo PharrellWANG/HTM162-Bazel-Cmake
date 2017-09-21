@@ -4,7 +4,7 @@ project(HTM162_TAppEncoder)
 set(CMAKE_CXX_STANDARD 11)
 
 # config for single individual classifier: start
-set(SOURCE_FILES App/TAppClassifier/main.cpp)
+set(SOURCE_FILES App/TAppClassifier/main.cpp App/TAppClassifier/strtk.hpp)
 add_executable(TAppClassifer ${SOURCE_FILES})
 find_package(TensorflowCC COMPONENTS Shared)
 target_link_libraries(TAppClassifer TensorflowCC::Shared)
