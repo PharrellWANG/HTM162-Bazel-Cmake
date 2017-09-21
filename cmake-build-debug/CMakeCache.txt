@@ -201,6 +201,9 @@ HTM162_TAppEncoder_SOURCE_DIR:STATIC=/Users/Pharrell_WANG/tensorflow/HTM162
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
+//The directory containing a CMake configuration file for TensorflowCC.
+TensorflowCC_DIR:PATH=/usr/local/lib/cmake/TensorflowCC
+
 
 ########################
 # INTERNAL cache entries

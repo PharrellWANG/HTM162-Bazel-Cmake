@@ -100,3 +100,5 @@ cmake-build-debug/CMakeFiles/HTM162.dir/App/
 cmake-build-debug/CMakeFiles/HTM162.dir/Lib/
 cmake-build-debug/CMakeFiles/TAppEncoder.dir/App/
 cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/
+.idea/vcs.xml
+cmake-build-release/

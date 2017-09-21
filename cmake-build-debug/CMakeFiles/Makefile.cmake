@@ -33,6 +33,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.8.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.8.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.8.2/CMakeSystem.cmake"
+  "/usr/local/lib/cmake/TensorflowCC/TensorflowCCConfig.cmake"
+  "/usr/local/lib/cmake/TensorflowCC/TensorflowCCConfigVersion.cmake"
+  "/usr/local/lib/cmake/TensorflowCC/TensorflowCCSharedTargets.cmake"
   )
 
 # The corresponding makefile is:
@@ -49,4 +52,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/TAppEncoder.dir/DependInfo.cmake"
+  "CMakeFiles/TAppClassifer.dir/DependInfo.cmake"
   )

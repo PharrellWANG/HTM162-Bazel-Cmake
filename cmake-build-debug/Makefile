@@ -123,6 +123,46 @@ TAppEncoder/fast:
 	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/build
 .PHONY : TAppEncoder/fast
 
+#=============================================================================
+# Target rules for targets named TAppClassifer
+
+# Build rule for target.
+TAppClassifer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TAppClassifer
+.PHONY : TAppClassifer
+
+# fast build rule for target.
+TAppClassifer/fast:
+	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/build
+.PHONY : TAppClassifer/fast
+
+App/TAppClassifier/main.o: App/TAppClassifier/main.cpp.o
+
+.PHONY : App/TAppClassifier/main.o
+
+# target to build an object file
+App/TAppClassifier/main.cpp.o:
+	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/App/TAppClassifier/main.cpp.o
+.PHONY : App/TAppClassifier/main.cpp.o
+
+App/TAppClassifier/main.i: App/TAppClassifier/main.cpp.i
+
+.PHONY : App/TAppClassifier/main.i
+
+# target to preprocess a source file
+App/TAppClassifier/main.cpp.i:
+	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/App/TAppClassifier/main.cpp.i
+.PHONY : App/TAppClassifier/main.cpp.i
+
+App/TAppClassifier/main.s: App/TAppClassifier/main.cpp.s
+
+.PHONY : App/TAppClassifier/main.s
+
+# target to generate assembly for a file
+App/TAppClassifier/main.cpp.s:
+	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/App/TAppClassifier/main.cpp.s
+.PHONY : App/TAppClassifier/main.cpp.s
+
 App/TAppEncoder/TAppEncCfg.o: App/TAppEncoder/TAppEncCfg.cpp.o
 
 .PHONY : App/TAppEncoder/TAppEncCfg.o
@@ -1833,6 +1873,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... TAppEncoder"
+	@echo "... TAppClassifer"
+	@echo "... App/TAppClassifier/main.o"
+	@echo "... App/TAppClassifier/main.i"
+	@echo "... App/TAppClassifier/main.s"
 	@echo "... App/TAppEncoder/TAppEncCfg.o"
 	@echo "... App/TAppEncoder/TAppEncCfg.i"
 	@echo "... App/TAppEncoder/TAppEncCfg.s"
