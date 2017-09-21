@@ -3,7 +3,10 @@ HTM v16.2 with ResNet for Fast Intra Coding
 
 This project is standing on the shoulder of *HTM v16.2*.
 
-For enabling **Bazel** building and **CMake** building at the same time.
+This project is for For enabling **Bazel** building and **CMake** building at the same time.
+
+FAQs for every one
+------------------
 
 1. What is HTM?
 
@@ -39,5 +42,17 @@ For enabling **Bazel** building and **CMake** building at the same time.
     be self-contained and executable anywhere (as long as the OS is the same as where the binary is built).
 
     And we want a binary which is universal for every one to evaluate the quality.
+
+FAQs for programmers
+--------------------
+
+1. Why you merged the libraries such as ``TAppCommon``, ``TLibCommon``, ``TLibRenderer`` and ``libmd5`` etc., into a single folder?
+
+    Because without doing this, you won't be able to use Bazel. Bazel doesn't allow the cycle dependency issue.
+    E.g., ``TLibCommon`` is the dependency of ``TAppCommon``, and vice versa. This is introducing a cycle dependency
+    issue to Bazel. And Bazel will not allow you to compile your binary before you solve this issue. For solving this
+    cycle dependency issue, we have to merge the libs together.
+
+
 
 
