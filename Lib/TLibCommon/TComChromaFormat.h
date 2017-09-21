@@ -34,14 +34,14 @@
 #ifndef __TCOMCHROMAFORMAT__
 #define __TCOMCHROMAFORMAT__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComRectangle.h"
-#include "HTM162/Lib/TLibCommon/ContextTables.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
+#include "CommonDef.h"
+#include "TComRectangle.h"
+#include "ContextTables.h"
+#include "TComRom.h"
 #include <iostream>
 #include <vector>
 #include <assert.h>
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 
 //======================================================================================================================
 //Chroma format utility functions  =====================================================================================

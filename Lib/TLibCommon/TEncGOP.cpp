@@ -39,13 +39,13 @@
 #include <algorithm>
 #include <functional>
 
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
-#include "HTM162/Lib/TLibCommon/TEncGOP.h"
-#include "HTM162/Lib/TLibCommon/TEncAnalyze.h"
-#include "HTM162/Lib/TLibCommon/MD5.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
-#include "HTM162/Lib/TLibCommon/NAL.h"
-#include "HTM162/Lib/TLibCommon/NALwrite.h"
+#include "TEncTop.h"
+#include "TEncGOP.h"
+#include "TEncAnalyze.h"
+#include "MD5.h"
+#include "SEI.h"
+#include "NAL.h"
+#include "NALwrite.h"
 #include <time.h>
 #include <math.h>
 

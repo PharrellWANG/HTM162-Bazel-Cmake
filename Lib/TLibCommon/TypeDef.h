@@ -45,7 +45,7 @@
 //end ho
 
 //pha.zx debug path setting
-#define MAC_DEBUG_PATH 0
+#define MAC_DEBUG_PATH 1
 //end pha.zx
 
 //! \ingroup TLibCommon

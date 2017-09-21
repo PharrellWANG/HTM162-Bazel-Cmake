@@ -45,8 +45,8 @@
 #include <malloc.h>
 #endif
 
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TVideoIOYuv.h"
+#include "TComPicYuv.h"
+#include "TVideoIOYuv.h"
 
 //! \ingroup TLibCommon
 //! \{

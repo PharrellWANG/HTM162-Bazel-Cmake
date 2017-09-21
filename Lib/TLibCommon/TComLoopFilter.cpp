@@ -35,10 +35,10 @@
     \brief    deblocking filter
 */
 
-#include "HTM162/Lib/TLibCommon/TComLoopFilter.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComMv.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
+#include "TComLoopFilter.h"
+#include "TComSlice.h"
+#include "TComMv.h"
+#include "TComTU.h"
 
 //! \ingroup TLibCommon
 //! \{

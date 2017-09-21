@@ -36,9 +36,9 @@
     \todo     not all entities are documented
 */
 
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
+#include "TComDataCU.h"
+#include "TComTU.h"
+#include "TComPic.h"
 
 //! \ingroup TLibCommon
 //! \{

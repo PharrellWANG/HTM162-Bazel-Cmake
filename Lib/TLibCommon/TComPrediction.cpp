@@ -36,9 +36,9 @@
 */
 
 #include <memory.h>
-#include "HTM162/Lib/TLibCommon/TComPrediction.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
+#include "TComPrediction.h"
+#include "TComPic.h"
+#include "TComTU.h"
 
 //! \ingroup TLibCommon
 //! \{

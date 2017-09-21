@@ -43,8 +43,8 @@
 #include <iostream>
 #include <memory.h>
 
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TVideoIOYuv.h"
+#include "TComRom.h"
+#include "TVideoIOYuv.h"
 
 using namespace std;
 

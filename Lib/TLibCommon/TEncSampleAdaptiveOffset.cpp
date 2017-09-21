@@ -35,7 +35,7 @@
  \file     TEncSampleAdaptiveOffset.cpp
  \brief       estimation part of sample adaptive offset class
  */
-#include "HTM162/Lib/TLibCommon/TEncSampleAdaptiveOffset.h"
+#include "TEncSampleAdaptiveOffset.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>

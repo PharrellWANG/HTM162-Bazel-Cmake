@@ -39,10 +39,10 @@
 #define __TCOMPICYUV__
 
 #include <stdio.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
+#include "CommonDef.h"
+#include "TComRom.h"
+#include "TComChromaFormat.h"
+#include "SEI.h"
 
 //! \ingroup TLibCommon
 //! \{

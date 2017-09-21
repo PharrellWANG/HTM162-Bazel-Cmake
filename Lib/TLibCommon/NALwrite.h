@@ -38,9 +38,9 @@
 
 #include <ostream>
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
-#include "HTM162/Lib/TLibCommon/NAL.h"
+#include "CommonDef.h"
+#include "TComBitStream.h"
+#include "NAL.h"
 
 //! \ingroup TLibEncoder
 //! \{

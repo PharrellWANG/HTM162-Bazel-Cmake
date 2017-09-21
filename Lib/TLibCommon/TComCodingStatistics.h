@@ -34,12 +34,12 @@
 #ifndef __TCOMCODINGSTATISTICS__
 #define __TCOMCODINGSTATISTICS__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #include <stdio.h>
 #include <string>
 #include <map>
 #include <math.h>
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "TComChromaFormat.h"
 
 static const Int64 TCOMCODINGSTATISTICS_ENTROPYSCALE=32768;
 

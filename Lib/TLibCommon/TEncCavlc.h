@@ -42,11 +42,11 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/SyntaxElementWriter.h"
+#include "CommonDef.h"
+#include "TComBitStream.h"
+#include "TComRom.h"
+#include "TEncEntropy.h"
+#include "SyntaxElementWriter.h"
 
 //! \ingroup TLibEncoder
 //! \{

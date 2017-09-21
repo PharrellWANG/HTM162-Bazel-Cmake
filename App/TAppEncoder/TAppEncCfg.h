@@ -38,15 +38,15 @@
 #ifndef __TAPPENCCFG__
 #define __TAPPENCCFG__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "../../Lib/TLibCommon/CommonDef.h"
 
-#include "HTM162/Lib/TLibCommon/TEncCfg.h"
+#include "../../Lib/TLibCommon/TEncCfg.h"
 #include <sstream>
 #include <vector>
 #if NH_3D
-#include "HTM162/Lib/TLibCommon/TAppComCamPara.h"
-#include "HTM162/Lib/TLibCommon/TRenModel.h"
-#include "HTM162/Lib/TLibCommon/TRenModSetupStrParser.h"
+#include "../../Lib/TLibCommon/TAppComCamPara.h"
+#include "../../Lib/TLibCommon/TRenModel.h"
+#include "../../Lib/TLibCommon/TRenModSetupStrParser.h"
 #endif
 //! \ingroup TAppEncoder
 //! \{

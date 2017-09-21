@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" line="800" />
+    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" line="802" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="HTM162_TAppEncoder" targetName="TAppEncoder" />
@@ -11,7 +15,149 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="" />
+    <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.cpp" afterPath="$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.h" afterPath="$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp" afterPath="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h" afterPath="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" afterPath="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/AccessUnit.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/AccessUnit.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/AnnexBwrite.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/AnnexBwrite.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel3DBuffer.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel3DBuffer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel3DBuffer.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/ContextModel3DBuffer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/Debug.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/Debug.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/Debug.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/Debug.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/MD5.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/MD5.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/NAL.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/NAL.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/NALwrite.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/NALwrite.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/NALwrite.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/NALwrite.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SEI.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SEI.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SEI.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SEI.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SEIEncoder.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SEIEncoder.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SEIEncoder.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SEIEncoder.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SEIwrite.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SEIwrite.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SEIwrite.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SEIwrite.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SyntaxElementWriter.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SyntaxElementWriter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/SyntaxElementWriter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/SyntaxElementWriter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TAppComCamPara.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TAppComCamPara.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TAppComCamPara.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TAppComCamPara.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComBitCounter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComBitCounter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComBitStream.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComBitStream.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComBitStream.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComBitStream.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComCABACTables.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComCABACTables.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComCABACTables.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComCABACTables.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComChromaFormat.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComChromaFormat.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComChromaFormat.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComChromaFormat.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComCodingStatistics.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComCodingStatistics.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComDataCU.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComDataCU.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComDataCU.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComDataCU.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComInterpolationFilter.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComInterpolationFilter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComInterpolationFilter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComInterpolationFilter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComList.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComList.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComLoopFilter.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComLoopFilter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComLoopFilter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComLoopFilter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComMotionInfo.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComMotionInfo.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComMotionInfo.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComMotionInfo.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComMv.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComMv.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPattern.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPattern.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPattern.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPattern.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPic.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPic.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPic.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPic.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPicSym.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPicSym.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPicSym.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPicSym.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPicYuv.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPicYuv.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPicYuv.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPicYuv.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPicYuvMD5.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPicYuvMD5.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPrediction.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPrediction.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComPrediction.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComPrediction.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCost.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCost.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCost.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCost.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCostWeightPrediction.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCostWeightPrediction.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCostWeightPrediction.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComRdCostWeightPrediction.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComRom.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComRom.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComSampleAdaptiveOffset.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComSampleAdaptiveOffset.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComSampleAdaptiveOffset.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComSampleAdaptiveOffset.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComSlice.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComSlice.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComSlice.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComSlice.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComTU.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComTU.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComTU.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComTU.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComTrQuant.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComTrQuant.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComTrQuant.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComTrQuant.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComWedgelet.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComWedgelet.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComWedgelet.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComWedgelet.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComWeightPrediction.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComWeightPrediction.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComWeightPrediction.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComWeightPrediction.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComYuv.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComYuv.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TComYuv.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TComYuv.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TDecBinCoder.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TDecBinCoder.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TDecEntropy.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TDecEntropy.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TDecEntropy.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TDecEntropy.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TDecSbac.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TDecSbac.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TDecSbac.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TDecSbac.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncAnalyze.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncAnalyze.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoder.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoder.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABAC.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABAC.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABAC.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABAC.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCfg.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCfg.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncPic.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncPic.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncPic.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncPic.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenModel.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenModel.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenModel.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenModel.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenTop.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenTop.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TRenTop.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TRenTop.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/libmd5.c" afterPath="$PROJECT_DIR$/Lib/TLibCommon/libmd5.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/program_options_lite.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/program_options_lite.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/program_options_lite.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/program_options_lite.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TAppEncoder.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TAppEncoder.dir/depend.make" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,22 +174,186 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="TRenTop.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenTop.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+            <state relative-caret-position="532">
+              <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+              <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+              <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TVideoIOYuv.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+              <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+              <folding>
+                <element signature="e#26003#26081#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TVideoIOYuv.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+              <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TypeDef.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="encmain.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+              <folding>
+                <marker date="1505987624000" expanded="false" signature="2478:2586" ph="..." />
+                <marker date="1505987624000" expanded="true" signature="3302:3323" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TAppEncTop.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="853" column="0" lean-forward="false" selection-start-line="853" selection-start-column="0" selection-end-line="853" selection-end-column="0" />
+              <folding>
+                <element signature="e#1907#1922#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TComRom.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="789">
+              <caret line="803" column="37" lean-forward="true" selection-start-line="803" selection-start-column="37" selection-end-line="803" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TAppEncTop.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="158" column="2" lean-forward="false" selection-start-line="158" selection-start-column="2" selection-end-line="158" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WeightPredAnalysis.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <element signature="e#1983#2005#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WeightPredAnalysis.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+              <folding>
+                <element signature="e#1923#1945#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>HTM162</find>
+      <find>HTM162/Lib/TLibCommon/</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABAC.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCfg.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncPic.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncPic.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenModel.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenModel.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenTop.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenTop.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h" />
+        <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" />
       </list>
     </option>
   </component>
@@ -53,6 +363,29 @@
     <option name="width" value="1385" />
     <option name="height" value="878" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
+            <id>GeneralC/C++</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>ClangTidyInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -74,6 +407,28 @@
             <path>
               <item name="HTM162_TAppEncoder" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="HTM162" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HTM162_TAppEncoder" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="HTM162" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HTM162_TAppEncoder" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="HTM162" type="462c0819:PsiDirectoryNode" />
+              <item name="App" type="462c0819:PsiDirectoryNode" />
+              <item name="TAppEncoder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HTM162_TAppEncoder" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="HTM162" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HTM162_TAppEncoder" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="HTM162" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+              <item name="TLibCommon" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -103,7 +458,7 @@
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
       <envs />
     </configuration>
-    <configuration name="TAppEncoder" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HTM162_TAppEncoder" TARGET_NAME="TAppEncoder" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HTM162_TAppEncoder" RUN_TARGET_NAME="TAppEncoder">
+    <configuration name="TAppEncoder" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-c /Users/Pharrell_WANG/XcodeProj/for_HTM_debugging/baseCfg_3view+depth_AllIntra.cfg -c /Users/Pharrell_WANG/XcodeProj/for_HTM_debugging/qpCfg_Nview+depth_QP25.cfg -c /Users/Pharrell_WANG/XcodeProj/for_HTM_debugging/seqCfg_Newspaper.cfg" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HTM162_TAppEncoder" TARGET_NAME="TAppEncoder" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HTM162_TAppEncoder" RUN_TARGET_NAME="TAppEncoder">
       <envs />
     </configuration>
     <list size="2">
@@ -124,12 +479,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505987098708</updated>
-      <workItem from="1505987100132" duration="37000" />
+      <workItem from="1505987100132" duration="2772000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37000" />
+    <option name="totallyTimeSpent" value="2772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="22" width="1385" height="878" extended-state="0" />
@@ -137,13 +492,14 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24944155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26436782" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974457" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -159,14 +515,1111 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp</url>
+          <line>101</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp</url>
+          <line>853</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncBinCoderCABACCounter.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+        <state relative-caret-position="574">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <folding>
+            <element signature="e#1900#1922#0" expanded="false" />
+            <element signature="e#10671#14165#0" expanded="false" />
+            <element signature="e#32653#32746#0" expanded="false" />
+            <element signature="e#36022#36158#0" expanded="false" />
+            <element signature="e#36941#39654#0" expanded="false" />
+            <element signature="e#44431#44621#0" expanded="false" />
+            <element signature="e#44733#44819#0" expanded="false" />
+            <element signature="e#46317#46865#0" expanded="false" />
+            <element signature="e#48692#48751#0" expanded="false" />
+            <element signature="e#48767#48825#0" expanded="false" />
+            <element signature="e#59547#59611#0" expanded="false" />
+            <element signature="e#73981#74055#0" expanded="false" />
+            <element signature="e#75768#75841#0" expanded="false" />
+            <element signature="e#76651#76898#0" expanded="false" />
+            <element signature="e#78083#78130#0" expanded="false" />
+            <element signature="e#81955#82041#0" expanded="false" />
+            <element signature="e#82304#82417#0" expanded="false" />
+            <element signature="e#82655#82745#0" expanded="false" />
+            <element signature="e#83106#83189#0" expanded="false" />
+            <element signature="e#89247#89304#0" expanded="false" />
+            <element signature="e#89609#89704#0" expanded="false" />
+            <element signature="e#92388#92514#0" expanded="false" />
+            <element signature="e#99454#101393#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCavlc.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCfg.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <caret line="52" column="10" lean-forward="false" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <caret line="56" column="10" lean-forward="false" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+          <folding>
+            <element signature="e#2014#2036#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <folding>
+            <element signature="e#1908#1926#0" expanded="false" />
+            <element signature="e#10916#11035#0" expanded="false" />
+            <element signature="e#12155#12430#0" expanded="false" />
+            <element signature="e#13050#13144#0" expanded="false" />
+            <element signature="e#13628#13660#0" expanded="false" />
+            <element signature="e#15038#15304#0" expanded="false" />
+            <element signature="e#18432#18561#0" expanded="false" />
+            <element signature="e#20082#20795#0" expanded="false" />
+            <element signature="e#22787#22971#0" expanded="false" />
+            <element signature="e#23963#24115#0" expanded="false" />
+            <element signature="e#26691#26776#0" expanded="false" />
+            <element signature="e#27222#27307#0" expanded="false" />
+            <element signature="e#27929#28020#0" expanded="false" />
+            <element signature="e#28872#28947#0" expanded="false" />
+            <element signature="e#29296#29381#0" expanded="false" />
+            <element signature="e#30044#30129#0" expanded="false" />
+            <element signature="e#30883#30974#0" expanded="false" />
+            <element signature="e#31644#31735#0" expanded="false" />
+            <element signature="e#32501#32586#0" expanded="false" />
+            <element signature="e#33250#33335#0" expanded="false" />
+            <element signature="e#33881#33972#0" expanded="false" />
+            <element signature="e#34642#34733#0" expanded="false" />
+            <element signature="e#34960#36063#0" expanded="false" />
+            <element signature="e#37734#37819#0" expanded="false" />
+            <element signature="e#38491#38576#0" expanded="false" />
+            <element signature="e#39443#39541#0" expanded="false" />
+            <element signature="e#42168#42306#0" expanded="false" />
+            <element signature="e#42493#42630#0" expanded="false" />
+            <element signature="e#45222#45283#0" expanded="false" />
+            <element signature="e#67983#68125#0" expanded="false" />
+            <element signature="e#69517#70112#0" expanded="false" />
+            <element signature="e#70126#70636#0" expanded="false" />
+            <element signature="e#70713#70752#0" expanded="false" />
+            <element signature="e#70859#70907#0" expanded="false" />
+            <element signature="e#71255#71273#0" expanded="false" />
+            <element signature="e#71392#71408#0" expanded="false" />
+            <element signature="e#71521#71583#0" expanded="false" />
+            <element signature="e#72613#72716#0" expanded="false" />
+            <element signature="e#84682#84827#0" expanded="false" />
+            <element signature="e#84841#84941#0" expanded="false" />
+            <element signature="e#86079#86124#0" expanded="false" />
+            <element signature="e#86269#86283#0" expanded="false" />
+            <element signature="e#88034#88230#0" expanded="false" />
+            <element signature="e#88247#88397#0" expanded="false" />
+            <element signature="e#95952#96067#0" expanded="false" />
+            <element signature="e#102806#102872#0" expanded="false" />
+            <element signature="e#103081#103116#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+          <folding>
+            <element signature="e#5566#5670#0" expanded="false" />
+            <element signature="e#6415#6567#0" expanded="false" />
+            <element signature="e#6583#6681#0" expanded="false" />
+            <element signature="e#8729#8841#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <folding>
+            <element signature="e#1904#1928#0" expanded="false" />
+            <element signature="e#4540#4655#0" expanded="false" />
+            <element signature="e#7651#8081#0" expanded="false" />
+            <element signature="e#11199#11534#0" expanded="false" />
+            <element signature="e#23016#23202#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncEntropy.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <folding>
+            <element signature="e#7283#7399#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <folding>
+            <element signature="e#5781#5814#0" expanded="false" />
+            <element signature="e#6171#6204#0" expanded="false" />
+            <element signature="e#6646#6709#0" expanded="false" />
+            <element signature="e#7611#7652#0" expanded="false" />
+            <element signature="e#8318#8359#0" expanded="false" />
+            <element signature="e#38394#38722#0" expanded="false" />
+            <element signature="e#39104#39147#0" expanded="false" />
+            <element signature="e#39664#39715#0" expanded="false" />
+            <element signature="e#39788#39839#0" expanded="false" />
+            <element signature="e#41047#41056#0" expanded="false" />
+            <element signature="e#41895#41981#0" expanded="false" />
+            <element signature="e#42339#42480#0" expanded="false" />
+            <element signature="e#43461#43837#0" expanded="false" />
+            <element signature="e#49749#49821#0" expanded="false" />
+            <element signature="e#50061#50176#0" expanded="false" />
+            <element signature="e#50786#50871#0" expanded="false" />
+            <element signature="e#53751#54020#0" expanded="false" />
+            <element signature="e#54155#54192#0" expanded="false" />
+            <element signature="e#54829#54973#0" expanded="false" />
+            <element signature="e#57176#57599#0" expanded="false" />
+            <element signature="e#60658#60859#0" expanded="false" />
+            <element signature="e#62806#62991#0" expanded="false" />
+            <element signature="e#70887#71104#0" expanded="false" />
+            <element signature="e#72837#72907#0" expanded="false" />
+            <element signature="e#77170#77194#0" expanded="false" />
+            <element signature="e#80336#80379#0" expanded="false" />
+            <element signature="e#81314#81397#0" expanded="false" />
+            <element signature="e#83479#83547#0" expanded="false" />
+            <element signature="e#85585#85609#0" expanded="false" />
+            <element signature="e#85797#85902#0" expanded="false" />
+            <element signature="e#85961#85985#0" expanded="false" />
+            <element signature="e#91021#91684#0" expanded="false" />
+            <element signature="e#92053#92054#0" expanded="false" />
+            <element signature="e#93642#93863#0" expanded="false" />
+            <element signature="e#93877#94319#0" expanded="false" />
+            <element signature="e#94466#94584#0" expanded="false" />
+            <element signature="e#95862#99193#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+          <caret line="51" column="10" lean-forward="false" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+          <caret line="52" column="10" lean-forward="false" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <caret line="53" column="10" lean-forward="false" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+          <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <caret line="55" column="10" lean-forward="false" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+          <caret line="57" column="10" lean-forward="false" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+          <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
+          <caret line="60" column="10" lean-forward="false" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
+          <folding>
+            <element signature="e#1944#1959#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncPic.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncPic.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncPreanalyzer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncRateCtrl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="56" column="10" lean-forward="false" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+          <folding>
+            <element signature="e#2020#2042#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <folding>
+            <marker date="1505988944000" expanded="false" signature="2922:2997" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="3204:3254" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="4163:4187" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="7503:7776" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="8502:8600" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="12159:12344" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="12556:13030" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="31333:31423" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSampleAdaptiveOffset.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <folding>
+            <element signature="e#4008#4216#0" expanded="false" />
+            <element signature="e#4662#4787#0" expanded="false" />
+            <element signature="e#6682#6725#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <folding>
+            <element signature="e#1898#1918#0" expanded="false" />
+            <element signature="e#27723#27855#0" expanded="false" />
+            <element signature="e#28605#28743#0" expanded="false" />
+            <element signature="e#35642#35871#0" expanded="false" />
+            <element signature="e#36287#36569#0" expanded="false" />
+            <element signature="e#37335#37535#0" expanded="false" />
+            <element signature="e#38495#38655#0" expanded="false" />
+            <element signature="e#39640#39779#0" expanded="false" />
+            <element signature="e#40418#40491#0" expanded="false" />
+            <element signature="e#40747#40976#0" expanded="false" />
+            <element signature="e#45704#45928#0" expanded="false" />
+            <element signature="e#52384#52834#0" expanded="false" />
+            <element signature="e#53300#53676#0" expanded="false" />
+            <element signature="e#54540#54927#0" expanded="false" />
+            <element signature="e#56722#57009#0" expanded="false" />
+            <element signature="e#60360#61529#0" expanded="false" />
+            <element signature="e#89590#89624#0" expanded="false" />
+            <element signature="e#91990#92025#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="728">
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+          <caret line="52" column="10" lean-forward="false" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <folding>
+            <element signature="e#2028#2054#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <folding>
+            <element signature="e#37776#37796#0" expanded="false" />
+            <element signature="e#50031#50052#0" expanded="false" />
+            <element signature="e#52456#52770#0" expanded="false" />
+            <element signature="e#53043#53093#0" expanded="false" />
+            <element signature="e#54128#54180#0" expanded="false" />
+            <element signature="e#58063#58302#0" expanded="false" />
+            <element signature="e#60166#60197#0" expanded="false" />
+            <element signature="e#60569#60718#0" expanded="false" />
+            <element signature="e#65050#65215#0" expanded="false" />
+            <element signature="e#69162#69350#0" expanded="false" />
+            <element signature="e#75624#75678#0" expanded="false" />
+            <element signature="e#76146#76176#0" expanded="false" />
+            <element signature="e#76903#76985#0" expanded="false" />
+            <element signature="e#78519#78641#0" expanded="false" />
+            <element signature="e#88003#88023#0" expanded="false" />
+            <element signature="e#90573#90614#0" expanded="false" />
+            <element signature="e#90750#90791#0" expanded="false" />
+            <element signature="e#99858#100018#0" expanded="false" />
+            <element signature="e#102677#102716#0" expanded="false" />
+            <element signature="e#106668#106690#0" expanded="false" />
+            <element signature="e#107865#107942#0" expanded="false" />
+            <element signature="e#108587#108665#0" expanded="false" />
+            <element signature="e#112003#112137#0" expanded="false" />
+            <element signature="e#114107#114136#0" expanded="false" />
+            <element signature="e#114527#114865#0" expanded="false" />
+            <element signature="e#114941#114979#0" expanded="false" />
+            <element signature="e#116493#116576#0" expanded="false" />
+            <element signature="e#118457#118482#0" expanded="false" />
+            <element signature="e#119852#119995#0" expanded="false" />
+            <element signature="e#120009#120346#0" expanded="false" />
+            <element signature="e#123737#123768#0" expanded="false" />
+            <element signature="e#123818#123940#0" expanded="false" />
+            <element signature="e#124039#124159#0" expanded="false" />
+            <element signature="e#124620#124645#0" expanded="false" />
+            <element signature="e#131480#131507#0" expanded="false" />
+            <element signature="e#132795#132817#0" expanded="false" />
+            <element signature="e#143819#143941#0" expanded="false" />
+            <element signature="e#144597#144695#0" expanded="false" />
+            <element signature="e#145340#145455#0" expanded="false" />
+            <element signature="e#147459#147486#0" expanded="false" />
+            <element signature="e#150615#150806#0" expanded="false" />
+            <element signature="e#150820#150965#0" expanded="false" />
+            <element signature="e#152474#152616#0" expanded="false" />
+            <element signature="e#154018#154076#0" expanded="false" />
+            <element signature="e#168998#169055#0" expanded="false" />
+            <element signature="e#169801#170061#0" expanded="false" />
+            <element signature="e#173375#173401#0" expanded="false" />
+            <element signature="e#193458#193515#0" expanded="false" />
+            <element signature="e#200100#200111#0" expanded="false" />
+            <element signature="e#200858#200868#0" expanded="false" />
+            <element signature="e#201975#202000#0" expanded="false" />
+            <element signature="e#211085#211096#0" expanded="false" />
+            <element signature="e#211794#211804#0" expanded="false" />
+            <element signature="e#212309#212334#0" expanded="false" />
+            <element signature="e#218742#218768#0" expanded="false" />
+            <element signature="e#221821#221890#0" expanded="false" />
+            <element signature="e#222268#222489#0" expanded="false" />
+            <element signature="e#222714#222827#0" expanded="false" />
+            <element signature="e#222915#223057#0" expanded="false" />
+            <element signature="e#223860#223994#0" expanded="false" />
+            <element signature="e#224088#224143#0" expanded="false" />
+            <element signature="e#225879#225910#0" expanded="false" />
+            <element signature="e#230053#230072#0" expanded="false" />
+            <element signature="e#232453#232541#0" expanded="false" />
+            <element signature="e#234507#234790#0" expanded="false" />
+            <element signature="e#242826#242854#0" expanded="false" />
+            <element signature="e#243025#243053#0" expanded="false" />
+            <element signature="e#262246#262274#0" expanded="false" />
+            <element signature="e#263598#263759#0" expanded="false" />
+            <element signature="e#294725#294764#0" expanded="false" />
+            <element signature="e#295272#295308#0" expanded="false" />
+            <element signature="e#296162#296200#0" expanded="false" />
+            <element signature="e#296874#296910#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <folding>
+            <element signature="e#12385#12407#0" expanded="false" />
+            <element signature="e#13196#13217#0" expanded="false" />
+            <element signature="e#15233#15253#0" expanded="false" />
+            <element signature="e#15815#15980#0" expanded="false" />
+            <element signature="e#17055#17246#0" expanded="false" />
+            <element signature="e#25676#25881#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding>
+            <marker date="1505988944000" expanded="false" signature="5102:5152" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="5745:5893" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="6133:6425" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="6600:6630" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="7464:7900" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="8861:9122" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="9767:9860" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="11211:11387" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="12935:13042" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="13228:14725" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="15143:15786" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="15895:16095" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="16949:16988" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="17294:17563" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="18469:18821" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="20432:20466" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="23270:23338" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="23527:23565" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="24090:24185" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="24652:24724" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="29061:29700" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="29724:30150" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="31159:31178" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="31493:32047" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="36357:36603" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="36741:36783" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="43087:43172" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="43320:43390" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="46181:46212" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="48684:48716" ph="..." />
+            <marker date="1505988944000" expanded="false" signature="48901:49172" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <folding>
+            <element signature="e#4146#4245#0" expanded="false" />
+            <element signature="e#6020#6200#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <folding>
+            <element signature="e#1892#1914#0" expanded="false" />
+            <element signature="e#3419#3462#0" expanded="false" />
+            <element signature="e#4972#5035#0" expanded="false" />
+            <element signature="e#5265#5322#0" expanded="false" />
+            <element signature="e#5546#5602#0" expanded="false" />
+            <element signature="e#6544#6574#0" expanded="false" />
+            <element signature="e#11614#11850#0" expanded="false" />
+            <element signature="e#12629#12860#0" expanded="false" />
+            <element signature="e#13207#13762#0" expanded="false" />
+            <element signature="e#14121#14279#0" expanded="false" />
+            <element signature="e#15291#18455#0" expanded="false" />
+            <element signature="e#19229#19264#0" expanded="false" />
+            <element signature="e#19486#19683#0" expanded="false" />
+            <element signature="e#20198#20228#0" expanded="false" />
+            <element signature="e#20677#21057#0" expanded="false" />
+            <element signature="e#27196#27266#0" expanded="false" />
+            <element signature="e#29343#29412#0" expanded="false" />
+            <element signature="e#31405#31441#0" expanded="false" />
+            <element signature="e#33828#34037#0" expanded="false" />
+            <element signature="e#35526#35639#0" expanded="false" />
+            <element signature="e#36787#36844#0" expanded="false" />
+            <element signature="e#54208#54248#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncTop.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="729">
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <caret line="50" column="10" lean-forward="false" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+          <caret line="51" column="10" lean-forward="false" selection-start-line="51" selection-start-column="10" selection-end-line="51" selection-end-column="10" />
+          <caret line="52" column="10" lean-forward="false" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <caret line="53" column="10" lean-forward="false" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+          <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <caret line="55" column="10" lean-forward="false" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+          <caret line="56" column="10" lean-forward="false" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+          <caret line="57" column="10" lean-forward="false" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+          <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />
+          <folding>
+            <element signature="e#3052#3137#0" expanded="false" />
+            <element signature="e#5259#5468#0" expanded="false" />
+            <element signature="e#7765#7850#0" expanded="false" />
+            <element signature="e#11706#12456#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding>
+            <marker date="1505988944000" expanded="false" signature="1933:53737" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding>
+            <element signature="e#2067#2086#0" expanded="false" />
+            <element signature="e#2815#2827#0" expanded="false" />
+            <element signature="e#2909#2921#0" expanded="false" />
+            <element signature="e#3316#3328#0" expanded="false" />
+            <element signature="e#3436#3448#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenImage.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding>
+            <element signature="e#1950#1962#0" expanded="false" />
+            <element signature="e#2180#2192#0" expanded="false" />
+            <element signature="e#2404#2416#0" expanded="false" />
+            <element signature="e#2556#2558#0" expanded="false" />
+            <element signature="e#4092#4104#0" expanded="false" />
+            <element signature="e#4289#4301#0" expanded="false" />
+            <element signature="e#4398#4407#0" expanded="false" />
+            <element signature="e#4526#4535#0" expanded="false" />
+            <element signature="e#4623#4635#0" expanded="false" />
+            <element signature="e#4946#4958#0" expanded="false" />
+            <element signature="e#5268#5280#0" expanded="false" />
+            <element signature="e#6315#6324#0" expanded="false" />
+            <element signature="e#6502#6511#0" expanded="false" />
+            <element signature="e#6701#6710#0" expanded="false" />
+            <element signature="e#6719#6728#0" expanded="false" />
+            <element signature="e#7102#7114#0" expanded="false" />
+            <element signature="e#7349#7361#0" expanded="false" />
+            <element signature="e#7525#7534#0" expanded="false" />
+            <element signature="e#7784#7793#0" expanded="false" />
+            <element signature="e#8045#8054#0" expanded="false" />
+            <element signature="e#8140#8149#0" expanded="false" />
+            <element signature="e#8237#8246#0" expanded="false" />
+            <element signature="e#8346#8355#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenImage.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding>
+            <element signature="e#2095#2107#0" expanded="false" />
+            <element signature="e#3332#3344#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding>
+            <element signature="e#1968#1977#0" expanded="false" />
+            <element signature="e#2044#2053#0" expanded="false" />
+            <element signature="e#2433#2442#0" expanded="false" />
+            <element signature="e#2839#2851#0" expanded="false" />
+            <element signature="e#3289#3301#0" expanded="false" />
+            <element signature="e#3778#3790#0" expanded="false" />
+            <element signature="e#4305#4317#0" expanded="false" />
+            <element signature="e#4400#4409#0" expanded="false" />
+            <element signature="e#4480#4489#0" expanded="false" />
+            <element signature="e#4566#4575#0" expanded="false" />
+            <element signature="e#4954#4963#0" expanded="false" />
+            <element signature="e#5262#5271#0" expanded="false" />
+            <element signature="e#5643#5652#0" expanded="false" />
+            <element signature="e#5955#5964#0" expanded="false" />
+            <element signature="e#6332#6341#0" expanded="false" />
+            <element signature="e#6639#6648#0" expanded="false" />
+            <element signature="e#7015#7024#0" expanded="false" />
+            <element signature="e#7345#7347#0" expanded="false" />
+            <element signature="e#7726#7728#0" expanded="false" />
+            <element signature="e#8035#8037#0" expanded="false" />
+            <element signature="e#8415#8417#0" expanded="false" />
+            <element signature="e#8724#8726#0" expanded="false" />
+            <element signature="e#9109#9111#0" expanded="false" />
+            <element signature="e#9446#9448#0" expanded="false" />
+            <element signature="e#9863#9872#0" expanded="false" />
+            <element signature="e#10005#10014#0" expanded="false" />
+            <element signature="e#10407#10416#0" expanded="false" />
+            <element signature="e#11044#11053#0" expanded="false" />
+            <element signature="e#11320#11329#0" expanded="false" />
+            <element signature="e#11679#11688#0" expanded="false" />
+            <element signature="e#12047#12049#0" expanded="false" />
+            <element signature="e#12130#12132#0" expanded="false" />
+            <element signature="e#12219#12228#0" expanded="false" />
+            <element signature="e#12365#12374#0" expanded="false" />
+            <element signature="e#12442#12454#0" expanded="false" />
+            <element signature="e#13372#13384#0" expanded="false" />
+            <element signature="e#13652#13664#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding>
+            <element signature="e#2108#2120#0" expanded="false" />
+            <element signature="e#4040#4052#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <folding>
+            <element signature="e#2735#2750#0" expanded="false" />
+            <element signature="e#6783#6798#0" expanded="false" />
+            <element signature="e#8002#8017#0" expanded="false" />
+            <element signature="e#9243#9258#0" expanded="false" />
+            <element signature="e#10500#10515#0" expanded="false" />
+            <element signature="e#11784#11799#0" expanded="false" />
+            <element signature="e#13035#13050#0" expanded="false" />
+            <element signature="e#14320#14335#0" expanded="false" />
+            <element signature="e#15732#15747#0" expanded="false" />
+            <element signature="e#16991#17006#0" expanded="false" />
+            <element signature="e#18277#18292#0" expanded="false" />
+            <element signature="e#19576#19591#0" expanded="false" />
+            <element signature="e#20871#20886#0" expanded="false" />
+            <element signature="e#22171#22186#0" expanded="false" />
+            <element signature="e#23693#23708#0" expanded="false" />
+            <element signature="e#26603#26618#0" expanded="false" />
+            <element signature="e#29612#29627#0" expanded="false" />
+            <element signature="e#32688#32703#0" expanded="false" />
+            <element signature="e#35661#35676#0" expanded="false" />
+            <element signature="e#36047#36062#0" expanded="false" />
+            <element signature="e#36432#36447#0" expanded="false" />
+            <element signature="e#36846#36861#0" expanded="false" />
+            <element signature="e#37258#37273#0" expanded="false" />
+            <element signature="e#37671#37686#0" expanded="false" />
+            <element signature="e#38083#38098#0" expanded="false" />
+            <element signature="e#38515#38530#0" expanded="false" />
+            <element signature="e#38946#38961#0" expanded="false" />
+            <element signature="e#39273#39288#0" expanded="false" />
+            <element signature="e#39599#39614#0" expanded="false" />
+            <element signature="e#40032#40047#0" expanded="false" />
+            <element signature="e#40465#40480#0" expanded="false" />
+            <element signature="e#40852#40867#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenModel.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="33" column="10" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding>
+            <element signature="e#7918#8051#0" expanded="false" />
+            <element signature="e#16669#16837#0" expanded="false" />
+            <element signature="e#16853#17226#0" expanded="false" />
+            <element signature="e#22955#23915#0" expanded="false" />
+            <element signature="e#27446#27559#0" expanded="false" />
+            <element signature="e#28143#28296#0" expanded="false" />
+            <element signature="e#29420#29555#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenModel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenModSetupStrParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="33" column="10" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding>
+            <element signature="e#1979#2006#0" expanded="false" />
+            <element signature="e#3125#3152#0" expanded="false" />
+            <element signature="e#3966#3993#0" expanded="false" />
+            <element signature="e#4234#4421#0" expanded="false" />
+            <element signature="e#6243#6270#0" expanded="false" />
+            <element signature="e#8119#8146#0" expanded="false" />
+            <element signature="e#8374#8685#0" expanded="false" />
+            <element signature="e#8720#8747#0" expanded="false" />
+            <element signature="e#10422#10449#0" expanded="false" />
+            <element signature="e#10626#10879#0" expanded="false" />
+            <element signature="e#10909#10944#0" expanded="false" />
+            <element signature="e#11408#12498#0" expanded="false" />
+            <element signature="e#12518#12545#0" expanded="false" />
+            <element signature="e#12618#12662#0" expanded="false" />
+            <element signature="e#12742#12762#0" expanded="false" />
+            <element signature="e#12983#13087#0" expanded="false" />
+            <element signature="e#13272#13377#0" expanded="false" />
+            <element signature="e#13676#13891#0" expanded="false" />
+            <element signature="e#13952#13979#0" expanded="false" />
+            <element signature="e#14185#14286#0" expanded="false" />
+            <element signature="e#15056#15083#0" expanded="false" />
+            <element signature="e#15332#15359#0" expanded="false" />
+            <element signature="e#15632#15659#0" expanded="false" />
+            <element signature="e#16476#16503#0" expanded="false" />
+            <element signature="e#16583#16634#0" expanded="false" />
+            <element signature="e#16940#16967#0" expanded="false" />
+            <element signature="e#17068#17136#0" expanded="false" />
+            <element signature="e#17789#17839#0" expanded="false" />
+            <element signature="e#18913#18940#0" expanded="false" />
+            <element signature="e#19031#19093#0" expanded="false" />
+            <element signature="e#19416#19457#0" expanded="false" />
+            <element signature="e#19916#19943#0" expanded="false" />
+            <element signature="e#21799#21826#0" expanded="false" />
+            <element signature="e#22032#22227#0" expanded="false" />
+            <element signature="e#22686#22788#0" expanded="false" />
+            <element signature="e#23161#23264#0" expanded="false" />
+            <element signature="e#23364#23391#0" expanded="false" />
+            <element signature="e#23589#23778#0" expanded="false" />
+            <element signature="e#24209#24304#0" expanded="false" />
+            <element signature="e#24675#24771#0" expanded="false" />
+            <element signature="e#24837#24864#0" expanded="false" />
+            <element signature="e#25793#26130#0" expanded="false" />
+            <element signature="e#26155#26182#0" expanded="false" />
+            <element signature="e#26871#26898#0" expanded="false" />
+            <element signature="e#27843#28081#0" expanded="false" />
+            <element signature="e#28106#28133#0" expanded="false" />
+            <element signature="e#28345#28372#0" expanded="false" />
+            <element signature="e#28568#28595#0" expanded="false" />
+            <element signature="e#28604#28616#0" expanded="false" />
+            <element signature="e#29106#29133#0" expanded="false" />
+            <element signature="e#29142#29154#0" expanded="false" />
+            <element signature="e#29538#29565#0" expanded="false" />
+            <element signature="e#29574#29586#0" expanded="false" />
+            <element signature="e#29754#29960#0" expanded="false" />
+            <element signature="e#30964#30991#0" expanded="false" />
+            <element signature="e#31000#31021#0" expanded="false" />
+            <element signature="e#31189#31404#0" expanded="false" />
+            <element signature="e#35222#35249#0" expanded="false" />
+            <element signature="e#35258#35267#0" expanded="false" />
+            <element signature="e#35802#35829#0" expanded="false" />
+            <element signature="e#35838#35859#0" expanded="false" />
+            <element signature="e#37023#37050#0" expanded="false" />
+            <element signature="e#37059#37080#0" expanded="false" />
+            <element signature="e#38141#38168#0" expanded="false" />
+            <element signature="e#38177#38198#0" expanded="false" />
+            <element signature="e#39223#39250#0" expanded="false" />
+            <element signature="e#39259#39280#0" expanded="false" />
+            <element signature="e#39912#39939#0" expanded="false" />
+            <element signature="e#39949#39958#0" expanded="false" />
+            <element signature="e#40261#40288#0" expanded="false" />
+            <element signature="e#40466#40493#0" expanded="false" />
+            <element signature="e#40503#40512#0" expanded="false" />
+            <element signature="e#40767#40794#0" expanded="false" />
+            <element signature="e#40804#40813#0" expanded="false" />
+            <element signature="e#41077#41104#0" expanded="false" />
+            <element signature="e#41113#41122#0" expanded="false" />
+            <element signature="e#41338#41365#0" expanded="false" />
+            <element signature="e#41374#41383#0" expanded="false" />
+            <element signature="e#41590#41617#0" expanded="false" />
+            <element signature="e#41626#41635#0" expanded="false" />
+            <element signature="e#41883#41910#0" expanded="false" />
+            <element signature="e#42229#42256#0" expanded="false" />
+            <element signature="e#42576#42603#0" expanded="false" />
+            <element signature="e#42925#42952#0" expanded="false" />
+            <element signature="e#42961#42982#0" expanded="false" />
+            <element signature="e#46756#46783#0" expanded="false" />
+            <element signature="e#47395#47422#0" expanded="false" />
+            <element signature="e#47626#47653#0" expanded="false" />
+            <element signature="e#47663#47686#0" expanded="false" />
+            <element signature="e#49824#49851#0" expanded="false" />
+            <element signature="e#49860#49882#0" expanded="false" />
+            <element signature="e#50692#50719#0" expanded="false" />
+            <element signature="e#50728#50750#0" expanded="false" />
+            <element signature="e#51571#51598#0" expanded="false" />
+            <element signature="e#51831#51858#0" expanded="false" />
+            <element signature="e#53206#53233#0" expanded="false" />
+            <element signature="e#53243#53253#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenTop.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenTop.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+          <folding>
+            <element signature="e#26003#26081#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TVideoIOYuv.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="43" column="10" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
+          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="e#1983#2005#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/WeightPredAnalysis.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+          <folding>
+            <element signature="e#1923#1945#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="158" column="2" lean-forward="false" selection-start-line="158" selection-start-column="2" selection-end-line="158" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <marker date="1505987624000" expanded="false" signature="2478:2586" ph="..." />
+            <marker date="1505987624000" expanded="true" signature="3302:3323" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="853" column="0" lean-forward="false" selection-start-line="853" selection-start-column="0" selection-end-line="853" selection-end-column="0" />
+          <folding>
+            <element signature="e#1907#1922#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="803" column="37" lean-forward="true" selection-start-line="803" selection-start-column="37" selection-end-line="803" selection-end-column="37" />
           <folding />
         </state>
       </provider>

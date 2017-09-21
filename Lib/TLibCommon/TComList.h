@@ -44,7 +44,7 @@
 
 #include <list>
 #include <assert.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
 #include <cstdlib>
 using namespace std;

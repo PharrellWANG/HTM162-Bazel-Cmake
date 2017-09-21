@@ -32,10 +32,10 @@
  */
 
 
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
+#include "TComTU.h"
+#include "TComRom.h"
+#include "TComDataCU.h"
+#include "TComPic.h"
 
 //----------------------------------------------------------------------------------------------------------------------
 

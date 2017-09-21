@@ -38,7 +38,7 @@
 #ifndef __TCOMMV__
 #define __TCOMMV__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #if NH_3D
 #include <cstdlib>
 #endif

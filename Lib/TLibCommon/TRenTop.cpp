@@ -32,13 +32,13 @@
  */
 
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/TRenTop.h"
+#include "TRenImage.h"
+#include "TRenTop.h"
 
-#include "HTM162/Lib/TLibCommon/TRenFilter.h"
+#include "TRenFilter.h"
 #include <iostream>
 #include <math.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #if NH_3D_VSO  || NH_3D
 
 

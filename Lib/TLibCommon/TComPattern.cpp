@@ -35,12 +35,12 @@
     \brief    neighbouring pixel access classes
 */
 
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComPattern.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
-#include "HTM162/Lib/TLibCommon/TComPrediction.h"
+#include "TComPic.h"
+#include "TComPattern.h"
+#include "TComDataCU.h"
+#include "TComTU.h"
+#include "Debug.h"
+#include "TComPrediction.h"
 
 //! \ingroup TLibCommon
 //! \{

@@ -44,7 +44,7 @@
 #include <list>
 #include <stdlib.h>
 #include <sstream>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #if DEBUG_STRING
 extern const TChar *debug_reorder_data_inter_token[MAX_NUM_COMPONENT+1];
 extern const TChar *partSizeToString[NUMBER_OF_PART_SIZES];

@@ -36,17 +36,17 @@
 */
 
 #include <stdio.h>
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
-#include "HTM162/Lib/TLibCommon/TEncCu.h"
-#include "HTM162/Lib/TLibCommon/TEncAnalyze.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "TEncTop.h"
+#include "TEncCu.h"
+#include "TEncAnalyze.h"
+#include "Debug.h"
 
 #include <cmath>
 #include <algorithm>
 using namespace std;
 
 //ho encode data
-#include "HTM162/Lib/TLibCommon/csvfile.h"				// csvfile.h in source\Lib\TLibEncoder
+#include "csvfile.h"				// csvfile.h in source\Lib\TLibEncoder
 #if HO_EXPORT_ENCODE_DATA
 extern Bool g_bExportEncodeData;
 #include <iostream>

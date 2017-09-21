@@ -35,8 +35,8 @@
 #ifndef __TRENIMAGEPLANE__
 #define __TRENIMAGEPLANE__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
 
 #if NH_3D_VSO  || NH_3D
 #define PelImagePlane     TRenImagePlane<Pel>

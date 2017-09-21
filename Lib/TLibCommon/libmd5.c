@@ -15,7 +15,7 @@
 
 #include <stdint.h>
 #include <string.h>
-#include "HTM162/Lib/TLibCommon/libmd5.h"
+#include "libmd5.h"
 
 //! \ingroup libMD5
 //! \{

@@ -35,9 +35,9 @@
     \brief    binary entropy encoder of CABAC
 */
 
-#include "HTM162/Lib/TLibCommon/TEncBinCoderCABAC.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "TEncBinCoderCABAC.h"
+#include "TComRom.h"
+#include "Debug.h"
 
 //! \ingroup TLibEncoder
 //! \{

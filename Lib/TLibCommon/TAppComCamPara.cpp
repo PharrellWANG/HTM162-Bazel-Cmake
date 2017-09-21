@@ -35,7 +35,7 @@
 
 
 // Include files
-#include "HTM162/Lib/TLibCommon/TAppComCamPara.h"
+#include "TAppComCamPara.h"
 
 
 #include <stdlib.h>

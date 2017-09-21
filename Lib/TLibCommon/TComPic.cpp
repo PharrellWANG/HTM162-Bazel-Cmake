@@ -35,8 +35,8 @@
     \brief    picture class
 */
 
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
+#include "TComPic.h"
+#include "SEI.h"
 
 //! \ingroup TLibCommon
 //! \{

@@ -37,7 +37,7 @@
 
 #include <algorithm>
 
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
+#include "ContextModel.h"
 
 using namespace std;
 //! \ingroup TLibCommon

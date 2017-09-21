@@ -37,8 +37,8 @@
 #define __ANNEXBWRITE__
 
 #include <ostream>
-#include "HTM162/Lib/TLibCommon/AccessUnit.h"
-#include "HTM162/Lib/TLibCommon/NALwrite.h"
+#include "AccessUnit.h"
+#include "NALwrite.h"
 
 //! \ingroup TLibEncoder
 //! \{

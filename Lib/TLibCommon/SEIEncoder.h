@@ -36,7 +36,7 @@
 #ifndef __SEIENCODER__
 #define __SEIENCODER__
 
-#include "HTM162/Lib/TLibCommon/SEI.h"
+#include "SEI.h"
 
 // forward declarations
 class TEncCfg;

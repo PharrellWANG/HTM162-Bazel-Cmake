@@ -35,7 +35,7 @@
     \brief    context model 3D buffer class
 */
 
-#include "HTM162/Lib/TLibCommon/ContextModel3DBuffer.h"
+#include "ContextModel3DBuffer.h"
 
 //! \ingroup TLibCommon
 //! \{

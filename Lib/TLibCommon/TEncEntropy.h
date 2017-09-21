@@ -38,14 +38,14 @@
 #ifndef __TENCENTROPY__
 #define __TENCENTROPY__
 
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "TComSlice.h"
+#include "TComDataCU.h"
+#include "TComBitStream.h"
+#include "ContextModel.h"
+#include "TComPic.h"
+#include "TComTrQuant.h"
+#include "TComSampleAdaptiveOffset.h"
+#include "TComChromaFormat.h"
 
 class TEncSbac;
 class TEncCavlc;

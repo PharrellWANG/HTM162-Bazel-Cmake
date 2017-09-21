@@ -31,8 +31,8 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/MD5.h"
+#include "TComPicYuv.h"
+#include "MD5.h"
 
 //! \ingroup TLibCommon
 //! \{

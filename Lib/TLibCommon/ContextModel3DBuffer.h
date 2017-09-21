@@ -41,8 +41,8 @@
 #include <stdio.h>
 #include <memory.h>
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
+#include "CommonDef.h"
+#include "ContextModel.h"
 
 //! \ingroup TLibCommon
 //! \{

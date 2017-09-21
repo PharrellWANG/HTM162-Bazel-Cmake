@@ -31,9 +31,9 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/TRenFilter.h"
-#include "HTM162/Lib/TLibCommon/TRenModel.h"
+#include "TRenImage.h"
+#include "TRenFilter.h"
+#include "TRenModel.h"
 
 #if NH_3D_VSO
 ///////////  TRENMODEL //////////////////////

@@ -31,12 +31,12 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "HTM162/Lib/TLibCommon/TComBitCounter.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/SEIwrite.h"
+#include "TComBitCounter.h"
+#include "TComBitStream.h"
+#include "SEI.h"
+#include "TComSlice.h"
+#include "TComPicYuv.h"
+#include "SEIwrite.h"
 
 //! \ingroup TLibEncoder
 //! \{

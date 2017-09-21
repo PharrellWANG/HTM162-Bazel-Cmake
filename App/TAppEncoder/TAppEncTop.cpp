@@ -43,8 +43,8 @@
 #include <assert.h>
 #include <iomanip>
 
-#include "HTM162/App/TAppEncoder/TAppEncTop.h"
-#include "HTM162/Lib/TLibCommon/AnnexBwrite.h"
+#include "TAppEncTop.h"
+#include "../../Lib/TLibCommon/AnnexBwrite.h"
 
 using namespace std;
 

@@ -35,11 +35,11 @@
     \brief    weighted prediction encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/WeightPredAnalysis.h"
+#include "CommonDef.h"
+#include "TComSlice.h"
+#include "TComPic.h"
+#include "TComPicYuv.h"
+#include "WeightPredAnalysis.h"
 #include <limits>
 
 static const Double WEIGHT_PRED_SAD_RELATIVE_TO_NON_WEIGHT_PRED_SAD=0.99; // NOTE: U0040 used 0.95

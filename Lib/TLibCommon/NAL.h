@@ -37,7 +37,7 @@
 #define __NAL__
 
 #include <sstream>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #if NH_MV
 #include <vector>
 #endif

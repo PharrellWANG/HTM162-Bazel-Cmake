@@ -35,12 +35,12 @@
     \brief    encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
-#include "HTM162/Lib/TLibCommon/TEncPic.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "CommonDef.h"
+#include "TEncTop.h"
+#include "TEncPic.h"
+#include "TComChromaFormat.h"
 #if FAST_BIT_EST
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
+#include "ContextModel.h"
 #endif
 #if NH_MV
 //#include "../../App/TAppEncoder/TAppEncTop.h"

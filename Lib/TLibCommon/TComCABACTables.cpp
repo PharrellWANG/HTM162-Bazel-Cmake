@@ -35,7 +35,7 @@
  *  \brief    static class for CABAC tables
  */
 
-#include "HTM162/Lib/TLibCommon/TComCABACTables.h"
+#include "TComCABACTables.h"
 
 //! \ingroup TLibCommon
 //! \{

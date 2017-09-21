@@ -41,12 +41,12 @@
 #include <list>
 #include <ostream>
 
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
-#include "HTM162/Lib/TLibCommon/TVideoIOYuv.h"
-#include "HTM162/Lib/TLibCommon/AccessUnit.h"
-#include "HTM162/App/TAppEncoder/TAppEncCfg.h"
+#include "../../Lib/TLibCommon/TEncTop.h"
+#include "../../Lib/TLibCommon/TVideoIOYuv.h"
+#include "../../Lib/TLibCommon/AccessUnit.h"
+#include "TAppEncCfg.h"
 #if NH_3D_VSO
-#include "HTM162/Lib/TLibCommon/TRenTop.h"
+#include "../../Lib/TLibCommon/TRenTop.h"
 #endif
 
 #if KWU_RC_MADPRED_E0227

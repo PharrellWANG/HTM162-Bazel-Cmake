@@ -31,10 +31,10 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
-#include "HTM162/Lib/TLibCommon/TEncGOP.h"
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
+#include "CommonDef.h"
+#include "SEI.h"
+#include "TEncGOP.h"
+#include "TEncTop.h"
 
 //! \ingroup TLibEncoder
 //! \{

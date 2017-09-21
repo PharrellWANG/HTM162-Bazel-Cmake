@@ -40,8 +40,8 @@
 #define __TCOMMOTIONINFO__
 
 #include <memory.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComMv.h"
+#include "CommonDef.h"
+#include "TComMv.h"
 
 //! \ingroup TLibCommon
 //! \{

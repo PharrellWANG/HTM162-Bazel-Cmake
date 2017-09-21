@@ -39,7 +39,7 @@
 #define __TCOMPATTERN__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
 //! \ingroup TLibCommon
 //! \{

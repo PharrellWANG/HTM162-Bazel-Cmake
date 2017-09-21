@@ -36,11 +36,11 @@
     \brief    slice header and SPS class
 */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TEncSbac.h"
-#include "HTM162/Lib/TLibCommon/TDecSbac.h"
+#include "CommonDef.h"
+#include "TComSlice.h"
+#include "TComPic.h"
+#include "TEncSbac.h"
+#include "TDecSbac.h"
 
 
 //! \ingroup TLibCommon

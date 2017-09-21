@@ -36,8 +36,8 @@
 #ifndef __SEIWRITE__
 #define __SEIWRITE__
 
-#include "HTM162/Lib/TLibCommon/SyntaxElementWriter.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
+#include "SyntaxElementWriter.h"
+#include "SEI.h"
 
 class TComBitIf;
 

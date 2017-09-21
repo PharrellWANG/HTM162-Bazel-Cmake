@@ -35,11 +35,11 @@
 #ifndef __TRENSINGLEMODEL__ 
 #define __TRENSINGLEMODEL__
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TypeDef.h"
-#include "HTM162/Lib/TLibCommon/TAppComCamPara.h"
+#include "TRenImage.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
+#include "TypeDef.h"
+#include "TAppComCamPara.h"
 
 
 #include <math.h>

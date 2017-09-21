@@ -39,10 +39,10 @@
 #define __TCOMPIC__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicSym.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
+#include "CommonDef.h"
+#include "TComPicSym.h"
+#include "TComPicYuv.h"
+#include "TComBitStream.h"
 
 //! \ingroup TLibCommon
 //! \{

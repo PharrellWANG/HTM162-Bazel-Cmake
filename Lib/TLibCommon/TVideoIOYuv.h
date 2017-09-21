@@ -41,8 +41,8 @@
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
 
 using namespace std;
 

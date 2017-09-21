@@ -39,12 +39,12 @@
 #ifndef __TENCSAMPLEADAPTIVEOFFSET__
 #define __TENCSAMPLEADAPTIVEOFFSET__
 
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
+#include "TComSampleAdaptiveOffset.h"
+#include "TComPic.h"
 
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/TEncSbac.h"
-#include "HTM162/Lib/TLibCommon/TComBitCounter.h"
+#include "TEncEntropy.h"
+#include "TEncSbac.h"
+#include "TComBitCounter.h"
 
 //! \ingroup TLibEncoder
 //! \{

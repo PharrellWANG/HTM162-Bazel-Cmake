@@ -40,11 +40,11 @@
 // Includes
 // ====================================================================================================================
 
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TComInterpolationFilter.h"
+#include "TComRom.h"
+#include "TComInterpolationFilter.h"
 #include <assert.h>
 
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "TComChromaFormat.h"
 
 
 //! \ingroup TLibCommon

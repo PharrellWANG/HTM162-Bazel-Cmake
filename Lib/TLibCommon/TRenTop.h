@@ -34,9 +34,9 @@
 #ifndef __TRENTOP__
 #define __TRENTOP__
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
+#include "TRenImage.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
 
 #if NH_3D_VSO || NH_3D
 #include <list>

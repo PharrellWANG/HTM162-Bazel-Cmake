@@ -39,16 +39,16 @@
 #define __TENCCU__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComPrediction.h"
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
-#include "HTM162/Lib/TLibCommon/TComBitCounter.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
+#include "CommonDef.h"
+#include "TComYuv.h"
+#include "TComPrediction.h"
+#include "TComTrQuant.h"
+#include "TComBitCounter.h"
+#include "TComDataCU.h"
 
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/TEncSearch.h"
-#include "HTM162/Lib/TLibCommon/TEncRateCtrl.h"
+#include "TEncEntropy.h"
+#include "TEncSearch.h"
+#include "TEncRateCtrl.h"
 //! \ingroup TLibEncoder
 //! \{
 

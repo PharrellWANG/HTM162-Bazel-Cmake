@@ -35,8 +35,8 @@
     \brief    CAVLC encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/SyntaxElementWriter.h"
+#include "CommonDef.h"
+#include "SyntaxElementWriter.h"
 
 //! \ingroup TLibEncoder
 //! \{

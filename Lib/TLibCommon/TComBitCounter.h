@@ -42,7 +42,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
+#include "TComBitStream.h"
 
 //! \ingroup TLibCommon
 //! \{

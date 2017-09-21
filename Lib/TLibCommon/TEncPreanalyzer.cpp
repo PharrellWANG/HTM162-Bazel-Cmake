@@ -38,7 +38,7 @@
 #include <cfloat>
 #include <algorithm>
 
-#include "HTM162/Lib/TLibCommon/TEncPreanalyzer.h"
+#include "TEncPreanalyzer.h"
 
 using namespace std;
 

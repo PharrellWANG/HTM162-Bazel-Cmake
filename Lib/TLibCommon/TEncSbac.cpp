@@ -35,15 +35,15 @@
     \brief    SBAC encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
-#include "HTM162/Lib/TLibCommon/TEncSbac.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
+#include "TEncTop.h"
+#include "TEncSbac.h"
+#include "TComTU.h"
 
 #include <map>
 #include <algorithm>
 
 #if ENVIRONMENT_VARIABLE_DEBUG_AND_TEST
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 #endif
 
 

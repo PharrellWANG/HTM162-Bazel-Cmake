@@ -37,11 +37,11 @@
 
 #include <stdint.h>
 #include <vector>
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
+#include "TComBitStream.h"
 #include <string.h>
 #include <memory.h>
 #if NH_MV
-#include "HTM162/Lib/TLibCommon/TComRom.h" // This is only here, since ENC_DEC_TRACE is currently there. Consider removing when this has changed.
+#include "TComRom.h" // This is only here, since ENC_DEC_TRACE is currently there. Consider removing when this has changed.
 #endif
 using namespace std;
 

@@ -45,8 +45,8 @@
 #include <stdio.h>
 #include <memory.h>
 #include <assert.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "CommonDef.h"
+#include "TComChromaFormat.h"
 #include "math.h"
 
 //! \ingroup TLibEncoder

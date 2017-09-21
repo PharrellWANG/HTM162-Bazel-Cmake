@@ -35,12 +35,12 @@
     \brief    entropy decoder class
 */
 
-#include "HTM162/Lib/TLibCommon/TDecEntropy.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/TComPrediction.h"
+#include "TDecEntropy.h"
+#include "TComTU.h"
+#include "TComPrediction.h"
 
 #if ENVIRONMENT_VARIABLE_DEBUG_AND_TEST
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 static const Bool bDebugRQT = DebugOptionList::DebugRQT.getInt()!=0;
 static const Bool bDebugPredEnabled = DebugOptionList::DebugPred.getInt()!=0;
 #endif
@@ -53,7 +53,7 @@ Void TDecEntropy::setEntropyDecoder         ( TDecEntropyIf* p )
   m_pcEntropyDecoderIf = p;
 }
 
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
+#include "TComSampleAdaptiveOffset.h"
 
 Void TDecEntropy::decodeSkipFlag( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
 {

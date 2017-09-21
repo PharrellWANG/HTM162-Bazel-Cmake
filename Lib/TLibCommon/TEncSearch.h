@@ -38,16 +38,16 @@
 #define __TENCSEARCH__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComMotionInfo.h"
-#include "HTM162/Lib/TLibCommon/TComPattern.h"
-#include "HTM162/Lib/TLibCommon/TComPrediction.h"
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComRectangle.h"
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/TEncSbac.h"
-#include "HTM162/Lib/TLibCommon/TEncCfg.h"
+#include "TComYuv.h"
+#include "TComMotionInfo.h"
+#include "TComPattern.h"
+#include "TComPrediction.h"
+#include "TComTrQuant.h"
+#include "TComPic.h"
+#include "TComRectangle.h"
+#include "TEncEntropy.h"
+#include "TEncSbac.h"
+#include "TEncCfg.h"
 
 //! \ingroup TLibEncoder
 //! \{

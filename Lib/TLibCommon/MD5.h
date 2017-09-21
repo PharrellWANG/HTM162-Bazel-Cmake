@@ -31,7 +31,7 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 #pragma once
-#include "HTM162/Lib/TLibCommon/libmd5.h"
+#include "libmd5.h"
 #include <string>
 
 //! \ingroup libMD5

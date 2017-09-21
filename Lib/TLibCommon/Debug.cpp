@@ -35,12 +35,12 @@
     \brief    Defines types and objects for environment-variable-based debugging and feature control
 */
 
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 #include <algorithm>
 #include <math.h>
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
+#include "TComDataCU.h"
+#include "TComPic.h"
+#include "TComYuv.h"
 
 static const UInt settingNameWidth  = 66;
 static const UInt settingHelpWidth  = 84;

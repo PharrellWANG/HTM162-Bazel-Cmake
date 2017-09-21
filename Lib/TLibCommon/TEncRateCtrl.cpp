@@ -34,9 +34,9 @@
 /** \file     TEncRateCtrl.cpp
     \brief    Rate control manager class
 */
-#include "HTM162/Lib/TLibCommon/TEncRateCtrl.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "TEncRateCtrl.h"
+#include "TComPic.h"
+#include "TComChromaFormat.h"
 
 #include <cmath>
 

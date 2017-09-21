@@ -35,7 +35,7 @@
     \brief    sample adaptive offset class
 */
 
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
+#include "TComSampleAdaptiveOffset.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>

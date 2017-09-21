@@ -39,16 +39,16 @@
 #define __TCOMRDCOST__
 
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPattern.h"
-#include "HTM162/Lib/TLibCommon/TComMv.h"
+#include "CommonDef.h"
+#include "TComPattern.h"
+#include "TComMv.h"
 
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComRdCostWeightPrediction.h"
+#include "TComSlice.h"
+#include "TComRdCostWeightPrediction.h"
 #if NH_3D_VSO
-#include "HTM162/Lib/TLibCommon/TRenModel.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
+#include "TRenModel.h"
+#include "TComYuv.h"
+#include "TComTU.h"
 #endif
 
 //! \ingroup TLibCommon

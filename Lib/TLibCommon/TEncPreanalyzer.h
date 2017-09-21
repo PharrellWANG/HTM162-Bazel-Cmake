@@ -38,7 +38,7 @@
 #ifndef __TENCPREANALYZER__
 #define __TENCPREANALYZER__
 
-#include "HTM162/Lib/TLibCommon/TEncPic.h"
+#include "TEncPic.h"
 
 //! \ingroup TLibEncoder
 //! \{

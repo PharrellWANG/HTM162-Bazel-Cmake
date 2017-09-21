@@ -41,9 +41,9 @@
 #include <assert.h>
 #include <math.h>
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComInterpolationFilter.h"
+#include "CommonDef.h"
+#include "TComYuv.h"
+#include "TComInterpolationFilter.h"
 
 //! \ingroup TLibCommon
 //! \{

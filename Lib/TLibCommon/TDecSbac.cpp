@@ -35,12 +35,12 @@
     \brief    Context-adaptive entropy decoder class
 */
 
-#include "HTM162/Lib/TLibCommon/TDecSbac.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
+#include "TDecSbac.h"
+#include "TComTU.h"
+#include "TComTrQuant.h"
 
 #if RExt__DECODER_DEBUG_BIT_STATISTICS
-#include "HTM162/Lib/TLibCommon/TComCodingStatistics.h"
+#include "TComCodingStatistics.h"
 //
 #define RExt__DECODER_DEBUG_BIT_STATISTICS_PASS_OPT_ARG(a) , a
 #else
@@ -51,7 +51,7 @@
 //! \{
 
 #if ENVIRONMENT_VARIABLE_DEBUG_AND_TEST
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 #endif
 
 

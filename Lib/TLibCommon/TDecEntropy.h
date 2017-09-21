@@ -37,12 +37,12 @@
 
 #ifndef __TDECENTROPY__
 #define __TDECENTROPY__
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TComRectangle.h"
+#include "CommonDef.h"
+#include "TComBitStream.h"
+#include "TComSlice.h"
+#include "TComPic.h"
+#include "TComSampleAdaptiveOffset.h"
+#include "TComRectangle.h"
 class TDecSbac;
 class TDecCavlc;
 class ParameterSetManagerDecoder;

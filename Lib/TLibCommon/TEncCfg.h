@@ -42,19 +42,19 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
+#include "CommonDef.h"
+#include "TComSlice.h"
 #include <assert.h>
 
 #if NH_3D
-#include "HTM162/Lib/TLibCommon/TAppComCamPara.h"
+#include "TAppComCamPara.h"
 #endif
 #if NH_3D_VSO
-#include "HTM162/Lib/TLibCommon/TRenModSetupStrParser.h"
+#include "TRenModSetupStrParser.h"
 #endif
 
 #if NH_MV
-#include "HTM162/Lib/TLibCommon/SEI.h"
+#include "SEI.h"
 #endif
 
 struct GOPEntry

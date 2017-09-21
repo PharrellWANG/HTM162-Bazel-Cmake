@@ -32,9 +32,9 @@
  */
 
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/TRenFilter.h"
-#include "HTM162/Lib/TLibCommon/TRenModSetupStrParser.h"
+#include "TRenImage.h"
+#include "TRenFilter.h"
+#include "TRenModSetupStrParser.h"
 
 #if NH_3D_VSO
 Int

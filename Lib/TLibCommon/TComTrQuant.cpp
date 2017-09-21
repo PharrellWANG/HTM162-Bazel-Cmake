@@ -39,11 +39,11 @@
 #include <math.h>
 #include <limits>
 #include <memory.h>
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/ContextTables.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "TComTrQuant.h"
+#include "TComPic.h"
+#include "ContextTables.h"
+#include "TComTU.h"
+#include "Debug.h"
 
 typedef struct
 {

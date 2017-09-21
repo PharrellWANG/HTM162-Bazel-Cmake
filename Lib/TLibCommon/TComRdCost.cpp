@@ -38,11 +38,11 @@
 #include <math.h>
 #include <assert.h>
 #include <limits>
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TComRdCost.h"
+#include "TComRom.h"
+#include "TComRdCost.h"
 #if NH_3D_VSO
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComRectangle.h"
+#include "TComDataCU.h"
+#include "TComRectangle.h"
 #endif
 
 //! \ingroup TLibCommon

@@ -35,9 +35,9 @@
 
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComWedgelet.h"
+#include "CommonDef.h"
+#include "TComYuv.h"
+#include "TComWedgelet.h"
 
 #include <stdlib.h>
 #include <memory.h>

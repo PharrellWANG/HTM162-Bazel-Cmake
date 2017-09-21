@@ -35,9 +35,9 @@
 #ifndef __TRENIMAGE__
 #define __TRENIMAGE__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TRenImagePlane.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
+#include "TRenImagePlane.h"
 #if NH_3D_VSO  || NH_3D
 
 

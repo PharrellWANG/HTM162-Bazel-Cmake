@@ -3,6 +3,13 @@ project(HTM162_TAppEncoder)
 
 set(CMAKE_CXX_STANDARD 11)
 
+# config for single individual classifier: start
+#set(SOURCE_FILES source/App/TAppClassifier/main.cpp)
+#add_executable(TAppClassifer ${SOURCE_FILES})
+#find_package(TensorflowCC COMPONENTS Shared)
+#target_link_libraries(TAppClassifer TensorflowCC::Shared)
+# config for single individual classifier: end
+
 set(SOURCE_FILES
   App/TAppEncoder/encmain.cpp
   App/TAppEncoder/TAppEncCfg.cpp

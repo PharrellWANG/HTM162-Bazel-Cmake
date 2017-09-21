@@ -38,7 +38,7 @@
 #ifndef __TCOMWEIGHTPREDICTION__
 #define __TCOMWEIGHTPREDICTION__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
 // forward declarations
 class  TComDataCU;

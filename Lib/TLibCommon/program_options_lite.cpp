@@ -39,7 +39,7 @@
 #include <map>
 #include <algorithm>
 #include "program_options_lite.h"
-#include  "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 using namespace std;
 
 //! \ingroup TAppCommon

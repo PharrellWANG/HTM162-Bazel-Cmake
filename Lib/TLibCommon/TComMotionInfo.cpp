@@ -36,12 +36,12 @@
 */
 
 #include <memory.h>
-#include "HTM162/Lib/TLibCommon/TComMotionInfo.h"
+#include "TComMotionInfo.h"
 #include "assert.h"
 #include <stdlib.h>
 #if NH_3D_SPIVMP
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
+#include "TComDataCU.h"
+#include "TComPic.h"
 #endif
 #if NH_MV
 #include <iomanip>

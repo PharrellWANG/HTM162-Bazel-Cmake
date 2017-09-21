@@ -35,7 +35,7 @@
     \brief    class of picture which includes side information for encoder
 */
 
-#include "HTM162/Lib/TLibCommon/TEncPic.h"
+#include "TEncPic.h"
 
 //! \ingroup TLibEncoder
 //! \{

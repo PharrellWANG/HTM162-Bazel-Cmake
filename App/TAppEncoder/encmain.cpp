@@ -37,13 +37,13 @@
 
 #include <time.h>
 #include <iostream>
-#include "HTM162/App/TAppEncoder/TAppEncTop.h"
-#include "HTM162/Lib/TLibCommon/program_options_lite.h"
+#include "TAppEncTop.h"
+#include "../../Lib/TLibCommon/program_options_lite.h"
 
 //! \ingroup TAppEncoder
 //! \{
 
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "../../Lib/TLibCommon/Debug.h"
 
 // ====================================================================================================================
 // Main function

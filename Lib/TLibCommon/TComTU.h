@@ -36,9 +36,9 @@
 
 class TComTU; // forward declaration
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComRectangle.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "CommonDef.h"
+#include "TComRectangle.h"
+#include "TComChromaFormat.h"
 
 class TComDataCU; // forward declaration
 

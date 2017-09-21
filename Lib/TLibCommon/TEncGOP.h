@@ -42,23 +42,23 @@
 
 #include <stdlib.h>
 
-#include "HTM162/Lib/TLibCommon/TComList.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComBitCounter.h"
-#include "HTM162/Lib/TLibCommon/TComLoopFilter.h"
-#include "HTM162/Lib/TLibCommon/AccessUnit.h"
-#include "HTM162/Lib/TLibCommon/TEncSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TEncSlice.h"
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/TEncCavlc.h"
-#include "HTM162/Lib/TLibCommon/TEncSbac.h"
-#include "HTM162/Lib/TLibCommon/SEIwrite.h"
-#include "HTM162/Lib/TLibCommon/SEIEncoder.h"
+#include "TComList.h"
+#include "TComPic.h"
+#include "TComBitCounter.h"
+#include "TComLoopFilter.h"
+#include "AccessUnit.h"
+#include "TEncSampleAdaptiveOffset.h"
+#include "TEncSlice.h"
+#include "TEncEntropy.h"
+#include "TEncCavlc.h"
+#include "TEncSbac.h"
+#include "SEIwrite.h"
+#include "SEIEncoder.h"
 
-#include "HTM162/Lib/TLibCommon/TEncAnalyze.h"
-#include "HTM162/Lib/TLibCommon/TEncRateCtrl.h"
+#include "TEncAnalyze.h"
+#include "TEncRateCtrl.h"
 #if KWU_RC_MADPRED_E0227
-#include "HTM162/Lib/TLibCommon/TAppEncTop.h"
+#include "TAppEncTop.h"
 #endif
 #include <vector>
 

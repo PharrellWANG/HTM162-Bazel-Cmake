@@ -35,9 +35,9 @@
     \brief    binary entropy encoder of CABAC
 */
 
-#include "HTM162/Lib/TLibCommon/TEncBinCoderCABACCounter.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "TEncBinCoderCABACCounter.h"
+#include "TComRom.h"
+#include "Debug.h"
 
 
 #if FAST_BIT_EST

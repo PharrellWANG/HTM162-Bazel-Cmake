@@ -35,10 +35,10 @@
     \brief    helper functions for SEI handling
 */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/SEI.h"
+#include "CommonDef.h"
+#include "SEI.h"
 #if NH_MV
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
+#include "TComSlice.h"
 #endif
 
 SEIMessages getSeisByType(SEIMessages &seiList, SEI::PayloadType seiType)

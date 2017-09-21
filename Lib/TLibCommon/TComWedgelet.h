@@ -38,7 +38,7 @@
 
 // Include files
 #include <assert.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
 #include <vector>
 

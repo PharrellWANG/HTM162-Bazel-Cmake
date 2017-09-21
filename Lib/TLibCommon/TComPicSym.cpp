@@ -35,9 +35,9 @@
     \brief    picture symbol class
 */
 
-#include "HTM162/Lib/TLibCommon/TComPicSym.h"
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
+#include "TComPicSym.h"
+#include "TComSampleAdaptiveOffset.h"
+#include "TComSlice.h"
 
 //! \ingroup TLibCommon
 //! \{

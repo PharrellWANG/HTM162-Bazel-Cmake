@@ -38,8 +38,8 @@
 #ifndef __TENCBINCODERCABAC__
 #define __TENCBINCODERCABAC__
 
-#include "HTM162/Lib/TLibCommon/TComCABACTables.h"
-#include "HTM162/Lib/TLibCommon/TEncBinCoder.h"
+#include "TComCABACTables.h"
+#include "TEncBinCoder.h"
 
 //! \ingroup TLibEncoder
 //! \{

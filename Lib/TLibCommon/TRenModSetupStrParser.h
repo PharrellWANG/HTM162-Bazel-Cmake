@@ -34,10 +34,10 @@
 #ifndef __TRENMODSETUPSTRPARSER__
 #define __TRENMODSETUPSTRPARSER__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TypeDef.h"
-#include "HTM162/Lib/TLibCommon/TAppComCamPara.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
+#include "TypeDef.h"
+#include "TAppComCamPara.h"
 #if NH_3D_VSO
 
 

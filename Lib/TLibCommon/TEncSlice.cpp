@@ -35,8 +35,8 @@
     \brief    slice encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
-#include "HTM162/Lib/TLibCommon/TEncSlice.h"
+#include "TEncTop.h"
+#include "TEncSlice.h"
 #include <math.h>
 
 //ho encode data

@@ -38,8 +38,8 @@
 #ifndef __TDECBINCODER__
 #define __TDECBINCODER__
 
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
+#include "ContextModel.h"
+#include "TComBitStream.h"
 
 #if RExt__DECODER_DEBUG_BIT_STATISTICS
 class TComCodingStatisticsClassType;

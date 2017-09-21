@@ -38,8 +38,8 @@
 #ifndef __TCOMCABACTABLES__
 #define __TCOMCABACTABLES__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
+#include "CommonDef.h"
+#include "TComRom.h"
 
 //! \ingroup TLibCommon
 //! \{

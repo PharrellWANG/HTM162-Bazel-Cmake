@@ -35,11 +35,11 @@
 #ifndef __TRENMODEL__
 #define __TRENMODEL__
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/TRenSingleModel.h"
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TypeDef.h"
+#include "TRenImage.h"
+#include "TRenSingleModel.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
+#include "TypeDef.h"
 
 #if NH_3D_VSO
 

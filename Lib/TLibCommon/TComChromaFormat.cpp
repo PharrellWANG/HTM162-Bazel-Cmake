@@ -32,11 +32,11 @@
  */
 
 
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
+#include "TComChromaFormat.h"
+#include "TComPic.h"
+#include "TComDataCU.h"
+#include "TComTrQuant.h"
+#include "TComTU.h"
 
 
 

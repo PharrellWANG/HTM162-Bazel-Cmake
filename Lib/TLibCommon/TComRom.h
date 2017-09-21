@@ -35,11 +35,11 @@
 */
 #ifndef __TCOMROM__
 #define __TCOMROM__
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #include<stdio.h>
 #include<iostream>
 #if NH_3D_DMM
-#include "HTM162/Lib/TLibCommon/TComWedgelet.h"
+#include "TComWedgelet.h"
 #endif
 //! \ingroup TLibCommon
 //! \{

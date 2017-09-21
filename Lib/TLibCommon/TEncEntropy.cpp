@@ -35,13 +35,13 @@
     \brief    entropy encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
+#include "TEncEntropy.h"
+#include "CommonDef.h"
+#include "TComSampleAdaptiveOffset.h"
+#include "TComTU.h"
 
 #if ENVIRONMENT_VARIABLE_DEBUG_AND_TEST
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 static const Bool bDebugPredEnabled = DebugOptionList::DebugPred.getInt()!=0;
 #endif
 

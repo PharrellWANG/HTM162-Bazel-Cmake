@@ -41,10 +41,10 @@
 #include <cstring>
 #include <map>
 #include <vector>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TComList.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
+#include "CommonDef.h"
+#include "TComRom.h"
+#include "TComList.h"
+#include "TComChromaFormat.h"
 
 //! \ingroup TLibCommon
 //! \{

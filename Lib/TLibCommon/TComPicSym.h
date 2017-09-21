@@ -41,9 +41,9 @@
 
 // Include files
 #include <deque>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
+#include "CommonDef.h"
+#include "TComSlice.h"
+#include "TComDataCU.h"
 class TComSampleAdaptiveOffset;
 class TComPPS;
 

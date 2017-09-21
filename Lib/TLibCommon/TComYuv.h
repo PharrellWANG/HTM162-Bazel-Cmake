@@ -39,9 +39,9 @@
 
 #ifndef __TCOMYUV__
 #define __TCOMYUV__
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TComRectangle.h"
+#include "CommonDef.h"
+#include "TComPicYuv.h"
+#include "TComRectangle.h"
 
 //! \ingroup TLibCommon
 //! \{

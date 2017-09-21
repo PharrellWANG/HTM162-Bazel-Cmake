@@ -35,12 +35,12 @@
  \brief    encoder search class
  */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComRom.h"
-#include "HTM162/Lib/TLibCommon/TComMotionInfo.h"
-#include "HTM162/Lib/TLibCommon/TEncSearch.h"
-#include "HTM162/Lib/TLibCommon/TComTU.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "CommonDef.h"
+#include "TComRom.h"
+#include "TComMotionInfo.h"
+#include "TEncSearch.h"
+#include "TComTU.h"
+#include "Debug.h"
 #include <math.h>
 #include <limits>
 

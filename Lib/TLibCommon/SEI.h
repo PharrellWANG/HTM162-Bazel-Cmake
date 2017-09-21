@@ -39,12 +39,12 @@
 #include <vector>
 #include <cstring>
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/MD5.h"
+#include "CommonDef.h"
+#include "MD5.h"
 
 
 #if NH_MV
-#include "HTM162/Lib/TLibCommon/program_options_lite.h"
+#include "program_options_lite.h"
 using namespace std;
 namespace po = df::program_options_lite;
 #endif

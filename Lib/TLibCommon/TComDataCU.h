@@ -43,13 +43,13 @@
 #include <vector>
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComMotionInfo.h"
-#include "HTM162/Lib/TLibCommon/TComSlice.h"
-#include "HTM162/Lib/TLibCommon/TComRdCost.h"
-#include "HTM162/Lib/TLibCommon/TComPattern.h"
+#include "CommonDef.h"
+#include "TComMotionInfo.h"
+#include "TComSlice.h"
+#include "TComRdCost.h"
+#include "TComPattern.h"
 #if NH_3D
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
+#include "TComYuv.h"
 #endif
 
 //! \ingroup TLibCommon

@@ -35,9 +35,9 @@
 #ifndef __TRENFILTER__
 #define __TRENFILTER__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/TRenInterpFilter.h"
+#include "CommonDef.h"
+#include "TRenImage.h"
+#include "TRenInterpFilter.h"
 #if NH_3D_VSO  || NH_3D
 
 typedef Int (TRenInterpFilter<REN_BIT_DEPTH>::*FpChromaIntFilt) ( Pel*, Int );

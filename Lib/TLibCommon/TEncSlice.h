@@ -39,13 +39,13 @@
 #define __TENCSLICE__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComList.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComPicYuv.h"
-#include "HTM162/Lib/TLibCommon/TEncCu.h"
-#include "HTM162/Lib/TLibCommon/WeightPredAnalysis.h"
-#include "HTM162/Lib/TLibCommon/TEncRateCtrl.h"
+#include "CommonDef.h"
+#include "TComList.h"
+#include "TComPic.h"
+#include "TComPicYuv.h"
+#include "TEncCu.h"
+#include "WeightPredAnalysis.h"
+#include "TEncRateCtrl.h"
 
 //! \ingroup TLibEncoder
 //! \{

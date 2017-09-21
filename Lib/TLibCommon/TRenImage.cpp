@@ -32,9 +32,9 @@
  */
 
 
-#include "HTM162/Lib/TLibCommon/TRenImage.h"
-#include "HTM162/Lib/TLibCommon/TRenImagePlane.h"
-#include "HTM162/Lib/TLibCommon/TRenFilter.h"
+#include "TRenImage.h"
+#include "TRenImagePlane.h"
+#include "TRenFilter.h"
 #include "assert.h"
 #if NH_3D_VSO
 

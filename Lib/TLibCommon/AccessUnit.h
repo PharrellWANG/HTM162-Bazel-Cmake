@@ -42,7 +42,7 @@
 #define __ACCESSUNIT__
 
 #include <list>
-#include "HTM162/Lib/TLibCommon/NAL.h"
+#include "NAL.h"
 
 //! \ingroup TLibCommon
 //! \{

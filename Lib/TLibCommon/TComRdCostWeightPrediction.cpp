@@ -37,8 +37,8 @@
 
 #include <math.h>
 #include <assert.h>
-#include "HTM162/Lib/TLibCommon/TComRdCost.h"
-#include "HTM162/Lib/TLibCommon/TComRdCostWeightPrediction.h"
+#include "TComRdCost.h"
+#include "TComRdCostWeightPrediction.h"
 
 static Distortion xCalcHADs2x2w( const WPScalingParam &wpCur, const Pel *piOrg, const Pel *piCurr, Int iStrideOrg, Int iStrideCur, Int iStep );
 static Distortion xCalcHADs4x4w( const WPScalingParam &wpCur, const Pel *piOrg, const Pel *piCurr, Int iStrideOrg, Int iStrideCur, Int iStep );

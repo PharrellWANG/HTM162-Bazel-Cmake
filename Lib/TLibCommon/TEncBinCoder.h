@@ -38,8 +38,8 @@
 #ifndef __TENCBINCODER__
 #define __TENCBINCODER__
 
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
+#include "ContextModel.h"
+#include "TComBitStream.h"
 
 //! \ingroup TLibEncoder
 //! \{

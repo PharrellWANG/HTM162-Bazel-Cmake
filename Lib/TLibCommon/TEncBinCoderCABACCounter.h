@@ -39,7 +39,7 @@
 #define __TENCBINCODERCABACCOUNTER__
 
 
-#include "HTM162/Lib/TLibCommon/TEncBinCoderCABAC.h"
+#include "TEncBinCoderCABAC.h"
 
 #if FAST_BIT_EST
 

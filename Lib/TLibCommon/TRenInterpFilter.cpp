@@ -37,7 +37,7 @@
     \brief    interpolation filter class (From HM 3.0 TComPredFilter)
 */
 
-#include "HTM162/Lib/TLibCommon/TRenInterpFilter.h"
+#include "TRenInterpFilter.h"
 #if NH_3D_VSO  || NH_3D
 
 // ====================================================================================================================

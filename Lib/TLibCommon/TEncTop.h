@@ -39,24 +39,24 @@
 #define __TENCTOP__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/TComList.h"
-#include "HTM162/Lib/TLibCommon/TComPrediction.h"
-#include "HTM162/Lib/TLibCommon/TComTrQuant.h"
-#include "HTM162/Lib/TLibCommon/TComLoopFilter.h"
-#include "HTM162/Lib/TLibCommon/AccessUnit.h"
+#include "TComList.h"
+#include "TComPrediction.h"
+#include "TComTrQuant.h"
+#include "TComLoopFilter.h"
+#include "AccessUnit.h"
 
-#include "HTM162/Lib/TLibCommon/TVideoIOYuv.h"
+#include "TVideoIOYuv.h"
 
-#include "HTM162/Lib/TLibCommon/TEncCfg.h"
-#include "HTM162/Lib/TLibCommon/TEncGOP.h"
-#include "HTM162/Lib/TLibCommon/TEncSlice.h"
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/TEncCavlc.h"
-#include "HTM162/Lib/TLibCommon/TEncSbac.h"
-#include "HTM162/Lib/TLibCommon/TEncSearch.h"
-#include "HTM162/Lib/TLibCommon/TEncSampleAdaptiveOffset.h"
-#include "HTM162/Lib/TLibCommon/TEncPreanalyzer.h"
-#include "HTM162/Lib/TLibCommon/TEncRateCtrl.h"
+#include "TEncCfg.h"
+#include "TEncGOP.h"
+#include "TEncSlice.h"
+#include "TEncEntropy.h"
+#include "TEncCavlc.h"
+#include "TEncSbac.h"
+#include "TEncSearch.h"
+#include "TEncSampleAdaptiveOffset.h"
+#include "TEncPreanalyzer.h"
+#include "TEncRateCtrl.h"
 //! \ingroup TLibEncoder
 //! \{
 

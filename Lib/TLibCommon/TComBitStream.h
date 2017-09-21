@@ -45,7 +45,7 @@
 #include <stdint.h>
 #include <vector>
 #include <stdio.h>
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
 //! \ingroup TLibCommon
 //! \{

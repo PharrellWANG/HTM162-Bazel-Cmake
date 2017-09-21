@@ -39,7 +39,7 @@
 #define __TCOMRDCOSTWEIGHTPREDICTION__
 
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
 class DistParam;
 class TComPattern;

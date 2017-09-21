@@ -37,7 +37,7 @@
 #define __TAPPCOMCAMPARA__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #include <vector>
 
 

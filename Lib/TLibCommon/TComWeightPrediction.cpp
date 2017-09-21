@@ -36,11 +36,11 @@
 */
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
-#include "HTM162/Lib/TLibCommon/TComInterpolationFilter.h"
-#include "HTM162/Lib/TLibCommon/TComWeightPrediction.h"
+#include "CommonDef.h"
+#include "TComYuv.h"
+#include "TComPic.h"
+#include "TComInterpolationFilter.h"
+#include "TComWeightPrediction.h"
 
 
 static inline Pel weightBidir( Int w0, Pel P0, Int w1, Pel P1, Int round, Int shift, Int offset, Int clipBD)

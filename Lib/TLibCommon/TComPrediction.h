@@ -40,12 +40,12 @@
 
 
 // Include files
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComInterpolationFilter.h"
-#include "HTM162/Lib/TLibCommon/TComWeightPrediction.h"
+#include "TComYuv.h"
+#include "TComInterpolationFilter.h"
+#include "TComWeightPrediction.h"
 
 #if NH_3D_ARP
-#include "HTM162/Lib/TLibCommon/TComPic.h"
+#include "TComPic.h"
 #endif
 // forward declaration
 class TComMv;

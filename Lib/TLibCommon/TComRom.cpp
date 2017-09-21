@@ -33,14 +33,14 @@
 /** \file     TComRom.cpp
     \brief    global variables & functions
 */
-#include "HTM162/Lib/TLibCommon/TComRom.h"
+#include "TComRom.h"
 #include <memory.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <iomanip>
 #include <assert.h>
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/Debug.h"
+#include "TComDataCU.h"
+#include "Debug.h"
 // ====================================================================================================================
 // Initialize / destroy functions
 // ====================================================================================================================
@@ -797,10 +797,10 @@ Void initWedgeLists( Bool initNodeList )
   if( !g_dmmWedgeLists.empty() ) return;
   for( UInt ui = g_aucConvertToBit[DMM_MIN_SIZE]; ui < (g_aucConvertToBit[DMM_MAX_SIZE]); ui++ ) // ui: 0, 1, 2, map to: 4, 8, 16 // why 32 is not here? pha.zx
   {
-    std::cout << "" << std::endl;
-    std::cout << ui << std::endl;
+//    std::cout << "" << std::endl;
+//    std::cout << ui << std::endl;
     UInt uiWedgeBlockSize = ((UInt)DMM_MIN_SIZE)<<ui;
-    std::cout << uiWedgeBlockSize << std::endl;
+//    std::cout << uiWedgeBlockSize << std::endl;
     std::vector<TComWedgelet> acWedgeList;
     std::vector<TComWedgeRef> acWedgeRefList;
     createWedgeList( uiWedgeBlockSize, uiWedgeBlockSize, acWedgeList, acWedgeRefList, g_dmmWedgeResolution[ui] );

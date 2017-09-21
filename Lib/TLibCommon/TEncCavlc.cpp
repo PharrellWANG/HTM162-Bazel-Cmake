@@ -35,12 +35,12 @@
     \brief    CAVLC encoder class
 */
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TEncCavlc.h"
-#include "HTM162/Lib/TLibCommon/SEIwrite.h"
+#include "CommonDef.h"
+#include "TEncCavlc.h"
+#include "SEIwrite.h"
 
 #if NH_MV
-#include "HTM162/Lib/TLibCommon/TEncTop.h"
+#include "TEncTop.h"
 #endif
 
 //! \ingroup TLibEncoder

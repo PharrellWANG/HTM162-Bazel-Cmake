@@ -43,8 +43,8 @@
 #endif // _MSC_VER > 1000
 
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
+#include "CommonDef.h"
+#include "TComDataCU.h"
 
 #include <vector>
 #include <algorithm>
@@ -54,7 +54,7 @@ using namespace std;
 //! \ingroup TLibEncoder
 //! \{
 
-#include "HTM162/Lib/TLibCommon/TEncCfg.h"
+#include "TEncCfg.h"
 #include <list>
 #include <cassert>
 

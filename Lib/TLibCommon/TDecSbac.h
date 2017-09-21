@@ -44,11 +44,11 @@
 #endif // _MSC_VER > 1000
 
 
-#include "HTM162/Lib/TLibCommon/TDecEntropy.h"
-#include "HTM162/Lib/TLibCommon/TDecBinCoder.h"
-#include "HTM162/Lib/TLibCommon/ContextTables.h"
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
-#include "HTM162/Lib/TLibCommon/ContextModel3DBuffer.h"
+#include "TDecEntropy.h"
+#include "TDecBinCoder.h"
+#include "ContextTables.h"
+#include "ContextModel.h"
+#include "ContextModel3DBuffer.h"
 
 //! \ingroup TLibDecoder
 //! \{

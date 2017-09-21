@@ -41,7 +41,7 @@
 #define __TRENINTERPFILTER__
 
 // Include files
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 #include "assert.h"
 #if NH_3D_VSO  || NH_3D
 

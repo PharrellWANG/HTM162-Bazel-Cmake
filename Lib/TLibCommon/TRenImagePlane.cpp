@@ -32,8 +32,8 @@
  */
 
 
-#include "HTM162/Lib/TLibCommon/TRenImagePlane.h"
-#include "HTM162/Lib/TLibCommon/TRenFilter.h"
+#include "TRenImagePlane.h"
+#include "TRenFilter.h"
 #include <string.h>
 #if NH_3D_VSO  || NH_3D
 

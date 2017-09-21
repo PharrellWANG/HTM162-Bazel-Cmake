@@ -38,8 +38,8 @@
 #ifndef __TENCPIC__
 #define __TENCPIC__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComPic.h"
+#include "CommonDef.h"
+#include "TComPic.h"
 
 //! \ingroup TLibEncoder
 //! \{

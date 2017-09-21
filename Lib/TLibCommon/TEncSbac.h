@@ -42,15 +42,15 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "HTM162/Lib/TLibCommon/TComBitStream.h"
-#include "HTM162/Lib/TLibCommon/ContextTables.h"
-#include "HTM162/Lib/TLibCommon/ContextModel.h"
-#include "HTM162/Lib/TLibCommon/ContextModel3DBuffer.h"
-#include "HTM162/Lib/TLibCommon/TEncEntropy.h"
-#include "HTM162/Lib/TLibCommon/TEncBinCoder.h"
-#include "HTM162/Lib/TLibCommon/TEncBinCoderCABAC.h"
+#include "TComBitStream.h"
+#include "ContextTables.h"
+#include "ContextModel.h"
+#include "ContextModel3DBuffer.h"
+#include "TEncEntropy.h"
+#include "TEncBinCoder.h"
+#include "TEncBinCoderCABAC.h"
 #if FAST_BIT_EST
-#include "HTM162/Lib/TLibCommon/TEncBinCoderCABACCounter.h"
+#include "TEncBinCoderCABACCounter.h"
 #endif
 
 class TEncTop;

@@ -38,11 +38,11 @@
 #ifndef __TCOMTRQUANT__
 #define __TCOMTRQUANT__
 
-#include "HTM162/Lib/TLibCommon/CommonDef.h"
-#include "HTM162/Lib/TLibCommon/TComYuv.h"
-#include "HTM162/Lib/TLibCommon/TComDataCU.h"
-#include "HTM162/Lib/TLibCommon/TComChromaFormat.h"
-#include "HTM162/Lib/TLibCommon/ContextTables.h"
+#include "CommonDef.h"
+#include "TComYuv.h"
+#include "TComDataCU.h"
+#include "TComChromaFormat.h"
+#include "ContextTables.h"
 
 //! \ingroup TLibCommon
 //! \{
