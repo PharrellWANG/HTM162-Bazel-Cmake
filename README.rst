@@ -3,7 +3,7 @@ HTM v16.2 with ResNet for Fast Intra Coding
 
 This project is standing on the shoulder of *HTM v16.2*.
 
-This project is for For enabling **Bazel** building and **CMake** building at the same time.
+This project is making use of **Bazel** building and **CMake** building at the same time.
 
 FAQs for every one
 ------------------
