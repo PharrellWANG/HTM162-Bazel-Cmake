@@ -45,14 +45,17 @@ FAQs for every one
 
     And we want a binary which is universal for every one to evaluate the quality.
 
-    Well, then why still CMake? Because CMake has a much nicer IDE support. Bazel doesn't have any official IDE
-    support so far. Only a few plugins which are not always functioning well.
+    Well, then why still CMake? Because CMake has a much nicer IDE support. With IDE support you can do much more
+    than with a text editor (such as convenient debugging).
+
+    Bazel doesn't have any official IDE support so far. Only a few plugins which are not always functioning well.
 
     By enabling CMake with Bazel for the same codebase, we can enjoy both the benefits:
 
     - IDE support.
 
     - Self-Contained binary.
+
 
 FAQs for programmers
 --------------------
