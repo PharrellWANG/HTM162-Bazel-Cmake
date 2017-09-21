@@ -12,6 +12,7 @@ For enabling **Bazel** building and **CMake** building at the same time.
 2. What is `Bazel <https://bazel.build/>`_ ?
 
     {Fast, Correct} - Choose two
+
     Build and test software of any size, quickly and reliably.
 
 
@@ -27,7 +28,7 @@ For enabling **Bazel** building and **CMake** building at the same time.
 
     `Build shared library for using the TensorFlow C++ library <https://github.com/FloopCZ/tensorflow_cc>`_
 
-    The above link is pointing to a open-source project which makes possible the usage of
+    The above link is pointing to an open-source project which makes possible the usage of
     the `TensorFlow C++ library <https://www.tensorflow.org/api_docs/cc/>`_ from the outside
     of the TensorFlow source code folders and without the use of the `Bazel <https://bazel.build/>`_ build system.
 
@@ -36,5 +37,7 @@ For enabling **Bazel** building and **CMake** building at the same time.
 
     But If you are able to make use of `Bazel <https://bazel.build/>`_ for building your c++ binary, your binary would
     be self-contained and executable anywhere (as long as the OS is the same as where the binary is built).
+
+    And we want a binary which is universal for every one to evaluate the quality.
 
 
