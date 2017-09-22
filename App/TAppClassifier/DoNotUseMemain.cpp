@@ -118,7 +118,7 @@ Status ReadTensorFromBlkPel(const int block_size,
   return Status::OK();
 }
 
-#else
+//#else
 
 // Given an image file name, read in the data, try to decode it as an image,
 // resize it to the requested size, and then scale the values as desired.
@@ -126,72 +126,111 @@ Status ReadTensorFromImageFile(string file_name, const int input_height,
                                const int input_width, const float input_mean,
                                const float input_std,
                                std::vector<Tensor> *out_tensors) {
-    auto root = tensorflow::Scope::NewRootScope();
-    using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
+  auto root = tensorflow::Scope::NewRootScope();
+  using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
 
-    string input_name = "file_reader";
-    string output_name = "normalized";
+  string input_name = "file_reader";
+  string output_name = "normalized";
 
-    clock_t lBefore_0 = clock();
-    auto file_reader =
-            tensorflow::ops::ReadFile(root.WithOpName(input_name), file_name);
-    double dResult_0 = (double) (clock() - lBefore_0) / CLOCKS_PER_SEC;
-    printf("\n Total Time for read a image: %12.3f sec.\n", dResult_0);
-    // Now try to figure out what kind of file it is and decode it.
-    const int wanted_channels = 3;
-    tensorflow::Output image_reader;
-    if (tensorflow::StringPiece(file_name).ends_with(".png")) {
-        image_reader = DecodePng(root.WithOpName("png_reader"), file_reader,
-                                 DecodePng::Channels(wanted_channels));
-    } else if (tensorflow::StringPiece(file_name).ends_with(".gif")) {
-        image_reader = DecodeGif(root.WithOpName("gif_reader"), file_reader);
-    } else {
-        // Assume if it's neither a PNG nor a GIF then it must be a JPEG.
-        image_reader = DecodeJpeg(root.WithOpName("jpeg_reader"), file_reader,
-                                  DecodeJpeg::Channels(wanted_channels));
-    }
-    // Now cast the image data to float so we can do normal math on it.
-    auto float_caster =
-            Cast(root.WithOpName("float_caster"), image_reader,
-                 tensorflow::DT_FLOAT);
+  clock_t lBefore_0 = clock();
+  auto file_reader =
+    tensorflow::ops::ReadFile(root.WithOpName(input_name), file_name);
+  double dResult_0 = (double) (clock() - lBefore_0) / CLOCKS_PER_SEC;
+  printf("\n Total Time for read a image: %12.3f sec.\n", dResult_0);
+  // Now try to figure out what kind of file it is and decode it.
+  const int wanted_channels = 3;
+  tensorflow::Output image_reader;
+  if (tensorflow::StringPiece(file_name).ends_with(".png")) {
+    image_reader = DecodePng(root.WithOpName("png_reader"), file_reader,
+                             DecodePng::Channels(wanted_channels));
+  } else if (tensorflow::StringPiece(file_name).ends_with(".gif")) {
+    image_reader = DecodeGif(root.WithOpName("gif_reader"), file_reader);
+  } else {
+    // Assume if it's neither a PNG nor a GIF then it must be a JPEG.
+    image_reader = DecodeJpeg(root.WithOpName("jpeg_reader"), file_reader,
+                              DecodeJpeg::Channels(wanted_channels));
+  }
+  // Now cast the image data to float so we can do normal math on it.
+  auto float_caster =
+    Cast(root.WithOpName("float_caster"), image_reader,
+         tensorflow::DT_FLOAT);
 
-    // The convention for image ops in TensorFlow is that all images are expected
-    // to be in batches, so that they're four-dimensional arrays with indices of
-    // [batch, height, width, channel]. Because we only have a single image, we
-    // have to add a batch dimension of 1 to the start with ExpandDims().
-    auto dims_expander = ExpandDims(root, float_caster, 0);
-    // Bilinearly resize the image to fit the required dimensions.
-    auto resized = ResizeBilinear(
-            root, dims_expander,
-            Const(root.WithOpName("size"), {input_height, input_width}));
-    // Subtract the mean and divide by the scale.
-    Div(root.WithOpName(output_name), Sub(root, resized, {input_mean}),
-        {input_std});
+  // The convention for image ops in TensorFlow is that all images are expected
+  // to be in batches, so that they're four-dimensional arrays with indices of
+  // [batch, height, width, channel]. Because we only have a single image, we
+  // have to add a batch dimension of 1 to the start with ExpandDims().
+  auto dims_expander = ExpandDims(root, float_caster, 0);
+  // Bilinearly resize the image to fit the required dimensions.
+  auto resized = ResizeBilinear(
+    root, dims_expander,
+    Const(root.WithOpName("size"), {input_height, input_width}));
+  // Subtract the mean and divide by the scale.
+  Div(root.WithOpName(output_name), Sub(root, resized, {input_mean}),
+      {input_std});
 
-    // This runs the GraphDef network definition that we've just constructed, and
-    // returns the results in the output tensor.
+  // This runs the GraphDef network definition that we've just constructed, and
+  // returns the results in the output tensor.
 
-    clock_t lBefore = clock();
+  clock_t lBefore = clock();
 
-    tensorflow::GraphDef graph;
-    TF_RETURN_IF_ERROR(root.ToGraphDef(&graph));
+  tensorflow::GraphDef graph;
+  TF_RETURN_IF_ERROR(root.ToGraphDef(&graph));
 
-    std::unique_ptr<tensorflow::Session> session(
-            tensorflow::NewSession(tensorflow::SessionOptions()));
-    TF_RETURN_IF_ERROR(session->Create(graph));
-    TF_RETURN_IF_ERROR(session->Run({}, {output_name}, {}, out_tensors));
-    // if this is too slow, please use below method, which can turn 32
-    // to 16, turn 16 to 8, 32-->16-->8
-    //y[i/2][j/2] = (x[i][j] + x[i+1][j] + x[i][j+1] + x[i+1][j+1]) / 4;
+  std::unique_ptr<tensorflow::Session> session(
+    tensorflow::NewSession(tensorflow::SessionOptions()));
+  TF_RETURN_IF_ERROR(session->Create(graph));
+  TF_RETURN_IF_ERROR(session->Run({}, {output_name}, {}, out_tensors));
+  // if this is too slow, please use below method, which can turn 32
+  // to 16, turn 16 to 8, 32-->16-->8
+  //y[i/2][j/2] = (x[i][j] + x[i+1][j] + x[i][j+1] + x[i+1][j+1]) / 4;
 
-    double dResult = (double) (clock() - lBefore) / CLOCKS_PER_SEC;
-    printf("\n Total Time for construct a graph and run a session: %12.3f sec.\n",
-           dResult);
+  double dResult = (double) (clock() - lBefore) / CLOCKS_PER_SEC;
+  printf("\n Total Time for construct a graph and run a session: %12.3f sec.\n",
+         dResult);
 
-    return Status::OK();
+  return Status::OK();
 }
 
 #endif
+
+Status ResizeBlock(const int desired_size,
+                   ::tensorflow::Input block_tensor_data,
+                   std::vector<Tensor> *out_tensors) {
+  auto root = tensorflow::Scope::NewRootScope();
+  using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
+
+  std::cout << block_tensor_data.tensor().DebugString() << std::endl;
+
+  auto resized = tensorflow::ops::ResizeBilinear(
+    root, block_tensor_data.tensor(),
+    Const(root.WithOpName("resized_output"), {desired_size, desired_size}));
+
+  // Subtract the mean and divide by the scale.
+
+  // This runs the GraphDef network definition that we've just constructed, and
+  // returns the results in the output tensor.
+
+  clock_t lBefore = clock();
+
+  tensorflow::GraphDef graph;
+  TF_RETURN_IF_ERROR(root.ToGraphDef(&graph));
+
+  std::unique_ptr<tensorflow::Session> session(
+    tensorflow::NewSession(tensorflow::SessionOptions()));
+
+  TF_RETURN_IF_ERROR(session->Create(graph));
+  TF_RETURN_IF_ERROR(session->Run({}, {"resized_output"}, {}, out_tensors));
+  // if this is too slow, please use below method, which can turn 32
+  // to 16, turn 16 to 8, 32-->16-->8
+  //y[i/2][j/2] = (x[i][j] + x[i+1][j] + x[i][j+1] + x[i+1][j+1]) / 4;
+
+  double dResult = (double) (clock() - lBefore) / CLOCKS_PER_SEC;
+  printf("\n Total Time for construct a graph and run a session: %12.3f sec.\n",
+         dResult);
+
+  return Status::OK();
+
+}
 
 // Reads a model graph definition from disk, and creates a session object you
 // can use to run it.
@@ -282,10 +321,18 @@ void foo() {
 //   std::string data = "1,2,3,4,5\n"
 //                      "0,2,4,6,8\n"
 //                      "1,3,5,7,9\n";
-  //shoudl be mode 10
+  //should be mode 10
   std::string data = "8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,28,28,28,28,28,28,28,28,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,29,11,11,11,11,11,11,11,11,24,24,25,25,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29\n";
 
+
   strtk::token_grid grid(data, data.size(), ",");
+  std::cout << grid.row_count() << std::endl;
+  strtk::token_grid::row_type r = grid.row(0);
+  std::cout << r.size() << std::endl;
+
+//  auto resized_input_tensor = tensorflow::ops::ResizeBilinear(
+//    root, input_tensor,
+//    Const(root.WithOpName("size"), {wanted_size, wanted_size}));
 
   for (std::size_t i = 0; i < grid.row_count(); ++i) {
     strtk::token_grid::row_type r = grid.row(i);
@@ -474,34 +521,60 @@ int main(int argc, char *argv[]) {
   int BLOCK_WIDTH = 8;
 
   // set values and copy to ``input_tensor`` using for loop
-
   for (int row = 0; row < BLOCK_WIDTH; ++row)
     for (int col = 0; col < BLOCK_WIDTH; ++col)
       input_tensor_mapped(0, row, col,
                           0) = 3.0; // this is where we get the pixels
 
   tensorflow::Tensor input_tensor_2(tensorflow::DT_FLOAT,
-                                    tensorflow::TensorShape({1, 16, 16, 1}));
+                                    tensorflow::TensorShape({1, 32, 32, 1}));
   auto input_tensor_mapped_2 = input_tensor_2.tensor<float, 4>();
 
   // Assign block width
-  int BLOCK_WIDTH_2 = 16;
-  //************************ a few testing data start
-  // this data should be mode 25
-//  std::string data = "138,138,133,128,122,122,122,117,117,117,117,117,117,117,117,117,138,138,133,128,122,122,122,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,133,133,128,122,117,117,117,117,117,117,117,117,117,117,117,138,133,133,128,122,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117\n";
+//  int BLOCK_WIDTH_2 = 16;
 
-  // shoud be mode 0
-  std::string data = "90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,85,90,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85\n";
-//************************ a few testing data end
-  
-  strtk::token_grid grid(data, data.size(), ",");
-
-  strtk::token_grid::row_type r = grid.row(0);
   // set values and copy to ``input_tensor`` using for loop
-  for (int row = 0; row < BLOCK_WIDTH_2; ++row)
-    for (int col = 0; col < BLOCK_WIDTH_2; ++col)
+//  for (int row = 0; row < BLOCK_WIDTH_2; ++row)
+//    for (int col = 0; col < BLOCK_WIDTH_2; ++col)
+//      input_tensor_mapped_2(0, row, col,
+//                            0) = 3.0; // this is where we get the pixels
+  std::string data = "8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,28,28,28,28,28,28,28,28,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,29,11,11,11,11,11,11,11,11,24,24,25,25,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29,29\n";
+
+
+  strtk::token_grid grid(data, data.size(), ",");
+//  std::cout << grid.row_count() << std::endl;
+  strtk::token_grid::row_type r = grid.row(0);
+//  std::cout << r.size() << std::endl;
+
+//  for (std::size_t i = 0; i < grid.row_count(); ++i) {
+//    strtk::token_grid::row_type r = grid.row(i);
+//    for (std::size_t j = 0; j < r.size(); ++j) {
+//      std::cout << r.get<int>(j) << "\t";
+//
+//      r.get<int>(j);
+//    }
+//    std::cout << std::endl;
+//  }
+//  strtk::token_grid::row_type r = grid.row(0);
+  for (int row = 0; row < 32; ++row)
+    for (int col = 0; col < 32; ++col) {
+      std::cout << r.get<int>(size_t(row * 32 + col)) << std::endl;
       input_tensor_mapped_2(0, row, col,
-                            0) = r.get<int>(size_t(row * BLOCK_WIDTH_2 + col)); // this is where we get the pixels
+                            0) = r.get<int>(size_t(row * 32 + col));
+
+    }
+
+  std::vector<Tensor> resized_tensors;
+  Status read_tensor_status = ResizeBlock(16, input_tensor_2, &resized_tensors);
+  if (!read_tensor_status.ok()) {
+    //        LOG(ERROR) << read_tensor_status;
+    return -1;
+  }
+  const Tensor &resized_tensor = resized_tensors[0];
+  std::cout << resized_tensor.DebugString() << std::endl;
+  std::cout << resized_tensors.size() << std::endl;
+  std::cout << resized_tensors.data() << std::endl;
+  std::cout << &resized_tensors << std::endl;
 
 #if VERBOSE
   LOG(INFO) << "Q: The DebugString of the tensor?";
