@@ -3,9 +3,7 @@
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" line="800" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" line="802" />
-    <bookmark url="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp" line="195" />
-    <bookmark url="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp" line="505" />
-    <bookmark url="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp" line="120" />
+    <bookmark url="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp" line="65" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
@@ -20,7 +18,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/App/TAppClassifier/DoNotUseMemain.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppClassifier/main.cpp" afterPath="$PROJECT_DIR$/App/TAppClassifier/main.cpp" />
     </list>
@@ -44,33 +41,11 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="301" column="65" lean-forward="true" selection-start-line="301" selection-start-column="65" selection-end-line="301" selection-end-column="65" />
+            <state relative-caret-position="-2579">
+              <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
               <folding>
-                <element signature="e#0#80#0" expanded="false" />
                 <element signature="e#916#934#0" expanded="true" />
-                <element signature="e#1717#1764#0" expanded="false" />
-                <element signature="e#1873#1915#0" expanded="false" />
-                <element signature="e#1995#2775#0" expanded="false" />
-                <element signature="e#4729#8179#0" expanded="true" />
-                <element signature="e#15556#17161#0" expanded="true" />
-                <element signature="e#18356#18960#0" expanded="true" />
-                <element signature="e#19069#21138#0" expanded="true" />
-                <element signature="e#21183#21312#0" expanded="true" />
-                <element signature="e#24654#24991#0" expanded="true" />
-                <element signature="e#25007#25049#0" expanded="true" />
-                <element signature="e#25475#25606#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DoNotUseMemain.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/TAppClassifier/DoNotUseMemain.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -79,10 +54,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>HTM162</find>
-      <find>HTM162/Lib/TLibCommon/</find>
       <find>TAppClassifer</find>
-      <find>3.0</find>
       <find>16</find>
       <find>size_t</find>
       <find>root</find>
@@ -98,10 +70,20 @@
       <find>input_height</find>
       <find>input_tensor_mapped_2</find>
       <find>resized_output</find>
-      <find>input_tensor</find>
       <find>resized_tensor</find>
       <find>ReadTensorFromImageFile</find>
       <find>resized_tensors</find>
+      <find>3.0</find>
+      <find>graph</find>
+      <find>input_layer</find>
+      <find>input_tensor</find>
+      <find>PrintTopLabels</find>
+      <find>labels</find>
+      <find>20</find>
+      <find>5</find>
+      <find>CUSTOMIZED_READER</find>
+      <find>VERBOSE</find>
+      <find>ENABLE_MY_RESNET</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -234,7 +216,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="last_opened_file_path" value="$USER_HOME$/venv_for_test_driven_django/bin/python3.6" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -308,7 +290,12 @@
       <workItem from="1505995743835" duration="4895000" />
       <workItem from="1506011154247" duration="3337000" />
       <workItem from="1506044442357" duration="2596000" />
-      <workItem from="1506062265429" duration="737000" />
+      <workItem from="1506062265429" duration="767000" />
+      <workItem from="1506063570535" duration="3263000" />
+      <workItem from="1506147548158" duration="622000" />
+      <workItem from="1506148220956" duration="83000" />
+      <workItem from="1506148313888" duration="133000" />
+      <workItem from="1506148456426" duration="888000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <created>1505990099262</created>
@@ -394,27 +381,34 @@
       <option name="project" value="LOCAL" />
       <updated>1506006864531</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="resize in progress">
+      <created>1506063047018</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1506063047018</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14982000" />
+    <option name="totallyTimeSpent" value="20001000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="22" width="1385" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26433358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2829486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45338443" sideWeight="0.4944155" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59131545" sideWeight="0.50558454" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9578544" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9578544" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5070243" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5070243" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -455,7 +449,8 @@
     <MESSAGE value=".." />
     <MESSAGE value="readme added" />
     <MESSAGE value=".sh added" />
-    <option name="LAST_COMMIT_MESSAGE" value=".sh added" />
+    <MESSAGE value="resize in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="resize in progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -472,35 +467,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/App/TAppClassifier/main.cpp</url>
-          <line>505</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/App/TAppClassifier/main.cpp</url>
-          <line>195</line>
+          <line>65</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="37" column="10" lean-forward="false" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
-          <caret line="38" column="10" lean-forward="false" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
-          <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
-          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-          <caret line="41" column="10" lean-forward="false" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
-          <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="686">
@@ -798,24 +776,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/csvfile.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/strtk.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -915,32 +879,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/App/TAppClassifier/DoNotUseMemain.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/strtk.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/BUILD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="301" column="65" lean-forward="true" selection-start-line="301" selection-start-column="65" selection-end-line="301" selection-end-column="65" />
+        <state relative-caret-position="-2579">
+          <caret line="47" column="14" lean-forward="true" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
           <folding>
-            <element signature="e#0#80#0" expanded="false" />
             <element signature="e#916#934#0" expanded="true" />
-            <element signature="e#1717#1764#0" expanded="false" />
-            <element signature="e#1873#1915#0" expanded="false" />
-            <element signature="e#1995#2775#0" expanded="false" />
-            <element signature="e#4729#8179#0" expanded="true" />
-            <element signature="e#15556#17161#0" expanded="true" />
-            <element signature="e#18356#18960#0" expanded="true" />
-            <element signature="e#19069#21138#0" expanded="true" />
-            <element signature="e#21183#21312#0" expanded="true" />
-            <element signature="e#24654#24991#0" expanded="true" />
-            <element signature="e#25007#25049#0" expanded="true" />
-            <element signature="e#25475#25606#0" expanded="true" />
           </folding>
         </state>
       </provider>
