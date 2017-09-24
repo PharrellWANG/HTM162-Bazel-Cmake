@@ -2957,6 +2957,9 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
       // create a vector to store int
       vector<int> vec;
       int i;
+      // push back planar and DC modes
+      vec.push_back(0);
+      vec.push_back(1);
       // push top k mode index values into the vector
       for (i = 2; i < 34; i += 1) {
         vec.push_back(i);
@@ -2965,9 +2968,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
           vec.push_back(34);
         }
       }
-      // push back planar and DC modes
-      vec.push_back(0);
-      vec.push_back(1);
+
       // use iterator to access the values
       // ******************************
       // A Few Notes on keyword ``auto``
@@ -3053,28 +3054,28 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
 
       if (m_pcEncCfg->getFastUDIUseMPMEnabled())
       {
-      Int uiPreds[NUM_MOST_PROBABLE_MODES] = {-1, -1, -1};
+        Int uiPreds[NUM_MOST_PROBABLE_MODES] = {-1, -1, -1};
 
-      Int iMode = -1;
-      pcCU->getIntraDirPredictor( uiPartOffset, uiPreds, COMPONENT_Y, &iMode );
+        Int iMode = -1;
+        pcCU->getIntraDirPredictor( uiPartOffset, uiPreds, COMPONENT_Y, &iMode );
 
-      const Int numCand = ( iMode >= 0 ) ? iMode : Int(NUM_MOST_PROBABLE_MODES);
+        const Int numCand = ( iMode >= 0 ) ? iMode : Int(NUM_MOST_PROBABLE_MODES);
 
-      for( Int j=0; j < numCand; j++)
-      {
-        Bool mostProbableModeIncluded = false;
-        Int mostProbableMode = uiPreds[j];
-
-        for( Int i=0; i < numModesForFullRD; i++)
+        for( Int j=0; j < numCand; j++)
         {
-          mostProbableModeIncluded |= (mostProbableMode == uiRdModeList[i]);
-        }
-        if (!mostProbableModeIncluded)
-        {
-          uiRdModeList[numModesForFullRD++] = mostProbableMode;
+          Bool mostProbableModeIncluded = false;
+          Int mostProbableMode = uiPreds[j];
+
+          for( Int i=0; i < numModesForFullRD; i++)
+          {
+            mostProbableModeIncluded |= (mostProbableMode == uiRdModeList[i]);
+          }
+          if (!mostProbableModeIncluded)
+          {
+            uiRdModeList[numModesForFullRD++] = mostProbableMode;
+          }
         }
       }
-    }
 #if ENABLE_RESNET
       v++;
 #endif

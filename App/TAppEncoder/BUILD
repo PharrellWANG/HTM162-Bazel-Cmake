@@ -23,7 +23,7 @@ cc_binary(
     deps = [
     	  ":TAppEncCfg",
     	  ":TAppEncTop",
-        "//HTM162/Lib/TLibCommon:TLibCommon",
+#        "//HTM162/Lib/TLibCommon:TLibCommon",
         "//HTM162/Lib/TLibResnet:TLibResnet",
     ],
 )
