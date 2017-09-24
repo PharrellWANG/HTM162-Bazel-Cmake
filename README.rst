@@ -83,6 +83,4 @@ Notes
 
 Contact
 -------
-Author: Pharrell.zx
-
-Email : wzxnuaa@gmail.com
+Pharrell.zx: wzxnuaa@gmail.com
