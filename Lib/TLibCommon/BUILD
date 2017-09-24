@@ -139,6 +139,8 @@ cc_library(
             "SEIEncoder.h",
     		],
     deps = [
+        "//tensorflow/cc:cc_ops",
+        "//tensorflow/core:tensorflow",
     ],
     visibility = [
                 "//HTM162/App/TAppEncoder:__pkg__",
