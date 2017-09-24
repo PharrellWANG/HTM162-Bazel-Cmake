@@ -49,6 +49,27 @@
 #include "TEncEntropy.h"
 #include "TEncSearch.h"
 #include "TEncRateCtrl.h"
+
+#if ENABLE_RESNET
+#include "tensorflow/cc/ops/const_op.h"
+#include "tensorflow/cc/ops/image_ops.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/graph/default_device.h"
+#include "tensorflow/core/graph/graph_def_builder.h"
+#include "tensorflow/core/lib/core/threadpool.h"
+#include "tensorflow/core/lib/io/path.h"
+#include "tensorflow/core/lib/strings/stringprintf.h"
+#include "tensorflow/core/platform/init_main.h"
+#include "tensorflow/core/public/session.h"
+#include "tensorflow/core/util/command_line_flags.h"
+
+// These are all common classes it's handy to reference with no namespace.
+using tensorflow::Flag;
+using tensorflow::Tensor;
+using tensorflow::Status;
+using tensorflow::string;
+using tensorflow::int32;
+#endif
 //! \ingroup TLibEncoder
 //! \{
 
@@ -122,7 +143,9 @@ public:
   Void  destroy             ();
 
   /// CTU analysis function
-  Void  compressCtu         ( TComDataCU*  pCtu );
+  Void  compressCtu         (
+    std::unique_ptr<tensorflow::Session> *session,
+    TComDataCU*  pCtu );
 
   /// CTU encoding function
   Void  encodeCtu           ( TComDataCU*  pCtu );
@@ -137,7 +160,7 @@ public:
 protected:
   Void  finishCU            ( TComDataCU*  pcCU, UInt uiAbsPartIdx );
 #if AMP_ENC_SPEEDUP
-  Void  xCompressCU         ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug), PartSize eParentPartSize = NUMBER_OF_PART_SIZES );
+  Void  xCompressCU         ( std::unique_ptr<tensorflow::Session> *session, TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug), PartSize eParentPartSize = NUMBER_OF_PART_SIZES );
 #else
   Void  xCompressCU         ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth        );
 #endif
@@ -164,14 +187,16 @@ protected:
 #if NH_3D_DIS
   Void  xCheckRDCostDIS   ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, PartSize ePartSize DEBUG_STRING_FN_DECLARE(sDebug) );
 #endif
-  Void  xCheckRDCostIntra   ( TComDataCU *&rpcBestCU,
-                              TComDataCU *&rpcTempCU,
-                              PartSize     ePartSize
-                              DEBUG_STRING_FN_DECLARE(sDebug)
+  Void  xCheckRDCostIntra   (
+    std::unique_ptr<tensorflow::Session> *session,
+    TComDataCU *&rpcBestCU,
+    TComDataCU *&rpcTempCU,
+    PartSize     ePartSize
+    DEBUG_STRING_FN_DECLARE(sDebug)
 #if NH_3D_ENC_DEPTH
-                            , Bool bOnlyIVP
+    , Bool bOnlyIVP
 #endif
-                            );
+  );
   Void  xCheckDQP           ( TComDataCU*  pcCU );
 
   Void  xCheckIntraPCM      ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU                      );

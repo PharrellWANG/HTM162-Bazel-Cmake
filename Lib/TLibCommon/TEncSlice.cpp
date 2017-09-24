@@ -45,6 +45,27 @@ Bool g_bExportEncodeData = false;
 #endif
 //end ho
 
+#if ENABLE_RESNET
+#include "tensorflow/cc/ops/const_op.h"
+#include "tensorflow/cc/ops/image_ops.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/graph/default_device.h"
+#include "tensorflow/core/graph/graph_def_builder.h"
+#include "tensorflow/core/lib/core/threadpool.h"
+#include "tensorflow/core/lib/io/path.h"
+#include "tensorflow/core/lib/strings/stringprintf.h"
+#include "tensorflow/core/platform/init_main.h"
+#include "tensorflow/core/public/session.h"
+#include "tensorflow/core/util/command_line_flags.h"
+
+// These are all common classes it's handy to reference with no namespace.
+using tensorflow::Flag;
+using tensorflow::Tensor;
+using tensorflow::Status;
+using tensorflow::string;
+using tensorflow::int32;
+#endif
+
 //! \ingroup TLibEncoder
 //! \{
 
@@ -627,7 +648,7 @@ Void TEncSlice::setSearchRange( TComSlice* pcSlice )
 
  \param pcPic    picture class
  */
-Void TEncSlice::precompressSlice( TComPic* pcPic )
+Void TEncSlice::precompressSlice( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic )
 {
   // if deltaQP RD is not used, simply return
   if ( m_pcCfg->getDeltaQpRD() == 0 )
@@ -691,7 +712,7 @@ Void TEncSlice::precompressSlice( TComPic* pcPic )
     setUpLambda(pcSlice, m_vdRdPicLambda[uiQpIdx], m_viRdPicQp    [uiQpIdx]);
 
     // try compress
-    compressSlice   ( pcPic, true, m_pcCfg->getFastDeltaQp());
+    compressSlice   ( session, pcPic, true, m_pcCfg->getFastDeltaQp());
 
 #if NH_3D_VSO
     Dist64 uiPicDist        = m_uiPicDist;
@@ -766,7 +787,7 @@ Void TEncSlice::calCostSliceI(TComPic* pcPic) // TODO: this only analyses the fi
 
 /** \param pcPic   picture class
  */
-Void TEncSlice::compressSlice( TComPic* pcPic, const Bool bCompressEntireSlice, const Bool bFastDeltaQP )
+Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic, const Bool bCompressEntireSlice, const Bool bFastDeltaQP )
 {
   // if bCompressEntireSlice is true, then the entire slice (not slice segment) is compressed,
   //   effectively disabling the slice-segment-mode.
@@ -1000,7 +1021,7 @@ Void TEncSlice::compressSlice( TComPic* pcPic, const Bool bCompressEntireSlice, 
     }
 
     // run CTU trial encoder
-    m_pcCuEncoder->compressCtu( pCtu );
+    m_pcCuEncoder->compressCtu( session, pCtu );
 
 
     // All CTU decisions have now been made. Restore entropy coder to an initial stage, ready to make a true encode,

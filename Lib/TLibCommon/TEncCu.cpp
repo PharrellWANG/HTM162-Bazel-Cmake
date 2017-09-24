@@ -56,6 +56,27 @@ extern Bool g_bExportEncodeData;
 #endif
 //end ho
 
+#if ENABLE_RESNET
+#include "tensorflow/cc/ops/const_op.h"
+#include "tensorflow/cc/ops/image_ops.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/graph/default_device.h"
+#include "tensorflow/core/graph/graph_def_builder.h"
+#include "tensorflow/core/lib/core/threadpool.h"
+#include "tensorflow/core/lib/io/path.h"
+#include "tensorflow/core/lib/strings/stringprintf.h"
+#include "tensorflow/core/platform/init_main.h"
+#include "tensorflow/core/public/session.h"
+#include "tensorflow/core/util/command_line_flags.h"
+
+// These are all common classes it's handy to reference with no namespace.
+using tensorflow::Flag;
+using tensorflow::Tensor;
+using tensorflow::Status;
+using tensorflow::string;
+using tensorflow::int32;
+#endif
+
 //! \ingroup TLibEncoder
 //! \{
 
@@ -284,7 +305,9 @@ Void TEncCu::init( TEncTop* pcEncTop )
 /**
  \param  pCtu pointer of CU data class
  */
-Void TEncCu::compressCtu( TComDataCU* pCtu )
+Void TEncCu::compressCtu(
+  std::unique_ptr<tensorflow::Session> *session,
+  TComDataCU* pCtu )
 {
   // initialize CU data
   m_ppcBestCU[0]->initCtu( pCtu->getPic(), pCtu->getCtuRsAddr() );
@@ -304,7 +327,7 @@ Void TEncCu::compressCtu( TComDataCU* pCtu )
   // analysis of CU
   DEBUG_STRING_NEW(sDebug)
 
-  xCompressCU( m_ppcBestCU[0], m_ppcTempCU[0], 0 DEBUG_STRING_PASS_INTO(sDebug) );
+  xCompressCU( session, m_ppcBestCU[0], m_ppcTempCU[0], 0 DEBUG_STRING_PASS_INTO(sDebug) );
   DEBUG_STRING_OUTPUT(std::cout, sDebug)
 
 #if ADAPTIVE_QP_SELECTION
@@ -416,7 +439,7 @@ Void TEncCu::deriveTestModeAMP (TComDataCU *pcBestCU, PartSize eParentPartSize, 
  *  - for loop of QP value to compress the current CU with all possible QP
 */
 #if AMP_ENC_SPEEDUP
-Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug_), PartSize eParentPartSize )
+Void TEncCu::xCompressCU( std::unique_ptr<tensorflow::Session> *session, TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug_), PartSize eParentPartSize )
 #else
 Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth )
 #endif
@@ -1130,7 +1153,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
             }
             if( bUseIVP )
             {
-              xCheckRDCostIntra( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug), bOnlyIVP );
+              xCheckRDCostIntra( session, rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug), bOnlyIVP );
 #else
           xCheckRDCostIntra( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
 #endif
@@ -1152,7 +1175,7 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
             if( rpcTempCU->getWidth(0) > ( 1 << sps.getQuadtreeTULog2MinSize() ) )
             {
 #if NH_3D_ENC_DEPTH
-              xCheckRDCostIntra( rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug), bOnlyIVP );
+              xCheckRDCostIntra( session, rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug), bOnlyIVP );
 #else
               xCheckRDCostIntra( rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug)   );
 #endif
@@ -1313,12 +1336,12 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
           DEBUG_STRING_NEW(sChild)
           if ( !(rpcBestCU->getTotalCost()!=MAX_DOUBLE && rpcBestCU->isInter(0)) )
           {
-            xCompressCU( pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), NUMBER_OF_PART_SIZES );
+            xCompressCU( session, pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), NUMBER_OF_PART_SIZES );
           }
           else
           {
 
-            xCompressCU( pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), rpcBestCU->getPartitionSize(0) );
+            xCompressCU( session, pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), rpcBestCU->getPartitionSize(0) );
           }
           DEBUG_STRING_APPEND(sTempDebug, sChild)
 #else
@@ -2962,7 +2985,8 @@ Void TEncCu::xCheckRDCostDIS( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, Pa
 #endif
 }
 #endif
-Void TEncCu::xCheckRDCostIntra( TComDataCU *&rpcBestCU,
+Void TEncCu::xCheckRDCostIntra( std::unique_ptr<tensorflow::Session> *session,
+                                TComDataCU *&rpcBestCU,
                                 TComDataCU *&rpcTempCU,
                                 PartSize     eSize
                                 DEBUG_STRING_FN_DECLARE(sDebug)
@@ -3010,7 +3034,7 @@ Void TEncCu::xCheckRDCostIntra( TComDataCU *&rpcBestCU,
 
   Pel resiLuma[NUMBER_OF_STORED_RESIDUAL_TYPES][MAX_CU_SIZE * MAX_CU_SIZE];
 
-  m_pcPredSearch->estIntraPredLumaQT( rpcTempCU, m_ppcOrigYuv[uiDepth], m_ppcPredYuvTemp[uiDepth], m_ppcResiYuvTemp[uiDepth], m_ppcRecoYuvTemp[uiDepth], resiLuma DEBUG_STRING_PASS_INTO(sTest)
+  m_pcPredSearch->estIntraPredLumaQT( session, rpcTempCU, m_ppcOrigYuv[uiDepth], m_ppcPredYuvTemp[uiDepth], m_ppcResiYuvTemp[uiDepth], m_ppcRecoYuvTemp[uiDepth], resiLuma DEBUG_STRING_PASS_INTO(sTest)
 #if NH_3D_ENC_DEPTH
                                     , bOnlyIVP
 #endif
