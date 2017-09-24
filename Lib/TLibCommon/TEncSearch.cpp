@@ -44,6 +44,8 @@
 #include <math.h>
 #include <limits>
 #include <vector>
+#include <fstream>
+
 #if ENABLE_RESNET
 #include "tensorflow/cc/ops/const_op.h"
 #include "tensorflow/cc/ops/image_ops.h"
@@ -62,6 +64,89 @@ using tensorflow::Tensor;
 using tensorflow::Status;
 using tensorflow::string;
 using tensorflow::int32;
+
+Status ReadLabelsFile(string file_name, std::vector<string> *result,
+                      size_t *found_label_count) {
+  std::ifstream file(file_name);
+  if (!file) {
+    return tensorflow::errors::NotFound("Labels file ", file_name,
+                                        " not found.");
+  }
+  result->clear();
+  string line;
+  while (std::getline(file, line)) {
+    result->push_back(line);
+  }
+  *found_label_count = result->size();
+  const int padding = 16;
+  while (result->size() % padding) {
+    result->emplace_back();
+  }
+  return Status::OK();
+}
+
+//#pragma clang diagnostic pop
+
+// Analyzes the output of the Inception graph to retrieve the highest scores and
+// their positions in the tensor, which correspond to categories.
+Status GetTopLabels(const std::vector<Tensor> &outputs, int how_many_labels,
+                    Tensor *indices, Tensor *scores) {
+  auto root = tensorflow::Scope::NewRootScope();
+  using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
+
+  string output_name = "top_k";
+  TopK(root.WithOpName(output_name), outputs[0], how_many_labels);
+  // This runs the GraphDef network definition that we've just constructed, and
+  // returns the results in the output tensors.
+  tensorflow::GraphDef graph;
+  TF_RETURN_IF_ERROR(root.ToGraphDef(&graph));
+
+  std::unique_ptr<tensorflow::Session> session(
+    tensorflow::NewSession(tensorflow::SessionOptions()));
+  TF_RETURN_IF_ERROR(session->Create(graph));
+  // The TopK node returns two outputs, the scores and their original indices,
+  // so we have to append :0 and :1 to specify them both.
+  std::vector<Tensor> out_tensors;
+  TF_RETURN_IF_ERROR(
+    session->Run({}, {output_name + ":0", output_name + ":1"},
+                 {}, &out_tensors));
+  *scores = out_tensors[0];
+  *indices = out_tensors[1];
+  return Status::OK();
+}
+
+// Given the output of a model run, and the name of a file containing the labels
+// this prints out the top five highest-scoring values.
+Status PrintTopLabels(const std::vector<Tensor> &outputs,
+                      string labels_file_name) {
+
+  std::vector<string> labels;
+  size_t label_count;
+
+  Status read_labels_status =
+    ReadLabelsFile(labels_file_name, &labels, &label_count);
+  if (!read_labels_status.ok()) {
+    return read_labels_status;
+  }
+
+  const int how_many_labels = std::min(16, static_cast<int>(label_count));
+  Tensor indices;
+  Tensor scores;
+
+  TF_RETURN_IF_ERROR(
+    GetTopLabels(outputs, how_many_labels, &indices, &scores));
+  tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
+  tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
+  for (int pos = 0; pos < how_many_labels; ++pos) {
+    const int label_index = indices_flat(pos);
+    const float score = scores_flat(pos);
+    LOG(INFO) << labels[label_index] << " : "
+              << score;
+  }
+  LOG(INFO) << "";
+  return Status::OK();
+}
+
 #endif
 //! \ingroup TLibEncoder
 //! \{
@@ -2882,11 +2967,11 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
     LOG(ERROR) << "Running model failed: " << run_status;
     return;
   }
-//  Status print_status = PrintTopLabels(outputs, labels);
-//  if (!print_status.ok()) {
-//    LOG(ERROR) << "Running print failed: " << print_status;
-//    return;
-//  }
+  Status print_status = PrintTopLabels(outputs, labels);
+  if (!print_status.ok()) {
+    LOG(ERROR) << "Running print failed: " << print_status;
+    return;
+  }
   //************************************************************************
 #if NH_MV
   D_PRINT_INC_INDENT( g_traceModeCheck,  "estIntraPredLumaQT");

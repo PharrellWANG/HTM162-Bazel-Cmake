@@ -37,8 +37,8 @@ using tensorflow::Status;
 using tensorflow::string;
 using tensorflow::int32;
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "OCDFAInspection"
+//#pragma clang diagnostic push
+//#pragma ide diagnostic ignored "OCDFAInspection"
 
 // Takes a file name, and loads a list of labels from it, one per line, and
 // returns a vector of the strings. It pads with empty strings so the length
@@ -63,7 +63,7 @@ Status ReadLabelsFile(string file_name, std::vector<string> *result,
   return Status::OK();
 }
 
-#pragma clang diagnostic pop
+//#pragma clang diagnostic pop
 
 // Reads a model graph definition from disk, and creates a session object you
 // can use to run it.

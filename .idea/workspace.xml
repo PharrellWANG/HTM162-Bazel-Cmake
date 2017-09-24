@@ -11,8 +11,8 @@
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" line="493" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" line="1546" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" line="492" />
-    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="2990" />
-    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="3012" />
+    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="3075" />
+    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="3097" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
@@ -29,6 +29,7 @@
   <component name="ChangeListManager">
     <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="resnet integration">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppClassifier/main.cpp" afterPath="$PROJECT_DIR$/App/TAppClassifier/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" afterPath="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
     </list>
@@ -55,12 +56,12 @@
       <file leaf-file-name="TEncSearch.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="1960" column="37" lean-forward="true" selection-start-line="1960" selection-start-column="37" selection-end-line="1960" selection-end-column="37" />
+            <state relative-caret-position="486">
+              <caret line="989" column="60" lean-forward="true" selection-start-line="989" selection-start-column="60" selection-end-line="989" selection-end-column="60" />
               <folding>
                 <element signature="e#1900#1922#0" expanded="true" />
-                <element signature="e#2107#2146#0" expanded="true" />
-                <marker date="1506279027000" expanded="true" signature="104058:134088" ph="{...}" />
+                <element signature="e#2127#2166#0" expanded="true" />
+                <marker date="1506279573000" expanded="true" signature="106948:136978" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -89,14 +90,15 @@
       <file leaf-file-name="encmain.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="81" column="22" lean-forward="true" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="22" />
               <folding>
                 <element signature="e#0#1832#0" expanded="false" />
                 <element signature="e#1834#1901#0" expanded="false" />
-                <element signature="e#2069#2108#0" expanded="true" />
-                <marker date="1506278794000" expanded="false" signature="9425:9533" ph="..." />
-                <marker date="1506278794000" expanded="false" signature="10249:10270" ph="..." />
+                <element signature="e#3582#3606#0" expanded="false" />
+                <element signature="e#3656#3775#0" expanded="false" />
+                <marker date="1506279556000" expanded="false" signature="6407:6515" ph="..." />
+                <marker date="1506279556000" expanded="false" signature="7231:7252" ph="..." />
               </folding>
             </state>
           </provider>
@@ -125,17 +127,78 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="146" selection-end-column="1" />
+            <state relative-caret-position="30">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="146" selection-end-column="1" />
               <folding>
                 <element signature="e#0#80#0" expanded="false" />
                 <element signature="e#916#934#0" expanded="true" />
-                <element signature="e#1775#2555#0" expanded="false" />
-                <element signature="e#2587#3368#0" expanded="false" />
-                <element signature="e#3370#4598#0" expanded="false" />
-                <element signature="e#4600#5656#0" expanded="false" />
-                <element signature="e#5658#5689#0" expanded="false" />
-                <element signature="e#8633#16863#0" expanded="false" />
+                <element signature="e#1779#2559#0" expanded="false" />
+                <element signature="e#2593#3374#0" expanded="false" />
+                <element signature="e#3376#4604#0" expanded="false" />
+                <element signature="e#4606#5662#0" expanded="false" />
+                <element signature="e#5664#5695#0" expanded="false" />
+                <element signature="e#8639#16869#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TAppEncTop.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2758">
+              <caret line="1103" column="0" lean-forward="false" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
+              <folding>
+                <element signature="e#1907#1922#0" expanded="true" />
+                <element signature="e#2150#2189#0" expanded="true" />
+                <element signature="e#3277#3294#0" expanded="true" />
+                <element signature="e#3519#3531#0" expanded="true" />
+                <element signature="e#4487#4954#0" expanded="true" />
+                <element signature="e#9597#9670#0" expanded="true" />
+                <element signature="e#12874#13042#0" expanded="true" />
+                <element signature="e#15105#15188#0" expanded="true" />
+                <element signature="e#15860#16259#0" expanded="true" />
+                <element signature="e#16732#16806#0" expanded="true" />
+                <element signature="e#17108#17191#0" expanded="true" />
+                <element signature="e#17428#17523#0" expanded="true" />
+                <element signature="e#17945#18038#0" expanded="true" />
+                <element signature="e#19860#19947#0" expanded="true" />
+                <element signature="e#21036#21119#0" expanded="true" />
+                <element signature="e#23256#23521#0" expanded="true" />
+                <element signature="e#26707#26785#0" expanded="true" />
+                <element signature="e#35839#36249#0" expanded="true" />
+                <element signature="e#37267#37508#0" expanded="true" />
+                <element signature="e#37542#39074#0" expanded="true" />
+                <element signature="e#43438#43604#0" expanded="true" />
+                <element signature="e#45485#45978#0" expanded="true" />
+                <element signature="e#46662#46786#0" expanded="true" />
+                <element signature="e#46940#46992#0" expanded="true" />
+                <element signature="e#47069#47100#0" expanded="true" />
+                <element signature="e#48551#48595#0" expanded="true" />
+                <element signature="e#49478#50147#0" expanded="true" />
+                <element signature="e#53185#54776#0" expanded="true" />
+                <element signature="e#54985#55084#0" expanded="true" />
+                <element signature="e#55106#55177#0" expanded="true" />
+                <element signature="e#55198#55223#0" expanded="true" />
+                <element signature="e#55350#55528#0" expanded="true" />
+                <element signature="e#56057#56112#0" expanded="true" />
+                <element signature="e#56307#56519#0" expanded="true" />
+                <element signature="e#56775#56910#0" expanded="true" />
+                <element signature="e#56994#57036#0" expanded="true" />
+                <element signature="e#57413#57534#0" expanded="true" />
+                <element signature="e#58083#58200#0" expanded="true" />
+                <element signature="e#58602#58747#0" expanded="true" />
+                <element signature="e#59341#59531#0" expanded="true" />
+                <element signature="e#59847#60424#0" expanded="true" />
+                <element signature="e#60663#60808#0" expanded="true" />
+                <element signature="e#61296#61426#0" expanded="true" />
+                <element signature="e#61750#62138#0" expanded="true" />
+                <element signature="e#63460#63538#0" expanded="true" />
+                <element signature="e#64456#64570#0" expanded="true" />
+                <element signature="e#71710#71815#0" expanded="true" />
+                <element signature="e#76588#76788#0" expanded="true" />
+                <element signature="e#77905#78081#0" expanded="true" />
+                <marker date="1506276439000" expanded="true" signature="48001:55548" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -145,8 +208,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TAppClassifer</find>
-      <find>-pthread</find>
       <find>MAC_DEBUG_</find>
       <find>loadgraph</find>
       <find>flag_list</find>
@@ -175,6 +236,8 @@
       <find>session</find>
       <find>session-&gt;run</find>
       <find>TAppEncTop</find>
+      <find>PrintTop</find>
+      <find>PrintTopLabel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -208,7 +271,6 @@
         <option value="$PROJECT_DIR$/Lib/TLibResnet/TResnet.h" />
         <option value="$PROJECT_DIR$/Lib/TLibResnet/BUILD" />
         <option value="$PROJECT_DIR$/bazel-TLibResnet.sh" />
-        <option value="$PROJECT_DIR$/App/TAppClassifier/main.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.h" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h" />
@@ -231,9 +293,10 @@
         <option value="$PROJECT_DIR$/Lib/TLibResnetUtils/ANeuralUtils.h" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/BUILD" />
         <option value="$PROJECT_DIR$/Lib/TLibResnetUtils/BUILD" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/App/TAppClassifier/main.cpp" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -432,7 +495,7 @@
       <workItem from="1506273397433" duration="874000" />
       <workItem from="1506274279749" duration="77000" />
       <workItem from="1506276447152" duration="1159000" />
-      <workItem from="1506277615604" duration="1507000" />
+      <workItem from="1506277615604" duration="2018000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <created>1505990099262</created>
@@ -651,34 +714,41 @@
       <option name="project" value="LOCAL" />
       <updated>1506271954854</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="resnet integration">
+      <created>1506279142123</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1506279142123</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52589000" />
+    <option name="totallyTimeSpent" value="53100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="22" width="1385" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20997766" sideWeight="0.5338346" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32056195" sideWeight="0.4899479" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32056195" sideWeight="0.51005214" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9029374" sideWeight="0.49143708" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20997766" sideWeight="0.5263158" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5019157" sideWeight="0.4944155" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20699926" sideWeight="0.46616542" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20997766" sideWeight="0.47368422" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -727,14 +797,14 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp</url>
-          <line>2841</line>
-          <option name="timeStamp" value="61" />
+          <line>2969</line>
+          <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="68" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1009,65 +1079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16545">
-          <caret line="1103" column="0" lean-forward="false" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
-          <folding>
-            <element signature="e#1907#1922#0" expanded="true" />
-            <element signature="e#2150#2189#0" expanded="true" />
-            <element signature="e#3277#3294#0" expanded="true" />
-            <element signature="e#3519#3531#0" expanded="true" />
-            <element signature="e#4487#4954#0" expanded="true" />
-            <element signature="e#9597#9670#0" expanded="true" />
-            <element signature="e#12874#13042#0" expanded="true" />
-            <element signature="e#15105#15188#0" expanded="true" />
-            <element signature="e#15860#16259#0" expanded="true" />
-            <element signature="e#16732#16806#0" expanded="true" />
-            <element signature="e#17108#17191#0" expanded="true" />
-            <element signature="e#17428#17523#0" expanded="true" />
-            <element signature="e#17945#18038#0" expanded="true" />
-            <element signature="e#19860#19947#0" expanded="true" />
-            <element signature="e#21036#21119#0" expanded="true" />
-            <element signature="e#23256#23521#0" expanded="true" />
-            <element signature="e#26707#26785#0" expanded="true" />
-            <element signature="e#35839#36249#0" expanded="true" />
-            <element signature="e#37267#37508#0" expanded="true" />
-            <element signature="e#37542#39074#0" expanded="true" />
-            <element signature="e#43438#43604#0" expanded="true" />
-            <element signature="e#45485#45978#0" expanded="true" />
-            <element signature="e#46662#46786#0" expanded="true" />
-            <element signature="e#46940#46992#0" expanded="true" />
-            <element signature="e#47069#47100#0" expanded="true" />
-            <element signature="e#48551#48595#0" expanded="true" />
-            <element signature="e#49478#50147#0" expanded="true" />
-            <element signature="e#53185#54776#0" expanded="true" />
-            <element signature="e#54985#55084#0" expanded="true" />
-            <element signature="e#55106#55177#0" expanded="true" />
-            <element signature="e#55198#55223#0" expanded="true" />
-            <element signature="e#55350#55528#0" expanded="true" />
-            <element signature="e#56057#56112#0" expanded="true" />
-            <element signature="e#56307#56519#0" expanded="true" />
-            <element signature="e#56775#56910#0" expanded="true" />
-            <element signature="e#56994#57036#0" expanded="true" />
-            <element signature="e#57413#57534#0" expanded="true" />
-            <element signature="e#58083#58200#0" expanded="true" />
-            <element signature="e#58602#58747#0" expanded="true" />
-            <element signature="e#59341#59531#0" expanded="true" />
-            <element signature="e#59847#60424#0" expanded="true" />
-            <element signature="e#60663#60808#0" expanded="true" />
-            <element signature="e#61296#61426#0" expanded="true" />
-            <element signature="e#61750#62138#0" expanded="true" />
-            <element signature="e#63460#63538#0" expanded="true" />
-            <element signature="e#64456#64570#0" expanded="true" />
-            <element signature="e#71710#71815#0" expanded="true" />
-            <element signature="e#76588#76788#0" expanded="true" />
-            <element signature="e#77905#78081#0" expanded="true" />
-            <marker date="1506276439000" expanded="true" signature="48001:55548" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2865">
@@ -1129,20 +1140,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="146" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#80#0" expanded="false" />
-            <element signature="e#916#934#0" expanded="true" />
-            <element signature="e#1775#2555#0" expanded="false" />
-            <element signature="e#2587#3368#0" expanded="false" />
-            <element signature="e#3370#4598#0" expanded="false" />
-            <element signature="e#4600#5656#0" expanded="false" />
-            <element signature="e#5658#5689#0" expanded="false" />
-            <element signature="e#8633#16863#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="390">
+          <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1162,36 +1164,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
+    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+        <state relative-caret-position="30">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="146" selection-end-column="1" />
           <folding>
-            <element signature="e#0#1832#0" expanded="false" />
-            <element signature="e#1834#1901#0" expanded="false" />
-            <element signature="e#2069#2108#0" expanded="true" />
-            <marker date="1506278794000" expanded="false" signature="9425:9533" ph="..." />
-            <marker date="1506278794000" expanded="false" signature="10249:10270" ph="..." />
+            <element signature="e#0#80#0" expanded="false" />
+            <element signature="e#916#934#0" expanded="true" />
+            <element signature="e#1779#2559#0" expanded="false" />
+            <element signature="e#2593#3374#0" expanded="false" />
+            <element signature="e#3376#4604#0" expanded="false" />
+            <element signature="e#4606#5662#0" expanded="false" />
+            <element signature="e#5664#5695#0" expanded="false" />
+            <element signature="e#8639#16869#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding />
+        <state relative-caret-position="2758">
+          <caret line="1103" column="0" lean-forward="false" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
+          <folding>
+            <element signature="e#1907#1922#0" expanded="true" />
+            <element signature="e#2150#2189#0" expanded="true" />
+            <element signature="e#3277#3294#0" expanded="true" />
+            <element signature="e#3519#3531#0" expanded="true" />
+            <element signature="e#4487#4954#0" expanded="true" />
+            <element signature="e#9597#9670#0" expanded="true" />
+            <element signature="e#12874#13042#0" expanded="true" />
+            <element signature="e#15105#15188#0" expanded="true" />
+            <element signature="e#15860#16259#0" expanded="true" />
+            <element signature="e#16732#16806#0" expanded="true" />
+            <element signature="e#17108#17191#0" expanded="true" />
+            <element signature="e#17428#17523#0" expanded="true" />
+            <element signature="e#17945#18038#0" expanded="true" />
+            <element signature="e#19860#19947#0" expanded="true" />
+            <element signature="e#21036#21119#0" expanded="true" />
+            <element signature="e#23256#23521#0" expanded="true" />
+            <element signature="e#26707#26785#0" expanded="true" />
+            <element signature="e#35839#36249#0" expanded="true" />
+            <element signature="e#37267#37508#0" expanded="true" />
+            <element signature="e#37542#39074#0" expanded="true" />
+            <element signature="e#43438#43604#0" expanded="true" />
+            <element signature="e#45485#45978#0" expanded="true" />
+            <element signature="e#46662#46786#0" expanded="true" />
+            <element signature="e#46940#46992#0" expanded="true" />
+            <element signature="e#47069#47100#0" expanded="true" />
+            <element signature="e#48551#48595#0" expanded="true" />
+            <element signature="e#49478#50147#0" expanded="true" />
+            <element signature="e#53185#54776#0" expanded="true" />
+            <element signature="e#54985#55084#0" expanded="true" />
+            <element signature="e#55106#55177#0" expanded="true" />
+            <element signature="e#55198#55223#0" expanded="true" />
+            <element signature="e#55350#55528#0" expanded="true" />
+            <element signature="e#56057#56112#0" expanded="true" />
+            <element signature="e#56307#56519#0" expanded="true" />
+            <element signature="e#56775#56910#0" expanded="true" />
+            <element signature="e#56994#57036#0" expanded="true" />
+            <element signature="e#57413#57534#0" expanded="true" />
+            <element signature="e#58083#58200#0" expanded="true" />
+            <element signature="e#58602#58747#0" expanded="true" />
+            <element signature="e#59341#59531#0" expanded="true" />
+            <element signature="e#59847#60424#0" expanded="true" />
+            <element signature="e#60663#60808#0" expanded="true" />
+            <element signature="e#61296#61426#0" expanded="true" />
+            <element signature="e#61750#62138#0" expanded="true" />
+            <element signature="e#63460#63538#0" expanded="true" />
+            <element signature="e#64456#64570#0" expanded="true" />
+            <element signature="e#71710#71815#0" expanded="true" />
+            <element signature="e#76588#76788#0" expanded="true" />
+            <element signature="e#77905#78081#0" expanded="true" />
+            <marker date="1506276439000" expanded="true" signature="48001:55548" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="81" column="22" lean-forward="true" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#1832#0" expanded="false" />
+            <element signature="e#1834#1901#0" expanded="false" />
+            <element signature="e#3582#3606#0" expanded="false" />
+            <element signature="e#3656#3775#0" expanded="false" />
+            <marker date="1506279556000" expanded="false" signature="6407:6515" ph="..." />
+            <marker date="1506279556000" expanded="false" signature="7231:7252" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="1960" column="37" lean-forward="true" selection-start-line="1960" selection-start-column="37" selection-end-line="1960" selection-end-column="37" />
+        <state relative-caret-position="486">
+          <caret line="989" column="60" lean-forward="true" selection-start-line="989" selection-start-column="60" selection-end-line="989" selection-end-column="60" />
           <folding>
             <element signature="e#1900#1922#0" expanded="true" />
-            <element signature="e#2107#2146#0" expanded="true" />
-            <marker date="1506279027000" expanded="true" signature="104058:134088" ph="{...}" />
+            <element signature="e#2127#2166#0" expanded="true" />
+            <marker date="1506279573000" expanded="true" signature="106948:136978" ph="{...}" />
           </folding>
         </state>
       </provider>
