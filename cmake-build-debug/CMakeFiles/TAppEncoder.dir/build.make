@@ -201,28 +201,28 @@ CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o.provides: CMakeFiles/TAppE
 CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o.provides.build: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o
 
 
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o: CMakeFiles/TAppEncoder.dir/flags.make
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o: ../Lib/TLibCommon/libmd5.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o"
-	/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o   -c /Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.c
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o: CMakeFiles/TAppEncoder.dir/flags.make
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o: ../Lib/TLibCommon/libmd5.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o"
+	/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o -c /Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.cpp
 
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.i"
-	/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.c > CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.i
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.i"
+	/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.cpp > CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.i
 
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.s"
-	/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.c -o CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.s
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.s"
+	/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.cpp -o CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.s
 
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.requires:
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.requires:
 
-.PHONY : CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.requires
+.PHONY : CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.requires
 
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.provides: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.requires
-	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.provides.build
-.PHONY : CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.provides
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.provides: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.requires
+	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.provides.build
+.PHONY : CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.provides
 
-CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.provides.build: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o
+CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.provides.build: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o
 
 
 CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/NALwrite.cpp.o: CMakeFiles/TAppEncoder.dir/flags.make
@@ -1577,7 +1577,7 @@ TAppEncoder_OBJECTS = \
 "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel.cpp.o" \
 "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel3DBuffer.cpp.o" \
 "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o" \
-"CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o" \
+"CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o" \
 "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/NALwrite.cpp.o" \
 "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/program_options_lite.cpp.o" \
 "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/SEI.cpp.o" \
@@ -1644,7 +1644,7 @@ TAppEncoder: CMakeFiles/TAppEncoder.dir/App/TAppEncoder/TAppEncTop.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel3DBuffer.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o
-TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o
+TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/NALwrite.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/program_options_lite.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/SEI.cpp.o
@@ -1702,6 +1702,8 @@ TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/TRenTop.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/TVideoIOYuv.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/WeightPredAnalysis.cpp.o
 TAppEncoder: CMakeFiles/TAppEncoder.dir/build.make
+TAppEncoder: /usr/local/lib/tensorflow_cc/libtensorflow_cc.so
+TAppEncoder: /usr/local/lib/tensorflow_cc/libprotobuf.a
 TAppEncoder: CMakeFiles/TAppEncoder.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Linking CXX executable TAppEncoder"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TAppEncoder.dir/link.txt --verbose=$(VERBOSE)
@@ -1717,7 +1719,7 @@ CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/App/TAppEncoder/
 CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel.cpp.o.requires
 CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel3DBuffer.cpp.o.requires
 CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o.requires
-CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o.requires
+CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o.requires
 CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/NALwrite.cpp.o.requires
 CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/program_options_lite.cpp.o.requires
 CMakeFiles/TAppEncoder.dir/requires: CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/SEI.cpp.o.requires

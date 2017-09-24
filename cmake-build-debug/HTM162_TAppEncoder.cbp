@@ -49,6 +49,12 @@
 					<Add directory="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder"/>
 					<Add directory="/Users/Pharrell_WANG/tensorflow/HTM162/Lib"/>
 					<Add directory="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon"/>
+					<Add directory="/usr/local/include/tensorflow"/>
+					<Add directory="/usr/local/include/tensorflow/bazel-genfiles"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads/eigen"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads/gemmlowp"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/gen/protobuf-host/include"/>
 					<Add directory="/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
@@ -76,6 +82,12 @@
 					<Add directory="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder"/>
 					<Add directory="/Users/Pharrell_WANG/tensorflow/HTM162/Lib"/>
 					<Add directory="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon"/>
+					<Add directory="/usr/local/include/tensorflow"/>
+					<Add directory="/usr/local/include/tensorflow/bazel-genfiles"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads/eigen"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads/gemmlowp"/>
+					<Add directory="/usr/local/include/tensorflow/tensorflow/contrib/makefile/gen/protobuf-host/include"/>
 					<Add directory="/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
@@ -91,8 +103,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="TAppClassifer">
-				<Option output="/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/TAppClassifer" prefix_auto="0" extension_auto="0"/>
+			<Target title="TAppClassifier">
+				<Option output="/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/TAppClassifier" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -118,14 +130,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 TAppClassifer"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 TAppClassifier"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="TAppClassifer/fast">
-				<Option output="/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/TAppClassifer" prefix_auto="0" extension_auto="0"/>
+			<Target title="TAppClassifier/fast">
+				<Option output="/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/TAppClassifier" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -151,7 +163,7 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 TAppClassifer/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 TAppClassifier/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -159,7 +171,10 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppClassifier/main.cpp">
-			<Option target="TAppClassifer"/>
+			<Option target="TAppClassifier"/>
+		</Unit>
+		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppClassifier/strtk.hpp">
+			<Option target="TAppClassifier"/>
 		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder/TAppEncCfg.cpp">
 			<Option target="TAppEncoder"/>
@@ -572,7 +587,7 @@
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/csvfile.h">
 			<Option target="TAppEncoder"/>
 		</Unit>
-		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.c">
+		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.cpp">
 			<Option target="TAppEncoder"/>
 		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.h">
@@ -583,12 +598,6 @@
 		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/program_options_lite.h">
 			<Option target="TAppEncoder"/>
-		</Unit>
-		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibResnet/TResnet.h">
-			<Option target="TAppEncoder"/>
-		</Unit>
-		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibResnet/strtk.hpp">
-			<Option target="TAppClassifer"/>
 		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

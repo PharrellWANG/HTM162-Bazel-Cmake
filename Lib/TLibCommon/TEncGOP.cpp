@@ -1653,8 +1653,9 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
 
   if ( bUseVSO )
   {
-    Int iVSOMode = m_pcEncTop->getVSOMode();
-    pcRdCost->setVSOMode( iVSOMode  );
+//    Int iVSOMode = m_pcEncTop->getVSOMode();
+//    pcRdCost->setVSOMode( iVSOMode  );
+    pcRdCost->setVSOMode( 4 );
     pcRdCost->setAllowNegDist( m_pcEncTop->getAllowNegDist() );
 
     // SAIT_VSO_EST_A0033

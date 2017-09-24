@@ -1660,7 +1660,7 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
     if (iPartNum == 1) {
       try {
         char szFileName[FILENAME_MAX];
-#if MAC_DEBUG_PATH
+#if MAC_DEBUG_PATH_DATA_EXPORTING
         sprintf(szFileName, "/Users/pharrell_wang/htm_debug_files/data_exported/mixed_data_%d.csv", uiDepth);
 #else
         // get current working directory and append the name.
@@ -1708,7 +1708,7 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
 
         data_collecting_depth = uiDepth + 1;
         char szFileName[FILENAME_MAX];
-#if MAC_DEBUG_PATH
+#if MAC_DEBUG_PATH_DATA_EXPORTING
         sprintf(szFileName, "/Users/pharrell_wang/htm_debug_files/data_exported/mixed_data_%d.csv", data_collecting_depth);
 #else
         // get current working directory and append the name.

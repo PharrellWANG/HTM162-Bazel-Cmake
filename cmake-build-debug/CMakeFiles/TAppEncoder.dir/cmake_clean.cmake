@@ -5,7 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel.cpp.o"
   "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/ContextModel3DBuffer.cpp.o"
   "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/Debug.cpp.o"
-  "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o"
+  "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o"
   "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/NALwrite.cpp.o"
   "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/program_options_lite.cpp.o"
   "CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/SEI.cpp.o"
@@ -67,6 +67,6 @@ file(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang C CXX)
+foreach(lang CXX)
   include(CMakeFiles/TAppEncoder.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

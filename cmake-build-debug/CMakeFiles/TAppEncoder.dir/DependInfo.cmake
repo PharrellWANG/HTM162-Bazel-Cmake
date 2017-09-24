@@ -1,22 +1,8 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "C"
   "CXX"
   )
 # The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_C
-  "/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.c" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o"
-  )
-set(CMAKE_C_COMPILER_ID "AppleClang")
-
-# The include file search paths:
-set(CMAKE_C_TARGET_INCLUDE_PATH
-  "../."
-  "../App"
-  "../App/TAppEncoder"
-  "../Lib"
-  "../Lib/TLibCommon"
-  )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder/TAppEncCfg.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/App/TAppEncoder/TAppEncCfg.cpp.o"
   "/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder/TAppEncTop.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/App/TAppEncoder/TAppEncTop.cpp.o"
@@ -79,6 +65,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/TRenTop.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/TRenTop.cpp.o"
   "/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/TVideoIOYuv.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/TVideoIOYuv.cpp.o"
   "/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/WeightPredAnalysis.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/WeightPredAnalysis.cpp.o"
+  "/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/libmd5.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o"
   "/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/program_options_lite.cpp" "/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/program_options_lite.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
@@ -90,6 +77,12 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../App/TAppEncoder"
   "../Lib"
   "../Lib/TLibCommon"
+  "/usr/local/include/tensorflow"
+  "/usr/local/include/tensorflow/bazel-genfiles"
+  "/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads"
+  "/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads/eigen"
+  "/usr/local/include/tensorflow/tensorflow/contrib/makefile/downloads/gemmlowp"
+  "/usr/local/include/tensorflow/tensorflow/contrib/makefile/gen/protobuf-host/include"
   )
 
 # Targets to which this target links.

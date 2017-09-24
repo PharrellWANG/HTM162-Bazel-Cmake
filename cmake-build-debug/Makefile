@@ -124,17 +124,17 @@ TAppEncoder/fast:
 .PHONY : TAppEncoder/fast
 
 #=============================================================================
-# Target rules for targets named TAppClassifer
+# Target rules for targets named TAppClassifier
 
 # Build rule for target.
-TAppClassifer: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 TAppClassifer
-.PHONY : TAppClassifer
+TAppClassifier: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TAppClassifier
+.PHONY : TAppClassifier
 
 # fast build rule for target.
-TAppClassifer/fast:
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/build
-.PHONY : TAppClassifer/fast
+TAppClassifier/fast:
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/build
+.PHONY : TAppClassifier/fast
 
 App/TAppClassifier/main.o: App/TAppClassifier/main.cpp.o
 
@@ -142,7 +142,7 @@ App/TAppClassifier/main.o: App/TAppClassifier/main.cpp.o
 
 # target to build an object file
 App/TAppClassifier/main.cpp.o:
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/App/TAppClassifier/main.cpp.o
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/App/TAppClassifier/main.cpp.o
 .PHONY : App/TAppClassifier/main.cpp.o
 
 App/TAppClassifier/main.i: App/TAppClassifier/main.cpp.i
@@ -151,7 +151,7 @@ App/TAppClassifier/main.i: App/TAppClassifier/main.cpp.i
 
 # target to preprocess a source file
 App/TAppClassifier/main.cpp.i:
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/App/TAppClassifier/main.cpp.i
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/App/TAppClassifier/main.cpp.i
 .PHONY : App/TAppClassifier/main.cpp.i
 
 App/TAppClassifier/main.s: App/TAppClassifier/main.cpp.s
@@ -160,7 +160,7 @@ App/TAppClassifier/main.s: App/TAppClassifier/main.cpp.s
 
 # target to generate assembly for a file
 App/TAppClassifier/main.cpp.s:
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/App/TAppClassifier/main.cpp.s
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/App/TAppClassifier/main.cpp.s
 .PHONY : App/TAppClassifier/main.cpp.s
 
 App/TAppEncoder/TAppEncCfg.o: App/TAppEncoder/TAppEncCfg.cpp.o
@@ -1810,32 +1810,32 @@ Lib/TLibCommon/WeightPredAnalysis.cpp.s:
 	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/WeightPredAnalysis.cpp.s
 .PHONY : Lib/TLibCommon/WeightPredAnalysis.cpp.s
 
-Lib/TLibCommon/libmd5.o: Lib/TLibCommon/libmd5.c.o
+Lib/TLibCommon/libmd5.o: Lib/TLibCommon/libmd5.cpp.o
 
 .PHONY : Lib/TLibCommon/libmd5.o
 
 # target to build an object file
-Lib/TLibCommon/libmd5.c.o:
-	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.o
-.PHONY : Lib/TLibCommon/libmd5.c.o
+Lib/TLibCommon/libmd5.cpp.o:
+	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.o
+.PHONY : Lib/TLibCommon/libmd5.cpp.o
 
-Lib/TLibCommon/libmd5.i: Lib/TLibCommon/libmd5.c.i
+Lib/TLibCommon/libmd5.i: Lib/TLibCommon/libmd5.cpp.i
 
 .PHONY : Lib/TLibCommon/libmd5.i
 
 # target to preprocess a source file
-Lib/TLibCommon/libmd5.c.i:
-	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.i
-.PHONY : Lib/TLibCommon/libmd5.c.i
+Lib/TLibCommon/libmd5.cpp.i:
+	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.i
+.PHONY : Lib/TLibCommon/libmd5.cpp.i
 
-Lib/TLibCommon/libmd5.s: Lib/TLibCommon/libmd5.c.s
+Lib/TLibCommon/libmd5.s: Lib/TLibCommon/libmd5.cpp.s
 
 .PHONY : Lib/TLibCommon/libmd5.s
 
 # target to generate assembly for a file
-Lib/TLibCommon/libmd5.c.s:
-	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.c.s
-.PHONY : Lib/TLibCommon/libmd5.c.s
+Lib/TLibCommon/libmd5.cpp.s:
+	$(MAKE) -f CMakeFiles/TAppEncoder.dir/build.make CMakeFiles/TAppEncoder.dir/Lib/TLibCommon/libmd5.cpp.s
+.PHONY : Lib/TLibCommon/libmd5.cpp.s
 
 Lib/TLibCommon/program_options_lite.o: Lib/TLibCommon/program_options_lite.cpp.o
 
@@ -1873,7 +1873,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... TAppEncoder"
-	@echo "... TAppClassifer"
+	@echo "... TAppClassifier"
 	@echo "... App/TAppClassifier/main.o"
 	@echo "... App/TAppClassifier/main.i"
 	@echo "... App/TAppClassifier/main.s"

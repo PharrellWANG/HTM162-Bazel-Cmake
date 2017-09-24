@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.8)
 project(HTM162_TAppEncoder)
-
 set(CMAKE_CXX_STANDARD 11)
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # config for single individual classifier: start
-set(SOURCE_FILES App/TAppClassifier/main.cpp Lib/TLibResnet/strtk.hpp)
-add_executable(TAppClassifer ${SOURCE_FILES})
+set(SOURCE_FILES App/TAppClassifier/main.cpp App/TAppClassifier/strtk.hpp)
+add_executable(TAppClassifier ${SOURCE_FILES})
 find_package(TensorflowCC COMPONENTS Shared)
-target_link_libraries(TAppClassifer TensorflowCC::Shared)
+target_link_libraries(TAppClassifier TensorflowCC::Shared)
 # config for single individual classifier: end
 
 set(SOURCE_FILES
@@ -27,7 +27,7 @@ set(SOURCE_FILES
   Lib/TLibCommon/csvfile.h
   Lib/TLibCommon/Debug.cpp
   Lib/TLibCommon/Debug.h
-  Lib/TLibCommon/libmd5.c
+  Lib/TLibCommon/libmd5.cpp
   Lib/TLibCommon/libmd5.h
   Lib/TLibCommon/MD5.h
   Lib/TLibCommon/NAL.h
@@ -152,8 +152,6 @@ set(SOURCE_FILES
   Lib/TLibCommon/TypeDef.h
   Lib/TLibCommon/WeightPredAnalysis.cpp
   Lib/TLibCommon/WeightPredAnalysis.h
-  Lib/TLibResnet/TResnet.h
-  Lib/TLibResnet/strtk.hpp
   )
 
 include_directories(.)
@@ -161,6 +159,6 @@ include_directories(App)
 include_directories(App/TAppEncoder)
 include_directories(Lib)
 include_directories(Lib/TLibCommon)
-include_directories(Lib/TLibResnet)
 
 add_executable(TAppEncoder ${SOURCE_FILES})
+target_link_libraries(TAppEncoder TensorflowCC::Shared)

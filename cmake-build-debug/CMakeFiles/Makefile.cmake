@@ -52,5 +52,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/TAppEncoder.dir/DependInfo.cmake"
-  "CMakeFiles/TAppClassifer.dir/DependInfo.cmake"
+  "CMakeFiles/TAppClassifier.dir/DependInfo.cmake"
   )

@@ -97,39 +97,39 @@ clean: CMakeFiles/TAppEncoder.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/TAppClassifer.dir
+# Target rules for target CMakeFiles/TAppClassifier.dir
 
 # All Build rule for target.
-CMakeFiles/TAppClassifer.dir/all:
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/depend
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target TAppClassifer"
-.PHONY : CMakeFiles/TAppClassifer.dir/all
+CMakeFiles/TAppClassifier.dir/all:
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/depend
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target TAppClassifier"
+.PHONY : CMakeFiles/TAppClassifier.dir/all
 
 # Include target in all.
-all: CMakeFiles/TAppClassifer.dir/all
+all: CMakeFiles/TAppClassifier.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/TAppClassifer.dir/rule: cmake_check_build_system
+CMakeFiles/TAppClassifier.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TAppClassifer.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/TAppClassifier.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/Pharrell_WANG/tensorflow/HTM162/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/TAppClassifer.dir/rule
+.PHONY : CMakeFiles/TAppClassifier.dir/rule
 
 # Convenience name for target.
-TAppClassifer: CMakeFiles/TAppClassifer.dir/rule
+TAppClassifier: CMakeFiles/TAppClassifier.dir/rule
 
-.PHONY : TAppClassifer
-
-# clean rule for target.
-CMakeFiles/TAppClassifer.dir/clean:
-	$(MAKE) -f CMakeFiles/TAppClassifer.dir/build.make CMakeFiles/TAppClassifer.dir/clean
-.PHONY : CMakeFiles/TAppClassifer.dir/clean
+.PHONY : TAppClassifier
 
 # clean rule for target.
-clean: CMakeFiles/TAppClassifer.dir/clean
+CMakeFiles/TAppClassifier.dir/clean:
+	$(MAKE) -f CMakeFiles/TAppClassifier.dir/build.make CMakeFiles/TAppClassifier.dir/clean
+.PHONY : CMakeFiles/TAppClassifier.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/TAppClassifier.dir/clean
 
 .PHONY : clean
 

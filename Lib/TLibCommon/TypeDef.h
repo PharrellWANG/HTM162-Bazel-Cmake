@@ -45,7 +45,9 @@
 //end ho
 
 //pha.zx debug path setting
-#define MAC_DEBUG_PATH 1
+#if HO_EXPORT_ENCODE_DATA
+#define MAC_DEBUG_PATH_DATA_EXPORTING 0
+#endif
 //end pha.zx
 
 //pha.zx neural engine integration

@@ -27,7 +27,7 @@ cc_library(
             "TComWedgelet.cpp",
             "TComWeightPrediction.cpp",
             "TComYuv.cpp",
-            "libmd5.c",
+            "libmd5.cpp",
             "TRenFilter.cpp", 
             "TRenImage.cpp",
             "TRenImagePlane.cpp",
