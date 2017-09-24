@@ -68,5 +68,13 @@ FAQs for programmers
     cycle dependency issue, we have to merge the libs together.
 
 
+.. note:: **Build** vs **Compile**
 
+            "Building" is a fairly general term, and it can refer to anything that is needed to go
+            from editable source material (source code, scripts, raw data files, etc.) to a shippable
+            software product. Building can (and usually does) involve several steps, such as pre-processing,
+            compiling, linking, converting data files, running automated tests, packaging, etc.
 
+            "Compiling" is more specific, and almost invariably refers to a process that takes source code
+            as its input, and outputs something runnable, typically machine code for either a physical or virtual
+            machine, or source code in a different language.

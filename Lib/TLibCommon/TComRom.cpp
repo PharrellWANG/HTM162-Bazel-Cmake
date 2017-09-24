@@ -156,6 +156,9 @@ public:
     return rtn;
   }
 };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wconversion"
+#pragma clang diagnostic ignored "-Wsign-conversion"
 // initialize ROM variables
 Void initROM()
 {
@@ -237,6 +240,7 @@ Void initROM()
 #endif
 #endif
 }
+#pragma clang diagnostic pop
 Void destroyROM()
 {
   for(UInt groupTypeIndex = 0; groupTypeIndex < SCAN_NUMBER_OF_GROUP_TYPES; groupTypeIndex++)
@@ -891,6 +895,7 @@ Void createWedgeList( UInt uiWidth, UInt uiHeight, std::vector<TComWedgelet> &ra
         Int xE = (uiOri == 0) ? 0 : iL;
         Int yE = (uiOri == 0) ? iL : uiBlockSize - 1;
         cTempWedgelet.setWedgelet( xS, yS, xE, yE, uiOri, eWedgeRes, ((iL%2)==0 && (iK%2)==0) );
+        // notice the 1. racWedgeList, 2.racWedgeRefList // pha.zx
         addWedgeletToList( cTempWedgelet, racWedgeList, racWedgeRefList );
       }
     }
