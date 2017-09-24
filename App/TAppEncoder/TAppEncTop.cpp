@@ -955,7 +955,7 @@ Void TAppEncTop::encode()
 
   // initialize internal class & member variables
   xInitLibCfg();
-  xCreateLib();
+  xCreateLib(); // wedgelet is also initialized in this func
   xInitLib(m_isField);
 
   printChromaFormat();

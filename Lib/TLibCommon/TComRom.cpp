@@ -809,7 +809,7 @@ Void initWedgeLists( Bool initNodeList )
     {
       // create WedgeNodeList
       std::vector<TComWedgeNode> acWedgeNodeList;
-      std::cout << acWedgeList.size() << std::endl;
+      // std::cout << acWedgeList.size() << std::endl;
       for( UInt uiPos = 0; uiPos < acWedgeList.size(); uiPos++ )
       {
         if( acWedgeList[uiPos].getIsCoarse() )
@@ -879,7 +879,7 @@ Void createWedgeList( UInt uiWidth, UInt uiHeight, std::vector<TComWedgelet> &ra
   for( UInt uiOri = 0; uiOri < 6; uiOri++ )
   {
     posEnd = (Int) racWedgeList.size();
-    std::cout << posEnd << std::endl;
+//    std::cout << posEnd << std::endl;
     if (uiOri == 0 || uiOri == 4)
     {
     for( Int iK = 0; iK < uiBlockSize; iK += (uiWidth>=16 ?2:1))
