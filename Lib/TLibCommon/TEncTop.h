@@ -67,6 +67,26 @@
 #if KWU_RC_MADPRED_E0227
 class TAppEncTop;
 #endif
+#if ENABLE_RESNET
+#include "tensorflow/cc/ops/const_op.h"
+#include "tensorflow/cc/ops/image_ops.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/graph/default_device.h"
+#include "tensorflow/core/graph/graph_def_builder.h"
+#include "tensorflow/core/lib/core/threadpool.h"
+#include "tensorflow/core/lib/io/path.h"
+#include "tensorflow/core/lib/strings/stringprintf.h"
+#include "tensorflow/core/platform/init_main.h"
+#include "tensorflow/core/public/session.h"
+#include "tensorflow/core/util/command_line_flags.h"
+
+// These are all common classes it's handy to reference with no namespace.
+using tensorflow::Flag;
+using tensorflow::Tensor;
+using tensorflow::Status;
+using tensorflow::string;
+using tensorflow::int32;
+#endif
 /// encoder class
 class TEncTop : public TEncCfg
 {
@@ -223,14 +243,18 @@ public:
 
   /// encode several number of pictures until end-of-sequence
 #if NH_MV
-  Void encode( Bool bEos,
+  Void encode(
+    std::unique_ptr<tensorflow::Session> *session,
+    Bool bEos,
     TComPicYuv* pcPicYuvOrg,
     TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
     TComList<TComPicYuv*>& rcListPicYuvRecOut,
     std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Int gopId );
 
   /// encode several number of pictures until end-of-sequence
-  Void encode( Bool bEos, TComPicYuv* pcPicYuvOrg,
+  Void encode(
+    std::unique_ptr<tensorflow::Session> *session,
+    Bool bEos, TComPicYuv* pcPicYuvOrg,
     TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
     TComList<TComPicYuv*>& rcListPicYuvRecOut,
     std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Bool isTff, Int gopId);

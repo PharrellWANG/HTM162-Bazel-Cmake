@@ -45,6 +45,26 @@
 #if NH_MV
 //#include "../../App/TAppEncoder/TAppEncTop.h"
 #endif
+#if ENABLE_RESNET
+#include "tensorflow/cc/ops/const_op.h"
+#include "tensorflow/cc/ops/image_ops.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/graph/default_device.h"
+#include "tensorflow/core/graph/graph_def_builder.h"
+#include "tensorflow/core/lib/core/threadpool.h"
+#include "tensorflow/core/lib/io/path.h"
+#include "tensorflow/core/lib/strings/stringprintf.h"
+#include "tensorflow/core/platform/init_main.h"
+#include "tensorflow/core/public/session.h"
+#include "tensorflow/core/util/command_line_flags.h"
+
+// These are all common classes it's handy to reference with no namespace.
+using tensorflow::Flag;
+using tensorflow::Tensor;
+using tensorflow::Status;
+using tensorflow::string;
+using tensorflow::int32;
+#endif
 
 //! \ingroup TLibEncoder
 //! \{
@@ -407,7 +427,7 @@ Void TEncTop::deletePicBuffer()
  \retval  iNumEncoded         number of encoded pictures
  */
 #if NH_MV
-Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Int gopId )
+Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session, Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Int gopId )
 {
 #else
 Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded )
@@ -453,7 +473,7 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
   }
 #if NH_MV
   }
-  m_cGOPEncoder.compressPicInGOP(m_iPOCLast, m_iNumPicRcvd, *(m_ivPicLists->getSubDpb(getLayerId(), false) ), rcListPicYuvRecOut, accessUnitsOut, false, false, snrCSC, m_printFrameMSE, gopId);
+  m_cGOPEncoder.compressPicInGOP(session, m_iPOCLast, m_iNumPicRcvd, *(m_ivPicLists->getSubDpb(getLayerId(), false) ), rcListPicYuvRecOut, accessUnitsOut, false, false, snrCSC, m_printFrameMSE, gopId);
 
   if( gopId + 1 == m_cGOPEncoder.getGOPSize() )
   {
@@ -496,7 +516,7 @@ Void separateFields(Pel* org, Pel* dstField, UInt stride, UInt width, UInt heigh
 
 }
 #if NH_MV
-Void TEncTop::encode(Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Bool isTff, Int gopId )
+Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session, Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Bool isTff, Int gopId )
 {
   assert( 0 ); // Field coding and multiview need to be further harmonized. 
 }

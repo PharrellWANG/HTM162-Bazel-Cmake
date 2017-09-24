@@ -198,6 +198,10 @@ int main(int argc, char* argv[])
   string root_dir = "";
 
   // First we load and initialize the model.
+    // starting time
+  Double dResultx;
+  clock_t lBeforex = clock();
+
   std::unique_ptr<tensorflow::Session> session;
   string graph_path = tensorflow::io::JoinPath(root_dir, graph);
   Status load_graph_status = LoadGraph(graph_path, &session);
@@ -205,6 +209,10 @@ int main(int argc, char* argv[])
     LOG(ERROR) << load_graph_status;
     return -1;
   }
+
+    // ending time
+  dResultx = (Double)(clock()-lBeforex) / CLOCKS_PER_SEC;
+  printf("\n Total Time for initialize session: %12.3f sec.\n", dResultx);
 
   //************************************************************************
   tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
@@ -284,7 +292,7 @@ int main(int argc, char* argv[])
   clock_t lBefore = clock();
 
   // call encoding function
-  cTAppEncTop.encode();
+  cTAppEncTop.encode(&session);
 
   // ending time
   dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;

@@ -159,7 +159,8 @@ public:
   TAppEncTop();
   virtual ~TAppEncTop();
 
-  Void        encode      ();                               ///< main encoding function
+//  Void        encode      ();                               ///< main encoding function
+  Void        encode(std::unique_ptr<tensorflow::Session> *session); ///< main encoding function
 #if NH_MV
   TEncTop*    getTEncTop( UInt layer ) { return  m_acTEncTopList[layer]; }  ///< return pointer to encoder class for specific layer
 #else
