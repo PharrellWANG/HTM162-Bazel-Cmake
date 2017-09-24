@@ -25,7 +25,7 @@
   <component name="ChangeListManager">
     <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/BUILD" afterPath="$PROJECT_DIR$/Lib/TLibCommon/BUILD" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.rst" afterPath="$PROJECT_DIR$/README.rst" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -181,7 +181,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BUILD" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BUILD" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/BUILD">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -201,11 +201,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.rst" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.rst" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="712">
+              <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -328,12 +328,12 @@
         <option value="$PROJECT_DIR$/App/TAppClassifier/main.cpp" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" />
-        <option value="$PROJECT_DIR$/README.rst" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TComRom.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/BUILD" />
+        <option value="$PROJECT_DIR$/README.rst" />
       </list>
     </option>
   </component>
@@ -500,7 +500,7 @@
       <workItem from="1506148456426" duration="3638000" />
       <workItem from="1506224374745" duration="128000" />
       <workItem from="1506224607718" duration="6719000" />
-      <workItem from="1506236435195" duration="3216000" />
+      <workItem from="1506236435195" duration="3337000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <created>1505990099262</created>
@@ -635,11 +635,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506241780267</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="resnet integration">
+      <created>1506241855348</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1506241855348</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32814000" />
+    <option name="totallyTimeSpent" value="32935000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="22" width="1385" height="878" extended-state="0" />
@@ -1092,14 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bazel-TLibCommon.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1231,6 +1230,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="712">
+          <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding />
         </state>
       </provider>
