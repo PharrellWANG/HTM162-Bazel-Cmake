@@ -48,6 +48,10 @@
 #define MAC_DEBUG_PATH 1
 //end pha.zx
 
+//pha.zx neural engine integration
+#define ENABLE_RESNET 1
+//end pha.zx
+
 //! \ingroup TLibCommon
 //! \{
 /////////////////////////////////////////////////////////////////////////////////////////

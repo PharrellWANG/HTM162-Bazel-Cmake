@@ -88,6 +88,9 @@ extern const UInt   g_uiMinInGroup[ LAST_SIGNIFICANT_GROUPS ];
 // Intra prediction table
 // ====================================================================================================================
 extern const UChar  g_aucIntraModeNumFast_UseMPM[MAX_CU_DEPTH];
+#if ENABLE_RESNET
+extern const UChar g_aucIntraModeNumFast_UseMPM_ResNet[MAX_CU_DEPTH];
+#endif
 extern const UChar  g_aucIntraModeNumFast_NotUseMPM[MAX_CU_DEPTH];
 extern const UChar  g_chroma422IntraAngleMappingTable[NUM_INTRA_MODE];
 #if NH_3D_DMM

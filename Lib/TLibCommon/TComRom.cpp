@@ -500,6 +500,19 @@ const UChar g_aucIntraModeNumFast_UseMPM[MAX_CU_DEPTH] =
   3,  //  32x32
   3   //  64x64
 };
+
+#if ENABLE_RESNET
+const UChar g_aucIntraModeNumFast_UseMPM_ResNet[MAX_CU_DEPTH] =
+{
+  3,  //   2x2
+  3,  //   4x4
+  3,  //   8x8
+  2,  //  16x16
+  2,  //  32x32
+  2   //  64x64
+};
+#endif
+
 const UChar g_aucIntraModeNumFast_NotUseMPM[MAX_CU_DEPTH] =
 {
   3,  //   2x2

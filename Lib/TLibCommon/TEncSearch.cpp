@@ -43,6 +43,7 @@
 #include "Debug.h"
 #include <math.h>
 #include <limits>
+#include <vector>
 
 //! \ingroup TLibEncoder
 //! \{
@@ -1086,7 +1087,7 @@ TEncSearch::xEncIntraHeader( TComDataCU*  pcCU,
       {
         m_pcEntropyCoder->encodeIntraDirModeLuma ( pcCU, uiAbsPartIdx );
 #if NH_3D_SDC_INTRA
-          if( uiAbsPartIdx == 0 )  
+          if( uiAbsPartIdx == 0 )
           {
             m_pcEntropyCoder->encodeSDCFlag( pcCU, 0, true );
           }
@@ -1491,9 +1492,9 @@ Void TEncSearch::xIntraCodingTUBlock(       TComYuv*    pcOrgYuv,
 
   //===== update distortion =====
 #if NH_3D_VSO // M39
-  if ( m_pcRdCost->getUseVSO() )  
+  if ( m_pcRdCost->getUseVSO() )
   {
-      ruiDist += m_pcRdCost->getDistPartVSO  ( pcCU, uiAbsPartIdx, bitDepth, piReco, uiStride, piOrg, uiStride, uiWidth, uiHeight, false );  
+      ruiDist += m_pcRdCost->getDistPartVSO  ( pcCU, uiAbsPartIdx, bitDepth, piReco, uiStride, piOrg, uiStride, uiWidth, uiHeight, false );
   }
   else
 #endif
@@ -1519,7 +1520,7 @@ TEncSearch::xRecurIntraCodingLumaQT(TComYuv*    pcOrgYuv,
                                     DEBUG_STRING_FN_DECLARE(sDebug)
 #if NH_3D_ENC_DEPTH
                                   , Bool        zeroResiFlag
-#endif                                
+#endif
                                   )
 {
 #if NH_MV
@@ -1645,7 +1646,7 @@ TEncSearch::xRecurIntraCodingLumaQT(TComYuv*    pcOrgYuv,
         else
         {
           UInt uiSingleBits = xGetIntraBitsQT( rTu, true, false, false );
-#if NH_3D_VSO // M NEW 
+#if NH_3D_VSO // M NEW
           if ( m_pcRdCost->getUseLambdaScaleVSO() )
           {
             singleCostTmp     = m_pcRdCost->calcRdCostVSO( uiSingleBits, singleDistTmpLuma );
@@ -1725,9 +1726,9 @@ TEncSearch::xRecurIntraCodingLumaQT(TComYuv*    pcOrgYuv,
         uiSingleBits=uiSingleBits*4;
       }
 #if NH_3D_VSO // M40
-      if ( m_pcRdCost->getUseLambdaScaleVSO())      
+      if ( m_pcRdCost->getUseLambdaScaleVSO())
       {
-        dSingleCost = m_pcRdCost->calcRdCostVSO( uiSingleBits, uiSingleDistLuma );      
+        dSingleCost = m_pcRdCost->calcRdCostVSO( uiSingleBits, uiSingleDistLuma );
       }
       else
 #endif
@@ -1798,14 +1799,14 @@ TEncSearch::xRecurIntraCodingLumaQT(TComYuv*    pcOrgYuv,
     }
     //----- restore context states -----
     m_pcRDGoOnSbacCoder->load ( m_pppcRDSbacCoder[ uiFullDepth ][ CI_QT_TRAFO_ROOT ] );
-    
+
     //----- determine rate and r-d cost -----
 
     UInt uiSplitBits = xGetIntraBitsQT( rTu, true, false, false );
 #if NH_3D_VSO // M41
-    if( m_pcRdCost->getUseLambdaScaleVSO() )    
+    if( m_pcRdCost->getUseLambdaScaleVSO() )
     {
-      dSplitCost = m_pcRdCost->calcRdCostVSO( uiSplitBits, uiSplitDistLuma );    
+      dSplitCost = m_pcRdCost->calcRdCostVSO( uiSplitBits, uiSplitDistLuma );
     }
     else
 #endif
@@ -1832,7 +1833,7 @@ TEncSearch::xRecurIntraCodingLumaQT(TComYuv*    pcOrgYuv,
         }
       }
 #if NH_MV
-      D_DEC_INDENT( g_traceModeCheck ); 
+      D_DEC_INDENT( g_traceModeCheck );
 #endif
       return;
     }
@@ -1881,7 +1882,7 @@ TEncSearch::xRecurIntraCodingLumaQT(TComYuv*    pcOrgYuv,
   ruiDistY += uiSingleDistLuma;
   dRDCost  += dSingleCost;
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
 }
 
@@ -1900,7 +1901,7 @@ Void TEncSearch::xIntraCodingDIS( TComDataCU* pcCU, UInt uiAbsPartIdx, TComYuv* 
 
   AOF( uiWidth == uiHeight );
   AOF( uiAbsPartIdx == 0 );
-  pcCU->setDISTypeSubParts((UChar)uiPredMode, uiAbsPartIdx, pcCU->getDepth(0));  
+  pcCU->setDISTypeSubParts((UChar)uiPredMode, uiAbsPartIdx, pcCU->getDepth(0));
   //===== reconstruction =====
 
   TComTURecurse rTu(pcCU, 0);
@@ -2001,13 +2002,13 @@ Void TEncSearch::xIntraCodingSDC( TComDataCU* pcCU, UInt uiAbsPartIdx, TComYuv* 
   const ChromaFormat chFmt  = pcCU->getPic()->getChromaFormat();
 
   UInt sdcDepth = 0;
-  UInt uiStride;         
-  Pel* piOrg;          
-  Pel* piPred;          
-  Pel* piReco;        
+  UInt uiStride;
+  Pel* piOrg;
+  Pel* piPred;
+  Pel* piReco;
 
   Pel* piRecIPred;
-  UInt uiRecIPredStride; 
+  UInt uiRecIPredStride;
 
   Pel apDCPredValues[2];
   Pel apDCOrigValues[2];
@@ -2065,36 +2066,36 @@ Void TEncSearch::xIntraCodingSDC( TComDataCU* pcCU, UInt uiAbsPartIdx, TComYuv* 
   {
 #endif
     uiNumSegments = 1;
-    
+
     if( ( uiWidth >> pcCU->getSlice()->getSPS()->getQuadtreeTULog2MaxSize() ) > 1 )
     {
       sdcDepth = g_aucConvertToBit[uiWidth] + 2 - pcCU->getSlice()->getSPS()->getQuadtreeTULog2MaxSize();
     }
-    
+
     //===== loop over partitions =====
     TComTURecurse tuRecurseCU(pcCU, 0);
     TComTURecurse tuRecurseWithPU(tuRecurseCU, false, (sdcDepth==0)?TComTU::DONT_SPLIT:TComTU::QUAD_SPLIT);
-    
+
     do
     {
       const TComRectangle &puRect = tuRecurseWithPU.getRect(COMPONENT_Y);
       const UInt uiAbsPartIdxTU = tuRecurseWithPU.GetAbsPartIdxTU();
-      
+
       Pel* piOrgTU         = pcOrgYuv ->getAddr   ( COMPONENT_Y, uiAbsPartIdxTU );
       Pel* piPredTU        = pcPredYuv->getAddr   ( COMPONENT_Y, uiAbsPartIdxTU );
       UInt uiStrideTU      = pcPredYuv->getStride ( COMPONENT_Y );
-      
+
       Pel* piRecIPredTU   = pcCU->getPic()->getPicYuvRec()->getAddr( COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu() + uiAbsPartIdxTU );
       UInt uiRecIPredStrideTU  = pcCU->getPic()->getPicYuvRec()->getStride(COMPONENT_Y);
-      
+
       const Bool bUseFilter = TComPrediction::filteringIntraReferenceSamples(COMPONENT_Y, uiLumaPredMode, puRect.width, puRect.height, chFmt, sps.getSpsRangeExtension().getIntraSmoothingDisabledFlag());
-      
+
       //===== init pattern for luma prediction =====
       DEBUG_STRING_NEW(sTemp2)
       initIntraPatternChType( tuRecurseWithPU, COMPONENT_Y, bUseFilter DEBUG_STRING_PASS_INTO(sTemp2) );
-      
+
       predIntraAng( COMPONENT_Y, uiLumaPredMode, piOrgTU, uiStrideTU, piPredTU, uiStrideTU, tuRecurseWithPU, bUseFilter );
-      
+
       // copy for prediction of next part
       for( UInt uiY = 0; uiY < puRect.height; uiY++ )
       {
@@ -2106,7 +2107,7 @@ Void TEncSearch::xIntraCodingSDC( TComDataCU* pcCU, UInt uiAbsPartIdx, TComYuv* 
         piPredTU     += uiStrideTU;
         piRecIPredTU += uiRecIPredStrideTU;
       }
-      
+
     } while (tuRecurseWithPU.nextSection(tuRecurseCU));
 
     // reset to full block
@@ -2117,14 +2118,14 @@ Void TEncSearch::xIntraCodingSDC( TComDataCU* pcCU, UInt uiAbsPartIdx, TComYuv* 
     piOrg             = pcOrgYuv ->getAddr  ( COMPONENT_Y, uiAbsPartIdx );
     piPred            = pcPredYuv->getAddr  ( COMPONENT_Y, uiAbsPartIdx );
     piReco            = pcPredYuv->getAddr  ( COMPONENT_Y, uiAbsPartIdx );
-    
+
     piRecIPred        = pcCU->getPic()->getPicYuvRec()->getAddr  ( COMPONENT_Y, pcCU->getCtuRsAddr(), pcCU->getZorderIdxInCtu() + uiAbsPartIdx );
     uiRecIPredStride  = pcCU->getPic()->getPicYuvRec()->getStride( COMPONENT_Y );
 
     // get predicted and original DC
     predConstantSDC( piPred, uiStride, uiWidth, apDCPredValues[0] ); apDCPredValues[1] = 0;
     xCalcConstantSDC( piOrg, uiStride, uiWidth, apDCOrigValues[0] ); apDCOrigValues[1] = 0;
-#if NH_3D_DMM  
+#if NH_3D_DMM
   }
 #endif
 
@@ -2215,8 +2216,8 @@ Void TEncSearch::xIntraCodingSDC( TComDataCU* pcCU, UInt uiAbsPartIdx, TComYuv* 
   if( pbMask ) { delete[] pbMask; }
 #endif
 
-  //===== determine distortion =====  
-#if NH_3D_VSO  
+  //===== determine distortion =====
+#if NH_3D_VSO
   if( m_pcRdCost->getUseVSO() )
   {
     ruiDist = m_pcRdCost->getDistPartVSO( pcCU, uiAbsPartIdx, bitDepthY, piPred, uiStride, piOrg, uiStride, uiWidth, uiHeight, false );
@@ -2737,10 +2738,10 @@ TEncSearch::xSetIntraResultChromaQT(TComYuv*    pcRecoYuv, TComTU &rTu)
 }
 
 #if NH_3D_DIS
-Void TEncSearch::estIntraPredDIS( TComDataCU* pcCU, 
-                                  TComYuv*    pcOrgYuv, 
-                                  TComYuv*    pcPredYuv, 
-                                  TComYuv*    pcResiYuv, 
+Void TEncSearch::estIntraPredDIS( TComDataCU* pcCU,
+                                  TComYuv*    pcOrgYuv,
+                                  TComYuv*    pcPredYuv,
+                                  TComYuv*    pcResiYuv,
                                   TComYuv*    pcRecoYuv,
                                   UInt&       ruiDistC,
                                   Bool        bLumaOnly )
@@ -2799,12 +2800,12 @@ Void TEncSearch::estIntraPredDIS( TComDataCU* pcCU,
       pcPredYuv->copyPartToPartYuv(pcRecoYuv, 0, uiWidth, uiHeight);
     }
 #if NH_MV
-      D_DEC_INDENT( g_traceModeCheck );  
+      D_DEC_INDENT( g_traceModeCheck );
 #endif
-  } 
+  }
 
 
-  pcCU->setDISTypeSubParts((UChar)uiBestDISType, 0, uiDepth);  
+  pcCU->setDISTypeSubParts((UChar)uiBestDISType, 0, uiDepth);
 
   //===== reset context models =====
   m_pcRDGoOnSbacCoder->load(m_pppcRDSbacCoder[uiDepth][CI_CURR_BEST]);
@@ -2812,7 +2813,7 @@ Void TEncSearch::estIntraPredDIS( TComDataCU* pcCU,
   //===== set distortion (rate and r-d costs are determined later) =====
   pcCU->getTotalDistortion() = uiBestDist;
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
 }
 #endif
@@ -2902,7 +2903,15 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
     //===== determine set of modes to be tested (using prediction signal only) =====
     Int numModesAvailable     = 35; //total number of Intra modes
     UInt uiRdModeList[FAST_UDI_MAX_RDMODE_NUM];
+
+// pha.zx enable resnet
+#if ENABLE_RESNET
+    /*3, 8, 8, 3, 3, 3 -> 2, 3, 3, 2, 2, 2 */
+    Int numModesForFullRD = m_pcEncCfg->getFastUDIUseMPMEnabled()?g_aucIntraModeNumFast_UseMPM_ResNet[ uiWidthBit ] : g_aucIntraModeNumFast_NotUseMPM[ uiWidthBit ];
+#else
     Int numModesForFullRD = m_pcEncCfg->getFastUDIUseMPMEnabled()?g_aucIntraModeNumFast_UseMPM[ uiWidthBit ] : g_aucIntraModeNumFast_NotUseMPM[ uiWidthBit ];
+#endif
+// end pha.zx
 
     // this should always be true
     assert (tuRecurseWithPU.ProcessComponentSection(COMPONENT_Y));
@@ -2944,9 +2953,41 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
       distParam.bUseSDCMRSAD = false;
 #endif
       distParam.bApplyWeight = false;
+#if ENABLE_RESNET
+      // create a vector to store int
+      vector<int> vec;
+      int i;
+      // push top k mode index values into the vector
+      for (i = 2; i < 34; i += 1) {
+        vec.push_back(i);
+        // push back mode 34 if mode 2 is chosen
+        if (i == 2) {
+          vec.push_back(34);
+        }
+      }
+      // push back planar and DC modes
+      vec.push_back(0);
+      vec.push_back(1);
+      // use iterator to access the values
+      // ******************************
+      // A Few Notes on keyword ``auto``
+      // ******************************
+      // The auto keyword is simply asking the compiler to deduce the type of the variable from the initialization.
+      // The auto keyword simply allows you to take advantage of this knowledge - if you (compiler) know the right type, just choose for me!
+      // vector<int>::iterator v = vec.begin(); (same as using auto like the line below)
+      // ******************************
+      auto v = vec.begin();
+      while (v != vec.end())
+      {
+//        cout << "value of v = " << *v << endl;
+//        cout << "type of v = " << typeid(*v).name() << endl;
+        UInt uiMode = UInt(*v);
+#else
       for( Int modeIdx = 0; modeIdx < numModesAvailable; modeIdx++ )
       {
         UInt       uiMode = modeIdx;
+#endif
+
 #if !NH_3D_VSO
         Distortion uiSad  = 0;
 #endif
@@ -2958,15 +2999,15 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
 
         predIntraAng( COMPONENT_Y, uiMode, piOrg, uiStride, piPred, uiStride, tuRecurseWithPU, bUseFilter, TComPrediction::UseDPCMForFirstPassIntraEstimation(tuRecurseWithPU, uiMode) );
 #if NH_3D_VSO // M34
-        Dist uiSad;           
+        Dist uiSad;
         if ( m_pcRdCost->getUseVSO() )
         {
           if ( m_pcRdCost->getUseEstimatedVSD() )
-          {          
+          {
             uiSad = (Dist) ( m_pcRdCost->getDistPartVSD( pcCU, uiPartOffset, distParam.bitDepth , piPred, uiStride, piOrg, uiStride, distParam.iCols, distParam.iRows, true ) );
           }
           else
-          {    
+          {
             uiSad = m_pcRdCost->getDistPartVSO( pcCU, uiPartOffset, distParam.bitDepth , piPred, uiStride, piOrg, uiStride, distParam.iCols, distParam.iRows, true );
           }
         }
@@ -2974,7 +3015,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
         {
           uiSad = distParam.DistFunc(&distParam);
         }
-#else        
+#else
         // use hadamard transform here
         uiSad+=distParam.DistFunc(&distParam);
 #endif
@@ -2990,9 +3031,9 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
         {
           dLambda = m_pcRdCost->getUseRenModel() ? m_pcRdCost->getLambdaVSO() : sqrtLambdaForFirstPass;
         }
-        else        
+        else
         {
-          dLambda = m_pcRdCost->getSqrtLambda();        
+          dLambda = m_pcRdCost->getSqrtLambda();
         }
 
         Double cost      = (Double)uiSad + (Double)iModeBits * dLambda;
@@ -3006,7 +3047,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
 
         CandNum += xUpdateCandList( uiMode, cost, numModesForFullRD, uiRdModeList, CandCostList );
 #if NH_MV
-        D_DEC_INDENT( g_traceModeCheck ); 
+        D_DEC_INDENT( g_traceModeCheck );
 #endif
       }
 
@@ -3034,12 +3075,15 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
         }
       }
     }
+#if ENABLE_RESNET
+      v++;
+#endif
     }
     else
     {
       for( Int i=0; i < numModesForFullRD; i++)
       {
-        uiRdModeList[i] = i;
+        uiRdModeList[i] = UInt(i);
       }
     }
 #if NH_3D_ENC_DEPTH
@@ -3113,7 +3157,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
                 xSearchDmmDeltaDCs( pcCU, uiPartOffset, piOrg, piPred, uiStride, biSegPattern, patternStride, puRect.width, puRect.height, deltaDC1, deltaDC2 );
                 pcCU->setDmmDeltaDC( (DmmID)dmmType, 0, uiPartOffset, deltaDC1 );
                 pcCU->setDmmDeltaDC( (DmmID)dmmType, 1, uiPartOffset, deltaDC2 );
-  
+
                 uiRdModeList[ numModesForFullRD++ ] = (dmmType+DMM_OFFSET);
                 delete[] biSegPattern;
               }
@@ -3179,29 +3223,29 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
 #if NH_3D_ENC_DEPTH
       UInt uiOrgMode;
       if (uiMode < numModesForFullRD)
-      {   
+      {
         uiOrgMode = uiRdModeList[uiMode];
       }
       else
       {
         const TComRectangle &puRect=tuRecurseWithPU.getRect(COMPONENT_Y);
         const UInt uiAbsPartIdx=tuRecurseWithPU.GetAbsPartIdxTU();
-        
+
         Pel* piOrg         = pcOrgYuv ->getAddr( COMPONENT_Y, uiAbsPartIdx );
         UInt uiStride      = pcPredYuv->getStride( COMPONENT_Y );
-        
+
         UInt varCU      = m_pcRdCost->calcVAR(piOrg, uiStride, puRect.width, puRect.height, pcCU->getDepth(0), pcCU->getSlice()->getSPS()->getMaxCUWidth());
-        
+
         uiOrgMode = uiRdModeList[uiMode - numModesForFullRD];
 
         if (uiBestPUModeConv <= 1 )
         {
-          if (uiOrgMode > 1 && varCU < 1) continue;          
+          if (uiOrgMode > 1 && varCU < 1) continue;
         }
         else
         {
-          if (uiOrgMode != uiBestPUModeConv && uiOrgMode != uiSecondBestPUModeConv && uiOrgMode != uiThirdBestPUModeConv 
-            && uiOrgMode > 1 && uiOrgMode < NUM_INTRA_MODE && varCU < 4) 
+          if (uiOrgMode != uiBestPUModeConv && uiOrgMode != uiSecondBestPUModeConv && uiOrgMode != uiThirdBestPUModeConv
+            && uiOrgMode > 1 && uiOrgMode < NUM_INTRA_MODE && varCU < 4)
             continue;
         }
       }
@@ -3412,7 +3456,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
       } // SDC loop
 #endif
 #if NH_MV
-      D_DEC_INDENT( g_traceModeCheck ); 
+      D_DEC_INDENT( g_traceModeCheck );
 #endif
     } // Mode loop
 
@@ -3460,7 +3504,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
       // reset Model
       if( m_pcRdCost->getUseRenModel() )
       {
-        m_pcRdCost->setRenModelData( pcCU, uiPartOffset, pcOrgYuv, &tuRecurseWithPU );        
+        m_pcRdCost->setRenModelData( pcCU, uiPartOffset, pcOrgYuv, &tuRecurseWithPU );
       }
 #endif
 
@@ -3561,7 +3605,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
 #if NH_3D_VSO // M38
       // set model
       if( m_pcRdCost->getUseRenModel() )
-      {        
+      {
         m_pcRdCost->setRenModelData( pcCU, uiPartOffset, pcRecoYuv, &tuRecurseWithPU );
       }
 #endif
@@ -3573,7 +3617,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
     pcCU->setSDCFlagSubParts          ( bBestUseSDC, uiPartOffset, uiDepth + uiInitTrDepth );
 #endif
 #if NH_MV
-    D_DEC_INDENT( g_traceModeCheck ); 
+    D_DEC_INDENT( g_traceModeCheck );
 #endif
   } while (tuRecurseWithPU.nextSection(tuRecurseCU));
 
@@ -3604,7 +3648,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
   //===== set distortion (rate and r-d costs are determined later) =====
   pcCU->getTotalDistortion() = uiOverallDistY;
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
 }
 
@@ -3669,7 +3713,7 @@ TEncSearch::estIntraPredChromaQT(TComDataCU* pcCU,
         {
           //----- restore context models -----
           m_pcRDGoOnSbacCoder->load( m_pppcRDSbacCoder[uiDepthCU][CI_CURR_BEST] );
-          
+
           DEBUG_STRING_NEW(sMode)
           //----- chroma coding -----
 #if NH_3D_VSO
@@ -3855,9 +3899,9 @@ Void TEncSearch::IPCMSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* pcPre
 #if NH_3D_VSO // M43
 
   // GT:  This needs to be checked distortion is not necessarily 0 in case of VSO.
-  if( m_pcRdCost->getUseLambdaScaleVSO() )  
+  if( m_pcRdCost->getUseLambdaScaleVSO() )
   {
-    dCost =  m_pcRdCost->calcRdCostVSO( uiBits, uiDistortion );  
+    dCost =  m_pcRdCost->calcRdCostVSO( uiBits, uiDistortion );
   }
   else
 #endif
@@ -3905,7 +3949,7 @@ Void TEncSearch::xGetInterPredictionError( TComDataCU* pcCU, TComYuv* pcYuvOrg, 
 }
 
 //! estimation of best merge coding
-Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUIdx, UInt& uiInterDir, TComMvField* pacMvField, UInt& uiMergeIndex, Distortion& ruiCost, TComMvField* cMvFieldNeighbours, UChar* uhInterDirNeighbours, Int& numValidMergeCand 
+Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUIdx, UInt& uiInterDir, TComMvField* pacMvField, UInt& uiMergeIndex, Distortion& ruiCost, TComMvField* cMvFieldNeighbours, UChar* uhInterDirNeighbours, Int& numValidMergeCand
 #if NH_3D_VSP
                                  , Int* vspFlag
 #endif
@@ -3915,7 +3959,7 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
 )
 {
 #if NH_MV
-  D_PRINT_INC_INDENT(g_traceModeCheck,  "xMergeEstimation" ); 
+  D_PRINT_INC_INDENT(g_traceModeCheck,  "xMergeEstimation" );
 #endif
 
   UInt uiAbsPartIdx = 0;
@@ -3933,24 +3977,24 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
     AOF( iPUIdx == 0 );
     AOF( pcCU->getPartitionSize(0) == SIZE_2Nx2N );
     AOF( pDBBPTmpData->eVirtualPartSize != NUMBER_OF_PART_SIZES );
-    
+
     // temporary change of partition size for candidate derivation
     pcCU->setPartSizeSubParts( pDBBPTmpData->eVirtualPartSize, 0, pcCU->getDepth(0));
     iPUIdx = pcCU->getDBBPTmpData()->uiVirtualPartIndex;
-    
+
     // if this is handling the second segment, make sure that motion info of first segment is available
     if( iPUIdx == 1 )
     {
       pcCU->setInterDirSubParts(pDBBPTmpData->auhInterDir[0], 0, 0, pcCU->getDepth(0)); // interprets depth relative to LCU level
-      
+
       for ( UInt uiRefListIdx = 0; uiRefListIdx < 2; uiRefListIdx++ )
       {
         RefPicList eRefList = (RefPicList)uiRefListIdx;
-        
+
         pcCU->getCUMvField( eRefList )->setAllMvField( pDBBPTmpData->acMvField[0][eRefList], pDBBPTmpData->eVirtualPartSize, 0, 0, 0 ); // interprets depth relative to rpcTempCU level
       }
     }
-    
+
     // update these values to virtual partition size
     pcCU->getPartIndexAndSize( iPUIdx, uiAbsPartIdx, iWidth, iHeight );
   }
@@ -4026,10 +4070,10 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
     iPUIdx = 0;
     AOF( pcCU->getPartitionSize(0) == pDBBPTmpData->eVirtualPartSize );
     pcCU->setPartSizeSubParts( SIZE_2Nx2N, 0, pcCU->getDepth(0));
-    
+
     // restore values for 2Nx2N partition size
     pcCU->getPartIndexAndSize( iPUIdx, uiAbsPartIdx, iWidth, iHeight );
-    
+
     AOF( uiAbsPartIdx == 0 );
     AOF( iWidth == iHeight );
   }
@@ -4039,7 +4083,7 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
   for( UInt uiMergeCand = 0; uiMergeCand < numValidMergeCand; ++uiMergeCand )
   {
 #if NH_MV
-    D_PRINT_INC_INDENT(g_traceModeCheck,  "uiMergeCand: " + n2s(uiMergeCand) ); 
+    D_PRINT_INC_INDENT(g_traceModeCheck,  "uiMergeCand: " + n2s(uiMergeCand) );
 #endif
     Distortion uiCostCand = std::numeric_limits<Distortion>::max();
     UInt       uiBitsCand = 0;
@@ -4050,7 +4094,7 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
 #endif
 
 #if NH_3D_SPIVMP
-    pcCU->setSPIVMPFlagSubParts( pbSPIVMPFlag[uiMergeCand], uiAbsPartIdx, iPUIdx, pcCU->getDepth( uiAbsPartIdx )); 
+    pcCU->setSPIVMPFlagSubParts( pbSPIVMPFlag[uiMergeCand], uiAbsPartIdx, iPUIdx, pcCU->getDepth( uiAbsPartIdx ));
     if (pbSPIVMPFlag[uiMergeCand])
     {
       UInt uiSPAddr;
@@ -4119,7 +4163,7 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
     uiCostCand = uiCostCand + m_pcRdCost->getCost( uiBitsCand );
 
 #if NH_MV
-    D_PRINT_INDENT( g_traceRDCost, "IP RD Cost: "  + n2s(uiCostCand)); 
+    D_PRINT_INDENT( g_traceRDCost, "IP RD Cost: "  + n2s(uiCostCand));
 #endif
 
     if ( uiCostCand < ruiCost )
@@ -4131,11 +4175,11 @@ Void TEncSearch::xMergeEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPUI
       uiMergeIndex = uiMergeCand;
     }
 #if NH_MV
-    D_DEC_INDENT( g_traceModeCheck ); 
+    D_DEC_INDENT( g_traceModeCheck );
 #endif
   }
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
 }
 
@@ -4279,7 +4323,7 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
     Bool bTestNormalMC = true;
 #if  NH_3D_FAST_TEXTURE_ENCODING
     if (bFMD||( bUseMRG && pcCU->getWidth( 0 ) > 8 && iNumPart == 2 ))
-#else            
+#else
     if ( bUseMRG && pcCU->getWidth( 0 ) > 8 && iNumPart == 2 )
 #endif
 
@@ -4379,11 +4423,11 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
           refIdxValidList1 = iRefIdxTemp;
         }
 #if NH_MV
-        D_DEC_INDENT( g_traceModeCheck ); 
+        D_DEC_INDENT( g_traceModeCheck );
 #endif
       }
 #if NH_MV
-      D_DEC_INDENT( g_traceModeCheck ); 
+      D_DEC_INDENT( g_traceModeCheck );
 #endif
     }
 
@@ -4654,7 +4698,7 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
         xGetInterPredictionError( pcCU, pcOrgYuv, iPartIdx, uiMEError, m_pcEncCfg->getUseHADME() );
         uiMECost = uiMEError + m_pcRdCost->getCost( uiMEBits );
 #if NH_MV
-        D_PRINT_INDENT( g_traceRDCost, "IP RD Cost: "  + n2s(uiMECost)); 
+        D_PRINT_INDENT( g_traceRDCost, "IP RD Cost: "  + n2s(uiMECost));
 #endif
       }
 #else
@@ -4676,7 +4720,7 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
       memset(vspFlag, 0, sizeof(Int)*MRG_MAX_NUM_CANDS_MEM);
       UInt uiAbsPartIdx = 0;
       Int iWidth = 0;
-      Int iHeight = 0; 
+      Int iHeight = 0;
       pcCU->getPartIndexAndSize( iPartIdx, uiAbsPartIdx, iWidth, iHeight );
       DisInfo OriginalDvInfo = pcCU->getDvInfo(uiAbsPartIdx);
 #endif
@@ -4685,8 +4729,8 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
       memset(bSPIVMPFlag, false, sizeof(Bool)*MRG_MAX_NUM_CANDS_MEM);
       TComMvField*  pcMvFieldSP;
       UChar* puhInterDirSP;
-      pcMvFieldSP = new TComMvField[pcCU->getPic()->getPicSym()->getNumPartitionsInCtu()*2]; 
-      puhInterDirSP = new UChar[pcCU->getPic()->getPicSym()->getNumPartitionsInCtu()]; 
+      pcMvFieldSP = new TComMvField[pcCU->getPic()->getPicSym()->getNumPartitionsInCtu()*2];
+      puhInterDirSP = new UChar[pcCU->getPic()->getPicSym()->getNumPartitionsInCtu()];
 #endif
       xMergeEstimation( pcCU, pcOrgYuv, iPartIdx, uiMRGInterDir, cMRGMvField, uiMRGIndex, uiMRGCost, cMvFieldNeighbours, uhInterDirNeighbours, numValidMergeCand
 #if NH_3D_VSP
@@ -4694,7 +4738,7 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
 #endif
 #if NH_3D_SPIVMP
                       , bSPIVMPFlag, pcMvFieldSP, puhInterDirSP
-#endif 
+#endif
                       );
 
       if ( uiMRGCost < uiMECost )
@@ -4706,7 +4750,7 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
         pcCU->setVSPFlagSubParts( vspFlag[uiMRGIndex], uiPartAddr, iPartIdx, pcCU->getDepth( uiPartAddr ) );
 #endif
 #if NH_3D_SPIVMP
-        pcCU->setSPIVMPFlagSubParts(bSPIVMPFlag[uiMRGIndex], uiPartAddr, iPartIdx, pcCU->getDepth( uiPartAddr ) );  
+        pcCU->setSPIVMPFlagSubParts(bSPIVMPFlag[uiMRGIndex], uiPartAddr, iPartIdx, pcCU->getDepth( uiPartAddr ) );
         if (bSPIVMPFlag[uiMRGIndex]!=0)
         {
           UInt uiSPAddr;
@@ -4781,8 +4825,8 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
       }
       else
       {
-#if NH_3D_SPIVMP        
-        pcCU->setSPIVMPFlagSubParts(0, uiPartAddr, iPartIdx, pcCU->getDepth( uiPartAddr ) ); 
+#if NH_3D_SPIVMP
+        pcCU->setSPIVMPFlagSubParts(0, uiPartAddr, iPartIdx, pcCU->getDepth( uiPartAddr ) );
 #endif
         // set ME result
         pcCU->setMergeFlagSubParts( false,        uiPartAddr, iPartIdx, pcCU->getDepth( uiPartAddr ) );
@@ -4803,14 +4847,14 @@ Void TEncSearch::predInterSearch( TComDataCU* pcCU, TComYuv* pcOrgYuv, TComYuv* 
     //  MC
     motionCompensation ( pcCU, pcPredYuv, REF_PIC_LIST_X, iPartIdx );
 #if NH_MV
-    D_DEC_INDENT( g_traceModeCheck ); 
+    D_DEC_INDENT( g_traceModeCheck );
 #endif
   } //  end of for ( Int iPartIdx = 0; iPartIdx < iNumPart; iPartIdx++ )
 
   setWpScalingDistParam( pcCU, -1, REF_PIC_LIST_X );
 
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
   return;
 }
@@ -4848,23 +4892,23 @@ Void TEncSearch::xEstimateMvPredAMVP( TComDataCU* pcCU, TComYuv* pcOrgYuv, UInt 
       AOF( pcCU->getPartitionSize(0) == SIZE_2Nx2N );
       AOF( pDBBPTmpData->eVirtualPartSize != NUMBER_OF_PART_SIZES );
       AOF( iRoiWidth == iRoiHeight );
-      
+
       // temporary change of partition size for candidate derivation
       pcCU->setPartSizeSubParts( pDBBPTmpData->eVirtualPartSize, 0, pcCU->getDepth(0));
       uiPartIdx = pcCU->getDBBPTmpData()->uiVirtualPartIndex;
-      
+
       // if this is handling the second segment, make sure that motion info of first segment is set to first segment
       if( uiPartIdx == 1 )
       {
         pcCU->setInterDirSubParts(pDBBPTmpData->auhInterDir[0], 0, 0, pcCU->getDepth(0)); // interprets depth relative to LCU level
-        
+
         for ( UInt uiRefListIdx = 0; uiRefListIdx < 2; uiRefListIdx++ )
         {
           RefPicList eRefList = (RefPicList)uiRefListIdx;
           pcCU->getCUMvField( eRefList )->setAllMvField( pDBBPTmpData->acMvField[0][eRefList], pDBBPTmpData->eVirtualPartSize, 0, 0, 0 ); // interprets depth relative to rpcTempCU level
         }
       }
-      
+
       // update values to virtual partition size
       pcCU->getPartIndexAndSize( uiPartIdx, uiPartAddr, iRoiWidth, iRoiHeight );
     }
@@ -4878,7 +4922,7 @@ Void TEncSearch::xEstimateMvPredAMVP( TComDataCU* pcCU, TComYuv* pcOrgYuv, UInt 
       uiPartIdx = 0;
       AOF( pcCU->getPartitionSize(0) == pDBBPTmpData->eVirtualPartSize );
       pcCU->setPartSizeSubParts( SIZE_2Nx2N, 0, pcCU->getDepth(0));
-      
+
       // restore values for 2Nx2N partition size
       pcCU->getPartIndexAndSize( uiPartIdx, uiPartAddr, iRoiWidth, iRoiHeight );
       AOF(uiPartAddr==0);
@@ -4906,7 +4950,7 @@ Void TEncSearch::xEstimateMvPredAMVP( TComDataCU* pcCU, TComYuv* pcOrgYuv, UInt 
       (*puiDistBiP) = xGetTemplateCost( pcCU, uiPartAddr, pcOrgYuv, &m_cYuvPredTemp, rcMvPred, 0, AMVP_MAX_NUM_CANDS, eRefPicList, iRefIdx, iRoiWidth, iRoiHeight);
 
 #if NH_MV
-      D_DEC_INDENT( g_traceModeCheck ); 
+      D_DEC_INDENT( g_traceModeCheck );
 #endif
     }
     return;
@@ -4938,7 +4982,7 @@ Void TEncSearch::xEstimateMvPredAMVP( TComDataCU* pcCU, TComYuv* pcOrgYuv, UInt 
     }
 
 #if NH_MV
-    D_DEC_INDENT( g_traceModeCheck ); 
+    D_DEC_INDENT( g_traceModeCheck );
 #endif
   }
 
@@ -4950,7 +4994,7 @@ Void TEncSearch::xEstimateMvPredAMVP( TComDataCU* pcCU, TComYuv* pcOrgYuv, UInt 
   pcCU->setMVPNumSubParts( pcAMVPInfo->iN, eRefPicList, uiPartAddr, uiPartIdx, pcCU->getDepth(uiPartAddr));
 
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
 
   return;
@@ -5120,7 +5164,7 @@ Distortion TEncSearch::xGetTemplateCost( TComDataCU* pcCU,
   // prediction pattern
   if ( pcCU->getSlice()->testWeightPred() && pcCU->getSlice()->getSliceType()==P_SLICE )
   {
-    xPredInterBlk( COMPONENT_Y, pcCU, pcPicYuvRef, uiPartAddr, &cMvCand, iSizeX, iSizeY, pcTemplateCand, true, pcCU->getSlice()->getSPS()->getBitDepth(CHANNEL_TYPE_LUMA) 
+    xPredInterBlk( COMPONENT_Y, pcCU, pcPicYuvRef, uiPartAddr, &cMvCand, iSizeX, iSizeY, pcTemplateCand, true, pcCU->getSlice()->getSPS()->getBitDepth(CHANNEL_TYPE_LUMA)
 #if NH_3D_ARP
       , false //add this for IC, otherwise, it could be removed
 #endif
@@ -5128,7 +5172,7 @@ Distortion TEncSearch::xGetTemplateCost( TComDataCU* pcCU,
   }
   else
   {
-    xPredInterBlk( COMPONENT_Y, pcCU, pcPicYuvRef, uiPartAddr, &cMvCand, iSizeX, iSizeY, pcTemplateCand, false, pcCU->getSlice()->getSPS()->getBitDepth(CHANNEL_TYPE_LUMA) 
+    xPredInterBlk( COMPONENT_Y, pcCU, pcPicYuvRef, uiPartAddr, &cMvCand, iSizeX, iSizeY, pcTemplateCand, false, pcCU->getSlice()->getSPS()->getBitDepth(CHANNEL_TYPE_LUMA)
 #if NH_3D_ARP
       , false
 #endif
@@ -5216,7 +5260,7 @@ Void TEncSearch::xMotionEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPa
 #if NH_MV
   m_vertRestriction =  m_pcEncCfg->getUseDisparitySearchRangeRestriction()  && ( pcCU->getSlice()->getRefPic( eRefPicList, iRefIdxPred )->getPOC() == pcCU->getSlice()->getPOC() );
 #endif
-  
+
   if ( bBi )
   {
     xSetSearchRange   ( pcCU, rcMv   , iSrchRng, cMvSrchRngLT, cMvSrchRngRB );
@@ -5237,7 +5281,7 @@ Void TEncSearch::xMotionEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPa
   else
   {
 #endif
-    m_pcRdCost->setCostScale  ( 2 );    
+    m_pcRdCost->setCostScale  ( 2 );
 #if NH_3D_INTEGER_MV_DEPTH
   }
 #endif
@@ -5300,10 +5344,10 @@ Void TEncSearch::xMotionEstimation( TComDataCU* pcCU, TComYuv* pcYuvOrg, Int iPa
 #endif
   ruiBits      += uiMvBits;
   ruiCost       = (Distortion)( floor( fWeight * ( (Double)ruiCost - (Double)m_pcRdCost->getCost( uiMvBits ) ) ) + (Double)m_pcRdCost->getCost( ruiBits ) );
-  
+
 #if NH_MV
   D_PRINT_INDENT(g_traceRDCost, "ME Cost:" + n2s(ruiCost)  );
-  D_DEC_INDENT  ( g_traceModeCheck ); 
+  D_DEC_INDENT  ( g_traceModeCheck );
 #endif
 }
 
@@ -5326,7 +5370,7 @@ Void TEncSearch::xSetSearchRange ( const TComDataCU* const pcCU, const TComMv& c
 
   rcMvSrchRngRB.setHor( cTmpMvPred.getHor() + (iSrchRng << iMvShift) );
   rcMvSrchRngRB.setVer( cTmpMvPred.getVer() + (iSrchRng << iMvShift) );
-  
+
 #if NH_MV
   if ( m_vertRestriction )
   {
@@ -5526,7 +5570,7 @@ Void TEncSearch::xTZSearch( const TComDataCU* const pcCU,
       pcCU->clipMv( cMv );
 #if NH_3D_INTEGER_MV_DEPTH
       if( ! pcCU->getSlice()->getIsDepth() )
-      {      
+      {
 #endif
 #if ME_ENABLE_ROUNDING_OF_MVS
       cMv.divideByPowerOf2(2);
@@ -5883,11 +5927,11 @@ Void TEncSearch::xTZSearchSelective( const TComDataCU* const   pcCU,
 
   // Initial search
   iBestX = cStruct.iBestX;
-  iBestY = cStruct.iBestY; 
+  iBestY = cStruct.iBestY;
   iFirstSrchRngHorLeft    = ((iBestX - uiSearchRangeInitial) > iSrchRngHorLeft)   ? (iBestX - uiSearchRangeInitial) : iSrchRngHorLeft;
   iFirstSrchRngVerTop     = ((iBestY - uiSearchRangeInitial) > iSrchRngVerTop)    ? (iBestY - uiSearchRangeInitial) : iSrchRngVerTop;
-  iFirstSrchRngHorRight   = ((iBestX + uiSearchRangeInitial) < iSrchRngHorRight)  ? (iBestX + uiSearchRangeInitial) : iSrchRngHorRight;  
-  iFirstSrchRngVerBottom  = ((iBestY + uiSearchRangeInitial) < iSrchRngVerBottom) ? (iBestY + uiSearchRangeInitial) : iSrchRngVerBottom;    
+  iFirstSrchRngHorRight   = ((iBestX + uiSearchRangeInitial) < iSrchRngHorRight)  ? (iBestX + uiSearchRangeInitial) : iSrchRngHorRight;
+  iFirstSrchRngVerBottom  = ((iBestY + uiSearchRangeInitial) < iSrchRngVerBottom) ? (iBestY + uiSearchRangeInitial) : iSrchRngVerBottom;
 
   for ( iStartY = iFirstSrchRngVerTop; iStartY <= iFirstSrchRngVerBottom; iStartY += uiSearchStep )
   {
@@ -6039,7 +6083,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
         distortion += m_pcRdCost->getDistPartVSO( pcCU, 0, sps.getBitDepth(toChannelType(compID)), pcYuvRec->getAddr(compID), pcYuvRec->getStride(compID), pcYuvOrg->getAddr(compID),
           pcYuvOrg->getStride(compID), cuWidthPixels >> csx, cuHeightPixels >> csy, false );
       }
-      else    
+      else
       {
 #endif
         distortion += m_pcRdCost->getDistPart( sps.getBitDepth(toChannelType(compID)), pcYuvRec->getAddr(compID), pcYuvRec->getStride(compID), pcYuvOrg->getAddr(compID),
@@ -6068,12 +6112,12 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
     pcCU->getTotalBits()       = uiBits;
     pcCU->getTotalDistortion() = distortion;
 #if NH_3D_VSO //M 14
-    if ( m_pcRdCost->getUseLambdaScaleVSO() )    
+    if ( m_pcRdCost->getUseLambdaScaleVSO() )
     {
-      pcCU->getTotalCost() = m_pcRdCost->calcRdCostVSO( uiBits, distortion );    
+      pcCU->getTotalCost() = m_pcRdCost->calcRdCostVSO( uiBits, distortion );
     }
     else
-#endif    
+#endif
       pcCU->getTotalCost()       = m_pcRdCost->calcRdCost( uiBits, distortion );
 
     m_pcRDGoOnSbacCoder->store(m_pppcRDSbacCoder[pcCU->getDepth(0)][CI_TEMP_BEST]);
@@ -6089,7 +6133,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
 #if NH_3D_VSO // necessary? // M15
     // set Model
     if( !m_pcRdCost->getUseEstimatedVSD() && m_pcRdCost->getUseRenModel() )
-    {      
+    {
       const UInt csx    = pcYuvRec->getComponentScaleX( COMPONENT_Y );
       const UInt csy    = pcYuvRec->getComponentScaleY( COMPONENT_Y );
 
@@ -6099,7 +6143,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
     }
 #endif
 #if NH_MV
-    D_DEC_INDENT( g_traceModeCheck ); 
+    D_DEC_INDENT( g_traceModeCheck );
 #endif
 
     return;
@@ -6122,29 +6166,29 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
 #endif
 
   m_pcRDGoOnSbacCoder->load( m_pppcRDSbacCoder[ pcCU->getDepth( 0 ) ][ CI_CURR_BEST ] );
-#if NH_3D_VSO // M16 // M18  
-  if ( m_pcRdCost->getUseVSO() )  // This creating and destroying need to be fixed. 
+#if NH_3D_VSO // M16 // M18
+  if ( m_pcRdCost->getUseVSO() )  // This creating and destroying need to be fixed.
   {
     m_cYuvRecTemp.create( pcYuvPred->getWidth( COMPONENT_Y ), pcYuvPred->getHeight( COMPONENT_Y ), CHROMA_400  );
   }
 
 #if ENC_DEC_TRACE && NH_MV_ENC_DEC_TRAC
-  Bool oldTraceRDCost = g_traceRDCost;     
-  g_traceRDCost = false; 
+  Bool oldTraceRDCost = g_traceRDCost;
+  g_traceRDCost = false;
 
-  Bool oldTraceModeCheck = g_traceModeCheck; 
-  g_traceModeCheck = false; 
+  Bool oldTraceModeCheck = g_traceModeCheck;
+  g_traceModeCheck = false;
 
-  Bool oldTraceFracBits = g_traceEncFracBits; 
-  g_traceEncFracBits = false; 
-  
+  Bool oldTraceFracBits = g_traceEncFracBits;
+  g_traceEncFracBits = false;
+
 #endif
-  xEstimateInterResidualQT( pcYuvResi,  pcYuvOrg, pcYuvPred, nonZeroCost, nonZeroBits, nonZeroDistortion, &zeroDistortion, tuLevel0 DEBUG_STRING_PASS_INTO(sDebug) );    
+  xEstimateInterResidualQT( pcYuvResi,  pcYuvOrg, pcYuvPred, nonZeroCost, nonZeroBits, nonZeroDistortion, &zeroDistortion, tuLevel0 DEBUG_STRING_PASS_INTO(sDebug) );
 
 #if ENC_DEC_TRACE && NH_MV_ENC_DEC_TRAC
   g_traceRDCost = oldTraceRDCost;
-  g_traceEncFracBits = oldTraceFracBits; 
-  g_traceModeCheck = oldTraceModeCheck; 
+  g_traceEncFracBits = oldTraceFracBits;
+  g_traceModeCheck = oldTraceModeCheck;
 #endif
 
   if ( m_pcRdCost->getUseVSO() )
@@ -6163,8 +6207,8 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
   m_pcEntropyCoder->encodeQtRootCbfZero( );
   const UInt   zeroResiBits = m_pcEntropyCoder->getNumberOfWrittenBits();
 #if NH_3D_VSO  // M19
-    Double zeroCost; 
-    if( m_pcRdCost->getUseLambdaScaleVSO() )    
+    Double zeroCost;
+    if( m_pcRdCost->getUseLambdaScaleVSO() )
     {
       zeroCost = (pcCU->isLosslessCoded( 0 )) ? (nonZeroCost+1) : (m_pcRdCost->calcRdCostVSO( zeroResiBits, zeroDistortion ));
     }
@@ -6172,7 +6216,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
     {
       zeroCost = (pcCU->isLosslessCoded( 0 )) ? (nonZeroCost+1) : (m_pcRdCost->calcRdCost( zeroResiBits, zeroDistortion ));
     }
-#else 
+#else
   const Double zeroCost     = (pcCU->isLosslessCoded( 0 )) ? (nonZeroCost+1) : (m_pcRdCost->calcRdCost( zeroResiBits, zeroDistortion ));
 #endif
 #if NH_3D_SPIVMP
@@ -6231,7 +6275,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
   Distortion finalDistortion = 0;
 #endif
   for(Int comp=0; comp<numValidComponents; comp++)
-  {  
+  {
     const ComponentID compID=ComponentID(comp);
 #if NH_3D_VSO    // M22 // GT: might be removed since VSO already provided clipped distortion
     if ( m_pcRdCost->getUseVSO() )
@@ -6240,7 +6284,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
     }
     else
     {
-#endif      
+#endif
       finalDistortion += m_pcRdCost->getDistPart( sps.getBitDepth(toChannelType(compID)), pcYuvRec->getAddr(compID ), pcYuvRec->getStride(compID ), pcYuvOrg->getAddr(compID ), pcYuvOrg->getStride(compID), cuWidthPixels >> pcYuvOrg->getComponentScaleX(compID), cuHeightPixels >> pcYuvOrg->getComponentScaleY(compID), compID);
 #if NH_3D_VSO // M23
     }
@@ -6249,7 +6293,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
 
   pcCU->getTotalBits()       = finalBits;
   pcCU->getTotalDistortion() = finalDistortion;
-#if NH_3D_VSO 
+#if NH_3D_VSO
   if ( m_pcRdCost->getUseLambdaScaleVSO() )
   {
     pcCU->getTotalCost()       = m_pcRdCost->calcRdCostVSO( finalBits, finalDistortion );
@@ -6267,7 +6311,7 @@ Void TEncSearch::encodeResAndCalcRdInterCU( TComDataCU* pcCU, TComYuv* pcYuvOrg,
   }
 #endif
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
 }
 
@@ -6356,7 +6400,7 @@ Void TEncSearch::encodeResAndCalcRdInterSDCCU( TComDataCU* pcCU, TComYuv* pcOrg,
   {
     ruiDist = m_pcRdCost->getDistPartVSO( pcCU, 0, bitDepthY, pcRec->getAddr( COMPONENT_Y ), pcRec->getStride( COMPONENT_Y ),  pcOrg->getAddr( COMPONENT_Y ), pcOrg->getStride( COMPONENT_Y ),  uiWidth,      uiHeight     , false );
   }
-  else    
+  else
   {
 #endif
     {
@@ -6383,9 +6427,9 @@ Void TEncSearch::encodeResAndCalcRdInterSDCCU( TComDataCU* pcCU, TComYuv* pcOrg,
     xAddSymbolBitsInter( pcCU, uiBits );
 
 #if NH_3D_VSO //M 14
-    if ( m_pcRdCost->getUseLambdaScaleVSO() )    
+    if ( m_pcRdCost->getUseLambdaScaleVSO() )
     {
-      rdCost = m_pcRdCost->calcRdCostVSO( uiBits, ruiDist );    
+      rdCost = m_pcRdCost->calcRdCostVSO( uiBits, ruiDist );
     }
     else
 #endif
@@ -6588,7 +6632,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
               const Bool bUseCrossCPrediction = crossCPredictionModeId != 0;
 
 #if NH_MV
-              D_PRINT_INC_INDENT( g_traceModeCheck, "Zero" );              
+              D_PRINT_INC_INDENT( g_traceModeCheck, "Zero" );
 #endif
 
               m_pcRDGoOnSbacCoder->load( m_pppcRDSbacCoder[ uiDepth ][ CI_QT_TRAFO_ROOT ] );
@@ -6687,7 +6731,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                                                         tuCompRect.width,
                                                         m_pcQTTempTComYuv[uiQTTempAccessLayer].getStride(compID),
                                                         true);
-#if NH_3D_VSO      
+#if NH_3D_VSO
                   // No VSO needed here.
                   assert( !m_pcRdCost->getUseVSO() );
 #endif
@@ -6697,7 +6741,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                 }
                 else
                 {
-#if NH_3D_VSO // M27                  
+#if NH_3D_VSO // M27
                   if ( m_pcRdCost->getUseVSO() )
                   {
                     if( m_pcRdCost->getUseEstimatedVSD() )
@@ -6706,9 +6750,9 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                                                           pcResi->getStride( compID ), tuCompRect.width, tuCompRect.height, false );
                     }
                     else
-                    {      
-                      nonCoeffDist = m_pcRdCost->getDistPartVSO( pcCU, uiAbsPartIdx, channelBitDepth, pcPred->getAddr( compID, uiAbsPartIdx ), 
-                                                          pcPred->getStride( compID ), pcOrg->getAddr( compID, uiAbsPartIdx), pcOrg->getStride( compID ), 
+                    {
+                      nonCoeffDist = m_pcRdCost->getDistPartVSO( pcCU, uiAbsPartIdx, channelBitDepth, pcPred->getAddr( compID, uiAbsPartIdx ),
+                                                          pcPred->getStride( compID ), pcOrg->getAddr( compID, uiAbsPartIdx), pcOrg->getStride( compID ),
                                                           tuCompRect.width, tuCompRect.height, false ); // initialized with zero residual distortion
                     }
                   }
@@ -6716,7 +6760,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
 #endif
                     nonCoeffDist = m_pcRdCost->getDistPart( channelBitDepth, m_pTempPel, tuCompRect.width, pcResi->getAddrPix( compID, tuCompRect.x0, tuCompRect.y0 ),
                                                           pcResi->getStride(compID), tuCompRect.width, tuCompRect.height, compID); // initialized with zero residual distortion
-                    
+
                 }
 
                 m_pcEntropyCoder->encodeQtCbfZero( TUIterator, toChannelType(compID) );
@@ -6727,12 +6771,12 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                 }
 
                 nonCoeffBits = m_pcEntropyCoder->getNumberOfWrittenBits();
-#if NH_3D_VSO // M29                
+#if NH_3D_VSO // M29
                 if ( m_pcRdCost->getUseLambdaScaleVSO())
                 {
-                   nonCoeffCost = m_pcRdCost->calcRdCostVSO( nonCoeffBits, nonCoeffDist );        
-                }          
-                else          
+                   nonCoeffCost = m_pcRdCost->calcRdCostVSO( nonCoeffBits, nonCoeffDist );
+                }
+                else
 #endif
                   nonCoeffCost = m_pcRdCost->calcRdCost( nonCoeffBits, nonCoeffDist );
               }
@@ -6744,7 +6788,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
 
               DEBUG_STRING_NEW(sSingleStringTest)
 #if NH_MV
-                D_DEC_INDENT( g_traceModeCheck ); 
+                D_DEC_INDENT( g_traceModeCheck );
 #endif
               if( currAbsSum > 0 ) //if non-zero coefficients are present, a residual needs to be derived for further prediction
               {
@@ -6773,7 +6817,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
 
                 if (bUseCrossCPrediction)
                 {
-#if NH_3D_VSO     
+#if NH_3D_VSO
                   assert( !m_pcRdCost->getUseVSO() );
 #endif
                   TComTrQuant::crossComponentPrediction(TUIterator,
@@ -6789,11 +6833,11 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                                                         true);
                 }
 
-#if NH_3D_VSO // M28     
+#if NH_3D_VSO // M28
                 if ( m_pcRdCost->getUseVSO() )
                 {
                   if ( m_pcRdCost->getUseEstimatedVSD() )
-                  {          
+                  {
                     currCompDist  = m_pcRdCost->getDistPartVSD( pcCU, uiAbsPartIdx, channelBitDepth, m_pcQTTempTComYuv[uiQTTempAccessLayer].getAddrPix( compID, tuCompRect.x0, tuCompRect.y0 ),
                       m_pcQTTempTComYuv[uiQTTempAccessLayer].getStride(compID),
                       pcResi->getAddrPix( compID, tuCompRect.x0, tuCompRect.y0 ),
@@ -6801,13 +6845,13 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                       tuCompRect.width, tuCompRect.height, false);
                   }
                   else
-                  {        
+                  {
                     m_cYuvRecTemp.addClipPartLuma( channelBitDepth, &m_pcQTTempTComYuv[uiQTTempAccessLayer], pcPred, uiAbsPartIdx, tuCompRect.width );
-                    currCompDist = m_pcRdCost->getDistPartVSO( pcCU, uiAbsPartIdx, channelBitDepth, 
-                                                      m_cYuvRecTemp.getAddr(compID, uiAbsPartIdx), 
-                                                      m_cYuvRecTemp.getStride( compID), 
-                                                      pcOrg->getAddr  ( compID, uiAbsPartIdx ), 
-                                                      pcOrg->getStride( compID ), 
+                    currCompDist = m_pcRdCost->getDistPartVSO( pcCU, uiAbsPartIdx, channelBitDepth,
+                                                      m_cYuvRecTemp.getAddr(compID, uiAbsPartIdx),
+                                                      m_cYuvRecTemp.getStride( compID),
+                                                      pcOrg->getAddr  ( compID, uiAbsPartIdx ),
+                                                      pcOrg->getStride( compID ),
                                                       tuCompRect.width, tuCompRect.height, false );
                   }
                 }
@@ -6827,7 +6871,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                else
 #endif
                 currCompCost = m_pcRdCost->calcRdCost(currCompBits, currCompDist);
-                  
+
                 if (pcCU->isLosslessCoded(0))
                 {
                   nonCoeffCost = MAX_DOUBLE;
@@ -6844,7 +6888,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
                 currCompCost = nonCoeffCost;
               }
 #if NH_MV
-              D_DEC_INDENT( g_traceModeCheck ); 
+              D_DEC_INDENT( g_traceModeCheck );
 #endif
 
               // evaluate
@@ -6924,7 +6968,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
               }
             }
 #if NH_MV
-            D_DEC_INDENT( g_traceModeCheck ); 
+            D_DEC_INDENT( g_traceModeCheck );
 #endif
           }
 
@@ -6997,8 +7041,8 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
       dSingleCost = m_pcRdCost->calcRdCost( uiSingleBits, uiSingleDist );
 
 #if NH_MV
-      D_DEC_INDENT( g_traceModeCheck ); 
-      D_DEC_INDENT( g_traceModeCheck ); 
+      D_DEC_INDENT( g_traceModeCheck );
+      D_DEC_INDENT( g_traceModeCheck );
 #endif
   } // check full
 
@@ -7178,7 +7222,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
       m_pcRDGoOnSbacCoder->load( m_pppcRDSbacCoder[ uiDepth ][ CI_QT_TRAFO_TEST ] );
     }
 #if NH_MV
-    D_DEC_INDENT( g_traceModeCheck ); 
+    D_DEC_INDENT( g_traceModeCheck );
 #endif
   }
   else
@@ -7200,7 +7244,7 @@ Void TEncSearch::xEstimateInterResidualQT( TComYuv    *pcResi,
 #endif
   }
 #if NH_MV
-  D_DEC_INDENT( g_traceModeCheck ); 
+  D_DEC_INDENT( g_traceModeCheck );
 #endif
   DEBUG_STRING_APPEND(sDebug, debug_reorder_data_inter_token[MAX_NUM_COMPONENT])
 
@@ -7763,7 +7807,7 @@ Void TEncSearch::xCalcBiSegDCs( Pel* ptrSrc, UInt srcStride, Bool* biSegPattern,
   UInt uiDC1 = 0;
   UInt uiDC2 = 0;
   UInt uiNumPixDC1 = 0, uiNumPixDC2 = 0;
-  
+
   Int subSamplePix = subSamp ? 2 : 1;
 
   Pel* piTemp = ptrSrc;
@@ -7771,7 +7815,7 @@ Void TEncSearch::xCalcBiSegDCs( Pel* ptrSrc, UInt srcStride, Bool* biSegPattern,
   {
     for( UInt uiX = 0; uiX < patternStride; uiX += subSamplePix )
     {
-      if( true == biSegPattern[uiX] ) 
+      if( true == biSegPattern[uiX] )
       {
         uiDC2 += piTemp[uiX];
         uiNumPixDC2++;
