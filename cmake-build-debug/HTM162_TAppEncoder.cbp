@@ -161,9 +161,6 @@
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppClassifier/main.cpp">
 			<Option target="TAppClassifer"/>
 		</Unit>
-		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppClassifier/strtk.hpp">
-			<Option target="TAppClassifer"/>
-		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/App/TAppEncoder/TAppEncCfg.cpp">
 			<Option target="TAppEncoder"/>
 		</Unit>
@@ -586,6 +583,12 @@
 		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibCommon/program_options_lite.h">
 			<Option target="TAppEncoder"/>
+		</Unit>
+		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibResnet/TResnet.h">
+			<Option target="TAppEncoder"/>
+		</Unit>
+		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/Lib/TLibResnet/strtk.hpp">
+			<Option target="TAppClassifer"/>
 		</Unit>
 		<Unit filename="/Users/Pharrell_WANG/tensorflow/HTM162/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

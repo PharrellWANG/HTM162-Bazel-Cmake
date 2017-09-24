@@ -4,7 +4,7 @@ project(HTM162_TAppEncoder)
 set(CMAKE_CXX_STANDARD 11)
 
 # config for single individual classifier: start
-set(SOURCE_FILES App/TAppClassifier/main.cpp App/TAppClassifier/strtk.hpp)
+set(SOURCE_FILES App/TAppClassifier/main.cpp Lib/TLibResnet/strtk.hpp)
 add_executable(TAppClassifer ${SOURCE_FILES})
 find_package(TensorflowCC COMPONENTS Shared)
 target_link_libraries(TAppClassifer TensorflowCC::Shared)
@@ -151,7 +151,7 @@ set(SOURCE_FILES
   Lib/TLibCommon/TVideoIOYuv.h
   Lib/TLibCommon/TypeDef.h
   Lib/TLibCommon/WeightPredAnalysis.cpp
-  Lib/TLibCommon/WeightPredAnalysis.h)
+  Lib/TLibCommon/WeightPredAnalysis.h Lib/TLibResnet/TResnet.h)
 
 include_directories(.)
 include_directories(App)

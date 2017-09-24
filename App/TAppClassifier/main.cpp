@@ -17,7 +17,7 @@
 
 #include <fstream>
 #include <vector>
-#include "strtk.hpp"
+#include "Lib/TLibResnet/strtk.hpp"
 #include "tensorflow/cc/ops/const_op.h"
 #include "tensorflow/cc/ops/image_ops.h"
 #include "tensorflow/cc/ops/standard_ops.h"

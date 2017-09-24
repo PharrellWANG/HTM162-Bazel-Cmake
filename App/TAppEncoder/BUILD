@@ -21,8 +21,9 @@ cc_binary(
     name = "TAppEncoder",
     srcs = ["encmain.cpp"],
     deps = [
-    	":TAppEncCfg",
-    	":TAppEncTop",
+    	  ":TAppEncCfg",
+    	  ":TAppEncTop",
         "//HTM162/Lib/TLibCommon:TLibCommon",
+        "//HTM162/Lib/TLibResnet:TLibResnet",
     ],
 )
