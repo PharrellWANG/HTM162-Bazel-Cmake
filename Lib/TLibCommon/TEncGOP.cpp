@@ -1176,8 +1176,8 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
   TComSlice*      pcSlice;
   TComOutputBitstream  *pcBitstreamRedirect;
   pcBitstreamRedirect = new TComOutputBitstream;
-//  AccessUnit::iterator  itLocationToPushSliceHeaderNALU; // used to store location where NALU containing slice header is to be inserted
-  auto  itLocationToPushSliceHeaderNALU; // used to store location where NALU containing slice header is to be inserted
+  AccessUnit::iterator  itLocationToPushSliceHeaderNALU; // used to store location where NALU containing slice header is to be inserted
+//  auto  itLocationToPushSliceHeaderNALU; // used to store location where NALU containing slice header is to be inserted
 #if !NH_MV
   xInitGOP( iPOCLast, iNumPicRcvd, isField );
 #endif
