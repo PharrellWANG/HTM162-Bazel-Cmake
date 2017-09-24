@@ -151,12 +151,16 @@ set(SOURCE_FILES
   Lib/TLibCommon/TVideoIOYuv.h
   Lib/TLibCommon/TypeDef.h
   Lib/TLibCommon/WeightPredAnalysis.cpp
-  Lib/TLibCommon/WeightPredAnalysis.h Lib/TLibResnet/TResnet.h)
+  Lib/TLibCommon/WeightPredAnalysis.h
+  Lib/TLibResnet/TResnet.h
+  Lib/TLibResnet/strtk.hpp
+  )
 
 include_directories(.)
 include_directories(App)
 include_directories(App/TAppEncoder)
 include_directories(Lib)
 include_directories(Lib/TLibCommon)
+include_directories(Lib/TLibResnet)
 
 add_executable(TAppEncoder ${SOURCE_FILES})

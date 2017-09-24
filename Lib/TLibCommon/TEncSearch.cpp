@@ -3050,6 +3050,10 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
 #if NH_MV
         D_DEC_INDENT( g_traceModeCheck );
 #endif
+
+#if ENABLE_RESNET
+        v++;
+#endif
       }
 
       if (m_pcEncCfg->getFastUDIUseMPMEnabled())
@@ -3076,10 +3080,7 @@ TEncSearch::estIntraPredLumaQT(TComDataCU* pcCU,
           }
         }
       }
-#if ENABLE_RESNET
-      v++;
-#endif
-    }
+    } // do fast search end
     else
     {
       for( Int i=0; i < numModesForFullRD; i++)
