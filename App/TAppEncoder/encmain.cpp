@@ -188,15 +188,11 @@ int main(int argc, char* argv[])
   string graph = nameOfGraphOne;
   // end first graph
 
-//  string graph_2 =
-//    "/Users/Pharrell_WANG/resnet_logs_bak/size_16_log/resnet/graphs/frozen_resnet_for_fdc_blk16x16_304857.pb";
-
   // path for label text file
   string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
   string labels = homeDir + secondPartLabelFile;
   // path for label file end
 
-//    "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
   string input_layer = "input";
   string output_layer = "logits/fdc_output_node";
   string root_dir = "";
@@ -210,82 +206,34 @@ int main(int argc, char* argv[])
     return -1;
   }
 
-  // First we load and initialize the model.
-  std::unique_ptr<tensorflow::Session> session_2;
-//  string graph_path_2 = tensorflow::io::JoinPath(root_dir, graph_2);
-//  Status load_graph_status_2 = LoadGraph(graph_path_2, &session_2);
-//  if (!load_graph_status_2.ok()) {
-//        LOG(ERROR) << load_graph_status;
-//    return -1;
-//  }
-
+  //************************************************************************
   tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
                                   tensorflow::TensorShape({1, 8, 8, 1}));
   // input_tensor_mapped is
   // 1. an interface to the data of ``input_tensor``
   // 1. It is used to copy data into the ``input_tensor``
   auto input_tensor_mapped = input_tensor.tensor<float, 4>();
-
   // Assign block width
   int BLOCK_WIDTH = 8;
-
   // set values and copy to ``input_tensor`` using for loop
-
   for (int row = 0; row < BLOCK_WIDTH; ++row)
     for (int col = 0; col < BLOCK_WIDTH; ++col)
       input_tensor_mapped(0, row, col,
                           0) = 3.0; // this is where we get the pixels
-
-//  tensorflow::Tensor input_tensor_2(tensorflow::DT_FLOAT,
-//                                    tensorflow::TensorShape({1, 16, 16, 1}));
-//  auto input_tensor_mapped_2 = input_tensor_2.tensor<float, 4>();
-
-  // Assign block width
-//  int BLOCK_WIDTH_2 = 16;
-  //************************ a few testing data start
-  // this data should be mode 25
-//  std::string data = "138,138,133,128,122,122,122,117,117,117,117,117,117,117,117,117,138,138,133,128,122,122,122,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,133,133,128,122,117,117,117,117,117,117,117,117,117,117,117,138,133,133,128,122,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117\n";
-
-  // should be mode 0
-//  std::string data = "90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,90,90,90,90,90,90,90,90,90,90,85,85,85,85,85,85,90,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85,90,90,90,90,90,90,90,90,85,85,85,85,85,85,85,85\n";
-  //# 27, mode 29
-//  std::string data = "170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,175,175,170,170,170,170,170,170,170,170,170,170,170,170,170,175,181,181,170,170,170,170,170,170,170,170,170,170,170,170,170,181,181,181,170,170,170,170,170,170,170,170,170,170,170,170,175,181,181,181,170,170,170,170,170,170,170,170,170,170,170,170,181,181,181,181,170,170,170,170,170,170,170,170,170,170,170,170,181,181,181,181,170,170,170,170,170,170,170,170,170,170,170,175,181,181,181,181,170,170,170,170,170,170,170,170,170,170,170,175,181,181,181,181\n";
-  //# 7 mode 9
-//  std::string data = "14,14,14,14,14,14,14,14,14,14,14,14,14,16,16,16,14,14,14,14,14,14,14,14,14,14,14,14,14,16,16,16,14,14,14,14,16,14,14,14,14,14,14,14,14,16,16,16,14,14,14,14,16,16,14,14,14,14,14,14,16,16,18,18,14,14,14,14,14,14,14,14,14,14,14,16,18,18,21,21,16,14,14,14,14,14,50,50,50,50,50,50,50,50,50,50,52,50,50,50,50,50,52,53,53,53,57,58,59,59,58,53,55,55,55,53,53,53,59,59,59,59,59,59,59,59,59,59,57,57,57,57,57,59,59,59,59,59,59,59,59,59,59,59,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,59,59,58,58,58,59,59,59,59,59,59,59,59,59,59,59,62,62,62,62,63,62,59,59,59,59,59,59,59,59,59,59,64,64,64,64,63,63,62,59,59,59,59,59,59,59,59,59,64,64,64,64,63,63,62,59,59,59,59,59,59,59,59,57,66,64,64,64,64,63,62,59,59,59,59,59,59,59,57,57\n";
-//************************ a few testing data end
-
-//  strtk::token_grid grid(data, data.size(), ",");
-
-//  strtk::token_grid::row_type r = grid.row(0);
-  // set values and copy to ``input_tensor`` using for loop
-//  for (int row = 0; row < BLOCK_WIDTH_2; ++row)
-//    for (int col = 0; col < BLOCK_WIDTH_2; ++col)
-//      input_tensor_mapped_2(0, row, col,
-//                            0) = r.get<int>(size_t(row * BLOCK_WIDTH_2 + col)); // this is where we get the pixels
-
-  // Actually run the image through the model.
   std::vector<Tensor> outputs;
-//  std::vector<Tensor> outputs_2;
-
   Status run_status = session->Run({{input_layer, input_tensor}},
                                    {output_layer}, {}, &outputs);
-
-//  Status run_status_2 = session_2->Run({{input_layer, input_tensor_2}},
-//                                       {output_layer}, {}, &outputs_2);
   if (!run_status.ok()) {
     LOG(ERROR) << "Running model failed: " << run_status;
     return -1;
   }
-
-  // Do something interesting with the results we've generated.
   Status print_status = PrintTopLabels(outputs, labels);
-
-//  Status print_status_2 = PrintTopLabels(outputs_2, labels);
-
   if (!print_status.ok()) {
     LOG(ERROR) << "Running print failed: " << print_status;
     return -1;
   }
+  //************************************************************************
+
 #endif
 
   TAppEncTop  cTAppEncTop;

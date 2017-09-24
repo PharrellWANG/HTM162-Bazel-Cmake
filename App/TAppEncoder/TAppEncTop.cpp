@@ -1244,7 +1244,8 @@ Void TAppEncTop::xDeleteBuffer( )
   {
     if(m_cListPicYuvRec[layer])
     {
-      TComList<TComPicYuv*>::iterator iterPicYuvRec  = m_cListPicYuvRec[layer]->begin();
+//      TComList<TComPicYuv*>::iterator iterPicYuvRec  = m_cListPicYuvRec[layer]->begin();
+      auto iterPicYuvRec  = m_cListPicYuvRec[layer]->begin();
       Int iSize = Int( m_cListPicYuvRec[layer]->size() );
 #else
   TComList<TComPicYuv*>::iterator iterPicYuvRec  = m_cListPicYuvRec.begin();
@@ -1286,7 +1287,8 @@ Void TAppEncTop::xWriteOutput(std::ostream& bitstreamFile, Int iNumEncoded, cons
 #if NH_MV
     if( iNumEncoded > 0 )
     {
-      TComList<TComPicYuv*>::iterator iterPicYuvRec = m_cListPicYuvRec[layerIdx]->end();
+//      TComList<TComPicYuv*>::iterator iterPicYuvRec = m_cListPicYuvRec[layerIdx]->end();
+      auto iterPicYuvRec = m_cListPicYuvRec[layerIdx]->end();
 #else
     TComList<TComPicYuv*>::iterator iterPicYuvRec = m_cListPicYuvRec.end();
     list<AccessUnit>::const_iterator iterBitstream = accessUnits.begin();
@@ -1345,7 +1347,8 @@ Void TAppEncTop::xWriteOutput(std::ostream& bitstreamFile, Int iNumEncoded, cons
 #if NH_MV
     if( iNumEncoded > 0 )
     {
-      TComList<TComPicYuv*>::iterator iterPicYuvRec = m_cListPicYuvRec[layerIdx]->end();
+//      TComList<TComPicYuv*>::iterator iterPicYuvRec = m_cListPicYuvRec[layerIdx]->end();
+      auto iterPicYuvRec = m_cListPicYuvRec[layerIdx]->end();
 #else
     TComList<TComPicYuv*>::iterator iterPicYuvRec = m_cListPicYuvRec.end();
     list<AccessUnit>::const_iterator iterBitstream = accessUnits.begin();
@@ -1400,7 +1403,8 @@ Void TAppEncTop::xWriteOutput(std::ostream& bitstreamFile, Int iNumEncoded, cons
  */
 Void TAppEncTop::rateStatsAccum(const AccessUnit& au, const std::vector<UInt>& annexBsizes)
 {
-  AccessUnit::const_iterator it_au = au.begin();
+//  AccessUnit::const_iterator it_au = au.begin();
+  auto it_au = au.begin();
   vector<UInt>::const_iterator it_stats = annexBsizes.begin();
 
   for (; it_au != au.end(); it_au++, it_stats++)

@@ -604,7 +604,8 @@ Void TEncTop::xGetNewPicBuffer ( TComPic*& rpcPic )
 #if NH_MV
   if (cListPic.size() >= (UInt)(m_iGOPSize + getMaxDecPicBuffering(MAX_TLAYER-1) + 2) )
   {
-    TComList<TComPic*>::iterator iterPic  = cListPic.begin();
+//    TComList<TComPic*>::iterator iterPic  = cListPic.begin();
+    auto iterPic  = cListPic.begin();
     Int iSize = Int( cListPic.size() );
 #else
   if (m_cListPic.size() >= (UInt)(m_iGOPSize + getMaxDecPicBuffering(MAX_TLAYER-1) + 2) )
@@ -615,7 +616,7 @@ Void TEncTop::xGetNewPicBuffer ( TComPic*& rpcPic )
     for ( Int i = 0; i < iSize; i++ )
     {
       rpcPic = *(iterPic++);
-      if(rpcPic->getSlice(0)->isReferenced() == false)
+      if(rpcPic->getSlice(0)->isReferenced() == 0)
       {
         break;
       }
@@ -1573,7 +1574,7 @@ TComPic* TEncTop::getPic( Int poc )
 {
   TComList<TComPic*>* listPic = getListPic();
   TComPic* pcPic = NULL;
-  for(TComList<TComPic*>::iterator it=listPic->begin(); it!=listPic->end(); it++)
+  for(auto it=listPic->begin(); it!=listPic->end(); it++)
   {
     if( (*it)->getPOC() == poc )
     {
