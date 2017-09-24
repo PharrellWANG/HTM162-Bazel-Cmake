@@ -11,8 +11,8 @@
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TComRom.cpp" line="493" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" line="1546" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" line="492" />
-    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="2955" />
-    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="2977" />
+    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="2990" />
+    <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" line="3012" />
     <bookmark url="file://$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
@@ -27,16 +27,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="">
+    <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="resnet integration">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" afterPath="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h" afterPath="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TAppEncoder.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TAppEncoder.dir/depend.make" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -58,146 +52,90 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TEncGOP.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17415">
-              <caret line="1161" column="2" lean-forward="false" selection-start-line="1161" selection-start-column="2" selection-end-line="1161" selection-end-column="48" />
-              <folding>
-                <element signature="e#2189#2228#0" expanded="true" />
-                <element signature="e#39130#39458#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TEncSlice.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15225">
-              <caret line="1015" column="0" lean-forward="false" selection-start-line="1015" selection-start-column="0" selection-end-line="1015" selection-end-column="0" />
-              <folding>
-                <element signature="e#2075#2114#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TEncCu.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45525">
-              <caret line="3035" column="0" lean-forward="false" selection-start-line="3035" selection-start-column="0" selection-end-line="3035" selection-end-column="0" />
-              <folding>
-                <element signature="e#2335#2374#0" expanded="true" />
-                <element signature="e#57815#63687#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TEncSearch.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="2861" column="66" lean-forward="true" selection-start-line="2861" selection-start-column="66" selection-end-line="2861" selection-end-column="66" />
+            <state relative-caret-position="227">
+              <caret line="1960" column="37" lean-forward="true" selection-start-line="1960" selection-start-column="37" selection-end-line="1960" selection-end-column="37" />
               <folding>
+                <element signature="e#1900#1922#0" expanded="true" />
                 <element signature="e#2107#2146#0" expanded="true" />
+                <marker date="1506279027000" expanded="true" signature="104058:134088" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TEncSearch.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h">
+      <file leaf-file-name="BUILD" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2865">
-              <caret line="191" column="0" lean-forward="false" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
-              <folding>
-                <element signature="e#2233#2272#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TEncCu.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2835">
-              <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-              <folding>
-                <element signature="e#2215#2254#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TEncSlice.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="48" lean-forward="false" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
+            <state relative-caret-position="390">
+              <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TAppEncTop.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp">
+      <file leaf-file-name="TypeDef.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16545">
-              <caret line="1103" column="0" lean-forward="false" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
+            <state relative-caret-position="168">
+              <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="encmain.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
               <folding>
-                <element signature="e#1907#1922#0" expanded="true" />
-                <element signature="e#2150#2189#0" expanded="true" />
-                <element signature="e#3277#3294#0" expanded="true" />
-                <element signature="e#3519#3531#0" expanded="true" />
-                <element signature="e#4487#4954#0" expanded="true" />
-                <element signature="e#9597#9670#0" expanded="true" />
-                <element signature="e#12874#13042#0" expanded="true" />
-                <element signature="e#15105#15188#0" expanded="true" />
-                <element signature="e#15860#16259#0" expanded="true" />
-                <element signature="e#16732#16806#0" expanded="true" />
-                <element signature="e#17108#17191#0" expanded="true" />
-                <element signature="e#17428#17523#0" expanded="true" />
-                <element signature="e#17945#18038#0" expanded="true" />
-                <element signature="e#19860#19947#0" expanded="true" />
-                <element signature="e#21036#21119#0" expanded="true" />
-                <element signature="e#23256#23521#0" expanded="true" />
-                <element signature="e#26707#26785#0" expanded="true" />
-                <element signature="e#35839#36249#0" expanded="true" />
-                <element signature="e#37267#37508#0" expanded="true" />
-                <element signature="e#37542#39074#0" expanded="true" />
-                <element signature="e#43438#43604#0" expanded="true" />
-                <element signature="e#45485#45978#0" expanded="true" />
-                <element signature="e#46662#46786#0" expanded="true" />
-                <element signature="e#46940#46992#0" expanded="true" />
-                <element signature="e#47069#47100#0" expanded="true" />
-                <element signature="e#47908#47955#0" expanded="true" />
-                <element signature="e#48551#48595#0" expanded="true" />
-                <element signature="e#49478#50147#0" expanded="true" />
-                <element signature="e#53185#54776#0" expanded="true" />
-                <element signature="e#54985#55084#0" expanded="true" />
-                <element signature="e#55106#55177#0" expanded="true" />
-                <element signature="e#55198#55223#0" expanded="true" />
-                <element signature="e#55350#55528#0" expanded="true" />
-                <element signature="e#56057#56112#0" expanded="true" />
-                <element signature="e#56307#56519#0" expanded="true" />
-                <element signature="e#56775#56910#0" expanded="true" />
-                <element signature="e#56994#57036#0" expanded="true" />
-                <element signature="e#57413#57534#0" expanded="true" />
-                <element signature="e#58083#58200#0" expanded="true" />
-                <element signature="e#58602#58747#0" expanded="true" />
-                <element signature="e#59341#59531#0" expanded="true" />
-                <element signature="e#59847#60424#0" expanded="true" />
-                <element signature="e#60663#60808#0" expanded="true" />
-                <element signature="e#61296#61426#0" expanded="true" />
-                <element signature="e#61750#62138#0" expanded="true" />
-                <element signature="e#63460#63538#0" expanded="true" />
-                <element signature="e#64456#64570#0" expanded="true" />
-                <element signature="e#71710#71815#0" expanded="true" />
-                <element signature="e#76588#76788#0" expanded="true" />
-                <element signature="e#77905#78081#0" expanded="true" />
+                <element signature="e#0#1832#0" expanded="false" />
+                <element signature="e#1834#1901#0" expanded="false" />
+                <element signature="e#2069#2108#0" expanded="true" />
+                <marker date="1506278794000" expanded="false" signature="9425:9533" ph="..." />
+                <marker date="1506278794000" expanded="false" signature="10249:10270" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="154" column="3" lean-forward="false" selection-start-line="154" selection-start-column="3" selection-end-line="154" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BUILD" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/BUILD">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="960">
+              <caret line="64" column="10" lean-forward="false" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="146" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#80#0" expanded="false" />
+                <element signature="e#916#934#0" expanded="true" />
+                <element signature="e#1775#2555#0" expanded="false" />
+                <element signature="e#2587#3368#0" expanded="false" />
+                <element signature="e#3370#4598#0" expanded="false" />
+                <element signature="e#4600#5656#0" expanded="false" />
+                <element signature="e#5658#5689#0" expanded="false" />
+                <element signature="e#8633#16863#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -207,8 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>TLibResnet</find>
-      <find>strtk</find>
       <find>TAppClassifer</find>
       <find>-pthread</find>
       <find>MAC_DEBUG_</find>
@@ -235,8 +171,10 @@
       <find>prec</find>
       <find>precompress</find>
       <find>tens</find>
-      <find>session</find>
       <find>tensorflow</find>
+      <find>session</find>
+      <find>session-&gt;run</find>
+      <find>TAppEncTop</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -245,13 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.cpp" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSbac.h" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.cpp" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenFilter.h" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.cpp" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImage.h" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenImagePlane.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TRenInterpFilter.h" />
@@ -279,23 +210,30 @@
         <option value="$PROJECT_DIR$/bazel-TLibResnet.sh" />
         <option value="$PROJECT_DIR$/App/TAppClassifier/main.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h" />
-        <option value="$PROJECT_DIR$/App/TAppEncoder/BUILD" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.h" />
         <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.h" />
-        <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncTop.cpp" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/BUILD" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncGOP.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSlice.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.h" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp" />
-        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
         <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h" />
+        <option value="$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/ANeuralUtils.h" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/ANeuralUtils.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/BUILD" />
+        <option value="$PROJECT_DIR$/App/TAppEncoder/ANeuralUtils.h" />
+        <option value="$PROJECT_DIR$/App/TAppEncoder/ANeuralUtils.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibResnetUtils/ANeuralUtils.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibResnetUtils/ANeuralUtils.h" />
+        <option value="$PROJECT_DIR$/App/TAppEncoder/BUILD" />
+        <option value="$PROJECT_DIR$/Lib/TLibResnetUtils/BUILD" />
+        <option value="$PROJECT_DIR$/App/TAppEncoder/encmain.cpp" />
+        <option value="$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -395,6 +333,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Lib/TLibResnetUtils" />
+      <recent name="$PROJECT_DIR$/App/TAppEncoder" />
       <recent name="$PROJECT_DIR$/App/TAppClassifier" />
       <recent name="$PROJECT_DIR$/Lib/TLibResnet" />
     </key>
@@ -491,6 +431,8 @@
       <workItem from="1506271804688" duration="1472000" />
       <workItem from="1506273397433" duration="874000" />
       <workItem from="1506274279749" duration="77000" />
+      <workItem from="1506276447152" duration="1159000" />
+      <workItem from="1506277615604" duration="1507000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <created>1505990099262</created>
@@ -713,13 +655,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49919000" />
+    <option name="totallyTimeSpent" value="52589000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="22" width="1385" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20402084" sideWeight="0.5413534" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20997766" sideWeight="0.5338346" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32056195" sideWeight="0.4899479" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -729,7 +671,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5019157" sideWeight="0.4944155" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20104244" sideWeight="0.45864663" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20699926" sideWeight="0.46616542" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -742,22 +684,22 @@
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45338443" sideWeight="0.4944155" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32056195" sideWeight="0.4899479" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9578544" sideWeight="0.50558454" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32056195" sideWeight="0.51005214" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4597701" sideWeight="0.4944155" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.9029374" sideWeight="0.49143708" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19210722" sideWeight="0.49553" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20997766" sideWeight="0.5338346" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5019157" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18987341" sideWeight="0.50447" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5019157" sideWeight="0.4944155" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20699926" sideWeight="0.46616542" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -784,74 +726,19 @@
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp</url>
-          <line>3036</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp</url>
-          <line>2842</line>
+          <line>2841</line>
           <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h</url>
-          <line>191</line>
-          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="66" />
+      <option name="time" value="68" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/include/tensorflow/tensorflow/cc/framework/ops.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="217" column="0" lean-forward="false" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/DoNotUseMemain.cpp" />
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncCfg.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TComPic.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="808" column="0" lean-forward="false" selection-start-line="808" selection-start-column="0" selection-end-line="808" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TComWedgelet.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TComWedgelet.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/CommonDef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="244" column="17" lean-forward="false" selection-start-line="244" selection-start-column="17" selection-end-line="244" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TComTU.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1425">
@@ -974,29 +861,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibResnet/TResnet.h" />
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="74" column="29" lean-forward="true" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
-          <folding>
-            <element signature="e#2217#2256#0" expanded="false" />
-            <element signature="e#3067#3125#0" expanded="false" />
-            <element signature="e#28729#28749#0" expanded="false" />
-            <element signature="e#31254#31260#0" expanded="false" />
-            <element signature="e#33053#33557#0" expanded="false" />
-            <element signature="e#34090#34136#0" expanded="false" />
-            <element signature="e#34217#34764#0" expanded="false" />
-            <element signature="e#35502#35605#0" expanded="false" />
-            <element signature="e#36683#36918#0" expanded="false" />
-            <element signature="e#37313#37803#0" expanded="false" />
-            <element signature="e#38322#38398#0" expanded="false" />
-            <element signature="e#39614#39786#0" expanded="false" />
-            <element signature="e#39800#39839#0" expanded="false" />
-            <element signature="e#55574#55739#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/vector">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -1015,13 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
           <caret line="90" column="23" lean-forward="false" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" column="40" lean-forward="false" selection-start-line="67" selection-start-column="40" selection-end-line="67" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1052,61 +909,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/BUILD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="8" lean-forward="false" selection-start-line="141" selection-start-column="8" selection-end-line="141" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bazel-TLibResnet.sh" />
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2370">
-          <caret line="158" column="36" lean-forward="true" selection-start-line="158" selection-start-column="36" selection-end-line="158" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/TAppClassifier/strtk.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="183" column="44" lean-forward="false" selection-start-line="183" selection-start-column="44" selection-end-line="183" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4410">
-          <caret line="294" column="0" lean-forward="false" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#1832#0" expanded="false" />
-            <element signature="e#1834#1901#0" expanded="false" />
-            <element signature="e#1903#1920#0" expanded="true" />
-            <element signature="e#2069#2108#0" expanded="true" />
-            <element signature="e#2790#3570#0" expanded="false" />
-            <element signature="e#4355#5583#0" expanded="false" />
-            <element signature="e#5585#6641#0" expanded="false" />
-            <element signature="e#6651#6675#0" expanded="false" />
-            <element signature="e#6725#6844#0" expanded="false" />
-            <marker date="1506265115000" expanded="false" signature="9426:9534" ph="..." />
-            <marker date="1506265115000" expanded="false" signature="10250:10271" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1170,13 +977,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2865">
-          <caret line="191" column="0" lean-forward="false" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
-          <folding>
-            <element signature="e#2233#2272#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2820">
+          <caret line="188" column="14" lean-forward="false" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TRenSingleModel.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="115" column="41" lean-forward="false" selection-start-line="115" selection-start-column="41" selection-end-line="115" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode8.2/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/fstream">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15825">
+          <caret line="1055" column="33" lean-forward="false" selection-start-line="1055" selection-start-column="33" selection-end-line="1055" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1210,7 +1039,6 @@
             <element signature="e#46662#46786#0" expanded="true" />
             <element signature="e#46940#46992#0" expanded="true" />
             <element signature="e#47069#47100#0" expanded="true" />
-            <element signature="e#47908#47955#0" expanded="true" />
             <element signature="e#48551#48595#0" expanded="true" />
             <element signature="e#49478#50147#0" expanded="true" />
             <element signature="e#53185#54776#0" expanded="true" />
@@ -1235,14 +1063,25 @@
             <element signature="e#71710#71815#0" expanded="true" />
             <element signature="e#76588#76788#0" expanded="true" />
             <element signature="e#77905#78081#0" expanded="true" />
+            <marker date="1506276439000" expanded="true" signature="48001:55548" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2865">
+          <caret line="191" column="0" lean-forward="false" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+          <folding>
+            <element signature="e#2233#2272#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncCu.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45525">
-          <caret line="3035" column="0" lean-forward="false" selection-start-line="3035" selection-start-column="0" selection-end-line="3035" selection-end-column="0" />
+        <state relative-caret-position="45540">
+          <caret line="3036" column="0" lean-forward="false" selection-start-line="3036" selection-start-column="0" selection-end-line="3036" selection-end-column="0" />
           <folding>
             <element signature="e#2335#2374#0" expanded="true" />
             <element signature="e#57815#63687#0" expanded="true" />
@@ -1250,12 +1089,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibResnetUtils/ANeuralUtils.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1553">
+          <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibResnetUtils/BUILD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TypeDef.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibResnetUtils/ANeuralUtils.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/TAppEncTop.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="162" column="59" lean-forward="false" selection-start-line="162" selection-start-column="59" selection-end-line="162" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppClassifier/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="146" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#80#0" expanded="false" />
+            <element signature="e#916#934#0" expanded="true" />
+            <element signature="e#1775#2555#0" expanded="false" />
+            <element signature="e#2587#3368#0" expanded="false" />
+            <element signature="e#3370#4598#0" expanded="false" />
+            <element signature="e#4600#5656#0" expanded="false" />
+            <element signature="e#5658#5689#0" expanded="false" />
+            <element signature="e#8633#16863#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="154" column="3" lean-forward="false" selection-start-line="154" selection-start-column="3" selection-end-line="154" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/BUILD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="64" column="10" lean-forward="false" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/encmain.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#1832#0" expanded="false" />
+            <element signature="e#1834#1901#0" expanded="false" />
+            <element signature="e#2069#2108#0" expanded="true" />
+            <marker date="1506278794000" expanded="false" signature="9425:9533" ph="..." />
+            <marker date="1506278794000" expanded="false" signature="10249:10270" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App/TAppEncoder/BUILD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="39" lean-forward="true" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lib/TLibCommon/TEncSearch.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="2861" column="66" lean-forward="true" selection-start-line="2861" selection-start-column="66" selection-end-line="2861" selection-end-column="66" />
+        <state relative-caret-position="227">
+          <caret line="1960" column="37" lean-forward="true" selection-start-line="1960" selection-start-column="37" selection-end-line="1960" selection-end-column="37" />
           <folding>
+            <element signature="e#1900#1922#0" expanded="true" />
             <element signature="e#2107#2146#0" expanded="true" />
+            <marker date="1506279027000" expanded="true" signature="104058:134088" ph="{...}" />
           </folding>
         </state>
       </provider>

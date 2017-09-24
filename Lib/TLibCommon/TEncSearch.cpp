@@ -56,7 +56,6 @@
 #include "tensorflow/core/platform/init_main.h"
 #include "tensorflow/core/public/session.h"
 #include "tensorflow/core/util/command_line_flags.h"
-
 // These are all common classes it's handy to reference with no namespace.
 using tensorflow::Flag;
 using tensorflow::Tensor;
@@ -2853,6 +2852,42 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
                               )
 {
+  //************************************************************************
+  // path for the first graph
+  string homeDir= getenv("HOME");
+  // path for label text file
+  string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
+  string labels = homeDir + secondPartLabelFile;
+  // path for label file end
+
+  string input_layer = "input";
+  string output_layer = "logits/fdc_output_node";
+  tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
+                                  tensorflow::TensorShape({1, 8, 8, 1}));
+  // input_tensor_mapped is
+  // 1. an interface to the data of ``input_tensor``
+  // 1. It is used to copy data into the ``input_tensor``
+  auto input_tensor_mapped = input_tensor.tensor<float, 4>();
+  // Assign block width
+  int BLOCK_WIDTH = 8;
+  // set values and copy to ``input_tensor`` using for loop
+  for (int row = 0; row < BLOCK_WIDTH; ++row)
+    for (int col = 0; col < BLOCK_WIDTH; ++col)
+      input_tensor_mapped(0, row, col,
+                          0) = 3.0; // this is where we get the pixels
+  std::vector<Tensor> outputs;
+  Status run_status = (*session)->Run({{input_layer, input_tensor}},
+                                   {output_layer}, {}, &outputs);
+  if (!run_status.ok()) {
+    LOG(ERROR) << "Running model failed: " << run_status;
+    return;
+  }
+//  Status print_status = PrintTopLabels(outputs, labels);
+//  if (!print_status.ok()) {
+//    LOG(ERROR) << "Running print failed: " << print_status;
+//    return;
+//  }
+  //************************************************************************
 #if NH_MV
   D_PRINT_INC_INDENT( g_traceModeCheck,  "estIntraPredLumaQT");
 #endif
