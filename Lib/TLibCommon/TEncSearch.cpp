@@ -47,6 +47,7 @@
 #include <fstream>
 
 #if ENABLE_RESNET
+bool g_bUseLearnedResnetModel = false;
 #include "tensorflow/cc/ops/const_op.h"
 #include "tensorflow/cc/ops/image_ops.h"
 #include "tensorflow/cc/ops/standard_ops.h"
@@ -115,66 +116,37 @@ Status GetTopLabels(const std::vector<Tensor> &outputs, int how_many_labels,
   return Status::OK();
 }
 
-// Given the output of a model run, and the name of a file containing the labels
-// this prints out the top five highest-scoring values.
-Status PrintTopLabels(const std::vector<Tensor> &outputs,
-                      string labels_file_name) {
+Status GetTopLabelsIntoVec(
+  const std::vector<Tensor> &outputs,
+  vector<int> &vec,
+  string labels_file_name) {
 
   std::vector<string> labels;
   size_t label_count;
 
   Status read_labels_status =
     ReadLabelsFile(labels_file_name, &labels, &label_count);
-  if (!read_labels_status.ok()) {
-    return read_labels_status;
-  }
 
   const int how_many_labels = std::min(16, static_cast<int>(label_count));
   Tensor indices;
   Tensor scores;
 
   TF_RETURN_IF_ERROR(
-    GetTopLabels(outputs, how_many_labels, &indices, &scores));
-  tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
-  tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
-  for (int pos = 0; pos < how_many_labels; ++pos) {
-    const int label_index = indices_flat(pos);
-    const float score = scores_flat(pos);
-    LOG(INFO) << labels[label_index] << " : "
-              << score;
-  }
-  LOG(INFO) << "";
-  return Status::OK();
-}
-
-
-vector<int> GetTopLabelsIntoVec(const std::vector<Tensor> &outputs,
-                      string labels_file_name) {
-
-  std::vector<int> vec;
-
-  std::vector<string> labels;
-  size_t label_count;
-
-  Status read_labels_status =
-    ReadLabelsFile(labels_file_name, &labels, &label_count);
-
-  const int how_many_labels = std::min(16, static_cast<int>(label_count));
-  Tensor indices;
-  Tensor scores;
-
-  GetTopLabels(outputs, how_many_labels, &indices, &scores);
+    GetTopLabels(outputs, how_many_labels, &indices, &scores)
+  );
   tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
   tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
   for (int pos = 0; pos < how_many_labels; ++pos) {
     const int label_index = indices_flat(pos);
     vec.push_back(label_index+2);
-    const float score = scores_flat(pos);
-    LOG(INFO) << labels[label_index] << " : "
-              << score;
+    if (label_index == 0) {
+      vec.push_back(34);
+    }
+//    const float score = scores_flat(pos);
+//    LOG(INFO) << labels[label_index] << " : "
+//              << score;
   }
-  LOG(INFO) << "+++++";
-  return vec;
+  return Status::OK();
 }
 
 #endif
@@ -2967,50 +2939,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
                               )
 {
-  //************************************************************************
-  // path for the first graph
-  string homeDir= getenv("HOME");
-  // path for label text file
-  string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
-  string labelsTextFile = homeDir + secondPartLabelFile;
-  // path for label file end
-
-  string input_layer = "input";
-  string output_layer = "logits/fdc_output_node";
-  tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
-                                  tensorflow::TensorShape({1, 8, 8, 1}));
-  // input_tensor_mapped is
-  // 1. an interface to the data of ``input_tensor``
-  // 1. It is used to copy data into the ``input_tensor``
-  auto input_tensor_mapped = input_tensor.tensor<float, 4>();
-  // Assign block width
-  int BLOCK_WIDTH = 8;
-  // set values and copy to ``input_tensor`` using for loop
-  for (int row = 0; row < BLOCK_WIDTH; ++row)
-    for (int col = 0; col < BLOCK_WIDTH; ++col)
-      input_tensor_mapped(0, row, col,
-                          0) = 3.0; // this is where we get the pixels
-  std::vector<Tensor> outputs;
-  Status run_status = (*session)->Run({{input_layer, input_tensor}},
-                                   {output_layer}, {}, &outputs);
-  if (!run_status.ok()) {
-    LOG(ERROR) << "Running model failed: " << run_status;
-    return;
-  }
-  // get top few labels *****
-  vector<int> mode_index_vec = GetTopLabelsIntoVec(outputs, labelsTextFile);
-  // end getting labels
-
-  // *start* print out for debugging purpose
-  auto v = mode_index_vec.begin();
-  while (v != mode_index_vec.end()) {
-    cout << "value of v = " << *v << endl;
-    cout << "type of v = " << typeid(*v).name() << endl;
-    v++;
-  }
-  // *end* print out for debugging purpose
-
-  //************************************************************************
 #if NH_MV
   D_PRINT_INC_INDENT( g_traceModeCheck,  "estIntraPredLumaQT");
 #endif
@@ -3053,7 +2981,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
 
   //===== set QP and clear Cbf =====
-  if ( pps.getUseDQP() == true)
+  if (pps.getUseDQP() != 0) // same as ``== true``
   {
     pcCU->setQPSubParts( pcCU->getQP(0), 0, uiDepth );
   }
@@ -3132,20 +3060,93 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
       distParam.bApplyWeight = false;
 #if ENABLE_RESNET
+      TComSlice *const pcSlice = pcCU->getSlice();
+      const UInt maxCUWidth = sps.getMaxCUWidth();
+      const UInt maxCUHeight = sps.getMaxCUHeight();
+
+            UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
+//      const UInt uiRPelX = uiLPelX + (maxCUWidth >> uiDepth) - 1;
+            UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
+//      const UInt uiBPelY = uiTPelY + (maxCUHeight >> uiDepth) - 1;
+
+      const TComPicYuv *const pPic = pcSlice->getPic()->getPicYuvOrg();  // Picture pointer
+      const Pel *pOrg = pPic->getAddr(COMPONENT_Y);      // Y pel frame pointer
+      const Int iStride = pPic->getStride(COMPONENT_Y);      // Y stride
+      const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
+      const Pel *pOrgPel = &pOrg[uiTPelY * iStride + uiLPelX];  // Y pel CU pointer
+      // set values and copy to ``input_tensor`` using for loop
+      if (uiCuSize == 8) {
+        g_bUseLearnedResnetModel = 1;
+      }
       // create a vector to store int
       vector<int> vec;
-      int i;
-      // push back planar and DC modes
-      vec.push_back(0);
-      vec.push_back(1);
-      // push top k mode index values into the vector
-      for (i = 2; i < 34; i += 1) {
-        vec.push_back(i);
-        // push back mode 34 if mode 2 is chosen
-        if (i == 2) {
-          vec.push_back(34);
+      // if not using model prediction ************************************************************************
+      if (!g_bUseLearnedResnetModel) {
+        int i;
+        // push back planar and DC modes
+        vec.push_back(0);
+        vec.push_back(1);
+        // push top k mode index values into the vector
+        for (i = 2; i < 34; i += 1) {
+          vec.push_back(i);
+          // push back mode 34 if mode 2 is chosen
+          if (i == 2) {
+            vec.push_back(34);
+          }
         }
+      } else {
+        //else if using model prediction ************************************************************************
+        // path for the first graph
+        string homeDir = getenv("HOME");
+        // path for label text file
+        string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
+        string labelsTextFile = homeDir + secondPartLabelFile;
+        // path for label file end
+
+        string input_layer = "input";
+        string output_layer = "logits/fdc_output_node";
+        tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
+                                        tensorflow::TensorShape({1, uiCuSize, uiCuSize, 1}));
+        // input_tensor_mapped is
+        // 1. an interface to the data of ``input_tensor``
+        // 1. It is used to copy data into the ``input_tensor``
+        auto input_tensor_mapped = input_tensor.tensor<float, 4>();
+
+        // Get depth block luma values /////////////////////////////////////////////////////////////
+        for (int row = 0; row < uiCuSize; row++) {
+          for (int col = 0; col < uiCuSize; col++) {
+            input_tensor_mapped(0, row, col, 0) = pOrgPel[col];
+            std::cout << pOrgPel[col] << std::endl;
+          }
+          pOrgPel += iStride;
+        }
+        // end of getting depth block luma values //////////////////////////////////////////////////
+        std::vector<Tensor> outputs;
+        Status run_status = (*session)->Run({{input_layer, input_tensor}},
+                                            {output_layer}, {}, &outputs);
+        if (!run_status.ok()) {
+          LOG(ERROR) << "Running model failed: " << run_status;
+          return;
+        }
+        // get top few labels *****
+        Status get_vec_status = GetTopLabelsIntoVec(outputs, vec, labelsTextFile);
+        if (!get_vec_status.ok()) {
+          LOG(ERROR) << "Running model failed: " << get_vec_status;
+          return;
+        }
+        // push back planar and DC modes
+        vec.push_back(0);
+        vec.push_back(1);
+        // end getting labels
+        // *start* print out for debugging purpose
+        auto vec_itera = vec.begin();
+        while (vec_itera != vec.end()) {
+          cout << "value of v = " << *vec_itera << endl;
+          vec_itera++;
+        }
+        // *end* print out for debugging purpose
       }
+      //************************************************************************
 
       // use iterator to access the values
       // ******************************

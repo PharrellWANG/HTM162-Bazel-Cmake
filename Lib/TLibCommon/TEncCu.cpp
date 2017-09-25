@@ -1655,14 +1655,6 @@ Void TEncCu::xEncodeCU( TComDataCU* pcCU, UInt uiAbsPartIdx, UInt uiDepth )
 	  const UInt         uiCuSize	= (maxCUWidth >> uiDepth);				// Y CU Size
 	  const Pel        * pOrgPel    = &pOrg[uiTPelY * iStride + uiLPelX];	// Y pel CU pointer
 
-    //if pha.zx
-//    const Pel*  piOrgU       = pPic->getAddr(COMPONENT_Cb); // U pel frame pointer
-//    const Int   uiOrgStrideC = pPic->getStride(COMPONENT_Cb); // U stride
-//
-//    const Pel*  piOrgV       = pPic->getAddr(COMPONENT_Cr); // v pel frame pointer
-    //endif
-
-
 	  // get CU mode and intra prediction direction
 	  iDISFlag = (Int) pcCU->getDISFlag(uiAbsPartIdx);
 	  if(iDISFlag)
