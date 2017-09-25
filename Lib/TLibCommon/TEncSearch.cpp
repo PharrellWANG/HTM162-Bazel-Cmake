@@ -147,6 +147,36 @@ Status PrintTopLabels(const std::vector<Tensor> &outputs,
   return Status::OK();
 }
 
+
+vector<int> GetTopLabelsIntoVec(const std::vector<Tensor> &outputs,
+                      string labels_file_name) {
+
+  std::vector<int> vec;
+
+  std::vector<string> labels;
+  size_t label_count;
+
+  Status read_labels_status =
+    ReadLabelsFile(labels_file_name, &labels, &label_count);
+
+  const int how_many_labels = std::min(16, static_cast<int>(label_count));
+  Tensor indices;
+  Tensor scores;
+
+  GetTopLabels(outputs, how_many_labels, &indices, &scores);
+  tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
+  tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
+  for (int pos = 0; pos < how_many_labels; ++pos) {
+    const int label_index = indices_flat(pos);
+    vec.push_back(label_index+2);
+    const float score = scores_flat(pos);
+    LOG(INFO) << labels[label_index] << " : "
+              << score;
+  }
+  LOG(INFO) << "+++++";
+  return vec;
+}
+
 #endif
 //! \ingroup TLibEncoder
 //! \{
@@ -2942,7 +2972,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
   string homeDir= getenv("HOME");
   // path for label text file
   string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
-  string labels = homeDir + secondPartLabelFile;
+  string labelsTextFile = homeDir + secondPartLabelFile;
   // path for label file end
 
   string input_layer = "input";
@@ -2967,10 +2997,21 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
     LOG(ERROR) << "Running model failed: " << run_status;
     return;
   }
-  Status print_status = PrintTopLabels(outputs, labels);
-  if (!print_status.ok()) {
-    LOG(ERROR) << "Running print failed: " << print_status;
-    return;
+//  Status print_status = PrintTopLabels(outputs, labelsTextFile);
+//  if (!print_status.ok()) {
+//    LOG(ERROR) << "Running print failed: " << print_status;
+//    return;
+//  }
+
+  // get top few labels *****
+  vector<int> mode_index_vec = GetTopLabelsIntoVec(outputs, labelsTextFile);
+  // end getting labels
+
+  auto v = mode_index_vec.begin();
+  while (v != mode_index_vec.end()) {
+    cout << "value of v = " << *v << endl;
+    cout << "type of v = " << typeid(*v).name() << endl;
+    v++;
   }
   //************************************************************************
 #if NH_MV

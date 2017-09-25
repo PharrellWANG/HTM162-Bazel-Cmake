@@ -131,34 +131,6 @@ int main(int argc, char* argv[])
   dResultx = (Double)(clock()-lBeforex) / CLOCKS_PER_SEC;
   printf("\n Total Time for initialize session: %12.3f sec.\n", dResultx);
 
-  //************************************************************************
-//  tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
-//                                  tensorflow::TensorShape({1, 8, 8, 1}));
-//  // input_tensor_mapped is
-//  // 1. an interface to the data of ``input_tensor``
-//  // 1. It is used to copy data into the ``input_tensor``
-//  auto input_tensor_mapped = input_tensor.tensor<float, 4>();
-//  // Assign block width
-//  int BLOCK_WIDTH = 8;
-//  // set values and copy to ``input_tensor`` using for loop
-//  for (int row = 0; row < BLOCK_WIDTH; ++row)
-//    for (int col = 0; col < BLOCK_WIDTH; ++col)
-//      input_tensor_mapped(0, row, col,
-//                          0) = 3.0; // this is where we get the pixels
-//  std::vector<Tensor> outputs;
-//  Status run_status = session->Run({{input_layer, input_tensor}},
-//                                   {output_layer}, {}, &outputs);
-//  if (!run_status.ok()) {
-//    LOG(ERROR) << "Running model failed: " << run_status;
-//    return -1;
-//  }
-//  Status print_status = PrintTopLabels(outputs, labels);
-//  if (!print_status.ok()) {
-//    LOG(ERROR) << "Running print failed: " << print_status;
-//    return -1;
-//  }
-  //************************************************************************
-
 #endif
 
   TAppEncTop  cTAppEncTop;
