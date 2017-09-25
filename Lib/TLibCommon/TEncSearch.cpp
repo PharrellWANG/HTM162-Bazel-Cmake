@@ -2997,22 +2997,19 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
     LOG(ERROR) << "Running model failed: " << run_status;
     return;
   }
-//  Status print_status = PrintTopLabels(outputs, labelsTextFile);
-//  if (!print_status.ok()) {
-//    LOG(ERROR) << "Running print failed: " << print_status;
-//    return;
-//  }
-
   // get top few labels *****
   vector<int> mode_index_vec = GetTopLabelsIntoVec(outputs, labelsTextFile);
   // end getting labels
 
+  // *start* print out for debugging purpose
   auto v = mode_index_vec.begin();
   while (v != mode_index_vec.end()) {
     cout << "value of v = " << *v << endl;
     cout << "type of v = " << typeid(*v).name() << endl;
     v++;
   }
+  // *end* print out for debugging purpose
+
   //************************************************************************
 #if NH_MV
   D_PRINT_INC_INDENT( g_traceModeCheck,  "estIntraPredLumaQT");
