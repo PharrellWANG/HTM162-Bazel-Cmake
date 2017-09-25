@@ -3064,11 +3064,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
       const UInt maxCUWidth = sps.getMaxCUWidth();
       const UInt maxCUHeight = sps.getMaxCUHeight();
 
-            UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
-//      const UInt uiRPelX = uiLPelX + (maxCUWidth >> uiDepth) - 1;
-            UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
-//      const UInt uiBPelY = uiTPelY + (maxCUHeight >> uiDepth) - 1;
-
+      UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
+      UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
       const TComPicYuv *const pPic = pcSlice->getPic()->getPicYuvOrg();  // Picture pointer
       const Pel *pOrg = pPic->getAddr(COMPONENT_Y);      // Y pel frame pointer
       const Int iStride = pPic->getStride(COMPONENT_Y);      // Y stride
@@ -3078,10 +3075,17 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
       if (uiCuSize == 8) {
         g_bUseLearnedResnetModel = 1;
       }
+      // if not depth map, skip resnet prediction
+      if (!m_pcEncCfg->getIsDepth()) {
+        g_bUseLearnedResnetModel = 0;
+      }
       // create a vector to store int
       vector<int> vec;
-      // if not using model prediction ************************************************************************
-      if (!g_bUseLearnedResnetModel) {
+      if (!g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
+        // starting time
+//        Double dResult1;
+//        clock_t lBefore1 = clock();
+
         int i;
         // push back planar and DC modes
         vec.push_back(0);
@@ -3094,8 +3098,11 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             vec.push_back(34);
           }
         }
-      } else {
-        //else if using model prediction ************************************************************************
+
+//        dResult1 = (Double)(clock()-lBefore1) / CLOCKS_PER_SEC;
+//        printf("\n Total Time: %12.9f sec.\n", dResult1);
+
+      } else { // else if using model prediction *********************************************************************
         // path for the first graph
         string homeDir = getenv("HOME");
         // path for label text file
@@ -3116,19 +3123,28 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         for (int row = 0; row < uiCuSize; row++) {
           for (int col = 0; col < uiCuSize; col++) {
             input_tensor_mapped(0, row, col, 0) = pOrgPel[col];
-            std::cout << pOrgPel[col] << std::endl;
           }
           pOrgPel += iStride;
         }
         // end of getting depth block luma values //////////////////////////////////////////////////
         std::vector<Tensor> outputs;
+
+        // starting time
+//        Double dResult2;
+//        clock_t lBefore2 = clock();
+
         Status run_status = (*session)->Run({{input_layer, input_tensor}},
                                             {output_layer}, {}, &outputs);
+
+        // ending time
+//        dResult2 = (Double)(clock()-lBefore2) / CLOCKS_PER_SEC;
+//        printf("\n Total Time: %12.3f sec.\n", dResult2);
+
         if (!run_status.ok()) {
           LOG(ERROR) << "Running model failed: " << run_status;
           return;
         }
-        // get top few labels *****
+        // get top k labels *****
         Status get_vec_status = GetTopLabelsIntoVec(outputs, vec, labelsTextFile);
         if (!get_vec_status.ok()) {
           LOG(ERROR) << "Running model failed: " << get_vec_status;
@@ -3137,14 +3153,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // push back planar and DC modes
         vec.push_back(0);
         vec.push_back(1);
-        // end getting labels
-        // *start* print out for debugging purpose
-        auto vec_itera = vec.begin();
-        while (vec_itera != vec.end()) {
-          cout << "value of v = " << *vec_itera << endl;
-          vec_itera++;
-        }
-        // *end* print out for debugging purpose
       }
       //************************************************************************
 
