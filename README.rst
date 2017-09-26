@@ -70,7 +70,9 @@ FAQs for programmers
 
 Notes
 -----
+
 **Build** vs **Compile**
+~~~~~~~~~~~~~~~~~~~~~~~~
 
     "Building" is a fairly general term, and it can refer to anything that is needed to go
     from editable source material (source code, scripts, raw data files, etc.) to a shippable
@@ -80,6 +82,11 @@ Notes
     "Compiling" is more specific, and almost invariably refers to a process that takes source code
     as its input, and outputs something runnable, typically machine code for either a physical or virtual
     machine, or source code in a different language.
+
+How to compile with SSE4.2 and AVX optimizations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //tensorflow/tools/pip_package:build_pip_package
 
 Contact
 -------

@@ -493,9 +493,7 @@ int main(int argc, char *argv[]) {
 //            << std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288
 //            << " s.\n";
   printf("[real-world time] Running %i samples in 1 session took %12.9f seconds \n", num_samples, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
-  printf("[real-world time] Every sample in this session took %12.9f seconds ", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288);
-
-
+  printf("[real-world time] Every sample in this session took %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288);
   std::cout << std::endl;
 #endif
 
@@ -506,6 +504,7 @@ int main(int argc, char *argv[]) {
 #else
   printf("[cpu time] Time for %i samples but in one session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
   printf("[cpu time] Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+  std::cout << std::endl;
 #endif
 
   if (!run_status.ok()) {
