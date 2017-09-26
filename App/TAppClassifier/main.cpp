@@ -280,9 +280,9 @@ int main(int argc, char *argv[]) {
   std::string data = "14,14,14,14,14,14,14,14,14,14,14,14,14,16,16,16,14,14,14,14,14,14,14,14,14,14,14,14,14,16,16,16,14,14,14,14,16,14,14,14,14,14,14,14,14,16,16,16,14,14,14,14,16,16,14,14,14,14,14,14,16,16,18,18,14,14,14,14,14,14,14,14,14,14,14,16,18,18,21,21,16,14,14,14,14,14,50,50,50,50,50,50,50,50,50,50,52,50,50,50,50,50,52,53,53,53,57,58,59,59,58,53,55,55,55,53,53,53,59,59,59,59,59,59,59,59,59,59,57,57,57,57,57,59,59,59,59,59,59,59,59,59,59,59,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,58,58,58,58,58,59,59,59,59,59,59,59,59,59,59,59,59,59,58,58,58,59,59,59,59,59,59,59,59,59,59,59,62,62,62,62,63,62,59,59,59,59,59,59,59,59,59,59,64,64,64,64,63,63,62,59,59,59,59,59,59,59,59,59,64,64,64,64,63,63,62,59,59,59,59,59,59,59,59,57,66,64,64,64,64,63,62,59,59,59,59,59,59,59,57,57\n";
 //************************ a few testing data end
 
-  strtk::token_grid grid(data, data.size(), ",");
+//  strtk::token_grid grid(data, data.size(), ",");
 
-  strtk::token_grid::row_type r = grid.row(0);
+//  strtk::token_grid::row_type r = grid.row(0);
 #if g_bEnableSecondGraph
   // set values and copy to ``input_tensor`` using for loop
   for (int row = 0; row < BLOCK_WIDTH_2; ++row)
@@ -296,8 +296,24 @@ int main(int argc, char *argv[]) {
   std::vector<Tensor> outputs_2;
 #endif
 
+  // starting
+  double dResult_sessionrun;
+  clock_t lBefore_sessionrun = clock();
+
+  std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
+
   Status run_status = session->Run({{input_layer, input_tensor}},
                                    {output_layer}, {}, &outputs);
+  // ending
+  dResult_sessionrun = (double) (clock() - lBefore_sessionrun) / CLOCKS_PER_SEC;
+  printf("\n[cpu time] Time for one sample run: %12.7f sec.\n", dResult_sessionrun);
+
+  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
+  std::cout << "Running session took "
+            << std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0
+            << " s.\n";
+
+  std::cout << std::endl;
 #if g_bEnableSecondGraph
   Status run_status_2 = session_2->Run({{input_layer, input_tensor_2}},
                                        {output_layer}, {}, &outputs_2);
@@ -325,7 +341,8 @@ int main(int argc, char *argv[]) {
 #if !g_b_BatchSize_12288_InitSessionOnce
   string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
 #else
-  string graph = "/Users/Pharrell_WANG/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
+  //  string graph = "/Users/Pharrell_WANG/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
+    string graph = "/Users/Pharrell_WANG/frozen_graphs/gpu_frozen_resnet_fdc_12288_8x8_133049.pb";
 #endif
   string labels = "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
   string input_layer = "input";
@@ -362,9 +379,9 @@ int main(int argc, char *argv[]) {
   }
   tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
 #if !g_b_BatchSize_12288_InitSessionOnce
-    tensorflow::TensorShape({1, 8, 8, 1}));
+                                  tensorflow::TensorShape({1, 8, 8, 1}));
 #else
-                                  tensorflow::TensorShape({num_samples, 8, 8, 1}));
+  tensorflow::TensorShape({num_samples, 8, 8, 1}));
 #endif
   // input_tensor_mapped is
   // 1. an interface to the data of ``input_tensor``
@@ -405,17 +422,17 @@ int main(int argc, char *argv[]) {
   }
 #else
   for (int row = 0; row < BLOCK_WIDTH; ++row)
-     for (int col = 0; col < BLOCK_WIDTH; ++col)
-       input_tensor_mapped(0, row, col,
+    for (int col = 0; col < BLOCK_WIDTH; ++col)
+      input_tensor_mapped(0, row, col,
                           0) = 3.0; // this is where we get the pixels
 #endif
 
   // ending
   dResult_CopyDataToTensor = (double) (clock() - lBefore_CopyDataToTensor) / CLOCKS_PER_SEC;
 #if g_b_BatchSize_12288_InitSessionOnce
-  printf("\n Time for copying %i data tensor: %12.7f sec.\n", num_samples, dResult_CopyDataToTensor);
+  printf("\n[cpu time] Time for copying %i data tensor: %12.7f sec.\n", num_samples, dResult_CopyDataToTensor);
 #else
-  printf("\n Time for copying data tensor: %12.7f sec.\n", dResult_CopyDataToTensor);
+  printf("\n[cpu time] Time for copying data tensor: %12.7f sec.\n", dResult_CopyDataToTensor);
 #endif
   std::cout << std::endl;
 
@@ -424,6 +441,7 @@ int main(int argc, char *argv[]) {
   // starting
   double dResult_sessionrun;
   clock_t lBefore_sessionrun = clock();
+  std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
 
   Status run_status;
 
@@ -459,20 +477,42 @@ int main(int argc, char *argv[]) {
 
   // ending
   dResult_sessionrun = (double) (clock() - lBefore_sessionrun) / CLOCKS_PER_SEC;
-  std::cout << std::endl;
+
 #if !g_b_BatchSize_12288_InitSessionOnce
-  printf("\n Time for %i session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
-  printf("\n Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
+  printf("[real-world time ] Running %i session took %12.9f seconds \n", num_samples, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
+  printf("[real-world time ] Every session (1 session for 1 sample) took %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288);
+
   std::cout << std::endl;
 #else
-  printf("\n Time for %i samples but in one session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
-  printf("\n Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
+//  std::cout << "[real-world time] Running session took "
+//            << std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0
+//            << " s.\n";
+//    std::cout << "[real-world time] Running session for each sample took "
+//            << std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288
+//            << " s.\n";
+  printf("[real-world time] Running %i samples in 1 session took %12.9f seconds \n", num_samples, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
+  printf("[real-world time] Every sample in this session took %12.9f seconds ", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288);
+
+
+  std::cout << std::endl;
+#endif
+
+#if !g_b_BatchSize_12288_InitSessionOnce
+  printf("[cpu time] Time for %i session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
+  printf("[cpu time] Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+  std::cout << std::endl;
+#else
+  printf("[cpu time] Time for %i samples but in one session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
+  printf("[cpu time] Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
 #endif
 
   if (!run_status.ok()) {
     LOG(ERROR) << "Running model failed: " << run_status;
     return -1;
   }
+  std::cout << outputs[0].DebugString() << std::endl;
 #if !g_b_BatchSize_12288_InitSessionOnce
   Status print_status = PrintTopLabels(outputs, labels);
   if (!print_status.ok()) {
