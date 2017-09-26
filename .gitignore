@@ -56,6 +56,7 @@
 
 # CMake
 cmake-build-debug/
+cmake-build-release/
 
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
@@ -93,12 +94,4 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 
-cmake-build-debug/CMakeFiles/3.8.2/CompilerIdC/tmp/
-cmake-build-debug/CMakeFiles/3.8.2/CompilerIdCXX/tmp/
-cmake-build-debug/CMakeFiles/CMakeTmp/
-cmake-build-debug/CMakeFiles/HTM162.dir/App/
-cmake-build-debug/CMakeFiles/HTM162.dir/Lib/
-cmake-build-debug/CMakeFiles/TAppEncoder.dir/App/
-cmake-build-debug/CMakeFiles/TAppEncoder.dir/Lib/
 .idea/
-cmake-build-release/

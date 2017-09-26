@@ -18,18 +18,33 @@ FAQs for every one
 
     Build and test software of any size, quickly and reliably.
 
+    Most importantly, Tensorflow itself is using *Bazel*. And if you want to make your own binary self-contained,
+    you have to put your source code inside tensorflow package hierarchy.
+
 
 3. What is `CMake <https://cmake.org/>`_ ?
 
     Build, Test and Package Your Software With CMake.
 
+    Most importantly, if you do not want to use Bazel while you want to use Tensorflow C++ APIs, you have to
+    follow this project by using CMake:
+    `Build shared library for using the TensorFlow C++ library <https://github.com/FloopCZ/tensorflow_cc>`_
+
 4. Why do you want to integrate ResNet into HTM?
 
-    Speed matters.
+    Want to use neural network to do fast intra mode prediction.
 
 5. Why do you want to use both Bazel and CMake for compiling the HTM encoder binary?
 
-    Here is a link to an open-source project:
+    By enabling CMake with Bazel for the same codebase, we can enjoy both the benefits:
+
+    - IDE support.
+
+    - Self-Contained binary.
+
+    Below are detailed explanation:
+
+    Here is a link to an open-source project,
 
     `Build shared library for using the TensorFlow C++ library <https://github.com/FloopCZ/tensorflow_cc>`_
 
