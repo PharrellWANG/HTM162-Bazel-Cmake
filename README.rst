@@ -86,7 +86,9 @@ Notes
 How to compile with SSE4.2 and AVX optimizations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //tensorflow/tools/pip_package:build_pip_package
+Use below flags when compiling binary:
+
+``bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //tensorflow/tools/pip_package:build_pip_package``
 
 Contact
 -------
