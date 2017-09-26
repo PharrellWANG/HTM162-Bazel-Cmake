@@ -32,8 +32,8 @@
 #endif
 
 #if g_b_RunSessionInitTimeCostExperiment
-#define g_b_BatchSize_1_InitSessionManyTimes  1
-#define g_b_BatchSize_12288_InitSessionOnce   0
+//#define g_b_BatchSize_1_InitSessionManyTimes  1
+#define g_b_BatchSize_12288_InitSessionOnce   1
 #endif
 
 #include <fstream>
@@ -321,7 +321,12 @@ int main(int argc, char *argv[]) {
   return 0;
 
 #else
+  int num_samples = 12288;
+#if !g_b_BatchSize_12288_InitSessionOnce
   string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
+#else
+  string graph = "/Users/Pharrell_WANG/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
+#endif
   string labels = "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
   string input_layer = "input";
   string output_layer = "logits/fdc_output_node";
@@ -356,7 +361,11 @@ int main(int argc, char *argv[]) {
     return -1;
   }
   tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
-                                  tensorflow::TensorShape({1, 8, 8, 1}));
+#if !g_b_BatchSize_12288_InitSessionOnce
+    tensorflow::TensorShape({1, 8, 8, 1}));
+#else
+                                  tensorflow::TensorShape({num_samples, 8, 8, 1}));
+#endif
   // input_tensor_mapped is
   // 1. an interface to the data of ``input_tensor``
   // 1. It is used to copy data into the ``input_tensor``
@@ -369,36 +378,108 @@ int main(int argc, char *argv[]) {
   double dResult_CopyDataToTensor;
   clock_t lBefore_CopyDataToTensor = clock();
 
+#if g_b_BatchSize_12288_InitSessionOnce
+  //progress indicator 1 ****************************************************************************
+  float progress_read_data = 0.0;
+  int barWidth_read_data = 70;
+  //progress indicator 2 ****************************************************************************
+  for (int batchIdx = 0; batchIdx < num_samples; ++batchIdx) {
+    for (int row = 0; row < BLOCK_WIDTH; ++row) {
+      for (int col = 0; col < BLOCK_WIDTH; ++col)
+        input_tensor_mapped(batchIdx, row, col,
+                            0) = 3.0; // this is where we get the pixels
+    }
+    //progress indicator 3 ****************************************************************************
+    std::cout << "[";
+    int pos = int(barWidth_read_data * progress_read_data);
+    for (int j_read_data = 0; j_read_data < barWidth_read_data; ++j_read_data) {
+      if (j_read_data < pos) std::cout << "=";
+      else if (j_read_data == pos) std::cout << ">";
+      else std::cout << " ";
+    }
+    std::cout << "] " << int(progress_read_data * 100.0) << " %\r";
+    std::cout.flush();
+
+    progress_read_data = float(batchIdx) / num_samples;
+    //progress indicator 4  ****************************************************************************
+  }
+#else
   for (int row = 0; row < BLOCK_WIDTH; ++row)
-    for (int col = 0; col < BLOCK_WIDTH; ++col)
-      input_tensor_mapped(0, row, col,
+     for (int col = 0; col < BLOCK_WIDTH; ++col)
+       input_tensor_mapped(0, row, col,
                           0) = 3.0; // this is where we get the pixels
+#endif
+
   // ending
-  dResult_CopyDataToTensor = (double)(clock()-lBefore_CopyDataToTensor) / CLOCKS_PER_SEC;
+  dResult_CopyDataToTensor = (double) (clock() - lBefore_CopyDataToTensor) / CLOCKS_PER_SEC;
+#if g_b_BatchSize_12288_InitSessionOnce
+  printf("\n Time for copying %i data tensor: %12.7f sec.\n", num_samples, dResult_CopyDataToTensor);
+#else
   printf("\n Time for copying data tensor: %12.7f sec.\n", dResult_CopyDataToTensor);
+#endif
+  std::cout << std::endl;
 
   std::vector<Tensor> outputs;
-    // starting
+
+  // starting
   double dResult_sessionrun;
   clock_t lBefore_sessionrun = clock();
 
-  Status run_status = session->Run({{input_layer, input_tensor}},
-                                   {output_layer}, {}, &outputs);
+  Status run_status;
 
-    // ending
-  dResult_sessionrun = (double)(clock()-lBefore_sessionrun) / CLOCKS_PER_SEC;
-  printf("\n Time for one session run: %12.7f sec.\n", dResult_sessionrun);
+#if !g_b_BatchSize_12288_InitSessionOnce
+  //progress indicator 1 ****************************************************************************
+  float progress = 0.0;
+  int barWidth = 70;
+  //progress indicator 2 ****************************************************************************
+
+
+  for (int i = 0; i < num_samples; ++i) {
+    run_status = session->Run({{input_layer, input_tensor}},
+                              {output_layer}, {}, &outputs);
+
+    //progress indicator 3 ****************************************************************************
+    std::cout << "[";
+    int pos = int(barWidth * progress);
+    for (int j = 0; j < barWidth; ++j) {
+      if (j < pos) std::cout << "=";
+      else if (j == pos) std::cout << ">";
+      else std::cout << " ";
+    }
+    std::cout << "] " << int(progress * 100.0) << " %\r";
+    std::cout.flush();
+
+    progress = float(i) / num_samples;
+    //progress indicator 4  ****************************************************************************
+  }
+#else
+  run_status = session->Run({{input_layer, input_tensor}},
+                            {output_layer}, {}, &outputs);
+#endif
+
+  // ending
+  dResult_sessionrun = (double) (clock() - lBefore_sessionrun) / CLOCKS_PER_SEC;
+  std::cout << std::endl;
+#if !g_b_BatchSize_12288_InitSessionOnce
+  printf("\n Time for %i session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
+  printf("\n Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+  std::cout << std::endl;
+#else
+  printf("\n Time for %i samples but in one session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
+  printf("\n Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+#endif
 
   if (!run_status.ok()) {
     LOG(ERROR) << "Running model failed: " << run_status;
     return -1;
   }
-
+#if !g_b_BatchSize_12288_InitSessionOnce
   Status print_status = PrintTopLabels(outputs, labels);
   if (!print_status.ok()) {
     LOG(ERROR) << "Running print failed: " << print_status;
     return -1;
   }
+#endif
   return 0;
 #endif
 }
