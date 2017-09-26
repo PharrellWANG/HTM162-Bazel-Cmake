@@ -15,6 +15,27 @@
 // the top of the main() function.
 //
 
+#define g_b_RunSessionInitTimeCostExperiment  1   // when this is 0, i.e., false, which means
+                                                  //                      we only want to run the single prediction
+                                                  //                      to see whether the model works or not.
+                                                  //                      We only load graphs for batch size 1.
+                                                  // when this is 1, i.e., true, which means
+                                                  //                      we are going to run prediction for
+                                                  //                      many samples for evaluating the time cost of
+                                                  //                      session-run() API in c++.
+
+#if !g_b_RunSessionInitTimeCostExperiment
+#define g_bEnableSecondGraph                  0   // we are able to load multiple graphs in a single c++ app,
+                                                  // toggle this to 1(true) to load the second graph for batch
+                                                  // size 1 for proving that we can load multiple graphs in
+                                                  // a single c++ app
+#endif
+
+#if g_b_RunSessionInitTimeCostExperiment
+#define g_b_BatchSize_1_InitSessionManyTimes  1
+#define g_b_BatchSize_12288_InitSessionOnce   0
+#endif
+
 #include <fstream>
 #include <vector>
 #include "strtk.hpp"
@@ -167,16 +188,16 @@ Status PrintTopLabels(const std::vector<Tensor> &outputs,
 //}
 
 int main(int argc, char *argv[]) {
+#if !g_b_RunSessionInitTimeCostExperiment
   // These are the command-line flags the program can understand.
   // They define where the graph and input data is located, and what kind of
   // input the model expects. If you train your own model, or use something
   // other than inception_v3, then you'll need to update these.
-  string graph =
-    "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
-  string graph_2 =
-    "/Users/Pharrell_WANG/resnet_logs_bak/size_16_log/resnet/graphs/frozen_resnet_for_fdc_blk16x16_304857.pb";
-  string labels =
-    "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
+  string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
+#if g_bEnableSecondGraph
+  string graph_2 = "/Users/Pharrell_WANG/resnet_logs_bak/size_16_log/resnet/graphs/frozen_resnet_for_fdc_blk16x16_304857.pb";
+#endif
+  string labels = "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
   string input_layer = "input";
   string output_layer = "logits/fdc_output_node";
   string root_dir = "";
@@ -212,6 +233,7 @@ int main(int argc, char *argv[]) {
   }
 
   // First we load and initialize the model.
+#if g_bEnableSecondGraph
   std::unique_ptr<tensorflow::Session> session_2;
   string graph_path_2 = tensorflow::io::JoinPath(root_dir, graph_2);
   Status load_graph_status_2 = LoadGraph(graph_path_2, &session_2);
@@ -219,7 +241,7 @@ int main(int argc, char *argv[]) {
 //        LOG(ERROR) << load_graph_status;
     return -1;
   }
-
+#endif
   tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
                                   tensorflow::TensorShape({1, 8, 8, 1}));
   // input_tensor_mapped is
@@ -236,13 +258,16 @@ int main(int argc, char *argv[]) {
     for (int col = 0; col < BLOCK_WIDTH; ++col)
       input_tensor_mapped(0, row, col,
                           0) = 3.0; // this is where we get the pixels
-
+#if g_bEnableSecondGraph
   tensorflow::Tensor input_tensor_2(tensorflow::DT_FLOAT,
                                     tensorflow::TensorShape({1, 16, 16, 1}));
   auto input_tensor_mapped_2 = input_tensor_2.tensor<float, 4>();
+#endif
 
   // Assign block width
+#if g_bEnableSecondGraph
   int BLOCK_WIDTH_2 = 16;
+#endif
   //************************ a few testing data start
   // this data should be mode 25
 //  std::string data = "138,138,133,128,122,122,122,117,117,117,117,117,117,117,117,117,138,138,133,128,122,122,122,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,138,133,122,122,122,117,117,117,117,117,117,117,117,117,117,138,133,133,128,122,117,117,117,117,117,117,117,117,117,117,117,138,133,133,128,122,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117,133,133,133,133,128,117,117,117,117,117,117,117,117,117,117,117\n";
@@ -258,21 +283,25 @@ int main(int argc, char *argv[]) {
   strtk::token_grid grid(data, data.size(), ",");
 
   strtk::token_grid::row_type r = grid.row(0);
+#if g_bEnableSecondGraph
   // set values and copy to ``input_tensor`` using for loop
   for (int row = 0; row < BLOCK_WIDTH_2; ++row)
     for (int col = 0; col < BLOCK_WIDTH_2; ++col)
       input_tensor_mapped_2(0, row, col,
                             0) = r.get<int>(size_t(row * BLOCK_WIDTH_2 + col)); // this is where we get the pixels
-
+#endif
   // Actually run the image through the model.
   std::vector<Tensor> outputs;
+#if g_bEnableSecondGraph
   std::vector<Tensor> outputs_2;
+#endif
 
   Status run_status = session->Run({{input_layer, input_tensor}},
                                    {output_layer}, {}, &outputs);
-
+#if g_bEnableSecondGraph
   Status run_status_2 = session_2->Run({{input_layer, input_tensor_2}},
                                        {output_layer}, {}, &outputs_2);
+#endif
   if (!run_status.ok()) {
     LOG(ERROR) << "Running model failed: " << run_status;
     return -1;
@@ -280,8 +309,9 @@ int main(int argc, char *argv[]) {
 
   // Do something interesting with the results we've generated.
   Status print_status = PrintTopLabels(outputs, labels);
-
+#if g_bEnableSecondGraph
   Status print_status_2 = PrintTopLabels(outputs_2, labels);
+#endif
 
   if (!print_status.ok()) {
     LOG(ERROR) << "Running print failed: " << print_status;
@@ -289,4 +319,8 @@ int main(int argc, char *argv[]) {
   }
 
   return 0;
+
+#else
+  std::cout << "hello world!" << std::endl;
+#endif
 }
