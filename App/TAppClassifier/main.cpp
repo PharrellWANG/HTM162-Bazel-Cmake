@@ -16,19 +16,19 @@
 //
 
 #define g_b_RunSessionInitTimeCostExperiment  1   // when this is 0, i.e., false, which means
-                                                  //                      we only want to run the single prediction
-                                                  //                      to see whether the model works or not.
-                                                  //                      We only load graphs for batch size 1.
-                                                  // when this is 1, i.e., true, which means
-                                                  //                      we are going to run prediction for
-                                                  //                      many samples for evaluating the time cost of
-                                                  //                      session-run() API in c++.
+//                      we only want to run the single prediction
+//                      to see whether the model works or not.
+//                      We only load graphs for batch size 1.
+// when this is 1, i.e., true, which means
+//                      we are going to run prediction for
+//                      many samples for evaluating the time cost of
+//                      session-run() API in c++.
 
 #if !g_b_RunSessionInitTimeCostExperiment
 #define g_bEnableSecondGraph                  0   // we are able to load multiple graphs in a single c++ app,
-                                                  // toggle this to 1(true) to load the second graph for batch
-                                                  // size 1 for proving that we can load multiple graphs in
-                                                  // a single c++ app
+// toggle this to 1(true) to load the second graph for batch
+// size 1 for proving that we can load multiple graphs in
+// a single c++ app
 #endif
 
 #if g_b_RunSessionInitTimeCostExperiment
@@ -38,7 +38,7 @@
 
 #include <fstream>
 #include <vector>
-#include "strtk.hpp"
+//#include "strtk.hpp"
 #include "tensorflow/cc/ops/const_op.h"
 #include "tensorflow/cc/ops/image_ops.h"
 #include "tensorflow/cc/ops/standard_ops.h"
@@ -321,6 +321,84 @@ int main(int argc, char *argv[]) {
   return 0;
 
 #else
-  std::cout << "hello world!" << std::endl;
+  string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
+  string labels = "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
+  string input_layer = "input";
+  string output_layer = "logits/fdc_output_node";
+  string root_dir = "";
+  std::vector<Flag> flag_list = {
+    Flag("graph", &graph, "graph to be executed"),
+    Flag("labels", &labels, "name of file containing labels"),
+    Flag("input_layer", &input_layer, "name of input layer"),
+    Flag("output_layer", &output_layer, "name of output layer"),
+    Flag("root_dir", &root_dir,
+         "interpret image and graph file names relative to this directory"),
+  };
+  string usage = tensorflow::Flags::Usage(argv[0], flag_list);
+  const bool parse_result = tensorflow::Flags::Parse(&argc, argv, flag_list);
+  if (!parse_result) {
+    LOG(ERROR) << usage;
+    return -1;
+  }
+
+  // We need to call this to set up global state for TensorFlow.
+  tensorflow::port::InitMain(argv[0], &argc, &argv);
+  if (argc > 1) {
+    LOG(ERROR) << "Unknown argument " << argv[1] << "\n" << usage;
+    return -1;
+  }
+
+  // First we load and initialize the model.
+  std::unique_ptr<tensorflow::Session> session;
+  string graph_path = tensorflow::io::JoinPath(root_dir, graph);
+  Status load_graph_status = LoadGraph(graph_path, &session);
+  if (!load_graph_status.ok()) {
+    return -1;
+  }
+  tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
+                                  tensorflow::TensorShape({1, 8, 8, 1}));
+  // input_tensor_mapped is
+  // 1. an interface to the data of ``input_tensor``
+  // 1. It is used to copy data into the ``input_tensor``
+  auto input_tensor_mapped = input_tensor.tensor<float, 4>();
+  // Assign block width
+  int BLOCK_WIDTH = 8;
+  // set values and copy to ``input_tensor`` using for loop
+
+  // starting
+  double dResult_CopyDataToTensor;
+  clock_t lBefore_CopyDataToTensor = clock();
+
+  for (int row = 0; row < BLOCK_WIDTH; ++row)
+    for (int col = 0; col < BLOCK_WIDTH; ++col)
+      input_tensor_mapped(0, row, col,
+                          0) = 3.0; // this is where we get the pixels
+  // ending
+  dResult_CopyDataToTensor = (double)(clock()-lBefore_CopyDataToTensor) / CLOCKS_PER_SEC;
+  printf("\n Time for copying data tensor: %12.7f sec.\n", dResult_CopyDataToTensor);
+
+  std::vector<Tensor> outputs;
+    // starting
+  double dResult_sessionrun;
+  clock_t lBefore_sessionrun = clock();
+
+  Status run_status = session->Run({{input_layer, input_tensor}},
+                                   {output_layer}, {}, &outputs);
+
+    // ending
+  dResult_sessionrun = (double)(clock()-lBefore_sessionrun) / CLOCKS_PER_SEC;
+  printf("\n Time for one session run: %12.7f sec.\n", dResult_sessionrun);
+
+  if (!run_status.ok()) {
+    LOG(ERROR) << "Running model failed: " << run_status;
+    return -1;
+  }
+
+  Status print_status = PrintTopLabels(outputs, labels);
+  if (!print_status.ok()) {
+    LOG(ERROR) << "Running print failed: " << print_status;
+    return -1;
+  }
+  return 0;
 #endif
 }
