@@ -90,6 +90,12 @@ Use below flags when compiling binary:
 
 ``bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:HAHA``
 
+E.G., For our **TAppClassifier**:
+
+``bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/APP/TAppClassifier/...``
+
+This will do the trick and make your binary on CPU faster.
+
 Contact
 -------
 Pharrell.zx: wzxnuaa@gmail.com
