@@ -38,9 +38,9 @@ FAQs for every one
 
     By enabling CMake with Bazel for the same codebase, we can enjoy two important benefits:
 
-    - *Perfect IDE support* which can help the development.
+    - *Perfect IDE support* which can help the development [offered by CMake].
 
-    - *Self-Contained binary* which is executable anywhere as long as you are on the same OS.
+    - *Self-Contained binary* which is executable anywhere as long as you are on the same OS [offered by Bazel].
 
 
     Below are detailed explanation:
