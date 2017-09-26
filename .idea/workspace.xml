@@ -26,7 +26,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="updates for TAppClassifier">
+    <list default="true" id="caf0f34b-5046-45cd-ac54-7a26bff616e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.rst" afterPath="$PROJECT_DIR$/README.rst" />
     </list>
@@ -157,8 +157,8 @@
       <file leaf-file-name="README.rst" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="90" column="116" lean-forward="false" selection-start-line="90" selection-start-column="116" selection-end-line="90" selection-end-column="116" />
+            <state relative-caret-position="37">
+              <caret line="86" column="60" lean-forward="false" selection-start-line="86" selection-start-column="60" selection-end-line="86" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -450,7 +450,7 @@
       <workItem from="1506317226075" duration="4857000" />
       <workItem from="1506322593383" duration="381000" />
       <workItem from="1506323075501" duration="5814000" />
-      <workItem from="1506393745119" duration="15523000" />
+      <workItem from="1506393745119" duration="15582000" />
     </task>
     <task id="LOCAL-00001" summary="..">
       <created>1505990099262</created>
@@ -753,11 +753,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506427981139</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="updates for TAppClassifier">
+      <created>1506428067273</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1506428067273</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82754000" />
+    <option name="totallyTimeSpent" value="82813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="22" width="1385" height="878" extended-state="6" />
@@ -1208,8 +1215,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="90" column="116" lean-forward="false" selection-start-line="90" selection-start-column="116" selection-end-line="90" selection-end-column="116" />
+        <state relative-caret-position="37">
+          <caret line="86" column="60" lean-forward="false" selection-start-line="86" selection-start-column="60" selection-end-line="86" selection-end-column="60" />
           <folding />
         </state>
       </provider>

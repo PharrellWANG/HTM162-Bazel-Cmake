@@ -83,8 +83,8 @@ Notes
     as its input, and outputs something runnable, typically machine code for either a physical or virtual
     machine, or source code in a different language.
 
-How to compile with SSE4.2 and AVX optimizations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to compile with SSE4.2 and AVX optimizations using Bazel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use below flags when compiling binary:
 
