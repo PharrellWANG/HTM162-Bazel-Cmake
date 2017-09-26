@@ -36,11 +36,12 @@ FAQs for every one
 
 5. Why do you want to use both Bazel and CMake for compiling the HTM encoder binary?
 
-    By enabling CMake with Bazel for the same codebase, we can enjoy both the benefits:
+    By enabling CMake with Bazel for the same codebase, we can enjoy two important benefits:
 
     - *Perfect IDE support* which can help the development.
 
     - *Self-Contained binary* which is executable anywhere as long as you are on the same OS.
+
 
     Below are detailed explanation:
 
