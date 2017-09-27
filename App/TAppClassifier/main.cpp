@@ -33,7 +33,7 @@
 
 #if g_b_RunSessionInitTimeCostExperiment
 //#define g_b_BatchSize_1_InitSessionManyTimes  1
-#define g_b_BatchSize_12288_InitSessionOnce   1
+#define g_b_BatchSize_12288_InitSessionOnce   0
 #endif
 
 #include <fstream>
@@ -445,7 +445,7 @@ int main(int argc, char *argv[]) {
 
   Status run_status;
 
-  std::cout << "Now we are running session for prediction..." << std::endl;
+  std::cout << "\nNow we are running session for prediction...\n" << std::endl;
 
 #if !g_b_BatchSize_12288_InitSessionOnce
   //progress indicator 1 ****************************************************************************
@@ -482,7 +482,7 @@ int main(int argc, char *argv[]) {
 
 #if !g_b_BatchSize_12288_InitSessionOnce
   std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
-  printf("[real-world time ] Running %i session took %12.9f seconds \n", num_samples, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
+  printf("\n\n[real-world time ] Running %i session took %12.9f seconds \n", num_samples, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
   printf("[real-world time ] Every session (1 session for 1 sample) took %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / 12288);
 
   std::cout << std::endl;
@@ -500,11 +500,11 @@ int main(int argc, char *argv[]) {
 #endif
 
 #if !g_b_BatchSize_12288_InitSessionOnce
-  printf("[cpu time] Time for %i session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
-  printf("[cpu time] Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
+  printf("[cpu time] Time for %i ssamples but in MANY sessions run: %12.7f sec.\n", num_samples, dResult_sessionrun);
+  printf("[cpu time] Time for one sample/session run: %12.7f sec.\n", dResult_sessionrun / num_samples);
   std::cout << std::endl;
 #else
-  printf("[cpu time] Time for %i samples but in one session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
+  printf("[cpu time] Time for %i samples but in ONE session run: %12.7f sec.\n", num_samples, dResult_sessionrun);
   printf("[cpu time] Time for one sample run: %12.7f sec.\n", dResult_sessionrun / num_samples);
   std::cout << std::endl;
 #endif
