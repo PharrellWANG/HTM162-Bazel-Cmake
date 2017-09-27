@@ -99,6 +99,18 @@ Notes
     as its input, and outputs something runnable, typically machine code for either a physical or virtual
     machine, or source code in a different language.
 
+    **Compiling** is a sub-set of **Building**.
+
+    We can say that, after building (usually happens in the terminal, not in the IDE), you get a
+    shippable binary product; while after compiling (such as
+    in the IDE, after your updates to the codes, you compile it for running/debugging, that is to say,
+    it usually happens in the IDE, such as Visual Studio), you get a runnable binary, which is not usually
+    termed as ``a shippable product``. (E.G, in out case, when we use CMake
+    to build our binary, it is not shippable since it heavily depends on the shared lib which will only be linked
+    to the binary during runtime. Other machines will not have such shared libs. Hence it is not shippable; BUT,
+    if we use Bazel, all the source codes related to the project are built into a single binary. No dependency to
+    extra shared lib. Hence the building results will be a shippable product.)
+
 How to compile with SSE4.2 and AVX optimizations using Bazel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -445,6 +445,8 @@ int main(int argc, char *argv[]) {
 
   Status run_status;
 
+  std::cout << "Now we are running session for prediction..." << std::endl;
+
 #if !g_b_BatchSize_12288_InitSessionOnce
   //progress indicator 1 ****************************************************************************
   float progress = 0.0;
