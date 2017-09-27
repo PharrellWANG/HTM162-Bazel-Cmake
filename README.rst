@@ -133,7 +133,9 @@ This will do the trick and make your binary faster (benefiting from avx, sse4.2 
 AND parallel computing offered by GPU).
 
 .. warning:: If you don't have any parallel computing when doing predictions, then the GPU will help nothing even you
-                compiled your binary with GPU support.
+                compiled your binary with GPU support. (E.G., when doing the same non-parallel computing,
+                CPU of *Intel core i7* can be faster than GPU of *NVIDIA GTX980*. More specific, running 12288
+                predictions for 8x8 size images on Intel core i7 can be 10 seconds faster than on GTX980.)
 
 Using Only CPU
 ^^^^^^^^^^^^^^
