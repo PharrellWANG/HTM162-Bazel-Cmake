@@ -188,6 +188,8 @@ Status PrintTopLabels(const std::vector<Tensor> &outputs,
 //}
 
 int main(int argc, char *argv[]) {
+
+  string homeDir = getenv("HOME");
 #if !g_b_RunSessionInitTimeCostExperiment
   // These are the command-line flags the program can understand.
   // They define where the graph and input data is located, and what kind of
@@ -342,9 +344,12 @@ int main(int argc, char *argv[]) {
   string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
 #else
   //  string graph = "/Users/Pharrell_WANG/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
-  string graph = "/Users/Pharrell_WANG/frozen_graphs/gpu_frozen_resnet_fdc_12288_8x8_133049.pb";
+  string graph_second_part = "/frozen_graphs/gpu_frozen_resnet_fdc_12288_8x8_133049.pb";
+  string graph = homeDir + graph_second_part;
 #endif
-  string labels = "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
+  string labels_second_part = "/labels/labels_for_fdc_32_classes.txt";
+  string labels = homeDir + labels_second_part;
+
   string input_layer = "input";
   string output_layer = "logits/fdc_output_node";
   string root_dir = "";
