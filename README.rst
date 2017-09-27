@@ -116,18 +116,29 @@ How to compile with SSE4.2 and AVX optimizations using Bazel
 
 Use below flags when compiling binary:
 
-``bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:HAHA``
+.. code-block:: bash
+
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:HAHA
+
 
 E.G., For our **TAppClassifier**:
 
+Using GPU
+^^^^^^^^^
 .. code-block:: bash
 
     bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/APP/TAppClassifier/...
 
+This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU,
+AND parallel computing offered by GPU).
 
-``bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/APP/TAppClassifier/...``
+Using Only CPU
+^^^^^^^^^^^^^^
+.. code-block:: bash
 
-This will do the trick and make your binary on CPU faster.
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 -k //HTM162/APP/TAppClassifier/...
+
+This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU).
 
 Contact
 -------
