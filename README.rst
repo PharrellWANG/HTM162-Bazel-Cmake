@@ -132,6 +132,9 @@ Using GPU
 This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU,
 AND parallel computing offered by GPU).
 
+.. warning:: If you don't have any parallel computing when doing predictions, then the GPU will help nothing even you
+                compiled your binary with GPU support.
+
 Using Only CPU
 ^^^^^^^^^^^^^^
 .. code-block:: bash
