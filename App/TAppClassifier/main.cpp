@@ -33,7 +33,7 @@
 
 #if g_b_RunSessionInitTimeCostExperiment
 //#define g_b_BatchSize_1_InitSessionManyTimes  1
-#define g_b_BatchSize_12288_InitSessionOnce   0
+#define g_b_BatchSize_12288_InitSessionOnce   1
 #endif
 
 #include <fstream>
@@ -342,7 +342,7 @@ int main(int argc, char *argv[]) {
   string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
 #else
   //  string graph = "/Users/Pharrell_WANG/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
-    string graph = "/Users/Pharrell_WANG/frozen_graphs/gpu_frozen_resnet_fdc_12288_8x8_133049.pb";
+  string graph = "/Users/Pharrell_WANG/frozen_graphs/gpu_frozen_resnet_fdc_12288_8x8_133049.pb";
 #endif
   string labels = "/Users/Pharrell_WANG/labels/labels_for_fdc_32_classes.txt";
   string input_layer = "input";
