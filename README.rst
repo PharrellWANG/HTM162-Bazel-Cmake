@@ -136,6 +136,8 @@ AND parallel computing offered by GPU).
                 compiled your binary with GPU support. (E.G., when doing the same non-parallel computing,
                 CPU of *Intel core i7* can be faster than GPU of *NVIDIA GTX980*. More specific, running 12288
                 predictions for 8x8 size images on Intel core i7 can be 10 seconds faster than on GTX980.)
+                Detailed example please refer to:
+                http://fast-depth-coding.readthedocs.io/en/latest/tf-speed.html#conclusions
 
 Using Only CPU
 ^^^^^^^^^^^^^^
