@@ -147,6 +147,15 @@ Using Only CPU
 
 This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU).
 
+
+Branches
+--------
+
+- *pharrell_dev_001*: the ``session->init`` is performed for each block. It is the initial experimental design.
+
+- *pha_dev_002*: the ``session->init`` is performed for each frame for saving prediction time using tensorflow.
+
+
 Contact
 -------
 Pharrell.zx: wzxnuaa@gmail.com

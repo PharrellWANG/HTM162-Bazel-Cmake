@@ -2957,6 +2957,33 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #else
         Distortion   uiOverallDistY        = 0;
 #endif
+
+#if ENABLE_RESNET
+  // Hints from Dr.Tsang
+  //  if(!pcCU->getCUPelX() && !pcCU->getCUPelY() && uiDepth == 3 && pcCU->getPartitionSize(0) == SIZE_2Nx2N);
+  //  uiNumPU == 4 ? NxN : 2Nx2N
+  //  uiDepth == 0 ? 64 :
+  //  1 ? 32;
+  //  2: 16
+  //  3?8
+  // Dr.Tsang end
+
+  // pha.zx
+  // ==============
+  // ui_depth  cu_size
+  // 0        64
+  // 1        32
+  // 2        16
+  // 3        08
+  // ==============
+  // only do the prediction (for the single whole frame) when
+  // the CU position is at [0,0] && cu size is 8.
+//  if(!pcCU->getCUPelX() && !pcCU->getCUPelY() && uiDepth == 3) {
+
+//  }
+  // pha.zx end
+#endif
+//        pcCU->getWidth(0);
         UInt         CandNum;
         Double       CandCostList[ FAST_UDI_MAX_RDMODE_NUM ];
         Pel          resiLumaPU[NUMBER_OF_STORED_RESIDUAL_TYPES][MAX_CU_SIZE * MAX_CU_SIZE];
