@@ -90,13 +90,13 @@ Status ReadLabelsFile(string file_name, std::vector<string> *result,
 
 // Analyzes the output of the Inception graph to retrieve the highest scores and
 // their positions in the tensor, which correspond to categories.
-Status GetTopLabels(const std::vector<Tensor> &outputs, int how_many_labels,
+Status GetTopLabels(const Tensor &outputs, int how_many_labels,
                     Tensor *indices, Tensor *scores) {
   auto root = tensorflow::Scope::NewRootScope();
   using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
 
   string output_name = "top_k";
-  TopK(root.WithOpName(output_name), outputs[0], how_many_labels);
+  TopK(root.WithOpName(output_name), outputs, how_many_labels);
   // This runs the GraphDef network definition that we've just constructed, and
   // returns the results in the output tensors.
   tensorflow::GraphDef graph;
@@ -117,7 +117,7 @@ Status GetTopLabels(const std::vector<Tensor> &outputs, int how_many_labels,
 }
 
 Status GetTopLabelsIntoVec(
-  const std::vector<Tensor> &outputs,
+  const Tensor &outputs,
   vector<int> &vec,
   string labels_file_name) {
 
@@ -2957,154 +2957,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #else
         Distortion   uiOverallDistY        = 0;
 #endif
-#if ENABLE_RESNET
-  // if not depth map, skip resnet prediction
-  if (!m_pcEncCfg->getIsDepth()) {
-    g_bUseLearnedResnetModel = 0;
-  } else {
-    g_bUseLearnedResnetModel = 1;
-  }
-  // create a vector to store int
-  vector<int> vec;
-  if (!g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
-    // starting time
-//        Double dResult1;
-//        clock_t lBefore1 = clock();
-
-    int i;
-    // push back planar and DC modes
-    vec.push_back(0);
-    vec.push_back(1);
-    // push top k mode index values into the vector
-    for (i = 2; i < 34; i += 1) {
-      vec.push_back(i);
-      // push back mode 34 if mode 2 is chosen
-      if (i == 2) {
-        vec.push_back(34);
-      }
-    }
-
-//        dResult1 = (Double)(clock()-lBefore1) / CLOCKS_PER_SEC;
-//        printf("\n Total Time: %12.9f sec.\n", dResult1);
-
-  } else { // else if using model prediction *********************************************************************
-    TComSlice *const pcSlice = pcCU->getSlice();
-    const UInt maxCUWidth = sps.getMaxCUWidth();
-    const UInt maxCUHeight = sps.getMaxCUHeight();
-
-    const TComPicYuv *const pPic = pcSlice->getPic()->getPicYuvOrg();  // Picture pointer
-    const Pel *pOrg = pPic->getAddr(COMPONENT_Y);      // Y pel frame pointer
-    const Int iStride = pPic->getStride(COMPONENT_Y);      // Y width
-    const Int iTotalHeight = pPic->getTotalHeight(COMPONENT_Y);      // Y height
-
-    const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
-    // Hints from Dr.Tsang
-    //  if(!pcCU->getCUPelX() && !pcCU->getCUPelY() && uiDepth == 3 && pcCU->getPartitionSize(0) == SIZE_2Nx2N);
-    //  uiNumPU == 4 ? NxN : 2Nx2N
-    //  uiDepth == 0 ? 64 :
-    //  1 ? 32;
-    //  2: 16
-    //  3?8
-    // Dr.Tsang end
-
-    // pha.zx
-    // ==============
-    // ui_depth  cu_size
-    // 0        64
-    // 1        32
-    // 2        16
-    // 3        08
-    // ==============
-    // only do the prediction (for the single whole frame) when
-    // the CU position is at [0,0] && cu size is 8.
-    if (!pcCU->getCUPelX() && !pcCU->getCUPelY()) {
-      // home directory
-      string homeDir = getenv("HOME");
-      // path for label text file // start
-      string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
-      string labelsTextFile = homeDir + secondPartLabelFile;
-      // path for label text file // end
-
-      // input & output node names // start
-      string input_layer = "input";
-      string output_layer = "logits/fdc_output_node";
-      // input & output node names // end
-
-      // double for loop for looping thru the pixel blocks and then
-      // read tensor of shape [num_of_blks, width, height, channel]
-      // i.e.,
-
-      // - for video of size 1024*768:
-      //    read the pel data of blocks into
-      //    a tensor of shape [12288, 8, 8, 1]
-
-      // - for video of size 1920*1088
-      //    read the pel data of blks into
-      //    a tensor of shape [32640, 8, 8, 1]
-      const int iNumOfBlks = iStride * iTotalHeight / 8 / 8;
-
-      tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
-                                      tensorflow::TensorShape(
-                                        {iNumOfBlks, 8, 8, 1}
-                                      )
-      );
-      // input_tensor_mapped is
-      // - an interface to the data of ``input_tensor``
-      // - it is used to copy data into the ``input_tensor``
-      auto input_tensor_mapped = input_tensor.tensor<float, 4>();
-
-      // Get depth block luma values /////////////////////////////////////////////////////////////
-      Int blk_idx = -1;
-      for (int blk_y = 0; blk_y < iTotalHeight; blk_y += 8) {
-        for (int blk_x = 0; blk_x < iStride; blk_x += 8) {
-          blk_idx += 1;
-          const Pel *pOrgPelForOneBlk = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
-          for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-              input_tensor_mapped(blk_idx, row, col, 0) = pOrgPelForOneBlk[col];
-            }
-            pOrgPelForOneBlk += iStride;
-          }
-        }
-      }
-      // end of getting depth block luma values //////////////////////////////////////////////////
-      std::vector<Tensor> outputs;
-
-      // starting time
-//        Double dResult2;
-//        clock_t lBefore2 = clock();
-
-      Status run_status = (*session)->Run({{input_layer, input_tensor}},
-                                          {output_layer}, {}, &outputs);
-
-      // ending time
-//        dResult2 = (Double)(clock()-lBefore2) / CLOCKS_PER_SEC;
-//        printf("\n Total Time: %12.3f sec.\n", dResult2);
-
-      if (!run_status.ok()) {
-        LOG(ERROR) << "Running model failed: " << run_status;
-        return;
-      }
-      std::cout << outputs[0].DebugString() << std::endl;
-
-      // now we have a tensor of size [17168, 32]
-      // we need to slice the single tensor of size [1, 32] out depending on cu position and cu size
-
-      // if current cu depth is 3, which means size is 8x8, then
-      // get top k labels *****
-//      Status get_vec_status = GetTopLabelsIntoVec(outputs, vec, labelsTextFile);
-//      if (!get_vec_status.ok()) {
-//        LOG(ERROR) << "Running model failed: " << get_vec_status;
-//        return;
-//      }
-////       push back planar and DC modes
-//      vec.push_back(0);
-//      vec.push_back(1);
-
-    }
-  }
-  // pha.zx end
-#endif
         UInt         CandNum;
         Double       CandCostList[ FAST_UDI_MAX_RDMODE_NUM ];
         Pel          resiLumaPU[NUMBER_OF_STORED_RESIDUAL_TYPES][MAX_CU_SIZE * MAX_CU_SIZE];
@@ -3208,6 +3060,186 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
       distParam.bApplyWeight = false;
 #if ENABLE_RESNET
+      // if not depth map, skip resnet prediction
+      if (!m_pcEncCfg->getIsDepth()) {
+        g_bUseLearnedResnetModel = 0;
+      } else {
+        g_bUseLearnedResnetModel = 1;
+      }
+      // create a vector to store int
+      vector<int> vec;
+
+      std::vector<Tensor> outputs;
+
+      if (!g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
+        // starting time
+//        Double dResult1;
+//        clock_t lBefore1 = clock();
+
+        int i;
+        // push back planar and DC modes
+        vec.push_back(0);
+        vec.push_back(1);
+        // push top k mode index values into the vector
+        for (i = 2; i < 34; i += 1) {
+          vec.push_back(i);
+          // push back mode 34 if mode 2 is chosen
+          if (i == 2) {
+            vec.push_back(34);
+          }
+        }
+
+//        dResult1 = (Double)(clock()-lBefore1) / CLOCKS_PER_SEC;
+//        printf("\n Total Time: %12.9f sec.\n", dResult1);
+
+      } else { // else if using model prediction *********************************************************************
+        TComSlice *const pcSlice = pcCU->getSlice();
+        const UInt maxCUWidth = sps.getMaxCUWidth();
+//        const UInt maxCUHeight = sps.getMaxCUHeight();
+
+        const TComPicYuv *const pPic = pcSlice->getPic()->getPicYuvOrg();  // Picture pointer
+        const Pel *pOrg = pPic->getAddr(COMPONENT_Y);      // Y pel frame pointer
+        const Int iStride = pPic->getStride(COMPONENT_Y);      // Y width
+        const Int iTotalHeight = pPic->getTotalHeight(COMPONENT_Y);      // Y height
+        const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
+        UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
+        UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
+//        const Pel *pOrgPel = &pOrg[uiTPelY * iStride + uiLPelX];  // Y pel CU pointer
+
+        // home directory
+        string homeDir = getenv("HOME");
+        // path for label text file // start
+        string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
+        string labelsTextFile = homeDir + secondPartLabelFile;
+        // path for label text file // end
+
+        // input & output node names // start
+        string input_layer = "input";
+        string output_layer = "logits/fdc_output_node";
+        // Hints from Dr.Tsang
+        //  if(!pcCU->getCUPelX() && !pcCU->getCUPelY() && uiDepth == 3 && pcCU->getPartitionSize(0) == SIZE_2Nx2N);
+        //  uiNumPU == 4 ? NxN : 2Nx2N
+        //  uiDepth == 0 ? 64 :
+        //  1 ? 32;
+        //  2: 16
+        //  3?8
+        // Dr.Tsang end
+
+        // pha.zx
+        // ==============
+        // ui_depth  cu_size
+        // 0        64
+        // 1        32
+        // 2        16
+        // 3        08
+        // ==============
+        // only do the prediction (for the single whole frame) when
+        // the CU position is at [0,0] && cu size is 8.
+        std::cout << uiLPelX << std::endl;
+        std::cout << uiTPelY << std::endl;
+        if (!uiLPelX && !uiTPelY && uiDepth == 3) {
+
+          std::cout << "hahah only once." << std::endl;
+
+          // input & output node names // end
+
+          // double for loop for looping thru the pixel blocks and then
+          // read tensor of shape [num_of_blks, width, height, channel]
+          // i.e.,
+
+          // - for video of size 1024*768:
+          //    read the pel data of blocks into
+          //    a tensor of shape [12288, 8, 8, 1]
+
+          // - for video of size 1920*1088
+          //    read the pel data of blks into
+          //    a tensor of shape [32640, 8, 8, 1]
+          const int iNumOfBlks = iStride * iTotalHeight / 8 / 8;
+
+          tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
+                                          tensorflow::TensorShape(
+                                            {iNumOfBlks, 8, 8, 1}
+                                          )
+          );
+          // input_tensor_mapped is
+          // - an interface to the data of ``input_tensor``
+          // - it is used to copy data into the ``input_tensor``
+          auto input_tensor_mapped = input_tensor.tensor<float, 4>();
+
+          // Get depth block luma values /////////////////////////////////////////////////////////////
+          Int blk_idx = -1;
+          for (int blk_y = 0; blk_y < iTotalHeight; blk_y += 8) {
+            for (int blk_x = 0; blk_x < iStride; blk_x += 8) {
+              blk_idx += 1;
+              const Pel *pOrgPelForOneBlk = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
+              for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                  input_tensor_mapped(blk_idx, row, col, 0) = pOrgPelForOneBlk[col];
+                }
+                pOrgPelForOneBlk += iStride;
+              }
+            }
+          }
+          // end of getting depth block luma values //////////////////////////////////////////////////
+
+          // starting time
+//        Double dResult2;
+//        clock_t lBefore2 = clock();
+
+          Status run_status = (*session)->Run({{input_layer, input_tensor}},
+                                              {output_layer}, {}, &outputs);
+
+          // ending time
+//        dResult2 = (Double)(clock()-lBefore2) / CLOCKS_PER_SEC;
+//        printf("\n Total Time: %12.3f sec.\n", dResult2);
+
+          if (!run_status.ok()) {
+            LOG(ERROR) << "Running model failed: " << run_status;
+            return;
+          }
+          std::cout << outputs[0].DebugString() << std::endl;
+          // now we have a tensor of size [17168, 32]
+          // we need to slice the single tensor of size [1, 32] out depending on cu position and cu size
+
+        }
+
+        if (uiDepth == 3) {
+          Int iSlicingIdx = -1;
+          for (int blk_y = 0; blk_y <= uiTPelY; blk_y += 8) {
+            for (int blk_x = 0; blk_x <= uiLPelX; blk_x += 8) {
+              iSlicingIdx += 1;
+            }
+          }
+
+          auto sliced_outputs = outputs[0].Slice(iSlicingIdx, iSlicingIdx + 1);
+          std::cout << sliced_outputs.DebugString() << std::endl;
+
+          // if current cu depth is 3, which means size is 8x8, then
+          // get top k labels *****
+          Status get_vec_status = GetTopLabelsIntoVec(sliced_outputs, vec, labelsTextFile);
+          if (!get_vec_status.ok()) {
+            LOG(ERROR) << "Running model failed: " << get_vec_status;
+            return;
+          }
+//       push back planar and DC modes
+          vec.push_back(0);
+          vec.push_back(1);
+        } else {
+          int i;
+          // push back planar and DC modes
+          vec.push_back(0);
+          vec.push_back(1);
+          // push top k mode index values into the vector
+          for (i = 2; i < 34; i += 1) {
+            vec.push_back(i);
+            // push back mode 34 if mode 2 is chosen
+            if (i == 2) {
+              vec.push_back(34);
+            }
+          }
+        }
+      }
+      // pha.zx end
       // use iterator to access the values
       // ******************************
       // A Few Notes on keyword ``auto``
