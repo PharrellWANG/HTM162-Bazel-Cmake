@@ -190,7 +190,9 @@ public:
   Void  compressPicInGOP (
     std::unique_ptr<tensorflow::Session> *session,
     Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,
-    std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid );
+    std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff,
+    const InputColourSpaceConversion snr_conversion,
+    const Bool printFrameMSE, Int iGOPid, std::vector<Tensor> & outputs );
 #else
   Void  compressGOP ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,
                       std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE );

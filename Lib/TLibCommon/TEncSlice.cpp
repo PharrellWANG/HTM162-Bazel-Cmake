@@ -648,7 +648,7 @@ Void TEncSlice::setSearchRange( TComSlice* pcSlice )
 
  \param pcPic    picture class
  */
-Void TEncSlice::precompressSlice( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic )
+Void TEncSlice::precompressSlice( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic, std::vector<Tensor> & outputs )
 {
   // if deltaQP RD is not used, simply return
   if ( m_pcCfg->getDeltaQpRD() == 0 )
@@ -712,7 +712,7 @@ Void TEncSlice::precompressSlice( std::unique_ptr<tensorflow::Session> *session,
     setUpLambda(pcSlice, m_vdRdPicLambda[uiQpIdx], m_viRdPicQp    [uiQpIdx]);
 
     // try compress
-    compressSlice   ( session, pcPic, true, m_pcCfg->getFastDeltaQp());
+    compressSlice   ( session, pcPic, true, m_pcCfg->getFastDeltaQp(), outputs);
 
 #if NH_3D_VSO
     Dist64 uiPicDist        = m_uiPicDist;
@@ -787,7 +787,7 @@ Void TEncSlice::calCostSliceI(TComPic* pcPic) // TODO: this only analyses the fi
 
 /** \param pcPic   picture class
  */
-Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic, const Bool bCompressEntireSlice, const Bool bFastDeltaQP )
+Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic, const Bool bCompressEntireSlice, const Bool bFastDeltaQP, std::vector<Tensor> & outputs)
 {
   // if bCompressEntireSlice is true, then the entire slice (not slice segment) is compressed,
   //   effectively disabling the slice-segment-mode.
@@ -1021,7 +1021,7 @@ Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session, TC
     }
 
     // run CTU trial encoder
-    m_pcCuEncoder->compressCtu( session, pCtu );
+    m_pcCuEncoder->compressCtu( session, pCtu, outputs );
 
 
     // All CTU decisions have now been made. Restore entropy coder to an initial stage, ready to make a true encode,

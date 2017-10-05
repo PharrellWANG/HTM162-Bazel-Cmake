@@ -247,17 +247,27 @@ public:
     std::unique_ptr<tensorflow::Session> *session,
     Bool bEos,
     TComPicYuv* pcPicYuvOrg,
-    TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
+    TComPicYuv* pcPicYuvTrueOrg,
+    const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
     TComList<TComPicYuv*>& rcListPicYuvRecOut,
-    std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Int gopId );
+    std::list<AccessUnit>& accessUnitsOut,
+    Int& iNumEncoded,
+    Int gopId,
+    std::vector<Tensor> & outputs);
 
   /// encode several number of pictures until end-of-sequence
-  Void encode(
-    std::unique_ptr<tensorflow::Session> *session,
-    Bool bEos, TComPicYuv* pcPicYuvOrg,
-    TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
-    TComList<TComPicYuv*>& rcListPicYuvRecOut,
-    std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Bool isTff, Int gopId);
+//  Void encode(
+//    std::unique_ptr<tensorflow::Session> *session,
+//    Bool bEos,
+//    TComPicYuv* pcPicYuvOrg,
+//    TComPicYuv* pcPicYuvTrueOrg,
+//    const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
+//    TComList<TComPicYuv*>& rcListPicYuvRecOut,
+//    std::list<AccessUnit>& accessUnitsOut,
+//    Int& iNumEncoded,
+//    Bool isTff,
+//    Int gopId
+//    );
 #else
   Void encode( Bool bEos,
                TComPicYuv* pcPicYuvOrg,

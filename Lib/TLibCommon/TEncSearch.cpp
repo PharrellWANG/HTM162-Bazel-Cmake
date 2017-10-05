@@ -2937,7 +2937,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #if NH_3D_ENC_DEPTH
                              , Bool        bOnlyIVP
 #endif
-                              )
+                             , std::vector<Tensor> & outputs)
 {
 #if NH_MV
   D_PRINT_INC_INDENT( g_traceModeCheck,  "estIntraPredLumaQT");
@@ -3043,7 +3043,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
       CandNum = 0;
 
       const TComRectangle &puRect=tuRecurseWithPU.getRect(COMPONENT_Y);
-      const UInt uiAbsPartIdx=tuRecurseWithPU.GetAbsPartIdxTU();
+      const UInt uiAbsPartIdx=tuRecurseWithPU.GetAbsPartIdxTU();   /// this means absolute idx in the given CU
 
       Pel* piOrg         = pcOrgYuv ->getAddr( COMPONENT_Y, uiAbsPartIdx );
       Pel* piPred        = pcPredYuv->getAddr( COMPONENT_Y, uiAbsPartIdx );
@@ -3069,7 +3069,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
       // create a vector to store int
       vector<int> vec;
 
-      std::vector<Tensor> outputs;
+//      std::vector<Tensor> outputs; // it has been defined outside
 
       if (!g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
         // starting time
@@ -3102,9 +3102,33 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         const Int iStride = pPic->getStride(COMPONENT_Y);      // Y width
         const Int iTotalHeight = pPic->getTotalHeight(COMPONENT_Y);      // Y height
         const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
+
         UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
         UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
+
+        UInt uiWidth = pcCU->getWidth(0) >> uiInitTrDepth;
+        UInt uiHeight = pcCU->getHeight(0) >> uiInitTrDepth;
+
+        UInt uiRPelX = uiLPelX + uiWidth - 1;
+        UInt uiBPelY = uiTPelY + uiHeight - 1;
 //        const Pel *pOrgPel = &pOrg[uiTPelY * iStride + uiLPelX];  // Y pel CU pointer
+
+        std::cout << std::endl;
+        std::cout << "/**now we want to inspect**/" << std::endl;
+
+        std::cout << "uiAbsPartIdx                    : " << uiAbsPartIdx << std::endl;
+        std::cout << "g_auiZscanToRaster[uiAbsPartIdx]: " << g_auiZscanToRaster[uiAbsPartIdx] << std::endl;
+
+        std::cout << "uiPartOffset                    : " << uiPartOffset << std::endl;
+
+        std::cout << "uiDepth                         : " << uiDepth << std::endl;
+        std::cout << "uiInitTrDepth                   : " << uiInitTrDepth << std::endl;
+        std::cout << g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]] << std::endl;
+        std::cout << g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]] << std::endl;
+        std::cout << uiLPelX << std::endl;
+        std::cout << uiRPelX << std::endl;
+        std::cout << uiTPelY << std::endl;
+        std::cout << uiBPelY << std::endl;
 
         // home directory
         string homeDir = getenv("HOME");
@@ -3134,12 +3158,10 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // 3        08
         // ==============
         // only do the prediction (for the single whole frame) when
-        // the CU position is at [0,0] && cu size is 8.
-        std::cout << uiLPelX << std::endl;
-        std::cout << uiTPelY << std::endl;
-        if (!uiLPelX && !uiTPelY && uiDepth == 3) {
+        // the CU position is at [0,0].
+        if (uiLPelX==0 && uiTPelY==0 && uiRPelX ==63 && uiBPelY == 63) {
 
-          std::cout << "hahah only once." << std::endl;
+          std::cout << "only once per frame." << std::endl;
 
           // input & output node names // end
 
@@ -3167,6 +3189,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           auto input_tensor_mapped = input_tensor.tensor<float, 4>();
 
           // Get depth block luma values /////////////////////////////////////////////////////////////
+          // todo: correct it
           Int blk_idx = -1;
           for (int blk_y = 0; blk_y < iTotalHeight; blk_y += 8) {
             for (int blk_x = 0; blk_x < iStride; blk_x += 8) {
@@ -3203,13 +3226,20 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
         }
 
-        if (uiDepth == 3) {
+        if (uiDepth == 3 && uiInitTrDepth == 0) {
           Int iSlicingIdx = -1;
+
           for (int blk_y = 0; blk_y <= uiTPelY; blk_y += 8) {
             for (int blk_x = 0; blk_x <= uiLPelX; blk_x += 8) {
               iSlicingIdx += 1;
             }
           }
+
+
+          UInt uiZScanAbsIdx = pcCU->getZorderIdxInCtu();
+          std::cout << "" << std::endl;
+          std::cout << "uiZScanAbsIdx : " << uiZScanAbsIdx << std::endl;
+          std::cout << "uiRasterAbsIdx: " << g_auiZscanToRaster[uiZScanAbsIdx] << std::endl;
 
           auto sliced_outputs = outputs[0].Slice(iSlicingIdx, iSlicingIdx + 1);
           std::cout << sliced_outputs.DebugString() << std::endl;

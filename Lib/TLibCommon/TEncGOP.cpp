@@ -1162,7 +1162,8 @@ Void TEncGOP::compressPicInGOP(
   std::unique_ptr<tensorflow::Session> *session,
   Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic,
   TComList<TComPicYuv*>& rcListPicYuvRecOut,  std::list<AccessUnit>& accessUnitsInGOP,
-  Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid )
+  Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid,
+  std::vector<Tensor> & outputs)
 #else
 Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic,
                            TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsInGOP,
@@ -1909,8 +1910,8 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
 
       for(UInt nextCtuTsAddr = 0; nextCtuTsAddr < numberOfCtusInFrame; )
       {
-        m_pcSliceEncoder->precompressSlice( session, pcPic );
-        m_pcSliceEncoder->compressSlice   ( session, pcPic, false, false );
+        m_pcSliceEncoder->precompressSlice( session, pcPic, outputs);
+        m_pcSliceEncoder->compressSlice   ( session, pcPic, false, false, outputs);
 
         const UInt curSliceSegmentEnd = pcSlice->getSliceSegmentCurEndCtuTsAddr();
         if (curSliceSegmentEnd < numberOfCtusInFrame)
