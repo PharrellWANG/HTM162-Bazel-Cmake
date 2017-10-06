@@ -344,7 +344,7 @@ int main(int argc, char *argv[]) {
   string graph = "/Users/Pharrell_WANG/resnet_logs_bak/size_08_log/resnet/graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
 #else
   //  string graph = "/Users/Pharrell_WANG/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
-  string graph_second_part = "/frozen_graphs/gpu_frozen_resnet_fdc_12288_8x8_133049.pb";
+  string graph_second_part = "/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
   string graph = homeDir + graph_second_part;
 #endif
   string labels_second_part = "/labels/labels_for_fdc_32_classes.txt";

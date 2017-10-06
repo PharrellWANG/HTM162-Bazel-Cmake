@@ -44,7 +44,7 @@
 #include <iomanip>
 
 #include "TAppEncTop.h"
-#include "../../Lib/TLibCommon/AnnexBwrite.h"
+#include "AnnexBwrite.h"
 
 using namespace std;
 #if ENABLE_RESNET
@@ -1100,8 +1100,27 @@ Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
 
         Int   iNumEncoded = 0;
 
+        // below vars are used in ```TEncSearch.cpp```
+        std::vector<Tensor> outputs;
+        std::map<int, std::map<int, int> > mp;
+        Tensor batchOfIndices;
+        Tensor batchOfScores;
+
         // call encoding function for one frame                               
-        m_acTEncTopList[layer]->encode(session, eos[layer], flush[layer] ? 0 : pcPicYuvOrg, flush[layer] ? 0 : &cPicYuvTrueOrg, snrCSC, *m_cListPicYuvRec[layer], outputAccessUnits, iNumEncoded, gopId );
+        m_acTEncTopList[layer]->encode(session,
+                                       eos[layer],
+                                       flush[layer] ? 0 : pcPicYuvOrg,
+                                       flush[layer] ? 0 : &cPicYuvTrueOrg,
+                                       snrCSC,
+                                       *m_cListPicYuvRec[layer],
+                                       outputAccessUnits,
+                                       iNumEncoded,
+                                       gopId,
+                                       outputs,
+                                       mp,
+                                       batchOfIndices,
+                                       batchOfScores
+        );
         xWriteOutput(bitstreamFile, iNumEncoded, outputAccessUnits, layer);
         outputAccessUnits.clear();
       }

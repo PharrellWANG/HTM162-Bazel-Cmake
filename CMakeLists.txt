@@ -11,11 +11,11 @@ target_link_libraries(TAppClassifier TensorflowCC::Shared)
 # config for single individual classifier: end
 
 set(SOURCE_FILES
-  App/TAppEncoder/encmain.cpp
-  App/TAppEncoder/TAppEncCfg.cpp
-  App/TAppEncoder/TAppEncCfg.h
-  App/TAppEncoder/TAppEncTop.cpp
-  App/TAppEncoder/TAppEncTop.h
+  Lib/TLibCommon/encmain.cpp
+  Lib/TLibCommon/TAppEncCfg.cpp
+  Lib/TLibCommon/TAppEncCfg.h
+  Lib/TLibCommon/TAppEncTop.cpp
+  Lib/TLibCommon/TAppEncTop.h
   Lib/TLibCommon/AccessUnit.h
   Lib/TLibCommon/AnnexBwrite.h
   Lib/TLibCommon/CommonDef.h

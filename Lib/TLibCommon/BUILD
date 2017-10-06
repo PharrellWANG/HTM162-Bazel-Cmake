@@ -60,8 +60,12 @@ cc_library(
             "TVideoIOYuv.cpp",
             "TDecSbac.cpp",
             "TDecEntropy.cpp",
+            "TAppEncTop.cpp",
+            "TAppEncCfg.cpp"
     		],
     hdrs = [
+            "TAppEncCfg.h",
+            "TAppEncTop.h",
             "TEncAnalyze.h",
             "TDecEntropy.h",
             "TDecBinCoder.h",
@@ -142,7 +146,17 @@ cc_library(
         "//tensorflow/cc:cc_ops",
         "//tensorflow/core:tensorflow",
     ],
-    visibility = [
-                "//HTM162/App/TAppEncoder:__pkg__",
-                ],
+#    visibility = [
+#                "//HTM162/App/TAppEncoder:TAppEncoder",
+#                ],
+)
+
+cc_binary(
+    name = "TAppEncoder",
+    srcs = ["encmain.cpp"],
+    deps = [
+        "//tensorflow/cc:cc_ops",
+        "//tensorflow/core:tensorflow",
+        ":TLibCommon",
+    ],
 )

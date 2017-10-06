@@ -38,15 +38,15 @@
 #ifndef __TAPPENCCFG__
 #define __TAPPENCCFG__
 
-#include "../../Lib/TLibCommon/CommonDef.h"
+#include "CommonDef.h"
 
-#include "../../Lib/TLibCommon/TEncCfg.h"
+#include "TEncCfg.h"
 #include <sstream>
 #include <vector>
 #if NH_3D
-#include "../../Lib/TLibCommon/TAppComCamPara.h"
-#include "../../Lib/TLibCommon/TRenModel.h"
-#include "../../Lib/TLibCommon/TRenModSetupStrParser.h"
+#include "TAppComCamPara.h"
+#include "TRenModel.h"
+#include "TRenModSetupStrParser.h"
 #endif
 #if ENABLE_RESNET
 #include "tensorflow/cc/ops/const_op.h"

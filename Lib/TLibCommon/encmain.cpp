@@ -38,7 +38,7 @@
 #include <time.h>
 #include <iostream>
 #include "TAppEncTop.h"
-#include "../../Lib/TLibCommon/program_options_lite.h"
+#include "program_options_lite.h"
 #if ENABLE_RESNET
 
 #define GetCurrentDir getcwd
@@ -88,7 +88,7 @@ Status LoadGraph(string graph_file_name,
 //! \ingroup TAppEncoder
 //! \{
 
-#include "../../Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 
 // ====================================================================================================================
 // Main function
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
 
   // path for the first graph
   string homeDir= getenv("HOME");
-  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk08x08_133049.pb";
+  string secPart = "/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
   string nameOfGraphOne = homeDir + secPart;
   string graph = nameOfGraphOne;
   // end first graph

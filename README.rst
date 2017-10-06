@@ -1,12 +1,58 @@
 HTM v16.2 with ResNet for Fast Intra Coding
 ===========================================
 
-This project is standing on the shoulder of *HTM v16.2*.
+This project is
 
-This project is making use of **Bazel** building and **CMake** building at the same time.
+- building a deep learning powered HTM encoder.
+- standing on the shoulder of *HTM v16.2*.
+- making use of **Bazel** building and **CMake** building at the same time.
 
-FAQs for every one
-------------------
+Memos
+-----
+
+All the source codes are inside ``TLibCommon`` folder (due to Bazel cycle dependency).
+
+How to compile with SSE4.2 and AVX optimizations using Bazel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use below flags when compiling binary:
+
+.. code-block:: bash
+
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:HAHA
+
+
+E.G., For our **TAppClassifier**:
+
+Using GPU
+^^^^^^^^^
+.. note:: Before running below commands for building with GPU support, you might need to run ``./configure`` for Tensorflow again.
+
+.. code-block:: bash
+
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/App/TAppClassifier/...
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/Lib/TLibCommon/...
+
+This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU,
+AND parallel computing offered by GPU).
+
+.. warning:: If you don't have any parallel computing when doing predictions, then the GPU will help nothing even you
+                compiled your binary with GPU support. (E.G., when doing the same non-parallel computing,
+                CPU of *Intel core i7* can be faster than GPU of *NVIDIA GTX980*. More specific, running 12288
+                predictions for 8x8 size images on Intel core i7 can be 10 seconds faster than on GTX980.)
+                Detailed example please refer to:
+                http://fast-depth-coding.readthedocs.io/en/latest/tf-speed.html#conclusions
+
+Using Only CPU
+^^^^^^^^^^^^^^
+.. code-block:: bash
+
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 -k //HTM162/APP/TAppClassifier/...
+
+This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU).
+
+FAQs
+----
 
 1. What is HTM?
 
@@ -72,23 +118,14 @@ FAQs for every one
 
     - *Self-Contained binary* which is executable anywhere as long as you are on the same OS [offered by Bazel].
 
-
-FAQs for programmers
---------------------
-
-1. Why you merged the libraries such as ``TAppCommon``, ``TLibCommon``, ``TLibRenderer`` and ``libmd5`` etc., into a single folder?
+6. Why you merged the libraries such as ``TAppCommon``, ``TLibCommon``, ``TLibRenderer`` and ``libmd5`` etc., into a single folder?
 
     Because without doing this, you won't be able to use Bazel. Bazel doesn't allow the cycle dependency issue.
     E.g., ``TLibCommon`` is the dependency of ``TAppCommon``, and vice versa. This is introducing a cycle dependency
     issue to Bazel. And Bazel will not allow you to compile your binary before you solve this issue. For solving this
     cycle dependency issue, we have to merge the libs together.
 
-
-Notes
------
-
-**Build** vs **Compile**
-~~~~~~~~~~~~~~~~~~~~~~~~
+7. **Build** vs **Compile**
 
     "Building" is a fairly general term, and it can refer to anything that is needed to go
     from editable source material (source code, scripts, raw data files, etc.) to a shippable
@@ -110,42 +147,6 @@ Notes
     to the binary during runtime. Other machines will not have such shared libs. Hence it is not shippable; BUT,
     if we use Bazel, all the source codes related to the project are built into a single binary. No dependency to
     extra shared lib. Hence the building results will be a shippable product.)
-
-How to compile with SSE4.2 and AVX optimizations using Bazel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Use below flags when compiling binary:
-
-.. code-block:: bash
-
-    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:HAHA
-
-
-E.G., For our **TAppClassifier**:
-
-Using GPU
-^^^^^^^^^
-.. code-block:: bash
-
-    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/APP/TAppClassifier/...
-
-This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU,
-AND parallel computing offered by GPU).
-
-.. warning:: If you don't have any parallel computing when doing predictions, then the GPU will help nothing even you
-                compiled your binary with GPU support. (E.G., when doing the same non-parallel computing,
-                CPU of *Intel core i7* can be faster than GPU of *NVIDIA GTX980*. More specific, running 12288
-                predictions for 8x8 size images on Intel core i7 can be 10 seconds faster than on GTX980.)
-                Detailed example please refer to:
-                http://fast-depth-coding.readthedocs.io/en/latest/tf-speed.html#conclusions
-
-Using Only CPU
-^^^^^^^^^^^^^^
-.. code-block:: bash
-
-    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 -k //HTM162/APP/TAppClassifier/...
-
-This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU).
 
 Branches
 --------

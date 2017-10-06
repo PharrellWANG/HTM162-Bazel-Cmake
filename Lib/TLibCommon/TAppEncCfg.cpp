@@ -41,10 +41,10 @@
 #include <cstring>
 #include <string>
 #include <limits>
-#include "../../Lib/TLibCommon/TComRom.h"
-#include "../../App/TAppEncoder/TAppEncCfg.h"
-#include "../../Lib/TLibCommon/TEncRateCtrl.h"
-#include "../../Lib/TLibCommon/program_options_lite.h"
+#include "TComRom.h"
+#include "TAppEncCfg.h"
+#include "TEncRateCtrl.h"
+#include "program_options_lite.h"
 #ifdef WIN32
 #define strdup _strdup
 #endif
