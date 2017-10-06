@@ -3168,7 +3168,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // the CU position is at [0,0].
         if (uiLPelX==0 && uiTPelY==0 && uiRPelX ==63 && uiBPelY == 63) {
 
-          std::cout << "I shall appear only once per depth frame." << std::endl;
+//          std::cout << "I shall appear only once per depth frame." << std::endl;
 
           // input & output node names // end
 
@@ -3227,22 +3227,23 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           }
           // end of getting depth block luma values //////////////////////////////////////////////////
 
-          // starting time
-//        Double dResult2;
-//        clock_t lBefore2 = clock();
+          /// starting time
+//          std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
 
           Status run_status = (*session)->Run({{input_layer, input_tensor}},
                                               {output_layer}, {}, &outputs);
 
-          // ending time
-//        dResult2 = (Double)(clock()-lBefore2) / CLOCKS_PER_SEC;
-//        printf("\n Total Time: %12.3f sec.\n", dResult2);
+//          std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
+//          printf("[real-world time] Running %i samples in 1 session took %12.9f seconds \n", iNumOfBlks, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
+//          printf("[real-world time] Every sample in this session took %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / iNumOfBlks);
+//          std::cout << std::endl;
+          /// ending time
 
           if (!run_status.ok()) {
             LOG(ERROR) << "Running model failed: " << run_status;
             return;
           }
-          std::cout << outputs[0].DebugString() << std::endl;
+//          std::cout << outputs[0].DebugString() << std::endl;
           // now we have a tensor of size [17168, 32]
           // we need to slice the single tensor of size [1, 32] out depending on cu position and cu size
 
@@ -3257,10 +3258,18 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //          std::cout << "uiRasterAbsIdx: " << g_auiZscanToRaster[uiZScanAbsIdx] << std::endl;
 
           auto sliced_outputs = outputs[0].Slice(iSlicingIdx, iSlicingIdx + 1);
-          std::cout << sliced_outputs.DebugString() << std::endl;
+//          std::cout << sliced_outputs.DebugString() << std::endl;
 
           // get and push top k mode index values into the vector
+          /// starting time
+//          std::chrono::system_clock::time_point time_before_get_top_labels = std::chrono::system_clock::now();
+
           Status get_vec_status = GetTopLabelsIntoVec(sliced_outputs, vec, labelsTextFile);
+//          std::chrono::system_clock::time_point time_after_get_top_labels  = std::chrono::system_clock::now();
+//          printf("[real-world time] get top label for 1 CU: %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after_get_top_labels - time_before_get_top_labels).count() / 1000000.0);
+//          std::cout << std::endl;
+          /// ending time
+
           if (!get_vec_status.ok()) {
             LOG(ERROR) << "Running model failed: " << get_vec_status;
             return;
