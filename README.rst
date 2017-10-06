@@ -1,14 +1,14 @@
 HTM v16.2 with ResNet for Fast Intra Coding
 ===========================================
 
-This project is standing on the shoulder of *HTM v16.2*.
+This project is
 
-This project is making use of **Bazel** building and **CMake** building at the same time.
+- building a deep learning powered HTM encoder.
+- standing on the shoulder of *HTM v16.2*.
+- making use of **Bazel** building and **CMake** building at the same time.
 
-Notes
+Memos
 -----
-
-This project is building a deep learning powered HTM encoder.
 
 All the source codes are inside ``TLibCommon`` folder (due to Bazel cycle dependency).
 
