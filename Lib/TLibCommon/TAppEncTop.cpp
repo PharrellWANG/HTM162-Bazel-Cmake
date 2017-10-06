@@ -44,7 +44,7 @@
 #include <iomanip>
 
 #include "TAppEncTop.h"
-#include "../../Lib/TLibCommon/AnnexBwrite.h"
+#include "AnnexBwrite.h"
 
 using namespace std;
 #if ENABLE_RESNET

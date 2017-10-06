@@ -38,7 +38,7 @@
 #include <time.h>
 #include <iostream>
 #include "TAppEncTop.h"
-#include "../../Lib/TLibCommon/program_options_lite.h"
+#include "program_options_lite.h"
 #if ENABLE_RESNET
 
 #define GetCurrentDir getcwd
@@ -88,7 +88,7 @@ Status LoadGraph(string graph_file_name,
 //! \ingroup TAppEncoder
 //! \{
 
-#include "../../Lib/TLibCommon/Debug.h"
+#include "Debug.h"
 
 // ====================================================================================================================
 // Main function
