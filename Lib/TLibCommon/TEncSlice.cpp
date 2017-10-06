@@ -651,7 +651,9 @@ Void TEncSlice::setSearchRange( TComSlice* pcSlice )
 Void TEncSlice::precompressSlice(std::unique_ptr<tensorflow::Session> *session,
                                  TComPic* pcPic,
                                  std::vector<Tensor> & outputs,
-                                 std::map<int, std::map<int, int> > &mp
+                                 std::map<int, std::map<int, int> > &mp,
+                                 Tensor &batchOfIndices,
+                                 Tensor &batchOfScores
 )
 {
   // if deltaQP RD is not used, simply return
@@ -716,7 +718,7 @@ Void TEncSlice::precompressSlice(std::unique_ptr<tensorflow::Session> *session,
     setUpLambda(pcSlice, m_vdRdPicLambda[uiQpIdx], m_viRdPicQp    [uiQpIdx]);
 
     // try compress
-    compressSlice   ( session, pcPic, true, m_pcCfg->getFastDeltaQp(), outputs, mp);
+    compressSlice   ( session, pcPic, true, m_pcCfg->getFastDeltaQp(), outputs, mp, batchOfIndices, batchOfScores);
 
 #if NH_3D_VSO
     Dist64 uiPicDist        = m_uiPicDist;
@@ -796,7 +798,9 @@ Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session,
                                const Bool bCompressEntireSlice,
                                const Bool bFastDeltaQP,
                                std::vector<Tensor> & outputs,
-                               std::map<int, std::map<int, int> > &mp
+                               std::map<int, std::map<int, int> > &mp,
+                               Tensor &batchOfIndices,
+                               Tensor &batchOfScores
 )
 {
   // if bCompressEntireSlice is true, then the entire slice (not slice segment) is compressed,
@@ -1031,7 +1035,7 @@ Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session,
     }
 
     // run CTU trial encoder
-    m_pcCuEncoder->compressCtu( session, pCtu, outputs, mp );
+    m_pcCuEncoder->compressCtu( session, pCtu, outputs, mp, batchOfIndices, batchOfScores );
 
 
     // All CTU decisions have now been made. Restore entropy coder to an initial stage, ready to make a true encode,

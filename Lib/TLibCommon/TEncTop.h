@@ -254,7 +254,10 @@ public:
     Int& iNumEncoded,
     Int gopId,
     std::vector<Tensor> & outputs,
-    std::map<int, std::map<int, int> > &mp);
+    std::map<int, std::map<int, int> > &mp,
+    Tensor &batchOfIndices,
+    Tensor &batchOfScores
+  );
 
   /// encode several number of pictures until end-of-sequence
 //  Void encode(

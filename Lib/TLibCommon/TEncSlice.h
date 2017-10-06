@@ -146,7 +146,9 @@ public:
   Void    precompressSlice    ( std::unique_ptr<tensorflow::Session> *session,
                                 TComPic* pcPic,
                                 std::vector<Tensor> & outputs,
-                                std::map<int, std::map<int, int> > &mp
+                                std::map<int, std::map<int, int> > &mp,
+                                Tensor &batchOfIndices,
+                                Tensor &batchOfScores
   );      ///< precompress slice for multi-loop slice-level QP opt.
   Void    compressSlice (
     std::unique_ptr<tensorflow::Session> *session,
@@ -154,7 +156,9 @@ public:
     const Bool bCompressEntireSlice,
     const Bool bFastDeltaQP,
     std::vector<Tensor> & outputs,
-    std::map<int, std::map<int, int> > &mp
+    std::map<int, std::map<int, int> > &mp,
+    Tensor &batchOfIndices,
+    Tensor &batchOfScores
   );      ///< analysis stage of slice
   Void    calCostSliceI       ( TComPic* pcPic );
   Void    encodeSlice         ( TComPic* pcPic, TComOutputBitstream* pcSubstreams, UInt &numBinsCoded );

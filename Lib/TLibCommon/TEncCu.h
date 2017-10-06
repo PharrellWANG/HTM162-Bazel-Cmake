@@ -147,7 +147,9 @@ public:
     std::unique_ptr<tensorflow::Session> *session,
     TComDataCU*  pCtu,
     std::vector<Tensor> & outputs,
-    std::map<int, std::map<int, int> > &mp
+    std::map<int, std::map<int, int> > &mp,
+    Tensor &batchOfIndices,
+    Tensor &batchOfScores
   );
 
   /// CTU encoding function
@@ -169,6 +171,8 @@ protected:
                               const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug),
                               std::vector<Tensor> & outputs,
                               std::map<int, std::map<int, int> > &mp,
+                              Tensor &batchOfIndices,
+                              Tensor &batchOfScores,
                               PartSize eParentPartSize = NUMBER_OF_PART_SIZES);
 #else
   Void  xCompressCU         ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth        );
@@ -206,7 +210,9 @@ protected:
     , Bool bOnlyIVP
 #endif
     , std::vector<Tensor> & outputs,
-    std::map<int, std::map<int, int> > &mp
+    std::map<int, std::map<int, int> > &mp,
+    Tensor & batchOfIndices,
+    Tensor & batchOfScores
   );
   Void  xCheckDQP           ( TComDataCU*  pcCU );
 

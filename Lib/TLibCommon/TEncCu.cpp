@@ -309,7 +309,9 @@ Void TEncCu::compressCtu(
   std::unique_ptr<tensorflow::Session> *session,
   TComDataCU* pCtu,
   std::vector<Tensor> & outputs,
-  std::map<int, std::map<int, int> > &mp
+  std::map<int, std::map<int, int> > &mp,
+  Tensor & batchOfIndices,
+  Tensor & batchOfScores
 )
 {
   // initialize CU data
@@ -330,7 +332,15 @@ Void TEncCu::compressCtu(
   // analysis of CU
   DEBUG_STRING_NEW(sDebug)
 
-  xCompressCU( session, m_ppcBestCU[0], m_ppcTempCU[0], 0 DEBUG_STRING_PASS_INTO(sDebug), outputs, mp );
+  xCompressCU( session,
+               m_ppcBestCU[0],
+               m_ppcTempCU[0],
+               0 DEBUG_STRING_PASS_INTO(sDebug),
+               outputs,
+               mp,
+               batchOfIndices,
+               batchOfScores
+  );
   DEBUG_STRING_OUTPUT(std::cout, sDebug)
 
 #if ADAPTIVE_QP_SELECTION
@@ -448,6 +458,8 @@ Void TEncCu::xCompressCU( std::unique_ptr<tensorflow::Session> *session,
                           const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug_),
                           std::vector<Tensor> & outputs,
                           std::map<int, std::map<int, int> > &mp,
+                          Tensor & batchOfIndices,
+                          Tensor & batchOfScores,
                           PartSize eParentPartSize)
 #else
 Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth )
@@ -1162,7 +1174,13 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
             }
             if( bUseIVP )
             {
-              xCheckRDCostIntra( session, rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug), bOnlyIVP, outputs, mp );
+              xCheckRDCostIntra( session, rpcBestCU,
+                                 rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug),
+                                 bOnlyIVP, outputs,
+                                 mp,
+                                 batchOfIndices,
+                                 batchOfScores
+              );
 #else
           xCheckRDCostIntra( rpcBestCU, rpcTempCU, SIZE_2Nx2N DEBUG_STRING_PASS_INTO(sDebug) );
 #endif
@@ -1184,7 +1202,12 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
             if( rpcTempCU->getWidth(0) > ( 1 << sps.getQuadtreeTULog2MinSize() ) )
             {
 #if NH_3D_ENC_DEPTH
-              xCheckRDCostIntra( session, rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug), bOnlyIVP, outputs, mp );
+              xCheckRDCostIntra( session, rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug),
+                                 bOnlyIVP, outputs,
+                                 mp,
+                                 batchOfIndices,
+                                 batchOfScores
+              );
 #else
               xCheckRDCostIntra( rpcBestCU, rpcTempCU, SIZE_NxN DEBUG_STRING_PASS_INTO(sDebug)   );
 #endif
@@ -1345,11 +1368,11 @@ Void TEncCu::xCompressCU( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const 
           DEBUG_STRING_NEW(sChild)
           if ( !(rpcBestCU->getTotalCost()!=MAX_DOUBLE && rpcBestCU->isInter(0)) )
           {
-            xCompressCU( session, pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), outputs, mp, NUMBER_OF_PART_SIZES);
+            xCompressCU( session, pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), outputs, mp, batchOfIndices, batchOfScores , NUMBER_OF_PART_SIZES);
           }
           else
           {
-            xCompressCU( session, pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), outputs, mp, rpcBestCU->getPartitionSize(0));
+            xCompressCU( session, pcSubBestPartCU, pcSubTempPartCU, uhNextDepth DEBUG_STRING_PASS_INTO(sChild), outputs, mp, batchOfIndices, batchOfScores, rpcBestCU->getPartitionSize(0));
           }
           DEBUG_STRING_APPEND(sTempDebug, sChild)
 #else
@@ -2994,7 +3017,9 @@ Void TEncCu::xCheckRDCostIntra( std::unique_ptr<tensorflow::Session> *session,
                               , Bool bOnlyIVP
 #endif
                               , std::vector<Tensor> & outputs,
-                                std::map<int, std::map<int, int> > &mp
+                                std::map<int, std::map<int, int> > &mp,
+                                Tensor & batchOfIndices,
+                                Tensor & batchOfScores
 )
 {
   DEBUG_STRING_NEW(sTest)
@@ -3040,7 +3065,10 @@ Void TEncCu::xCheckRDCostIntra( std::unique_ptr<tensorflow::Session> *session,
 #if NH_3D_ENC_DEPTH
                                     , bOnlyIVP
 #endif
-                                    , outputs, mp);
+                                    , outputs, mp,
+                                      batchOfIndices,
+                                      batchOfScores
+  );
 
   m_ppcRecoYuvTemp[uiDepth]->copyToPicComponent(COMPONENT_Y, rpcTempCU->getPic()->getPicYuvRec(), rpcTempCU->getCtuRsAddr(), rpcTempCU->getZorderIdxInCtu() );
 

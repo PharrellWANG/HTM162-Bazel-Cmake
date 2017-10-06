@@ -202,7 +202,9 @@ public:
                                 , Bool        bOnlyIVP
 #endif
                                 , std::vector<Tensor> & outputs,
-                                  std::map<int, std::map<int, int> > &mp
+                                  std::map<int, std::map<int, int> > &mp,
+                                  Tensor & batchOfIndices,
+                                  Tensor & batchOfScores
   );
 
   Void  estIntraPredChromaQT    ( TComDataCU* pcCU,

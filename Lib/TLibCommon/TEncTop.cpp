@@ -438,7 +438,10 @@ Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session,
                      Int& iNumEncoded,
                      Int gopId,
                      std::vector<Tensor> &outputs,
-                     std::map<int, std::map<int, int> > &mp)
+                     std::map<int, std::map<int, int> > &mp,
+                     Tensor & batchOfIndices,
+                     Tensor & batchOfScores
+)
 {
 #else
 Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded )
@@ -496,7 +499,10 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
                                  m_printFrameMSE,
                                  gopId,
                                  outputs,
-                                 mp);
+                                 mp,
+                                 batchOfIndices,
+                                 batchOfScores
+  );
 
   if( gopId + 1 == m_cGOPEncoder.getGOPSize() )
   {

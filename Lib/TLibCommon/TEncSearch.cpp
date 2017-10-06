@@ -48,7 +48,7 @@
 #include <map>
 
 #if ENABLE_RESNET
-bool g_bUseLearnedResnetModel = false;
+bool g_bUseLearnedResnetModel = 1;
 #include "tensorflow/cc/ops/const_op.h"
 #include "tensorflow/cc/ops/image_ops.h"
 #include "tensorflow/cc/ops/standard_ops.h"
@@ -89,15 +89,13 @@ Status ReadLabelsFile(string file_name, std::vector<string> *result,
 
 //#pragma clang diagnostic pop
 
-// Analyzes the output of the Inception graph to retrieve the highest scores and
-// their positions in the tensor, which correspond to categories.
-Status GetTopLabels(const Tensor &outputs, int how_many_labels,
+Status GetTopLabelsForBatch(vector<Tensor> & outputs, int how_many_labels,
                     Tensor *indices, Tensor *scores) {
   auto root = tensorflow::Scope::NewRootScope();
   using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
 
   string output_name = "top_k";
-  TopK(root.WithOpName(output_name), outputs, how_many_labels);
+  TopK(root.WithOpName(output_name), outputs[0], how_many_labels);
   // This runs the GraphDef network definition that we've just constructed, and
   // returns the results in the output tensors.
   tensorflow::GraphDef graph;
@@ -106,6 +104,7 @@ Status GetTopLabels(const Tensor &outputs, int how_many_labels,
   std::unique_ptr<tensorflow::Session> session(
     tensorflow::NewSession(tensorflow::SessionOptions()));
   TF_RETURN_IF_ERROR(session->Create(graph));
+
   // The TopK node returns two outputs, the scores and their original indices,
   // so we have to append :0 and :1 to specify them both.
   std::vector<Tensor> out_tensors;
@@ -117,38 +116,66 @@ Status GetTopLabels(const Tensor &outputs, int how_many_labels,
   return Status::OK();
 }
 
-Status GetTopLabelsIntoVec(
-  const Tensor &outputs,
-  vector<int> &vec,
-  string labels_file_name) {
+// Analyzes the output of the Inception graph to retrieve the highest scores and
+// their positions in the tensor, which correspond to categories.
+//Status GetTopLabels(const Tensor &outputs, int how_many_labels,
+//                    Tensor *indices, Tensor *scores) {
+//  auto root = tensorflow::Scope::NewRootScope();
+//  using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
+//
+//  string output_name = "top_k";
+//  TopK(root.WithOpName(output_name), outputs, how_many_labels);
+//  // This runs the GraphDef network definition that we've just constructed, and
+//  // returns the results in the output tensors.
+//  tensorflow::GraphDef graph;
+//  TF_RETURN_IF_ERROR(root.ToGraphDef(&graph));
+//
+//  std::unique_ptr<tensorflow::Session> session(
+//    tensorflow::NewSession(tensorflow::SessionOptions()));
+//  TF_RETURN_IF_ERROR(session->Create(graph));
+//  // The TopK node returns two outputs, the scores and their original indices,
+//  // so we have to append :0 and :1 to specify them both.
+//  std::vector<Tensor> out_tensors;
+//  TF_RETURN_IF_ERROR(
+//    session->Run({}, {output_name + ":0", output_name + ":1"},
+//                 {}, &out_tensors));
+//  *scores = out_tensors[0];
+//  *indices = out_tensors[1];
+//  return Status::OK();
+//}
 
-  std::vector<string> labels;
-  size_t label_count;
-
-  Status read_labels_status =
-    ReadLabelsFile(labels_file_name, &labels, &label_count);
-
-  const int how_many_labels = std::min(16, static_cast<int>(label_count));
-  Tensor indices;
-  Tensor scores;
-
-  TF_RETURN_IF_ERROR(
-    GetTopLabels(outputs, how_many_labels, &indices, &scores)
-  );
-  tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
-  tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
-  for (int pos = 0; pos < how_many_labels; ++pos) {
-    const int label_index = indices_flat(pos);
-    vec.push_back(label_index+2);
-    if (label_index == 0) {
-      vec.push_back(34);
-    }
-//    const float score = scores_flat(pos);
-//    LOG(INFO) << labels[label_index] << " : "
-//              << score;
-  }
-  return Status::OK();
-}
+//Status GetTopLabelsIntoVec(
+//  const Tensor &outputs,
+//  vector<int> &vec,
+//  string labels_file_name) {
+//
+//  std::vector<string> labels;
+//  size_t label_count;
+//
+//  Status read_labels_status =
+//    ReadLabelsFile(labels_file_name, &labels, &label_count);
+//
+//  const int how_many_labels = std::min(16, static_cast<int>(label_count));
+//  Tensor indices;
+//  Tensor scores;
+//
+//  TF_RETURN_IF_ERROR(
+//    GetTopLabels(outputs, how_many_labels, &indices, &scores)
+//  );
+//  tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
+//  tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
+//  for (int pos = 0; pos < how_many_labels; ++pos) {
+//    const int label_index = indices_flat(pos);
+//    vec.push_back(label_index+2);
+//    if (label_index == 0) {
+//      vec.push_back(34);
+//    }
+////    const float score = scores_flat(pos);
+////    LOG(INFO) << labels[label_index] << " : "
+////              << score;
+//  }
+//  return Status::OK();
+//}
 
 #endif
 //! \ingroup TLibEncoder
@@ -2939,7 +2966,9 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
                              , Bool        bOnlyIVP
 #endif
                              , std::vector<Tensor> & outputs,
-                               std::map<int, std::map<int, int> > &mp
+                               std::map<int, std::map<int, int> > &mp,
+                               Tensor & batchOfIndices,
+                               Tensor & batchOfScores
 )
 {
 #if NH_MV
@@ -3063,20 +3092,10 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
       distParam.bApplyWeight = false;
 #if ENABLE_RESNET
-      // if not depth map, skip resnet prediction
-      if (!m_pcEncCfg->getIsDepth()) {
-        g_bUseLearnedResnetModel = 0;
-      } else {
-        g_bUseLearnedResnetModel = 1;
-      }
       // create a vector to store int
       vector<int> vec;
-
-      if (!g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
-        // starting time
-//        Double dResult1;
-//        clock_t lBefore1 = clock();
-
+      // if not depth map, skip resnet prediction
+      if (!m_pcEncCfg->getIsDepth() && g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
         int i;
         // push back planar and DC modes
         vec.push_back(0);
@@ -3089,10 +3108,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             vec.push_back(34);
           }
         }
-
-//        dResult1 = (Double)(clock()-lBefore1) / CLOCKS_PER_SEC;
-//        printf("\n Total Time: %12.9f sec.\n", dResult1);
-
       } else { // else if using model prediction *********************************************************************
         TComSlice *const pcSlice = pcCU->getSlice();
         const UInt maxCUWidth = sps.getMaxCUWidth();
@@ -3147,6 +3162,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // input & output node names // start
         string input_layer = "input";
         string output_layer = "logits/fdc_output_node";
+
+        Int iNumOfK = 16;
         // Hints from Dr.Tsang
         //  if(!pcCU->getCUPelX() && !pcCU->getCUPelY() && uiDepth == 3 && pcCU->getPartitionSize(0) == SIZE_2Nx2N);
         //  uiNumPU == 4 ? NxN : 2Nx2N
@@ -3167,25 +3184,16 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // only do the prediction (for the single whole frame) when
         // the CU position is at [0,0].
         if (uiLPelX==0 && uiTPelY==0 && uiRPelX ==63 && uiBPelY == 63) {
-
 //          std::cout << "I shall appear only once per depth frame." << std::endl;
-
-          // input & output node names // end
-
-          // double for loop for looping thru the pixel blocks and then
           // read tensor of shape [num_of_blks, width, height, channel]
           // i.e.,
-
           // - for video of size 1024*768:
           //    read the pel data of blocks into
           //    a tensor of shape [12288, 8, 8, 1]
-
           // - for video of size 1920*1088
           //    read the pel data of blks into
           //    a tensor of shape [32640, 8, 8, 1]
           const int iNumOfBlks = uiPicWidth * uiPicHeight / 8 / 8;
-//          std::cout << iNumOfBlks << std::endl;
-
           tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
                                           tensorflow::TensorShape(
                                             {iNumOfBlks, 8, 8, 1}
@@ -3197,15 +3205,12 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           auto input_tensor_mapped = input_tensor.tensor<float, 4>();
 
           // Get depth block luma values /////////////////////////////////////////////////////////////
-          // todo: correct it
-
           // a map using a 2d array of ints as a key, and another int as the value
           // for storing the idx for CU for fdc // pha.zx
           // mp[uiLPelX][uiTPelY] = Idx
           // e.g., uiLPelX = 0, uiTPelY = 8, Idx = 1, we will use // mp[0][8] = 1; note that Idx start from 0 //
           // One depth frame one mp var, hence this definition (std::map<int, std::map<int, int> > mp;)
           // is before the ``encode(...)`` func in ```TAppEncTop.cpp```. Just like ``outputs``
-
           Int blk_idx = -1;
           // blk_y <=> uiTPelY
           // blk_x <=> uiLPelX
@@ -3226,12 +3231,24 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             }
           }
           // end of getting depth block luma values //////////////////////////////////////////////////
-
           /// starting time
 //          std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
-
           Status run_status = (*session)->Run({{input_layer, input_tensor}},
                                               {output_layer}, {}, &outputs);
+
+//          std::cout << outputs[0].DebugString() << std::endl;
+//          std::cout << outputs[0].dims() << std::endl;
+//          auto sliced_outputs_eval = outputs[0].Slice(0, 1);
+//          std::cout << sliced_outputs_eval.DebugString() << std::endl;
+//          auto flatted = sliced_outputs_eval.flat<Float>();
+//          std::cout << flatted.rank() << std::endl;
+//          std::cout << flatted.size() << std::endl;
+//          std::cout << flatted.data() << std::endl;
+//          std::cout << flatted(0) << std::endl;
+//          std::cout << flatted(31) << std::endl;
+//          std::cout << flatted.size() << std::endl;
+//          std::cout << flatted.data() << std::endl;
+//          std::cout<< outputs[0].vec<double>()(2) << std::endl;
 
 //          std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
 //          printf("[real-world time] Running %i samples in 1 session took %12.9f seconds \n", iNumOfBlks, std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
@@ -3243,37 +3260,46 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             LOG(ERROR) << "Running model failed: " << run_status;
             return;
           }
-//          std::cout << outputs[0].DebugString() << std::endl;
-          // now we have a tensor of size [17168, 32]
-          // we need to slice the single tensor of size [1, 32] out depending on cu position and cu size
 
+          Status get_top_label_status = GetTopLabelsForBatch(outputs, iNumOfK, &batchOfIndices, &batchOfScores);
+          if (!get_top_label_status.ok()) {
+            LOG(ERROR) << "get_top_label failed: " << get_top_label_status;
+            return;
+          }
         }
 
         if (uiDepth == 3 && uiInitTrDepth == 0) {
           Int iSlicingIdx = mp[uiLPelX][uiTPelY];
+          std::cout << batchOfIndices.DebugString() << std::endl;
+          std::cout << batchOfScores.DebugString() << std::endl;
 
+          Tensor indices = batchOfIndices.Slice(iSlicingIdx, iSlicingIdx + 1);
+          Tensor scores = batchOfScores.Slice(iSlicingIdx, iSlicingIdx + 1);
+
+//          tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
+          tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
+          for (int pos = 0; pos < iNumOfK; ++pos) {
+            const int label_index = indices_flat(pos);
+            vec.push_back(label_index + 2);
+            if (label_index == 0) {
+              vec.push_back(34);
+            }
+//          const float score = scores_flat(pos);
+//          LOG(INFO) << labels[label_index] << " : "
+//                    << score;
+          }
+//        METHOD OF getting zscan idx and raster scan idx
 //          UInt uiZScanAbsIdx = pcCU->getZorderIdxInCtu();
 //          std::cout << "" << std::endl;
 //          std::cout << "uiZScanAbsIdx : " << uiZScanAbsIdx << std::endl;
 //          std::cout << "uiRasterAbsIdx: " << g_auiZscanToRaster[uiZScanAbsIdx] << std::endl;
-
-          auto sliced_outputs = outputs[0].Slice(iSlicingIdx, iSlicingIdx + 1);
-//          std::cout << sliced_outputs.DebugString() << std::endl;
-
-          // get and push top k mode index values into the vector
           /// starting time
 //          std::chrono::system_clock::time_point time_before_get_top_labels = std::chrono::system_clock::now();
-
-          Status get_vec_status = GetTopLabelsIntoVec(sliced_outputs, vec, labelsTextFile);
+//          !!! DO_SOMETHING_HERE !!!
 //          std::chrono::system_clock::time_point time_after_get_top_labels  = std::chrono::system_clock::now();
 //          printf("[real-world time] get top label for 1 CU: %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after_get_top_labels - time_before_get_top_labels).count() / 1000000.0);
 //          std::cout << std::endl;
           /// ending time
-
-          if (!get_vec_status.ok()) {
-            LOG(ERROR) << "Running model failed: " << get_vec_status;
-            return;
-          }
           // push back planar and DC modes
           vec.push_back(0);
           vec.push_back(1);
