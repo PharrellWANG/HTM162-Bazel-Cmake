@@ -45,6 +45,7 @@
 #include <limits>
 #include <vector>
 #include <fstream>
+#include <map>
 
 #if ENABLE_RESNET
 bool g_bUseLearnedResnetModel = false;
@@ -2937,7 +2938,9 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #if NH_3D_ENC_DEPTH
                              , Bool        bOnlyIVP
 #endif
-                             , std::vector<Tensor> & outputs)
+                             , std::vector<Tensor> & outputs,
+                               std::map<int, std::map<int, int> > &mp
+)
 {
 #if NH_MV
   D_PRINT_INC_INDENT( g_traceModeCheck,  "estIntraPredLumaQT");
@@ -3069,8 +3072,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
       // create a vector to store int
       vector<int> vec;
 
-//      std::vector<Tensor> outputs; // it has been defined outside
-
       if (!g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
         // starting time
 //        Double dResult1;
@@ -3111,24 +3112,30 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
         UInt uiRPelX = uiLPelX + uiWidth - 1;
         UInt uiBPelY = uiTPelY + uiHeight - 1;
+
+        UInt uiPicWidth = pPic->getWidth(COMPONENT_Y);
+        UInt uiPicHeight = pPic->getHeight(COMPONENT_Y);
+
+//        std::cout << uiPicWidth  << std::endl;
+//        std::cout << uiPicHeight << std::endl;
 //        const Pel *pOrgPel = &pOrg[uiTPelY * iStride + uiLPelX];  // Y pel CU pointer
 
-        std::cout << std::endl;
-        std::cout << "/**now we want to inspect**/" << std::endl;
-
-        std::cout << "uiAbsPartIdx                    : " << uiAbsPartIdx << std::endl;
-        std::cout << "g_auiZscanToRaster[uiAbsPartIdx]: " << g_auiZscanToRaster[uiAbsPartIdx] << std::endl;
-
-        std::cout << "uiPartOffset                    : " << uiPartOffset << std::endl;
-
-        std::cout << "uiDepth                         : " << uiDepth << std::endl;
-        std::cout << "uiInitTrDepth                   : " << uiInitTrDepth << std::endl;
-        std::cout << g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]] << std::endl;
-        std::cout << g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]] << std::endl;
-        std::cout << uiLPelX << std::endl;
-        std::cout << uiRPelX << std::endl;
-        std::cout << uiTPelY << std::endl;
-        std::cout << uiBPelY << std::endl;
+//        std::cout << std::endl;
+//        std::cout << "/**now we want to inspect**/" << std::endl;
+//
+//        std::cout << "uiAbsPartIdx                    : " << uiAbsPartIdx << std::endl;
+//        std::cout << "g_auiZscanToRaster[uiAbsPartIdx]: " << g_auiZscanToRaster[uiAbsPartIdx] << std::endl;
+//
+//        std::cout << "uiPartOffset                    : " << uiPartOffset << std::endl;
+//
+//        std::cout << "uiDepth                         : " << uiDepth << std::endl;
+//        std::cout << "uiInitTrDepth                   : " << uiInitTrDepth << std::endl;
+//        std::cout << g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]] << std::endl;
+//        std::cout << g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]] << std::endl;
+//        std::cout << uiLPelX << std::endl;
+//        std::cout << uiRPelX << std::endl;
+//        std::cout << uiTPelY << std::endl;
+//        std::cout << uiBPelY << std::endl;
 
         // home directory
         string homeDir = getenv("HOME");
@@ -3161,7 +3168,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // the CU position is at [0,0].
         if (uiLPelX==0 && uiTPelY==0 && uiRPelX ==63 && uiBPelY == 63) {
 
-          std::cout << "only once per frame." << std::endl;
+          std::cout << "I shall appear only once per depth frame." << std::endl;
 
           // input & output node names // end
 
@@ -3176,7 +3183,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           // - for video of size 1920*1088
           //    read the pel data of blks into
           //    a tensor of shape [32640, 8, 8, 1]
-          const int iNumOfBlks = iStride * iTotalHeight / 8 / 8;
+          const int iNumOfBlks = uiPicWidth * uiPicHeight / 8 / 8;
+//          std::cout << iNumOfBlks << std::endl;
 
           tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
                                           tensorflow::TensorShape(
@@ -3190,11 +3198,25 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
           // Get depth block luma values /////////////////////////////////////////////////////////////
           // todo: correct it
+
+          // a map using a 2d array of ints as a key, and another int as the value
+          // for storing the idx for CU for fdc // pha.zx
+          // mp[uiLPelX][uiTPelY] = Idx
+          // e.g., uiLPelX = 0, uiTPelY = 8, Idx = 1, we will use // mp[0][8] = 1; note that Idx start from 0 //
+          // One depth frame one mp var, hence this definition (std::map<int, std::map<int, int> > mp;)
+          // is before the ``encode(...)`` func in ```TAppEncTop.cpp```. Just like ``outputs``
+
           Int blk_idx = -1;
-          for (int blk_y = 0; blk_y < iTotalHeight; blk_y += 8) {
-            for (int blk_x = 0; blk_x < iStride; blk_x += 8) {
+          // blk_y <=> uiTPelY
+          // blk_x <=> uiLPelX
+          for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 8) {
+            for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 8) {
               blk_idx += 1;
+              mp[blk_x][blk_y] = blk_idx;
+              // later use this ``mp`` to find the idx for slicing the batch tensor
               const Pel *pOrgPelForOneBlk = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
+              // row <=> y
+              // col <=> x
               for (int row = 0; row < 8; row++) {
                 for (int col = 0; col < 8; col++) {
                   input_tensor_mapped(blk_idx, row, col, 0) = pOrgPelForOneBlk[col];
@@ -3227,49 +3249,37 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         }
 
         if (uiDepth == 3 && uiInitTrDepth == 0) {
-          Int iSlicingIdx = -1;
+          Int iSlicingIdx = mp[uiLPelX][uiTPelY];
 
-          for (int blk_y = 0; blk_y <= uiTPelY; blk_y += 8) {
-            for (int blk_x = 0; blk_x <= uiLPelX; blk_x += 8) {
-              iSlicingIdx += 1;
-            }
-          }
-
-
-          UInt uiZScanAbsIdx = pcCU->getZorderIdxInCtu();
-          std::cout << "" << std::endl;
-          std::cout << "uiZScanAbsIdx : " << uiZScanAbsIdx << std::endl;
-          std::cout << "uiRasterAbsIdx: " << g_auiZscanToRaster[uiZScanAbsIdx] << std::endl;
+//          UInt uiZScanAbsIdx = pcCU->getZorderIdxInCtu();
+//          std::cout << "" << std::endl;
+//          std::cout << "uiZScanAbsIdx : " << uiZScanAbsIdx << std::endl;
+//          std::cout << "uiRasterAbsIdx: " << g_auiZscanToRaster[uiZScanAbsIdx] << std::endl;
 
           auto sliced_outputs = outputs[0].Slice(iSlicingIdx, iSlicingIdx + 1);
           std::cout << sliced_outputs.DebugString() << std::endl;
 
-          // if current cu depth is 3, which means size is 8x8, then
-          // get top k labels *****
+          // get and push top k mode index values into the vector
           Status get_vec_status = GetTopLabelsIntoVec(sliced_outputs, vec, labelsTextFile);
           if (!get_vec_status.ok()) {
             LOG(ERROR) << "Running model failed: " << get_vec_status;
             return;
           }
-//       push back planar and DC modes
+          // push back planar and DC modes
           vec.push_back(0);
           vec.push_back(1);
         } else {
           int i;
-          // push back planar and DC modes
           vec.push_back(0);
           vec.push_back(1);
-          // push top k mode index values into the vector
           for (i = 2; i < 34; i += 1) {
             vec.push_back(i);
-            // push back mode 34 if mode 2 is chosen
             if (i == 2) {
               vec.push_back(34);
             }
           }
         }
       }
-      // pha.zx end
       // use iterator to access the values
       // ******************************
       // A Few Notes on keyword ``auto``
@@ -3355,6 +3365,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #if ENABLE_RESNET
         v++;
 #endif
+        //pha.zx end
       }
 
       if (m_pcEncCfg->getFastUDIUseMPMEnabled())

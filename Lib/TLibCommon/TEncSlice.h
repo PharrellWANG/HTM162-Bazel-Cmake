@@ -143,13 +143,18 @@ public:
 #endif
   Void    resetQP             ( TComPic* pic, Int sliceQP, Double lambda );
   // compress and encode slice
-  Void    precompressSlice    ( std::unique_ptr<tensorflow::Session> *session, TComPic* pcPic, std::vector<Tensor> & outputs);      ///< precompress slice for multi-loop slice-level QP opt.
+  Void    precompressSlice    ( std::unique_ptr<tensorflow::Session> *session,
+                                TComPic* pcPic,
+                                std::vector<Tensor> & outputs,
+                                std::map<int, std::map<int, int> > &mp
+  );      ///< precompress slice for multi-loop slice-level QP opt.
   Void    compressSlice (
     std::unique_ptr<tensorflow::Session> *session,
     TComPic* pcPic,
     const Bool bCompressEntireSlice,
     const Bool bFastDeltaQP,
-    std::vector<Tensor> & outputs
+    std::vector<Tensor> & outputs,
+    std::map<int, std::map<int, int> > &mp
   );      ///< analysis stage of slice
   Void    calCostSliceI       ( TComPic* pcPic );
   Void    encodeSlice         ( TComPic* pcPic, TComOutputBitstream* pcSubstreams, UInt &numBinsCoded );

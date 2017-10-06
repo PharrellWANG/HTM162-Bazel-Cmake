@@ -253,7 +253,8 @@ public:
     std::list<AccessUnit>& accessUnitsOut,
     Int& iNumEncoded,
     Int gopId,
-    std::vector<Tensor> & outputs);
+    std::vector<Tensor> & outputs,
+    std::map<int, std::map<int, int> > &mp);
 
   /// encode several number of pictures until end-of-sequence
 //  Void encode(

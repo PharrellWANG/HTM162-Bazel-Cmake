@@ -145,7 +145,10 @@ public:
   /// CTU analysis function
   Void  compressCtu         (
     std::unique_ptr<tensorflow::Session> *session,
-    TComDataCU*  pCtu , std::vector<Tensor> & outputs);
+    TComDataCU*  pCtu,
+    std::vector<Tensor> & outputs,
+    std::map<int, std::map<int, int> > &mp
+  );
 
   /// CTU encoding function
   Void  encodeCtu           ( TComDataCU*  pCtu );
@@ -160,7 +163,13 @@ public:
 protected:
   Void  finishCU            ( TComDataCU*  pcCU, UInt uiAbsPartIdx );
 #if AMP_ENC_SPEEDUP
-  Void  xCompressCU         ( std::unique_ptr<tensorflow::Session> *session, TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug), std::vector<Tensor> & outputs, PartSize eParentPartSize = NUMBER_OF_PART_SIZES);
+  Void  xCompressCU         ( std::unique_ptr<tensorflow::Session> *session,
+                              TComDataCU*& rpcBestCU,
+                              TComDataCU*& rpcTempCU,
+                              const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug),
+                              std::vector<Tensor> & outputs,
+                              std::map<int, std::map<int, int> > &mp,
+                              PartSize eParentPartSize = NUMBER_OF_PART_SIZES);
 #else
   Void  xCompressCU         ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth        );
 #endif
@@ -196,7 +205,8 @@ protected:
 #if NH_3D_ENC_DEPTH
     , Bool bOnlyIVP
 #endif
-    , std::vector<Tensor> & outputs
+    , std::vector<Tensor> & outputs,
+    std::map<int, std::map<int, int> > &mp
   );
   Void  xCheckDQP           ( TComDataCU*  pcCU );
 

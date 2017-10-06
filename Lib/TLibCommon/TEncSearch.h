@@ -201,7 +201,9 @@ public:
 #if NH_3D_ENC_DEPTH
                                 , Bool        bOnlyIVP
 #endif
-                                , std::vector<Tensor> & outputs);
+                                , std::vector<Tensor> & outputs,
+                                  std::map<int, std::map<int, int> > &mp
+  );
 
   Void  estIntraPredChromaQT    ( TComDataCU* pcCU,
                                   TComYuv*    pcOrgYuv,

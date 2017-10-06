@@ -192,7 +192,7 @@ public:
     Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,
     std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff,
     const InputColourSpaceConversion snr_conversion,
-    const Bool printFrameMSE, Int iGOPid, std::vector<Tensor> & outputs );
+    const Bool printFrameMSE, Int iGOPid, std::vector<Tensor> & outputs, std::map<int, std::map<int, int> > &mp);
 #else
   Void  compressGOP ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,
                       std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE );

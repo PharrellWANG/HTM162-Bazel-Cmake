@@ -1100,7 +1100,9 @@ Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
 
         Int   iNumEncoded = 0;
 
+        // below vars are used in ```TEncSearch.cpp```
         std::vector<Tensor> outputs;
+        std::map<int, std::map<int, int> > mp;
 
         // call encoding function for one frame                               
         m_acTEncTopList[layer]->encode(session,
@@ -1112,7 +1114,8 @@ Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
                                        outputAccessUnits,
                                        iNumEncoded,
                                        gopId,
-                                       outputs);
+                                       outputs,
+                                       mp);
         xWriteOutput(bitstreamFile, iNumEncoded, outputAccessUnits, layer);
         outputAccessUnits.clear();
       }

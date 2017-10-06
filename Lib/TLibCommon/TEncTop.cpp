@@ -428,7 +428,17 @@ Void TEncTop::deletePicBuffer()
  \param   outputs             the outputs for the ResNet Prediction
  */
 #if NH_MV
-Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session, Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded, Int gopId, std::vector<Tensor> &outputs )
+Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session,
+                     Bool flush,
+                     TComPicYuv* pcPicYuvOrg,
+                     TComPicYuv* pcPicYuvTrueOrg,
+                     const InputColourSpaceConversion snrCSC,
+                     TComList<TComPicYuv*>& rcListPicYuvRecOut,
+                     std::list<AccessUnit>& accessUnitsOut,
+                     Int& iNumEncoded,
+                     Int gopId,
+                     std::vector<Tensor> &outputs,
+                     std::map<int, std::map<int, int> > &mp)
 {
 #else
 Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvTrueOrg, const InputColourSpaceConversion snrCSC, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsOut, Int& iNumEncoded )
@@ -474,7 +484,19 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
   }
 #if NH_MV
   }
-  m_cGOPEncoder.compressPicInGOP(session, m_iPOCLast, m_iNumPicRcvd, *(m_ivPicLists->getSubDpb(getLayerId(), false) ), rcListPicYuvRecOut, accessUnitsOut, false, false, snrCSC, m_printFrameMSE, gopId, outputs);
+  m_cGOPEncoder.compressPicInGOP(session,
+                                 m_iPOCLast,
+                                 m_iNumPicRcvd,
+                                 *(m_ivPicLists->getSubDpb(getLayerId(), false) ),
+                                 rcListPicYuvRecOut,
+                                 accessUnitsOut,
+                                 false,
+                                 false,
+                                 snrCSC,
+                                 m_printFrameMSE,
+                                 gopId,
+                                 outputs,
+                                 mp);
 
   if( gopId + 1 == m_cGOPEncoder.getGOPSize() )
   {
