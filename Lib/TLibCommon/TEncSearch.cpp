@@ -3270,8 +3270,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
         if (uiDepth == 3 && uiInitTrDepth == 0) {
           Int iSlicingIdx = mp[uiLPelX][uiTPelY];
-          std::cout << batchOfIndices.DebugString() << std::endl;
-          std::cout << batchOfScores.DebugString() << std::endl;
+//          std::cout << batchOfIndices.DebugString() << std::endl;
+//          std::cout << batchOfScores.DebugString() << std::endl;
 
           Tensor indices = batchOfIndices.Slice(iSlicingIdx, iSlicingIdx + 1);
           Tensor scores = batchOfScores.Slice(iSlicingIdx, iSlicingIdx + 1);
