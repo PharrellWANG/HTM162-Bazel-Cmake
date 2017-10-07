@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
 
   // path for the first graph
   string homeDir= getenv("HOME");
-  string secPart = "/frozen_graphs/frozen_resnet_fdc_12288_8x8_133049.pb";
+  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize12288_step133049.pb";
   string nameOfGraphOne = homeDir + secPart;
   string graph = nameOfGraphOne;
   // end first graph
