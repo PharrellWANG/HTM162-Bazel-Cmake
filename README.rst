@@ -11,7 +11,9 @@ This project is
 Memos
 -----
 
-All the source codes are inside ``/App/TAppEncoder`` folder (due to Bazel cycle dependency).
+All the source codes for LIB and APP of HTM encoder are merged, all inside ``/App/TAppEncoder`` folder.
+
+(see FAQ 6 for a detailed explanation of the merging of the source codes for LIB and APP.)
 
 How to compile with SSE4.2 and AVX optimizations using Bazel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
