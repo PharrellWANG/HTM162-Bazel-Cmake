@@ -3,14 +3,15 @@ HTM v16.2 with ResNet for Fast Intra Coding
 
 This project is
 
-- building a deep learning powered HTM encoder.
 - standing on the shoulder of *HTM v16.2*.
+- building a deep learning powered HTM encoder.
+- making use of ResNet.
 - making use of **Bazel** building and **CMake** building at the same time.
 
 Memos
 -----
 
-All the source codes are inside ``TLibCommon`` folder (due to Bazel cycle dependency).
+All the source codes are inside ``/App/TAppEncoder`` folder (due to Bazel cycle dependency).
 
 How to compile with SSE4.2 and AVX optimizations using Bazel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,21 +20,19 @@ Use below flags when compiling binary:
 
 .. code-block:: bash
 
-    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:HAHA
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //PATH/TO/PACKAGE:NAME_OF_PACKAGE
 
 
-E.G., For our **TAppClassifier**:
+E.G., For our **TAppClassifier** and **TAppEncoder**:
 
 Using GPU
 ^^^^^^^^^
-.. note:: Before running below commands for building with GPU support, you might need to run ``./configure`` for Tensorflow again.
-
 .. code-block:: bash
 
     bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/App/TAppClassifier/...
-    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/Lib/TLibCommon/...
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 --config=cuda -k //HTM162/App/TAppEncoder/...
 
-This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU,
+This will make the running speed of your binary the fastest ever(benefiting from avx, sse4.2 offered by your CPU,
 AND parallel computing offered by GPU).
 
 .. warning:: If you don't have any parallel computing when doing predictions, then the GPU will help nothing even you
@@ -47,9 +46,24 @@ Using Only CPU
 ^^^^^^^^^^^^^^
 .. code-block:: bash
 
-    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 -k //HTM162/APP/TAppClassifier/...
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 -k //HTM162/App/TAppClassifier/...
+    bazel build -c opt --copt=-mavx --copt=-mavx2 --copt=-mfma --copt=-msse4.2 -k //HTM162/App/TAppEncoder/...
 
-This will do the trick and make your binary faster (benefiting from avx, sse4.2 offered by your CPU).
+This will make the running speed of your binary faster (benefiting from avx, sse4.2 offered by your CPU).
+
+
+Branches
+--------
+
+- *pharrell_dev_001*: the ``session->init`` is performed for each block. It is the initial experimental design.
+
+- *pha_dev_002*: the ``session->init`` is performed for each frame for saving prediction time using tensorflow.
+
+
+Contact
+-------
+Pharrell.zx: wzxnuaa@gmail.com
+
 
 FAQs
 ----
@@ -148,14 +162,3 @@ FAQs
     if we use Bazel, all the source codes related to the project are built into a single binary. No dependency to
     extra shared lib. Hence the building results will be a shippable product.)
 
-Branches
---------
-
-- *pharrell_dev_001*: the ``session->init`` is performed for each block. It is the initial experimental design.
-
-- *pha_dev_002*: the ``session->init`` is performed for each frame for saving prediction time using tensorflow.
-
-
-Contact
--------
-Pharrell.zx: wzxnuaa@gmail.com
