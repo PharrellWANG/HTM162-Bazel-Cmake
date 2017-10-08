@@ -3044,6 +3044,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
 // pha.zx enable resnet
 #if ENABLE_RESNET
+    vector<int> vec;
     /*3, 8, 8, 3, 3, 3 -> 2, 3, 3, 2, 2, 2 */
     Int numModesForFullRD = m_pcEncCfg->getFastUDIUseMPMEnabled()?g_aucIntraModeNumFast_UseMPM_ResNet[ uiWidthBit ] : g_aucIntraModeNumFast_NotUseMPM[ uiWidthBit ];
 #else
@@ -3064,6 +3065,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
 
     Bool doFastSearch = (numModesForFullRD != numModesAvailable);
+    // create a vector to store int
     if (doFastSearch)
     {
       assert(numModesForFullRD < numModesAvailable);
@@ -3092,8 +3094,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #endif
       distParam.bApplyWeight = false;
 #if ENABLE_RESNET
-      // create a vector to store int
-      vector<int> vec;
+
       // if not depth map, skip resnet prediction
       if (!m_pcEncCfg->getIsDepth() && g_bUseLearnedResnetModel) { // if not using model prediction **********************************************
         int i;
@@ -3110,14 +3111,14 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         }
       } else { // else if using model prediction *********************************************************************
         TComSlice *const pcSlice = pcCU->getSlice();
-        const UInt maxCUWidth = sps.getMaxCUWidth();
+//        const UInt maxCUWidth = sps.getMaxCUWidth();
 //        const UInt maxCUHeight = sps.getMaxCUHeight();
 
         const TComPicYuv *const pPic = pcSlice->getPic()->getPicYuvOrg();  // Picture pointer
         const Pel *pOrg = pPic->getAddr(COMPONENT_Y);      // Y pel frame pointer
         const Int iStride = pPic->getStride(COMPONENT_Y);      // Y width
-        const Int iTotalHeight = pPic->getTotalHeight(COMPONENT_Y);      // Y height
-        const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
+//        const Int iTotalHeight = pPic->getTotalHeight(COMPONENT_Y);      // Y height
+//        const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
 
         UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
         UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
@@ -3490,7 +3491,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
               case( DMM1_IDX ):
                 {
                   UInt uiTabIdx = 0;
-                  xSearchDmm1Wedge( pcCU, uiPartOffset, piOrg, uiStride, puRect.width, puRect.height, uiTabIdx );
+                  xSearchDmm1Wedge( pcCU, uiPartOffset, piOrg, uiStride, puRect.width, puRect.height, uiTabIdx, vec );
                   pcCU->setDmm1WedgeTabIdxSubParts( uiTabIdx,  uiPartOffset, uiDepth + uiInitTrDepth );
                   (getWedgeListScaled( puRect.width )->at( pcCU->getDmm1WedgeTabIdx( uiAbsPartIdx ) )).getPatternScaledCopy( puRect.width, biSegPattern );
                 } break;
@@ -8305,7 +8306,7 @@ Void TEncSearch::xSearchDmmDeltaDCs( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piO
 #endif
 }
 
-Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef, UInt uiRefStride, UInt uiWidth, UInt uiHeight, UInt& ruiTabIdx )
+Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef, UInt uiRefStride, UInt uiWidth, UInt uiHeight, UInt& ruiTabIdx, vector<int> &rvec )
 {
   ruiTabIdx = 0;
   Int bitDepthY = pcCU->getSlice()->getSPS()->getBitDepth(CHANNEL_TYPE_LUMA);
@@ -8338,6 +8339,40 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
   for( UInt uiNodeId = 0; uiNodeId < pacWedgeNodeList->size(); uiNodeId++ )
   {
     TComWedgelet* pcWedgelet = &(pacWedgeList->at(pacWedgeNodeList->at(uiNodeId).getPatternIdx()));
+    if (uiWidth == 8) {
+      Int iSx = pcWedgelet->getStartX();
+      Int iSy = pcWedgelet->getStartY();
+      Int iEx = pcWedgelet->getEndX();
+      Int iEy = pcWedgelet->getEndY();
+      Float slope = (Float(iEy - iSy) / Float(iEx - iSx));
+      Int topOne = rvec[0];
+      if (topOne == 2) {
+        // slopeRange: [0, +oo]
+        if (slope < 0) {
+          continue;
+        }
+      } else if (topOne == 18) {
+        // slopeRange: [-oo, 0]
+        if (slope > 0) {
+          continue;
+        }
+      } else if (topOne == 10) {
+        if (slope > 1 or slope < -1) {
+          continue;
+        }
+      }
+//      else if (10 < topOne < 18) {
+//        continue;
+//        //todo: pha.zx    topOne+8;
+//      } else if (18 < topOne < 34) {
+//        continue;
+//        //todo: pha.zx
+//      } else if (2 < topOne < 10) {
+//        continue;
+//        //todo: pha.zx
+//      }
+    }
+
     Bool *pbPattern = pcWedgelet->getPatternScaled(uiWidth);
     UInt uiStride   = uiWidth;
     xCalcBiSegDCs  ( piRef,  uiRefStride,  pbPattern, uiStride, refDC1, refDC2, (1<<(bitDepthY-1)) );
