@@ -429,6 +429,8 @@ Void TEncTop::deletePicBuffer()
  */
 #if NH_MV
 Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session,
+                     std::unique_ptr<tensorflow::Session> *session2,
+                     std::unique_ptr<tensorflow::Session> *session3,
                      Bool flush,
                      TComPicYuv* pcPicYuvOrg,
                      TComPicYuv* pcPicYuvTrueOrg,
@@ -438,9 +440,17 @@ Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session,
                      Int& iNumEncoded,
                      Int gopId,
                      std::vector<Tensor> &outputs,
+                     std::vector<Tensor> &outputs2,
+                     std::vector<Tensor> &outputs3,
                      std::map<int, std::map<int, int> > &mp,
+                     std::map<int, std::map<int, int> > &mp2,
+                     std::map<int, std::map<int, int> > &mp3,
                      Tensor & batchOfIndices,
-                     Tensor & batchOfScores
+                     Tensor & batchOfIndices2,
+                     Tensor & batchOfIndices3,
+                     Tensor & batchOfScores,
+                     Tensor & batchOfScores2,
+                     Tensor & batchOfScores3
 )
 {
 #else
@@ -488,6 +498,8 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
 #if NH_MV
   }
   m_cGOPEncoder.compressPicInGOP(session,
+                                 session2,
+                                 session3,
                                  m_iPOCLast,
                                  m_iNumPicRcvd,
                                  *(m_ivPicLists->getSubDpb(getLayerId(), false) ),
@@ -499,9 +511,17 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
                                  m_printFrameMSE,
                                  gopId,
                                  outputs,
+                                 outputs2,
+                                 outputs3,
                                  mp,
+                                 mp2,
+                                 mp3,
                                  batchOfIndices,
-                                 batchOfScores
+                                 batchOfIndices2,
+                                 batchOfIndices3,
+                                 batchOfScores,
+                                 batchOfScores2,
+                                 batchOfScores3
   );
 
   if( gopId + 1 == m_cGOPEncoder.getGOPSize() )

@@ -97,11 +97,11 @@ Status LoadGraph(string graph_file_name,
 int main(int argc, char* argv[])
 {
 #if ENABLE_RESNET
-
-  // path for the first graph
   string homeDir= getenv("HOME");
-//  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize12288_step133049.pb";
-  string secPart = "frozen_resnet_for_fdc_blk8x8_batchsize32640_step133049.pb";
+  ///1st graph
+  // path for the first graph
+  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize12288_step133049.pb";
+//  string secPart = "frozen_resnet_for_fdc_blk8x8_batchsize32640_step133049.pb";
   string nameOfGraphOne = homeDir + secPart;
   string graph = nameOfGraphOne;
   // end first graph
@@ -115,11 +115,6 @@ int main(int argc, char* argv[])
   string output_layer = "logits/fdc_output_node";
   string root_dir = "";
 
-  // First we load and initialize the model.
-    // starting time
-  Double dResultx;
-  clock_t lBeforex = clock();
-
   std::unique_ptr<tensorflow::Session> session;
   string graph_path = tensorflow::io::JoinPath(root_dir, graph);
   Status load_graph_status = LoadGraph(graph_path, &session);
@@ -127,11 +122,28 @@ int main(int argc, char* argv[])
     LOG(ERROR) << load_graph_status;
     return -1;
   }
-
-    // ending time
-  dResultx = (Double)(clock()-lBeforex) / CLOCKS_PER_SEC;
-  printf("\n Total Time for initialize session: %12.3f sec.\n", dResultx);
-
+  ///2nd graph
+  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize3072_step304857.pb";
+  string nameOfGraph2 = homeDir + secPart2;
+  string graph2 = nameOfGraph2;
+  std::unique_ptr<tensorflow::Session> session2;
+  string graph_path2 = tensorflow::io::JoinPath(root_dir, graph2);
+  Status load_graph_status2 = LoadGraph(graph_path2, &session2);
+  if (!load_graph_status2.ok()) {
+    LOG(ERROR) << load_graph_status2;
+    return -1;
+  }
+  ///3nd graph
+  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize768_step304857.pb";
+  string nameOfGraph3 = homeDir + secPart3;
+  string graph3 = nameOfGraph3;
+  std::unique_ptr<tensorflow::Session> session3;
+  string graph_path3 = tensorflow::io::JoinPath(root_dir, graph3);
+  Status load_graph_status3 = LoadGraph(graph_path3, &session3);
+  if (!load_graph_status3.ok()) {
+    LOG(ERROR) << load_graph_status3;
+    return -1;
+  }
 #endif
 
   TAppEncTop  cTAppEncTop;
@@ -181,12 +193,18 @@ int main(int argc, char* argv[])
   Double dResult;
   clock_t lBefore = clock();
 
+  std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
+
   // call encoding function
-  cTAppEncTop.encode(&session);
+  cTAppEncTop.encode(&session, &session2, &session3);
 
   // ending time
   dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
   printf("\n Total Time: %12.3f sec.\n", dResult);
+
+  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
+  printf("[real-world total time]  %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
+  std::cout << std::endl;
 
   // destroy application encoder class
   cTAppEncTop.destroy();

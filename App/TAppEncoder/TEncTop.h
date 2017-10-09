@@ -243,20 +243,30 @@ public:
 
   /// encode several number of pictures until end-of-sequence
 #if NH_MV
-  Void encode(
-    std::unique_ptr<tensorflow::Session> *session,
-    Bool bEos,
-    TComPicYuv* pcPicYuvOrg,
-    TComPicYuv* pcPicYuvTrueOrg,
-    const InputColourSpaceConversion snrCSC, // used for SNR calculations. Picture in original colour space.
-    TComList<TComPicYuv*>& rcListPicYuvRecOut,
-    std::list<AccessUnit>& accessUnitsOut,
-    Int& iNumEncoded,
-    Int gopId,
-    std::vector<Tensor> & outputs,
-    std::map<int, std::map<int, int> > &mp,
-    Tensor &batchOfIndices,
-    Tensor &batchOfScores
+
+  Void encode(std::unique_ptr<tensorflow::Session> *session,
+              std::unique_ptr<tensorflow::Session> *session2,
+              std::unique_ptr<tensorflow::Session> *session3,
+              Bool flush,
+              TComPicYuv *pcPicYuvOrg,
+              TComPicYuv *pcPicYuvTrueOrg,
+              const InputColourSpaceConversion snrCSC,
+              TComList<TComPicYuv *> &rcListPicYuvRecOut,
+              std::list<AccessUnit> &accessUnitsOut,
+              Int &iNumEncoded,
+              Int gopId,
+              std::vector<Tensor> &outputs,
+              std::vector<Tensor> &outputs2,
+              std::vector<Tensor> &outputs3,
+              std::map<int, std::map<int, int> > &mp,
+              std::map<int, std::map<int, int> > &mp2,
+              std::map<int, std::map<int, int> > &mp3,
+              Tensor &batchOfIndices,
+              Tensor &batchOfIndices2,
+              Tensor &batchOfIndices3,
+              Tensor &batchOfScores,
+              Tensor &batchOfScores2,
+              Tensor &batchOfScores3
   );
 
   /// encode several number of pictures until end-of-sequence

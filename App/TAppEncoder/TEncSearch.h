@@ -191,6 +191,8 @@ protected:
 public:
   Void  estIntraPredLumaQT      (
                                   std::unique_ptr<tensorflow::Session> *session,
+                                  std::unique_ptr<tensorflow::Session> *session2,
+                                  std::unique_ptr<tensorflow::Session> *session3,
                                   TComDataCU* pcCU,
                                   TComYuv*    pcOrgYuv,
                                   TComYuv*    pcPredYuv,
@@ -202,9 +204,17 @@ public:
                                 , Bool        bOnlyIVP
 #endif
                                 , std::vector<Tensor> & outputs,
+                                  std::vector<Tensor> & outputs2,
+                                  std::vector<Tensor> & outputs3,
                                   std::map<int, std::map<int, int> > &mp,
+                                  std::map<int, std::map<int, int> > &mp2,
+                                  std::map<int, std::map<int, int> > &mp3,
                                   Tensor & batchOfIndices,
-                                  Tensor & batchOfScores
+                                  Tensor & batchOfIndices2,
+                                  Tensor & batchOfIndices3,
+                                  Tensor & batchOfScores,
+                                  Tensor & batchOfScores2,
+                                  Tensor & batchOfScores3
   );
 
   Void  estIntraPredChromaQT    ( TComDataCU* pcCU,

@@ -959,7 +959,11 @@ Void TAppEncTop::xInitLib(Bool isFieldCoding)
  - destroy internal class
  .
  */
-Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
+Void TAppEncTop::encode(
+  std::unique_ptr<tensorflow::Session> *session,
+  std::unique_ptr<tensorflow::Session> *session2,
+  std::unique_ptr<tensorflow::Session> *session3
+)
 {
   fstream bitstreamFile(m_bitstreamFileName.c_str(), fstream::binary | fstream::out);
   if (!bitstreamFile)
@@ -1106,8 +1110,22 @@ Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
         Tensor batchOfIndices;
         Tensor batchOfScores;
 
+        // for size 16x16
+        std::vector<Tensor> outputs2;
+        std::map<int, std::map<int, int> > mp2;
+        Tensor batchOfIndices2;
+        Tensor batchOfScores2;
+
+        // for size 32x32
+        std::vector<Tensor> outputs3;
+        std::map<int, std::map<int, int> > mp3;
+        Tensor batchOfIndices3;
+        Tensor batchOfScores3;
+
         // call encoding function for one frame                               
         m_acTEncTopList[layer]->encode(session,
+                                       session2,
+                                       session3,
                                        eos[layer],
                                        flush[layer] ? 0 : pcPicYuvOrg,
                                        flush[layer] ? 0 : &cPicYuvTrueOrg,
@@ -1117,9 +1135,17 @@ Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
                                        iNumEncoded,
                                        gopId,
                                        outputs,
+                                       outputs2,
+                                       outputs3,
                                        mp,
+                                       mp2,
+                                       mp3,
                                        batchOfIndices,
-                                       batchOfScores
+                                       batchOfIndices2,
+                                       batchOfIndices3,
+                                       batchOfScores,
+                                       batchOfScores2,
+                                       batchOfScores3
         );
         xWriteOutput(bitstreamFile, iNumEncoded, outputAccessUnits, layer);
         outputAccessUnits.clear();

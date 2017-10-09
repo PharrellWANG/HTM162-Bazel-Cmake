@@ -57,9 +57,9 @@ This will make the running speed of your binary faster (benefiting from avx, sse
 Branches
 --------
 
-- *pharrell_dev_001*: the ``session->init`` is performed for each block. It is the initial experimental design.
+- *pharrell_dev_001*: the ``session->Run`` is performed for each block. It is the initial experimental design.
 
-- *pha_dev_002*: the ``session->init`` is performed for each frame for saving prediction time using tensorflow.
+- *pha_dev_002*: the ``session->Run`` is performed for each frame for saving prediction time using tensorflow.
 
 
 Contact

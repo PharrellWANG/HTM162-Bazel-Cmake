@@ -143,13 +143,23 @@ public:
   Void  destroy             ();
 
   /// CTU analysis function
-  Void  compressCtu         (
+  Void compressCtu(
     std::unique_ptr<tensorflow::Session> *session,
-    TComDataCU*  pCtu,
-    std::vector<Tensor> & outputs,
+    std::unique_ptr<tensorflow::Session> *session2,
+    std::unique_ptr<tensorflow::Session> *session3,
+    TComDataCU *pCtu,
+    std::vector<Tensor> &outputs,
+    std::vector<Tensor> &outputs2,
+    std::vector<Tensor> &outputs3,
     std::map<int, std::map<int, int> > &mp,
+    std::map<int, std::map<int, int> > &mp2,
+    std::map<int, std::map<int, int> > &mp3,
     Tensor &batchOfIndices,
-    Tensor &batchOfScores
+    Tensor &batchOfIndices2,
+    Tensor &batchOfIndices3,
+    Tensor &batchOfScores,
+    Tensor &batchOfScores2,
+    Tensor &batchOfScores3
   );
 
   /// CTU encoding function
@@ -166,13 +176,23 @@ protected:
   Void  finishCU            ( TComDataCU*  pcCU, UInt uiAbsPartIdx );
 #if AMP_ENC_SPEEDUP
   Void  xCompressCU         ( std::unique_ptr<tensorflow::Session> *session,
+                              std::unique_ptr<tensorflow::Session> *session2,
+                              std::unique_ptr<tensorflow::Session> *session3,
                               TComDataCU*& rpcBestCU,
                               TComDataCU*& rpcTempCU,
                               const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug),
                               std::vector<Tensor> & outputs,
+                              std::vector<Tensor> & outputs2,
+                              std::vector<Tensor> & outputs3,
                               std::map<int, std::map<int, int> > &mp,
+                              std::map<int, std::map<int, int> > &mp2,
+                              std::map<int, std::map<int, int> > &mp3,
                               Tensor &batchOfIndices,
+                              Tensor &batchOfIndices2,
+                              Tensor &batchOfIndices3,
                               Tensor &batchOfScores,
+                              Tensor &batchOfScores2,
+                              Tensor &batchOfScores3,
                               PartSize eParentPartSize = NUMBER_OF_PART_SIZES);
 #else
   Void  xCompressCU         ( TComDataCU*& rpcBestCU, TComDataCU*& rpcTempCU, const UInt uiDepth        );
@@ -202,6 +222,8 @@ protected:
 #endif
   Void  xCheckRDCostIntra   (
     std::unique_ptr<tensorflow::Session> *session,
+    std::unique_ptr<tensorflow::Session> *session2,
+    std::unique_ptr<tensorflow::Session> *session3,
     TComDataCU *&rpcBestCU,
     TComDataCU *&rpcTempCU,
     PartSize     ePartSize
@@ -210,9 +232,17 @@ protected:
     , Bool bOnlyIVP
 #endif
     , std::vector<Tensor> & outputs,
+    std::vector<Tensor> & outputs2,
+    std::vector<Tensor> & outputs3,
     std::map<int, std::map<int, int> > &mp,
+    std::map<int, std::map<int, int> > &mp2,
+    std::map<int, std::map<int, int> > &mp3,
     Tensor & batchOfIndices,
-    Tensor & batchOfScores
+    Tensor & batchOfIndices2,
+    Tensor & batchOfIndices3,
+    Tensor & batchOfScores,
+    Tensor & batchOfScores2,
+    Tensor & batchOfScores3
   );
   Void  xCheckDQP           ( TComDataCU*  pcCU );
 
