@@ -653,9 +653,17 @@ Void TEncSlice::precompressSlice(std::unique_ptr<tensorflow::Session> *session,
                                  std::unique_ptr<tensorflow::Session> *session3,
                                  TComPic* pcPic,
                                  std::vector<Tensor> & outputs,
+                                 std::vector<Tensor> & outputs2,
+                                 std::vector<Tensor> & outputs3,
                                  std::map<int, std::map<int, int> > &mp,
+                                 std::map<int, std::map<int, int> > &mp2,
+                                 std::map<int, std::map<int, int> > &mp3,
                                  Tensor &batchOfIndices,
-                                 Tensor &batchOfScores
+                                 Tensor &batchOfIndices2,
+                                 Tensor &batchOfIndices3,
+                                 Tensor &batchOfScores,
+                                 Tensor &batchOfScores2,
+                                 Tensor &batchOfScores3
 )
 {
   // if deltaQP RD is not used, simply return
@@ -720,7 +728,25 @@ Void TEncSlice::precompressSlice(std::unique_ptr<tensorflow::Session> *session,
     setUpLambda(pcSlice, m_vdRdPicLambda[uiQpIdx], m_viRdPicQp    [uiQpIdx]);
 
     // try compress
-    compressSlice   ( session, session2, session3, pcPic, true, m_pcCfg->getFastDeltaQp(), outputs, mp, batchOfIndices, batchOfScores);
+    compressSlice   ( session,
+                      session2,
+                      session3,
+                      pcPic,
+                      true,
+                      m_pcCfg->getFastDeltaQp(),
+                      outputs,
+                      outputs2,
+                      outputs3,
+                      mp,
+                      mp2,
+                      mp3,
+                      batchOfIndices,
+                      batchOfIndices2,
+                      batchOfIndices3,
+                      batchOfScores,
+                      batchOfScores2,
+                      batchOfScores3
+    );
 
 #if NH_3D_VSO
     Dist64 uiPicDist        = m_uiPicDist;
@@ -802,9 +828,17 @@ Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session,
                                const Bool bCompressEntireSlice,
                                const Bool bFastDeltaQP,
                                std::vector<Tensor> & outputs,
+                               std::vector<Tensor> & outputs2,
+                               std::vector<Tensor> & outputs3,
                                std::map<int, std::map<int, int> > &mp,
+                               std::map<int, std::map<int, int> > &mp2,
+                               std::map<int, std::map<int, int> > &mp3,
                                Tensor &batchOfIndices,
-                               Tensor &batchOfScores
+                               Tensor &batchOfIndices2,
+                               Tensor &batchOfIndices3,
+                               Tensor &batchOfScores,
+                               Tensor &batchOfScores2,
+                               Tensor &batchOfScores3
 )
 {
   // if bCompressEntireSlice is true, then the entire slice (not slice segment) is compressed,
@@ -1039,7 +1073,20 @@ Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session,
     }
 
     // run CTU trial encoder
-    m_pcCuEncoder->compressCtu( session, session2, session3, pCtu, outputs, mp, batchOfIndices, batchOfScores );
+    m_pcCuEncoder->compressCtu( session, session2, session3, pCtu,
+                                outputs,
+                                outputs2,
+                                outputs3,
+                                mp,
+                                mp2,
+                                mp3,
+                                batchOfIndices,
+                                batchOfIndices2,
+                                batchOfIndices3,
+                                batchOfScores,
+                                batchOfScores2,
+                                batchOfScores3
+    );
 
 
     // All CTU decisions have now been made. Restore entropy coder to an initial stage, ready to make a true encode,

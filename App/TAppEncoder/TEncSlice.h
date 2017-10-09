@@ -143,26 +143,41 @@ public:
 #endif
   Void    resetQP             ( TComPic* pic, Int sliceQP, Double lambda );
   // compress and encode slice
-  Void    precompressSlice    ( std::unique_ptr<tensorflow::Session> *session,
-                                std::unique_ptr<tensorflow::Session> *session2,
-                                std::unique_ptr<tensorflow::Session> *session3,
-                                TComPic* pcPic,
-                                std::vector<Tensor> & outputs,
-                                std::map<int, std::map<int, int> > &mp,
-                                Tensor &batchOfIndices,
-                                Tensor &batchOfScores
+  Void precompressSlice(std::unique_ptr<tensorflow::Session> *session,
+                        std::unique_ptr<tensorflow::Session> *session2,
+                        std::unique_ptr<tensorflow::Session> *session3,
+                        TComPic *pcPic,
+                        std::vector<Tensor> &outputs,
+                        std::vector<Tensor> &outputs2,
+                        std::vector<Tensor> &outputs3,
+                        std::map<int, std::map<int, int> > &mp,
+                        std::map<int, std::map<int, int> > &mp2,
+                        std::map<int, std::map<int, int> > &mp3,
+                        Tensor &batchOfIndices,
+                        Tensor &batchOfIndices2,
+                        Tensor &batchOfIndices3,
+                        Tensor &batchOfScores,
+                        Tensor &batchOfScores2,
+                        Tensor &batchOfScores3
   );      ///< precompress slice for multi-loop slice-level QP opt.
-  Void    compressSlice (
-    std::unique_ptr<tensorflow::Session> *session,
-    std::unique_ptr<tensorflow::Session> *session2,
-    std::unique_ptr<tensorflow::Session> *session3,
-    TComPic* pcPic,
-    const Bool bCompressEntireSlice,
-    const Bool bFastDeltaQP,
-    std::vector<Tensor> & outputs,
-    std::map<int, std::map<int, int> > &mp,
-    Tensor &batchOfIndices,
-    Tensor &batchOfScores
+  Void compressSlice(std::unique_ptr<tensorflow::Session> *session,
+                     std::unique_ptr<tensorflow::Session> *session2,
+                     std::unique_ptr<tensorflow::Session> *session3,
+                     TComPic *pcPic,
+                     const Bool bCompressEntireSlice,
+                     const Bool bFastDeltaQP,
+                     std::vector<Tensor> &outputs,
+                     std::vector<Tensor> &outputs2,
+                     std::vector<Tensor> &outputs3,
+                     std::map<int, std::map<int, int> > &mp,
+                     std::map<int, std::map<int, int> > &mp2,
+                     std::map<int, std::map<int, int> > &mp3,
+                     Tensor &batchOfIndices,
+                     Tensor &batchOfIndices2,
+                     Tensor &batchOfIndices3,
+                     Tensor &batchOfScores,
+                     Tensor &batchOfScores2,
+                     Tensor &batchOfScores3
   );      ///< analysis stage of slice
   Void    calCostSliceI       ( TComPic* pcPic );
   Void    encodeSlice         ( TComPic* pcPic, TComOutputBitstream* pcSubstreams, UInt &numBinsCoded );

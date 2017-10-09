@@ -1110,6 +1110,18 @@ Void TAppEncTop::encode(
         Tensor batchOfIndices;
         Tensor batchOfScores;
 
+        // for size 16x16
+        std::vector<Tensor> outputs2;
+        std::map<int, std::map<int, int> > mp2;
+        Tensor batchOfIndices2;
+        Tensor batchOfScores2;
+
+        // for size 32x32
+        std::vector<Tensor> outputs3;
+        std::map<int, std::map<int, int> > mp3;
+        Tensor batchOfIndices3;
+        Tensor batchOfScores3;
+
         // call encoding function for one frame                               
         m_acTEncTopList[layer]->encode(session,
                                        session2,
@@ -1123,9 +1135,17 @@ Void TAppEncTop::encode(
                                        iNumEncoded,
                                        gopId,
                                        outputs,
+                                       outputs2,
+                                       outputs3,
                                        mp,
+                                       mp2,
+                                       mp3,
                                        batchOfIndices,
-                                       batchOfScores
+                                       batchOfIndices2,
+                                       batchOfIndices3,
+                                       batchOfScores,
+                                       batchOfScores2,
+                                       batchOfScores3
         );
         xWriteOutput(bitstreamFile, iNumEncoded, outputAccessUnits, layer);
         outputAccessUnits.clear();

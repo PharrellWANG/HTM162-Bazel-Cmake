@@ -186,17 +186,27 @@ public:
 
   Void  init        ( TEncTop* pcTEncTop );
 #if NH_MV
-  Void  initGOP     ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsInGOP);  
-  Void  compressPicInGOP (
+  Void  initGOP     ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsInGOP);
+
+  Void compressPicInGOP(
     std::unique_ptr<tensorflow::Session> *session,
     std::unique_ptr<tensorflow::Session> *session2,
     std::unique_ptr<tensorflow::Session> *session3,
-    Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,
-    std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff,
-    const InputColourSpaceConversion snr_conversion,
-    const Bool printFrameMSE, Int iGOPid, std::vector<Tensor> &outputs, std::map<int, std::map<int, int> > &mp,
+    Int iPOCLast, Int iNumPicRcvd, TComList<TComPic *> &rcListPic,
+    TComList<TComPicYuv *> &rcListPicYuvRecOut, std::list<AccessUnit> &accessUnitsInGOP,
+    Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid,
+    std::vector<Tensor> &outputs,
+    std::vector<Tensor> &outputs2,
+    std::vector<Tensor> &outputs3,
+    std::map<int, std::map<int, int> > &mp,
+    std::map<int, std::map<int, int> > &mp2,
+    std::map<int, std::map<int, int> > &mp3,
     Tensor &batchOfIndices,
-    Tensor &batchOfScores
+    Tensor &batchOfIndices2,
+    Tensor &batchOfIndices3,
+    Tensor &batchOfScores,
+    Tensor &batchOfScores2,
+    Tensor &batchOfScores3
   );
 #else
   Void  compressGOP ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,

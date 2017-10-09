@@ -2968,9 +2968,17 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
                              , Bool        bOnlyIVP
 #endif
                              , std::vector<Tensor> & outputs,
+                               std::vector<Tensor> & outputs2,
+                               std::vector<Tensor> & outputs3,
                                std::map<int, std::map<int, int> > &mp,
+                               std::map<int, std::map<int, int> > &mp2,
+                               std::map<int, std::map<int, int> > &mp3,
                                Tensor & batchOfIndices,
-                               Tensor & batchOfScores
+                               Tensor & batchOfIndices2,
+                               Tensor & batchOfIndices3,
+                               Tensor & batchOfScores,
+                               Tensor & batchOfScores2,
+                               Tensor & batchOfScores3
 )
 {
 #if NH_MV
@@ -3197,15 +3205,34 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           //    read the pel data of blks into
           //    a tensor of shape [32640, 8, 8, 1]
           const int iNumOfBlks = uiPicWidth * uiPicHeight / 8 / 8;
+
+          const int iNumOfBlks16x16 = uiPicWidth * uiPicHeight / 16 / 16;
+          const int iNumOfBlks32x32 = uiPicWidth * uiPicHeight / 32 / 32;
+
           tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
                                           tensorflow::TensorShape(
                                             {iNumOfBlks, 8, 8, 1}
                                           )
           );
+
+          tensorflow::Tensor input_tensor16x16(tensorflow::DT_FLOAT,
+                                               tensorflow::TensorShape(
+                                                 {iNumOfBlks16x16, 16, 16, 1}
+                                               )
+          );
+
+          tensorflow::Tensor input_tensor32x32(tensorflow::DT_FLOAT,
+                                               tensorflow::TensorShape(
+                                                 {iNumOfBlks32x32, 32, 32, 1}
+                                               )
+          );
           // input_tensor_mapped is
           // - an interface to the data of ``input_tensor``
           // - it is used to copy data into the ``input_tensor``
           auto input_tensor_mapped = input_tensor.tensor<float, 4>();
+
+          auto input_tensor_mapped16x16 = input_tensor16x16.tensor<float, 4>();
+          auto input_tensor_mapped32x32 = input_tensor32x32.tensor<float, 4>();
 
           // Get depth block luma values /////////////////////////////////////////////////////////////
           // a map using a 2d array of ints as a key, and another int as the value
@@ -3230,6 +3257,39 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
                   input_tensor_mapped(blk_idx, row, col, 0) = pOrgPelForOneBlk[col];
                 }
                 pOrgPelForOneBlk += iStride;
+              }
+            }
+          }
+
+          Int blk_idx_16x16 = -1;
+          for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 16) {
+            for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 16) {
+              blk_idx_16x16 += 1;
+              mp2[blk_x][blk_y] = blk_idx_16x16;
+              // later use this ``mp`` to find the idx for slicing the batch tensor
+              const Pel *pOrgPelForOneBlk2 = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
+              // row <=> y
+              // col <=> x
+              for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                  input_tensor_mapped16x16(blk_idx_16x16, row, col, 0) = pOrgPelForOneBlk2[col];
+                }
+                pOrgPelForOneBlk2 += iStride;
+              }
+            }
+          }
+
+          Int blk_idx3 = -1;
+          for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 8) {
+            for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 8) {
+              blk_idx3 += 1;
+              mp3[blk_x][blk_y] = blk_idx3;
+              const Pel *pOrgPelForOneBlk3 = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
+              for (int row = 0; row < 8; row++) {
+                for (int col = 0; col < 8; col++) {
+                  input_tensor_mapped32x32(blk_idx3, row, col, 0) = pOrgPelForOneBlk3[col];
+                }
+                pOrgPelForOneBlk3 += iStride;
               }
             }
           }
@@ -3263,10 +3323,33 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             LOG(ERROR) << "Running model failed: " << run_status;
             return;
           }
-
           Status get_top_label_status = GetTopLabelsForBatch(outputs, iNumOfK, &batchOfIndices, &batchOfScores);
           if (!get_top_label_status.ok()) {
             LOG(ERROR) << "get_top_label failed: " << get_top_label_status;
+            return;
+          }
+
+          Status run_status2 = (*session2)->Run({{input_layer, input_tensor16x16}},
+                                              {output_layer}, {}, &outputs2);
+          if (!run_status2.ok()) {
+            LOG(ERROR) << "Running model failed: " << run_status2;
+            return;
+          }
+          Status get_top_label_status2 = GetTopLabelsForBatch(outputs2, iNumOfK, &batchOfIndices2, &batchOfScores2);
+          if (!get_top_label_status2.ok()) {
+            LOG(ERROR) << "get_top_label failed: " << get_top_label_status2;
+            return;
+          }
+
+          Status run_status3 = (*session3)->Run({{input_layer, input_tensor32x32}},
+                                              {output_layer}, {}, &outputs2);
+          if (!run_status3.ok()) {
+            LOG(ERROR) << "Running model failed: " << run_status3;
+            return;
+          }
+          Status get_top_label_status3 = GetTopLabelsForBatch(outputs3, iNumOfK, &batchOfIndices3, &batchOfScores3);
+          if (!get_top_label_status3.ok()) {
+            LOG(ERROR) << "get_top_label failed: " << get_top_label_status3;
             return;
           }
         }
@@ -3304,6 +3387,34 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //          std::cout << std::endl;
           /// ending time
           // push back planar and DC modes
+          vec.push_back(0);
+          vec.push_back(1);
+        } else if (uiDepth == 2 && uiInitTrDepth == 0) {//size 16x16
+          Int iSlicingIdx2 = mp2[uiLPelX][uiTPelY];
+          Tensor indices2 = batchOfIndices2.Slice(iSlicingIdx2, iSlicingIdx2+ 1);
+          Tensor scores2 = batchOfScores2.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
+          tensorflow::TTypes<int32>::Flat indices_flat2 = indices2.flat<int32>();
+          for (int pos = 0; pos < iNumOfK; ++pos) {
+            const int label_index2 = indices_flat2(pos);
+            vec.push_back(label_index2 + 2);
+            if (label_index2 == 0) {
+              vec.push_back(34);
+            }
+          }
+          vec.push_back(0);
+          vec.push_back(1);
+        } else if (uiDepth == 1 && uiInitTrDepth == 0) {//size 32x32
+          Int iSlicingIdx3 = mp3[uiLPelX][uiTPelY];
+          Tensor indices3 = batchOfIndices3.Slice(iSlicingIdx3, iSlicingIdx3+ 1);
+          Tensor scores3 = batchOfScores3.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
+          tensorflow::TTypes<int32>::Flat indices_flat3 = indices3.flat<int32>();
+          for (int pos = 0; pos < iNumOfK; ++pos) {
+            const int label_index3 = indices_flat3(pos);
+            vec.push_back(label_index3 + 2);
+            if (label_index3 == 0) {
+              vec.push_back(34);
+            }
+          }
           vec.push_back(0);
           vec.push_back(1);
         } else {
@@ -8348,7 +8459,7 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
   {
     TComWedgelet* pcWedgelet = &(pacWedgeList->at(pacWedgeNodeList->at(uiNodeId).getPatternIdx()));
 #if ENABLE_RESNET
-    if (uiWidth == 8) {
+    if (uiWidth == 8 || uiWidth == 16 || uiWidth == 32 ) {
       Int iSx = pcWedgelet->getStartX();
       Int iSy = pcWedgelet->getStartY();
       Int iEx = pcWedgelet->getEndX();

@@ -1165,9 +1165,18 @@ Void TEncGOP::compressPicInGOP(
   Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic,
   TComList<TComPicYuv*>& rcListPicYuvRecOut,  std::list<AccessUnit>& accessUnitsInGOP,
   Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid,
-  std::vector<Tensor> &outputs, std::map<int, std::map<int, int> > &mp,
+  std::vector<Tensor> &outputs,
+  std::vector<Tensor> &outputs2,
+  std::vector<Tensor> &outputs3,
+  std::map<int, std::map<int, int> > &mp,
+  std::map<int, std::map<int, int> > &mp2,
+  std::map<int, std::map<int, int> > &mp3,
   Tensor &batchOfIndices,
-  Tensor &batchOfScores
+  Tensor &batchOfIndices2,
+  Tensor &batchOfIndices3,
+  Tensor &batchOfScores,
+  Tensor &batchOfScores2,
+  Tensor &batchOfScores3
 )
 #else
 Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic,
@@ -1920,9 +1929,18 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
                                             session3,
                                             pcPic,
                                             outputs,
+                                            outputs2,
+                                            outputs3,
                                             mp,
+                                            mp2,
+                                            mp3,
                                             batchOfIndices,
-                                            batchOfScores);
+                                            batchOfIndices2,
+                                            batchOfIndices3,
+                                            batchOfScores,
+                                            batchOfScores2,
+                                            batchOfScores3
+        );
         m_pcSliceEncoder->compressSlice   ( session,
                                             session2,
                                             session3,
@@ -1930,9 +1948,18 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
                                             false,
                                             false,
                                             outputs,
+                                            outputs2,
+                                            outputs3,
                                             mp,
+                                            mp2,
+                                            mp3,
                                             batchOfIndices,
-                                            batchOfScores);
+                                            batchOfIndices2,
+                                            batchOfIndices3,
+                                            batchOfScores,
+                                            batchOfScores2,
+                                            batchOfScores3
+        );
 
         const UInt curSliceSegmentEnd = pcSlice->getSliceSegmentCurEndCtuTsAddr();
         if (curSliceSegmentEnd < numberOfCtusInFrame)
