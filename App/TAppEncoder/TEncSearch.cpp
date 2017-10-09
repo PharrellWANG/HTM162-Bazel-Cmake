@@ -8353,6 +8353,12 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
       Int iEy = pcWedgelet->getEndY();
       Float slope = (Float(iEy - iSy) / Float(iEx - iSx));
       Int topOne = rvec[0];
+      if (topOne == 0 || topOne == 1) {
+        topOne = rvec[1];
+      }
+      if (topOne == 0 || topOne == 1) {
+        topOne = rvec[2];
+      }
       if (topOne == 2) {
         // slopeRange: [0, +oo]
         if (slope < 0) {
@@ -8375,6 +8381,9 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
       } else if (18 < topOne && topOne < 34) {
         UInt tmp_negative_min = UInt(topOne - 8);
         UInt tmp_positive_min = UInt(topOne + 8);
+        if (tmp_positive_min > 33) {
+          tmp_positive_min -=32;
+        }
         Float fAngNegativeMin = pacWedgeletAngSlope->at(tmp_negative_min - 2);
         Float fAngPositiveMin = pacWedgeletAngSlope->at(tmp_positive_min - 2);
         if (slope > fAngNegativeMin || slope < fAngPositiveMin) {
@@ -8383,6 +8392,9 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
         //todo: pha.zx
       } else if (2 < topOne && topOne < 10) {
         UInt tmp_min = UInt(topOne - 8 + 34);
+        if (tmp_min>33) {
+          tmp_min -= 32;
+        };
         UInt tmp_max = UInt(topOne + 8);
         Float fAngPositiveMax = pacWedgeletAngSlope->at(tmp_min - 2);
         Float fAngNegativeMin = pacWedgeletAngSlope->at(tmp_max - 2);
