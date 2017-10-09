@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
     return -1;
   }
   ///2nd graph
-  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize12288_step304857.pb";
+  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize3072_step304857.pb";
   string nameOfGraph2 = homeDir + secPart2;
   string graph2 = nameOfGraph2;
   std::unique_ptr<tensorflow::Session> session2;
@@ -134,7 +134,7 @@ int main(int argc, char* argv[])
     return -1;
   }
   ///3nd graph
-  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize12288_step304857.pb";
+  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize768_step304857.pb";
   string nameOfGraph3 = homeDir + secPart3;
   string graph3 = nameOfGraph3;
   std::unique_ptr<tensorflow::Session> session3;

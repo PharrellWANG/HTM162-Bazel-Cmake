@@ -3209,6 +3209,9 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           const int iNumOfBlks16x16 = uiPicWidth * uiPicHeight / 16 / 16;
           const int iNumOfBlks32x32 = uiPicWidth * uiPicHeight / 32 / 32;
 
+//          std::cout<<iNumOfBlks16x16<<std::endl;
+//          std::cout<<iNumOfBlks32x32<<std::endl;
+
           tensorflow::Tensor input_tensor(tensorflow::DT_FLOAT,
                                           tensorflow::TensorShape(
                                             {iNumOfBlks, 8, 8, 1}
@@ -3270,8 +3273,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
               const Pel *pOrgPelForOneBlk2 = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
               // row <=> y
               // col <=> x
-              for (int row = 0; row < 8; row++) {
-                for (int col = 0; col < 8; col++) {
+              for (int row = 0; row < 16; row++) {
+                for (int col = 0; col < 16; col++) {
                   input_tensor_mapped16x16(blk_idx_16x16, row, col, 0) = pOrgPelForOneBlk2[col];
                 }
                 pOrgPelForOneBlk2 += iStride;
@@ -3280,13 +3283,13 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           }
 
           Int blk_idx3 = -1;
-          for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 8) {
-            for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 8) {
+          for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 32) {
+            for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 32) {
               blk_idx3 += 1;
               mp3[blk_x][blk_y] = blk_idx3;
               const Pel *pOrgPelForOneBlk3 = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
-              for (int row = 0; row < 8; row++) {
-                for (int col = 0; col < 8; col++) {
+              for (int row = 0; row < 32; row++) {
+                for (int col = 0; col < 32; col++) {
                   input_tensor_mapped32x32(blk_idx3, row, col, 0) = pOrgPelForOneBlk3[col];
                 }
                 pOrgPelForOneBlk3 += iStride;
@@ -3329,6 +3332,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             return;
           }
 
+//          std::cout<< input_tensor16x16.DebugString() << std::endl;
+
           Status run_status2 = (*session2)->Run({{input_layer, input_tensor16x16}},
                                               {output_layer}, {}, &outputs2);
           if (!run_status2.ok()) {
@@ -3340,9 +3345,12 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             LOG(ERROR) << "get_top_label failed: " << get_top_label_status2;
             return;
           }
+//          outputs2 = outputs;
+//          batchOfIndices2 = batchOfIndices;
+//          batchOfScores2 = batchOfScores;
 
           Status run_status3 = (*session3)->Run({{input_layer, input_tensor32x32}},
-                                              {output_layer}, {}, &outputs2);
+                                              {output_layer}, {}, &outputs3);
           if (!run_status3.ok()) {
             LOG(ERROR) << "Running model failed: " << run_status3;
             return;
