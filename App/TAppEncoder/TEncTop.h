@@ -245,6 +245,8 @@ public:
 #if NH_MV
   Void encode(
     std::unique_ptr<tensorflow::Session> *session,
+    std::unique_ptr<tensorflow::Session> *session2,
+    std::unique_ptr<tensorflow::Session> *session3,
     Bool bEos,
     TComPicYuv* pcPicYuvOrg,
     TComPicYuv* pcPicYuvTrueOrg,

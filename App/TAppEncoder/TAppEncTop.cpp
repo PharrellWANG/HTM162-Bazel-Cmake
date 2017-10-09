@@ -959,7 +959,11 @@ Void TAppEncTop::xInitLib(Bool isFieldCoding)
  - destroy internal class
  .
  */
-Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
+Void TAppEncTop::encode(
+  std::unique_ptr<tensorflow::Session> *session,
+  std::unique_ptr<tensorflow::Session> *session2,
+  std::unique_ptr<tensorflow::Session> *session3
+)
 {
   fstream bitstreamFile(m_bitstreamFileName.c_str(), fstream::binary | fstream::out);
   if (!bitstreamFile)
@@ -1108,6 +1112,8 @@ Void TAppEncTop::encode(std::unique_ptr<tensorflow::Session> *session)
 
         // call encoding function for one frame                               
         m_acTEncTopList[layer]->encode(session,
+                                       session2,
+                                       session3,
                                        eos[layer],
                                        flush[layer] ? 0 : pcPicYuvOrg,
                                        flush[layer] ? 0 : &cPicYuvTrueOrg,

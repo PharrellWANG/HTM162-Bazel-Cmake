@@ -2955,6 +2955,8 @@ Void TEncSearch::estIntraPredDIS( TComDataCU* pcCU,
 
 Void
 TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
+                               std::unique_ptr<tensorflow::Session> *session2,
+                               std::unique_ptr<tensorflow::Session> *session3,
                                TComDataCU* pcCU,
                                TComYuv*    pcOrgYuv,
                                TComYuv*    pcPredYuv,

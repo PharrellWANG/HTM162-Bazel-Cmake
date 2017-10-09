@@ -145,6 +145,8 @@ public:
   /// CTU analysis function
   Void  compressCtu         (
     std::unique_ptr<tensorflow::Session> *session,
+    std::unique_ptr<tensorflow::Session> *session2,
+    std::unique_ptr<tensorflow::Session> *session3,
     TComDataCU*  pCtu,
     std::vector<Tensor> & outputs,
     std::map<int, std::map<int, int> > &mp,
@@ -166,6 +168,8 @@ protected:
   Void  finishCU            ( TComDataCU*  pcCU, UInt uiAbsPartIdx );
 #if AMP_ENC_SPEEDUP
   Void  xCompressCU         ( std::unique_ptr<tensorflow::Session> *session,
+                              std::unique_ptr<tensorflow::Session> *session2,
+                              std::unique_ptr<tensorflow::Session> *session3,
                               TComDataCU*& rpcBestCU,
                               TComDataCU*& rpcTempCU,
                               const UInt uiDepth DEBUG_STRING_FN_DECLARE(sDebug),
@@ -202,6 +206,8 @@ protected:
 #endif
   Void  xCheckRDCostIntra   (
     std::unique_ptr<tensorflow::Session> *session,
+    std::unique_ptr<tensorflow::Session> *session2,
+    std::unique_ptr<tensorflow::Session> *session3,
     TComDataCU *&rpcBestCU,
     TComDataCU *&rpcTempCU,
     PartSize     ePartSize

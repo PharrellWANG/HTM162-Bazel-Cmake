@@ -649,6 +649,8 @@ Void TEncSlice::setSearchRange( TComSlice* pcSlice )
  \param pcPic    picture class
  */
 Void TEncSlice::precompressSlice(std::unique_ptr<tensorflow::Session> *session,
+                                 std::unique_ptr<tensorflow::Session> *session2,
+                                 std::unique_ptr<tensorflow::Session> *session3,
                                  TComPic* pcPic,
                                  std::vector<Tensor> & outputs,
                                  std::map<int, std::map<int, int> > &mp,
@@ -718,7 +720,7 @@ Void TEncSlice::precompressSlice(std::unique_ptr<tensorflow::Session> *session,
     setUpLambda(pcSlice, m_vdRdPicLambda[uiQpIdx], m_viRdPicQp    [uiQpIdx]);
 
     // try compress
-    compressSlice   ( session, pcPic, true, m_pcCfg->getFastDeltaQp(), outputs, mp, batchOfIndices, batchOfScores);
+    compressSlice   ( session, session2, session3, pcPic, true, m_pcCfg->getFastDeltaQp(), outputs, mp, batchOfIndices, batchOfScores);
 
 #if NH_3D_VSO
     Dist64 uiPicDist        = m_uiPicDist;
@@ -794,6 +796,8 @@ Void TEncSlice::calCostSliceI(TComPic* pcPic) // TODO: this only analyses the fi
 /** \param pcPic   picture class
  */
 Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session,
+                               std::unique_ptr<tensorflow::Session> *session2,
+                               std::unique_ptr<tensorflow::Session> *session3,
                                TComPic* pcPic,
                                const Bool bCompressEntireSlice,
                                const Bool bFastDeltaQP,
@@ -1035,7 +1039,7 @@ Void TEncSlice::compressSlice( std::unique_ptr<tensorflow::Session> *session,
     }
 
     // run CTU trial encoder
-    m_pcCuEncoder->compressCtu( session, pCtu, outputs, mp, batchOfIndices, batchOfScores );
+    m_pcCuEncoder->compressCtu( session, session2, session3, pCtu, outputs, mp, batchOfIndices, batchOfScores );
 
 
     // All CTU decisions have now been made. Restore entropy coder to an initial stage, ready to make a true encode,

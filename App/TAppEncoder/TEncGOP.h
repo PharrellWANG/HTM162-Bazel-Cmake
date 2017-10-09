@@ -189,6 +189,8 @@ public:
   Void  initGOP     ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRecOut, std::list<AccessUnit>& accessUnitsInGOP);  
   Void  compressPicInGOP (
     std::unique_ptr<tensorflow::Session> *session,
+    std::unique_ptr<tensorflow::Session> *session2,
+    std::unique_ptr<tensorflow::Session> *session3,
     Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,
     std::list<AccessUnit>& accessUnitsInGOP, Bool isField, Bool isTff,
     const InputColourSpaceConversion snr_conversion,

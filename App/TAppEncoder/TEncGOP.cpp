@@ -1160,6 +1160,8 @@ Void TEncGOP::initGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcList
 #if NH_MV
 Void TEncGOP::compressPicInGOP(
   std::unique_ptr<tensorflow::Session> *session,
+  std::unique_ptr<tensorflow::Session> *session2,
+  std::unique_ptr<tensorflow::Session> *session3,
   Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic,
   TComList<TComPicYuv*>& rcListPicYuvRecOut,  std::list<AccessUnit>& accessUnitsInGOP,
   Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid,
@@ -1913,8 +1915,24 @@ Void TEncGOP::compressGOP( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rc
 
       for(UInt nextCtuTsAddr = 0; nextCtuTsAddr < numberOfCtusInFrame; )
       {
-        m_pcSliceEncoder->precompressSlice( session, pcPic, outputs, mp, batchOfIndices, batchOfScores);
-        m_pcSliceEncoder->compressSlice   ( session, pcPic, false, false, outputs, mp, batchOfIndices, batchOfScores);
+        m_pcSliceEncoder->precompressSlice( session,
+                                            session2,
+                                            session3,
+                                            pcPic,
+                                            outputs,
+                                            mp,
+                                            batchOfIndices,
+                                            batchOfScores);
+        m_pcSliceEncoder->compressSlice   ( session,
+                                            session2,
+                                            session3,
+                                            pcPic,
+                                            false,
+                                            false,
+                                            outputs,
+                                            mp,
+                                            batchOfIndices,
+                                            batchOfScores);
 
         const UInt curSliceSegmentEnd = pcSlice->getSliceSegmentCurEndCtuTsAddr();
         if (curSliceSegmentEnd < numberOfCtusInFrame)

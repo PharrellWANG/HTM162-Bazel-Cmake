@@ -429,6 +429,8 @@ Void TEncTop::deletePicBuffer()
  */
 #if NH_MV
 Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session,
+                     std::unique_ptr<tensorflow::Session> *session2,
+                     std::unique_ptr<tensorflow::Session> *session3,
                      Bool flush,
                      TComPicYuv* pcPicYuvOrg,
                      TComPicYuv* pcPicYuvTrueOrg,
@@ -488,6 +490,8 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
 #if NH_MV
   }
   m_cGOPEncoder.compressPicInGOP(session,
+                                 session2,
+                                 session3,
                                  m_iPOCLast,
                                  m_iNumPicRcvd,
                                  *(m_ivPicLists->getSubDpb(getLayerId(), false) ),
