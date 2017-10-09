@@ -8323,6 +8323,12 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
 
   WedgeList*     pacWedgeList     = getWedgeListScaled    ( uiWidth );
   WedgeNodeList* pacWedgeNodeList = getWedgeNodeListScaled( uiWidth );
+#if ENABLE_RESNET
+  WedgeletAngSlope* pacWedgeletAngSlope = getWedgeletAngSlope();
+#endif
+//  for (unsigned long j = 0; j < 32; j++) {
+//    std::cout << pacWedgeletAngSlope->at(j) << std::endl;
+//  }
 
 //  std::cout << "check out the size..." << std::endl;
 //  std::cout << pacWedgeList->size() << std::endl;
@@ -8339,6 +8345,7 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
   for( UInt uiNodeId = 0; uiNodeId < pacWedgeNodeList->size(); uiNodeId++ )
   {
     TComWedgelet* pcWedgelet = &(pacWedgeList->at(pacWedgeNodeList->at(uiNodeId).getPatternIdx()));
+#if ENABLE_RESNET
     if (uiWidth == 8) {
       Int iSx = pcWedgelet->getStartX();
       Int iSy = pcWedgelet->getStartY();
@@ -8356,22 +8363,36 @@ Void TEncSearch::xSearchDmm1Wedge( TComDataCU* pcCU, UInt uiAbsPtIdx, Pel* piRef
         if (slope > 0) {
           continue;
         }
-      } else if (topOne == 10) {
-        if (slope > 1 or slope < -1) {
+      } else if (10 <= topOne && topOne < 18) {
+        UInt tmp_min = UInt(topOne - 8);
+        UInt tmp_max = UInt(topOne + 8);
+        Float fAngPositiveMax = pacWedgeletAngSlope->at(tmp_min - 2);
+        Float fAngNegativeMin = pacWedgeletAngSlope->at(tmp_max - 2);
+        if (slope < fAngNegativeMin || slope > fAngPositiveMax) {
           continue;
         }
+        //todo: pha.zx    topOne+8;
+      } else if (18 < topOne && topOne < 34) {
+        UInt tmp_negative_min = UInt(topOne - 8);
+        UInt tmp_positive_min = UInt(topOne + 8);
+        Float fAngNegativeMin = pacWedgeletAngSlope->at(tmp_negative_min - 2);
+        Float fAngPositiveMin = pacWedgeletAngSlope->at(tmp_positive_min - 2);
+        if (slope > fAngNegativeMin || slope < fAngPositiveMin) {
+          continue;
+        }
+        //todo: pha.zx
+      } else if (2 < topOne && topOne < 10) {
+        UInt tmp_min = UInt(topOne - 8 + 34);
+        UInt tmp_max = UInt(topOne + 8);
+        Float fAngPositiveMax = pacWedgeletAngSlope->at(tmp_min - 2);
+        Float fAngNegativeMin = pacWedgeletAngSlope->at(tmp_max - 2);
+        if (slope < fAngNegativeMin || slope > fAngPositiveMax) {
+          continue;
+        }
+        //todo: pha.zx
       }
-//      else if (10 < topOne < 18) {
-//        continue;
-//        //todo: pha.zx    topOne+8;
-//      } else if (18 < topOne < 34) {
-//        continue;
-//        //todo: pha.zx
-//      } else if (2 < topOne < 10) {
-//        continue;
-//        //todo: pha.zx
-//      }
     }
+#endif
 
     Bool *pbPattern = pcWedgelet->getPatternScaled(uiWidth);
     UInt uiStride   = uiWidth;

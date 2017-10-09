@@ -171,6 +171,9 @@ public:
 // type definition wedgelet pattern list
 typedef std::vector<TComWedgelet> WedgeList;
 
+#if ENABLE_RESNET
+typedef std::vector<float> WedgeletAngSlope;
+#endif
 // ====================================================================================================================
 // Class definition TComWedgeRef
 // ====================================================================================================================

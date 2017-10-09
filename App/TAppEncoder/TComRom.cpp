@@ -544,6 +544,9 @@ const UChar g_dmm1TabIdxBits[6] =
 Bool g_wedgePattern[32*32];
 extern std::vector< std::vector<TComWedgelet> >   g_dmmWedgeLists;
 extern std::vector< std::vector<TComWedgeNode> >  g_dmmWedgeNodeLists;
+#if ENABLE_RESNET
+extern std::vector<float> g_dmmWedgeletAngSlope;
+#endif
 #endif
 // ====================================================================================================================
 // Misc.
@@ -809,8 +812,180 @@ Void decIndent( Bool b )
 #if NH_3D_DMM
 std::vector< std::vector<TComWedgelet>  > g_dmmWedgeLists;
 std::vector< std::vector<TComWedgeNode> > g_dmmWedgeNodeLists;
+#if ENABLE_RESNET
+std::vector<float> g_dmmWedgeletAngSlope;
+#endif
 Void initWedgeLists( Bool initNodeList )
 {
+#if ENABLE_RESNET
+  // push the slope of angular [2, 33] to vector
+  // [0, 31] <=> [2, 33]
+  // ref: High Efficiency Video Coding, Fig. 4.5.
+  for (int i = 2; i < 34; i++) {
+    switch (i) {
+      case 2: {
+        auto slope2 = float(32.0 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope2);
+        break;
+      }
+      case 3: {
+        auto slope3 = float(26 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope3);
+        break;
+      }
+      case 4: {
+        auto slope4 = float(21 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope4);
+        break;
+      }
+      case 5: {
+        auto slope5 = float(17 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope5);
+        break;
+      }
+      case 6: {
+        auto slope6 = float(13 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope6);
+        break;
+      }
+      case 7: {
+        auto slope7 = float(9 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope7);
+        break;
+      }
+      case 8: {
+        auto slope8 = float(5 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope8);
+        break;
+      }
+      case 9: {
+        auto slope9 = float(2 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope9);
+        break;
+      }
+      case 10: {
+        auto slope10 = float(0 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope10);
+        break;
+      }
+      case 11: {
+        auto slope11 = float(-2 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope11);
+        break;
+      }
+      case 12: {
+        auto slope12 = float(-5 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope12);
+        break;
+      }
+      case 13: {
+        auto slope13 = float(-9 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope13);
+        break;
+      }
+      case 14: {
+        auto slope14 = float(-13 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope14);
+        break;
+      }
+      case 15: {
+        auto slope15 = float(-17 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope15);
+        break;
+      }
+      case 16: {
+        auto slope16 = float(-21 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope16);
+        break;
+      }
+      case 17: {
+        auto slope17 = float(-26 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope17);
+        break;
+      }
+      case 18: {
+        auto slope18 = float(-32.0 / 32.0);
+        g_dmmWedgeletAngSlope.push_back(slope18);
+        break;
+      }
+      case 19: {
+        auto slope19 = float(-32.0 / 26);
+        g_dmmWedgeletAngSlope.push_back(slope19);
+        break;
+      }
+      case 20: {
+        auto slope20 = float(-32.0 / 21);
+        g_dmmWedgeletAngSlope.push_back(slope20);
+        break;
+      }
+      case 21: {
+        auto slope21 = float(-32.0 / 17);
+        g_dmmWedgeletAngSlope.push_back(slope21);
+        break;
+      }
+      case 22: {
+        auto slope22 = float(-32.0 / 13);
+        g_dmmWedgeletAngSlope.push_back(slope22);
+        break;
+      }
+      case 23: {
+        auto slope23 = float(-32.0 / 9);
+        g_dmmWedgeletAngSlope.push_back(slope23);
+        break;
+      }
+      case 24: {
+        auto slope24 = float(-32.0 / 5);
+        g_dmmWedgeletAngSlope.push_back(slope24);
+        break;
+      }
+      case 25: {
+        auto slope25 = float(-32.0 / 2);
+        g_dmmWedgeletAngSlope.push_back(slope25);
+        break;
+      }
+      case 26: {
+        auto slope26 = float(-32.0 / 1); // +oo, actually this will not be used, take it as placeholder
+        g_dmmWedgeletAngSlope.push_back(slope26);
+        break;
+      }
+      case 27: {
+        auto slope27 = float(32.0 / 2);
+        g_dmmWedgeletAngSlope.push_back(slope27);
+        break;
+      }
+      case 28: {
+        auto slope28 = float(32.0 / 5);
+        g_dmmWedgeletAngSlope.push_back(slope28);
+        break;
+      }
+      case 29: {
+        auto slope29 = float(32.0 / 9);
+        g_dmmWedgeletAngSlope.push_back(slope29);
+        break;
+      }
+      case 30: {
+        auto slope30 = float(32.0 / 13);
+        g_dmmWedgeletAngSlope.push_back(slope30);
+        break;
+      }
+      case 31: {
+        auto slope31 = float(32.0 / 17);
+        g_dmmWedgeletAngSlope.push_back(slope31);
+        break;
+      }
+      case 32: {
+        auto slope32 = float(32.0 / 21);
+        g_dmmWedgeletAngSlope.push_back(slope32);
+        break;
+      }
+      default: {
+        auto slope33 = float(32.0 / 26);
+        g_dmmWedgeletAngSlope.push_back(slope33);
+        break;
+      }
+    }
+  }
+#endif
   if( !g_dmmWedgeLists.empty() ) return;
   for( UInt ui = g_aucConvertToBit[DMM_MIN_SIZE]; ui < (g_aucConvertToBit[DMM_MAX_SIZE]); ui++ ) // ui: 0, 1, 2, map to: 4, 8, 16 // why 32 is not here? pha.zx
   {
@@ -971,5 +1146,11 @@ WedgeNodeList* getWedgeNodeListScaled( UInt blkSize )
 {
   return &g_dmmWedgeNodeLists[ g_aucConvertToBit[( 16 >= blkSize ) ? blkSize : 16] ]; 
 }
+#if ENABLE_RESNET
+WedgeletAngSlope* getWedgeletAngSlope()
+{
+  return &g_dmmWedgeletAngSlope;
+}
+#endif
 #endif //NH_3D_DMM
 //! \}
