@@ -94,6 +94,8 @@ Status LoadGraph(string graph_file_name,
 // ====================================================================================================================
 // Main function
 // ====================================================================================================================
+double g_dmm1TimeCost(0);
+//extern double getDmm1TimeCost();
 
 int main(int argc, char* argv[])
 {
@@ -204,7 +206,7 @@ int main(int argc, char* argv[])
   printf("\n Total Time: %12.3f sec.\n", dResult);
 #if DMM1_TIME_MEASURE
   std::cout<< "\nTotal Time for DMM1 (xSearchDmm1Wedge):\n";
-  std::cout << getDmm1TimeCost() << std::endl;
+  std::cout << g_dmm1TimeCost << std::endl;
 #endif
 //  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
 //  printf("[real-world total time]  %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);

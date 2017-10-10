@@ -180,6 +180,8 @@ Status GetTopLabelsForBatch(vector<Tensor> & outputs, int how_many_labels,
 #endif
 //! \ingroup TLibEncoder
 //! \{
+//double g_dmm1TimeCost;
+//extern double upDmm1TimeCost(double x);
 
 static const TComMv s_acMvRefineH[9] =
 {
@@ -3621,7 +3623,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #if DMM1_TIME_MEASURE
                   // ending time
                   dmmTime = (Double) (clock() - ltimeBefore) / CLOCKS_PER_SEC;
-                  upDmm1TimeCost(dmmTime);
+                  g_dmm1TimeCost += dmmTime;
 #endif
                   pcCU->setDmm1WedgeTabIdxSubParts( uiTabIdx,  uiPartOffset, uiDepth + uiInitTrDepth );
                   (getWedgeListScaled( puRect.width )->at( pcCU->getDmm1WedgeTabIdx( uiAbsPartIdx ) )).getPatternScaledCopy( puRect.width, biSegPattern );

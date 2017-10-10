@@ -6,9 +6,6 @@
 #define HTM162_TAPPENCODER_TIMECOST_H
 
 
-extern double getDmm1TimeCost();
-
-extern void upDmm1TimeCost(double x);
-
+extern double g_dmm1TimeCost;
 
 #endif //HTM162_TAPPENCODER_TIMECOST_H
