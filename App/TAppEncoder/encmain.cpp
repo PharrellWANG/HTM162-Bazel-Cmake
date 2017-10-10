@@ -103,8 +103,10 @@ int main(int argc, char* argv[])
   string homeDir= getenv("HOME");
   ///1st graph
   // path for the first graph
+  // 1024x768
   string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize12288_step133049.pb";
-//  string secPart = "frozen_resnet_for_fdc_blk8x8_batchsize32640_step133049.pb";
+  // 1920x1088
+//  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize32640_step133049.pb";
   string nameOfGraphOne = homeDir + secPart;
   string graph = nameOfGraphOne;
   // end first graph
@@ -118,7 +120,7 @@ int main(int argc, char* argv[])
   string output_layer = "logits/fdc_output_node";
   string root_dir = "";
 
-  std::unique_ptr<tensorflow::Session> session;
+  std::unique_ptr<tensorflow::Session> session;024
   string graph_path = tensorflow::io::JoinPath(root_dir, graph);
   Status load_graph_status = LoadGraph(graph_path, &session);
   if (!load_graph_status.ok()) {
@@ -127,6 +129,8 @@ int main(int argc, char* argv[])
   }
   ///2nd graph
   string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize3072_step304857.pb";
+  // 1920x1088
+//  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize8160_step304857.pb";
   string nameOfGraph2 = homeDir + secPart2;
   string graph2 = nameOfGraph2;
   std::unique_ptr<tensorflow::Session> session2;
@@ -138,6 +142,8 @@ int main(int argc, char* argv[])
   }
   ///3nd graph
   string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize768_step304857.pb";
+  // 1920x1088
+//  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize2040_step304857.pb";
   string nameOfGraph3 = homeDir + secPart3;
   string graph3 = nameOfGraph3;
   std::unique_ptr<tensorflow::Session> session3;
