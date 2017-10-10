@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
     LOG(ERROR) << load_graph_status;
     return -1;
   }
-  ///2nd graph
+  ///2nd graph //
   string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize3072_step304857.pb";
   // 1920x1088
 //  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize8160_step304857.pb";
