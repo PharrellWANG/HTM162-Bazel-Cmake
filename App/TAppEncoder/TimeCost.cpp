@@ -4,14 +4,12 @@
 
 #include "TimeCost.h"
 
-namespace Dmm1TimeCost {
-  double g_dmm1TimeCost = 0;
+double g_dmm1TimeCost = 0;
 
-  double getDmm1TimeCost() {
-    return g_dmm1TimeCost;
-  }
+double getDmm1TimeCost() {
+  return g_dmm1TimeCost;
+}
 
-  void upDmm1TimeCost(double x) {
-    g_dmm1TimeCost += x;
-  }
+void upDmm1TimeCost(double x) {
+  g_dmm1TimeCost += x;
 }

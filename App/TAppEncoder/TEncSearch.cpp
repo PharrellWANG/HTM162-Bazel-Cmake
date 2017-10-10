@@ -3621,7 +3621,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 #if DMM1_TIME_MEASURE
                   // ending time
                   dmmTime = (Double) (clock() - ltimeBefore) / CLOCKS_PER_SEC;
-                  Dmm1TimeCost::upDmm1TimeCost(dmmTime);
+                  upDmm1TimeCost(dmmTime);
 #endif
                   pcCU->setDmm1WedgeTabIdxSubParts( uiTabIdx,  uiPartOffset, uiDepth + uiInitTrDepth );
                   (getWedgeListScaled( puRect.width )->at( pcCU->getDmm1WedgeTabIdx( uiAbsPartIdx ) )).getPatternScaledCopy( puRect.width, biSegPattern );

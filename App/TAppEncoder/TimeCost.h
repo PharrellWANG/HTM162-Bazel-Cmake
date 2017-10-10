@@ -6,11 +6,9 @@
 #define HTM162_TAPPENCODER_TIMECOST_H
 
 
-namespace Dmm1TimeCost {
-  extern double getDmm1TimeCost();
+extern double getDmm1TimeCost();
 
-  void upDmm1TimeCost(double x);
-}
+extern void upDmm1TimeCost(double x);
 
 
 #endif //HTM162_TAPPENCODER_TIMECOST_H
