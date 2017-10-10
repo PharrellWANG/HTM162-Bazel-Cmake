@@ -54,6 +54,12 @@
 #define ENABLE_RESNET 1
 //end pha.zx
 
+// DMM1 time measurement // pha
+#ifndef DMM1_TIME_MEASURE
+#define DMM1_TIME_MEASURE               1
+#endif
+// end pha
+
 //! \ingroup TLibCommon
 //! \{
 /////////////////////////////////////////////////////////////////////////////////////////

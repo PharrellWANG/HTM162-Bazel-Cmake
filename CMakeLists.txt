@@ -152,7 +152,7 @@ set(SOURCE_FILES
   App/TAppEncoder/TypeDef.h
   App/TAppEncoder/WeightPredAnalysis.cpp
   App/TAppEncoder/WeightPredAnalysis.h
-  )
+  App/TAppEncoder/TimeCost.cpp App/TAppEncoder/TimeCost.h)
 
 include_directories(.)
 include_directories(App)

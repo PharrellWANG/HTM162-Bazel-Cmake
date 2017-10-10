@@ -89,6 +89,7 @@ Status LoadGraph(string graph_file_name,
 //! \{
 
 #include "Debug.h"
+#include "TimeCost.h"
 
 // ====================================================================================================================
 // Main function
@@ -193,7 +194,7 @@ int main(int argc, char* argv[])
   Double dResult;
   clock_t lBefore = clock();
 
-  std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
+//  std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
 
   // call encoding function
   cTAppEncTop.encode(&session, &session2, &session3);
@@ -201,10 +202,13 @@ int main(int argc, char* argv[])
   // ending time
   dResult = (Double)(clock()-lBefore) / CLOCKS_PER_SEC;
   printf("\n Total Time: %12.3f sec.\n", dResult);
-
-  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
-  printf("[real-world total time]  %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
-  std::cout << std::endl;
+#if DMM1_TIME_MEASURE
+  std::cout<< "\nTotal Time for DMM1 (xSearchDmm1Wedge):\n";
+  std::cout << Dmm1TimeCost::getDmm1TimeCost() << std::endl;
+#endif
+//  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
+//  printf("[real-world total time]  %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);
+//  std::cout << std::endl;
 
   // destroy application encoder class
   cTAppEncTop.destroy();
