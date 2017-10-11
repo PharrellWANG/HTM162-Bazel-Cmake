@@ -194,19 +194,7 @@ public:
     std::unique_ptr<tensorflow::Session> *session3,
     Int iPOCLast, Int iNumPicRcvd, TComList<TComPic *> &rcListPic,
     TComList<TComPicYuv *> &rcListPicYuvRecOut, std::list<AccessUnit> &accessUnitsInGOP,
-    Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid,
-    std::vector<Tensor> &outputs,
-    std::vector<Tensor> &outputs2,
-    std::vector<Tensor> &outputs3,
-    std::map<int, std::map<int, int> > &mp,
-    std::map<int, std::map<int, int> > &mp2,
-    std::map<int, std::map<int, int> > &mp3,
-    Tensor &batchOfIndices,
-    Tensor &batchOfIndices2,
-    Tensor &batchOfIndices3,
-    Tensor &batchOfScores,
-    Tensor &batchOfScores2,
-    Tensor &batchOfScores3
+    Bool isField, Bool isTff, const InputColourSpaceConversion snr_conversion, const Bool printFrameMSE, Int iGOPid
   );
 #else
   Void  compressGOP ( Int iPOCLast, Int iNumPicRcvd, TComList<TComPic*>& rcListPic, TComList<TComPicYuv*>& rcListPicYuvRec,

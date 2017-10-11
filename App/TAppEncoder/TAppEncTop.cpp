@@ -45,8 +45,9 @@
 
 #include "TAppEncTop.h"
 #include "AnnexBwrite.h"
+#include "AphaTensorflowGlobalVars.h"
 
-using namespace std;
+//using namespace std;
 #if ENABLE_RESNET
 #include "tensorflow/cc/ops/const_op.h"
 #include "tensorflow/cc/ops/image_ops.h"
@@ -1105,22 +1106,26 @@ Void TAppEncTop::encode(
         Int   iNumEncoded = 0;
 
         // below vars are used in ```TEncSearch.cpp```
-        std::vector<Tensor> outputs;
-        std::map<int, std::map<int, int> > mp;
-        Tensor batchOfIndices;
-        Tensor batchOfScores;
+        if (OutputsOfFirstBatchSize08.size() != 0) {
+          OutputsOfFirstBatchSize08.clear();
+        }
+        if (OutputsOfSeconBatchSize08.size() != 0) {
+          OutputsOfSeconBatchSize08.clear();
+        }
 
-        // for size 16x16
-        std::vector<Tensor> outputs2;
-        std::map<int, std::map<int, int> > mp2;
-        Tensor batchOfIndices2;
-        Tensor batchOfScores2;
+        if (OutputsOfFirstBatchSize16.size() != 0) {
+          OutputsOfFirstBatchSize16.clear();
+        }
+        if (OutputsOfSeconBatchSize16.size() != 0) {
+          OutputsOfSeconBatchSize16.clear();
+        }
 
-        // for size 32x32
-        std::vector<Tensor> outputs3;
-        std::map<int, std::map<int, int> > mp3;
-        Tensor batchOfIndices3;
-        Tensor batchOfScores3;
+        if (OutputsOfFirstBatchSize32.size() != 0) {
+          OutputsOfFirstBatchSize32.clear();
+        }
+        if (OutputsOfSeconBatchSize32.size() != 0) {
+          OutputsOfSeconBatchSize32.clear();
+        }
 
         // call encoding function for one frame                               
         m_acTEncTopList[layer]->encode(session,
@@ -1133,19 +1138,7 @@ Void TAppEncTop::encode(
                                        *m_cListPicYuvRec[layer],
                                        outputAccessUnits,
                                        iNumEncoded,
-                                       gopId,
-                                       outputs,
-                                       outputs2,
-                                       outputs3,
-                                       mp,
-                                       mp2,
-                                       mp3,
-                                       batchOfIndices,
-                                       batchOfIndices2,
-                                       batchOfIndices3,
-                                       batchOfScores,
-                                       batchOfScores2,
-                                       batchOfScores3
+                                       gopId
         );
         xWriteOutput(bitstreamFile, iNumEncoded, outputAccessUnits, layer);
         outputAccessUnits.clear();

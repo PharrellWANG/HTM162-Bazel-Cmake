@@ -64,6 +64,8 @@ cc_library(
             "TAppEncCfg.cpp"
     		],
     hdrs = [
+            "AphaTensorflowGlobalVars.h",
+            "AphaTimeCost.h",
             "TAppEncCfg.h",
             "TAppEncTop.h",
             "TEncAnalyze.h",
