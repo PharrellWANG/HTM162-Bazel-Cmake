@@ -3287,7 +3287,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //          std::cout << std::endl;
           /// ending time
           Status GetTopLabelStatus08FirstBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfFirstBatchSize08,
-                                                                      iNumOfK / 2,
+                                                                      iNumOfK,
                                                                       &TFGlobalVars::FirstBatchOfIndicesSize08,
                                                                       &TFGlobalVars::FirstBatchOfScoresSize08);
           if (!GetTopLabelStatus08FirstBatch.ok()) {
@@ -3296,7 +3296,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           }
 
           Status GetTopLabelStatus08SeconBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfSeconBatchSize08,
-                                                                      iNumOfK / 2,
+                                                                      iNumOfK,
                                                                       &TFGlobalVars::SeconBatchOfIndicesSize08,
                                                                       &TFGlobalVars::SeconBatchOfScoresSize08);
           if (!GetTopLabelStatus08SeconBatch.ok()) {
@@ -3326,7 +3326,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           }
 
           Status GetTopLabelStatus16FirstBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfFirstBatchSize16,
-                                                                      iNumOfBlks16x16 / 2,
+                                                                      iNumOfK,
                                                                       &TFGlobalVars::FirstBatchOfIndicesSize16,
                                                                       &TFGlobalVars::FirstBatchOfScoresSize16);
           if (!GetTopLabelStatus16FirstBatch.ok()) {
@@ -3335,7 +3335,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           }
 
           Status GetTopLabelStatus16SeconBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfSeconBatchSize16,
-                                                                      iNumOfBlks16x16 / 2,
+                                                                      iNumOfK,
                                                                       &TFGlobalVars::SeconBatchOfIndicesSize16,
                                                                       &TFGlobalVars::SeconBatchOfScoresSize16);
           if (!GetTopLabelStatus16SeconBatch.ok()) {
@@ -3366,7 +3366,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
           Status GetTopLabelStatus32FirstBatch = GetTopLabelsForBatch(
             TFGlobalVars::OutputsOfFirstBatchSize32,
-            iNumOfBlks32x32 / 2,
+            iNumOfK,
             &TFGlobalVars::FirstBatchOfIndicesSize32,
             &TFGlobalVars::FirstBatchOfScoresSize32
           );
@@ -3377,7 +3377,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 
           Status GetTopLabelStatus32SeconBatch = GetTopLabelsForBatch(
             TFGlobalVars::OutputsOfSeconBatchSize32,
-            iNumOfBlks32x32 / 2,
+            iNumOfK,
             &TFGlobalVars::SeconBatchOfIndicesSize32,
             &TFGlobalVars::SeconBatchOfScoresSize32
           );
