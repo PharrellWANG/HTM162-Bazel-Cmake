@@ -34,7 +34,7 @@
 /** \file     TEncSearch.cpp
  \brief    encoder search class
  */
-#include "TimeCost.h"
+#include "AphaTimeCost.h"
 #include "CommonDef.h"
 #include "TComRom.h"
 #include "TComMotionInfo.h"

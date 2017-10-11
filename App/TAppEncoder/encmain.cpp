@@ -89,7 +89,7 @@ Status LoadGraph(string graph_file_name,
 //! \{
 
 #include "Debug.h"
-#include "TimeCost.h"
+#include "AphaTimeCost.h"
 
 // ====================================================================================================================
 // Main function
