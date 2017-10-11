@@ -152,8 +152,8 @@ set(SOURCE_FILES
   App/TAppEncoder/TypeDef.h
   App/TAppEncoder/WeightPredAnalysis.cpp
   App/TAppEncoder/WeightPredAnalysis.h
-  App/TAppEncoder/AphaTimeCost.h
-  App/TAppEncoder/AphaTensorflowGlobalVars.h App/TAppEncoder/AphaTfPha.cpp App/TAppEncoder/AphaTfPha.h)
+  App/TAppEncoder/AphaTfPha.cpp
+  App/TAppEncoder/AphaTfPha.h)
 
 include_directories(.)
 include_directories(App)
