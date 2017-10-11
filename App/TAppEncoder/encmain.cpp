@@ -89,36 +89,11 @@ Status LoadGraph(string graph_file_name,
 //! \{
 
 #include "Debug.h"
-#include "AphaTimeCost.h"
-#include "AphaTensorflowGlobalVars.h"
+#include "AphaTfPha.h"
 
 // ====================================================================================================================
 // Main function
 // ====================================================================================================================
-double g_dmm1TimeCost(0);
-std::vector<Tensor> OutputsOfFirstBatchSize08;
-std::vector<Tensor> OutputsOfSeconBatchSize08;
-std::map<int, std::map<int, int> > MapPositionToIndicesSize08;
-Tensor FirstBatchOfIndicesSize08;
-Tensor SeconBatchOfIndicesSize08;
-Tensor FirstBatchOfScoresSize08;
-Tensor SeconBatchOfScoresSize08;
-
-std::vector<Tensor> OutputsOfFirstBatchSize16;
-std::vector<Tensor> OutputsOfSeconBatchSize16;
-std::map<int, std::map<int, int> > MapPositionToIndicesSize16;
-Tensor FirstBatchOfIndicesSize16;
-Tensor SeconBatchOfIndicesSize16;
-Tensor FirstBatchOfScoresSize16;
-Tensor SeconBatchOfScoresSize16;
-
-std::vector<Tensor> OutputsOfFirstBatchSize32;
-std::vector<Tensor> OutputsOfSeconBatchSize32;
-std::map<int, std::map<int, int> > MapPositionToIndicesSize32;
-Tensor FirstBatchOfIndicesSize32;
-Tensor SeconBatchOfIndicesSize32;
-Tensor FirstBatchOfScoresSize32;
-Tensor SeconBatchOfScoresSize32;
 
 int main(int argc, char *argv[]) {
 #if ENABLE_RESNET
@@ -234,7 +209,7 @@ int main(int argc, char *argv[]) {
   printf("\n Total Time: %12.3f sec.\n", dResult);
 #if DMM1_TIME_MEASURE
   std::cout<< "\nTotal Time for DMM1 (xSearchDmm1Wedge):\n";
-  std::cout << g_dmm1TimeCost << std::endl;
+  std::cout << DMM1TimeCost::g_dmm1TimeCost << std::endl;
 #endif
 //  std::chrono::system_clock::time_point time_after = std::chrono::system_clock::now();
 //  printf("[real-world total time]  %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0);

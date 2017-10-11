@@ -34,8 +34,7 @@
 /** \file     TEncSearch.cpp
  \brief    encoder search class
  */
-#include "AphaTimeCost.h"
-#include "AphaTensorflowGlobalVars.h"
+#include "AphaTfPha.h"
 #include "CommonDef.h"
 #include "TComRom.h"
 #include "TComMotionInfo.h"
@@ -3093,7 +3092,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // push back planar and DC modes
         vec.push_back(0);
         vec.push_back(1);
-        // push top k mode index values into the vector
         for (i = 2; i < 34; i += 1) {
           vec.push_back(i);
           // push back mode 34 if mode 2 is chosen
@@ -3103,24 +3101,15 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         }
       } else { // else if using model prediction *********************************************************************
         TComSlice *const pcSlice = pcCU->getSlice();
-//        const UInt maxCUWidth = sps.getMaxCUWidth();
-//        const UInt maxCUHeight = sps.getMaxCUHeight();
-
         const TComPicYuv *const pPic = pcSlice->getPic()->getPicYuvOrg();  // Picture pointer
         const Pel *pOrg = pPic->getAddr(COMPONENT_Y);      // Y pel frame pointer
         const Int iStride = pPic->getStride(COMPONENT_Y);      // Y width
-//        const Int iTotalHeight = pPic->getTotalHeight(COMPONENT_Y);      // Y height
-//        const UInt uiCuSize = (maxCUWidth >> uiDepth);        // Y CU Size
-
         UInt uiLPelX = pcCU->getCUPelX() + g_auiRasterToPelX[g_auiZscanToRaster[uiAbsPartIdx]];
         UInt uiTPelY = pcCU->getCUPelY() + g_auiRasterToPelY[g_auiZscanToRaster[uiAbsPartIdx]];
-
         UInt uiWidth = pcCU->getWidth(0) >> uiInitTrDepth;
         UInt uiHeight = pcCU->getHeight(0) >> uiInitTrDepth;
-
         UInt uiRPelX = uiLPelX + uiWidth - 1;
         UInt uiBPelY = uiTPelY + uiHeight - 1;
-
         UInt uiPicWidth = pPic->getWidth(COMPONENT_Y);
         UInt uiPicHeight = pPic->getHeight(COMPONENT_Y);
 
@@ -3144,28 +3133,16 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //        std::cout << uiRPelX << std::endl;
 //        std::cout << uiTPelY << std::endl;
 //        std::cout << uiBPelY << std::endl;
-
         // home directory
         string homeDir = getenv("HOME");
         // path for label text file // start
         string secondPartLabelFile = "/labels/labels_for_fdc_32_classes.txt";
         string labelsTextFile = homeDir + secondPartLabelFile;
         // path for label text file // end
-
         // input & output node names // start
         string input_layer = "input";
         string output_layer = "logits/fdc_output_node";
-
         Int iNumOfK = 16;
-        // Hints from Dr.Tsang
-        //  if(!pcCU->getCUPelX() && !pcCU->getCUPelY() && uiDepth == 3 && pcCU->getPartitionSize(0) == SIZE_2Nx2N);
-        //  uiNumPU == 4 ? NxN : 2Nx2N
-        //  uiDepth == 0 ? 64 :
-        //  1 ? 32;
-        //  2: 16
-        //  3?8
-        // Dr.Tsang end
-
         // pha.zx
         // ==============
         // ui_depth  cu_size
@@ -3174,10 +3151,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // 2        16
         // 3        08
         // ==============
-        // only do the prediction (for the single whole frame) when
-        // the CU position is at [0,0].
+        // only do the predictions once per frame
         if (uiLPelX == 0 && uiTPelY == 0 && uiRPelX == 63 && uiBPelY == 63) {
-//          std::cout << "I shall appear only once per depth frame." << std::endl;
           // read tensor of shape [num_of_blks, width, height, channel]
           // i.e.,
           // - for video of size 1024*768:
@@ -3187,31 +3162,24 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           //    read the pel data of blks into
           //    a tensor of shape [32640, 8, 8, 1]
           const int iNumOfBlks = uiPicWidth * uiPicHeight / 8 / 8;
-
           const int iNumOfBlks16x16 = uiPicWidth * uiPicHeight / 16 / 16;
           const int iNumOfBlks32x32 = uiPicWidth * uiPicHeight / 32 / 32;
-
-//          std::cout<<iNumOfBlks16x16<<std::endl;
-//          std::cout<<iNumOfBlks32x32<<std::endl;
-
           tensorflow::Tensor InputTensor08(tensorflow::DT_FLOAT,
                                            tensorflow::TensorShape(
                                              {iNumOfBlks, 8, 8, 1}
                                            )
           );
-
           tensorflow::Tensor InputTensor16(tensorflow::DT_FLOAT,
                                            tensorflow::TensorShape(
                                              {iNumOfBlks16x16, 16, 16, 1}
                                            )
           );
-
           tensorflow::Tensor InputTensor32(tensorflow::DT_FLOAT,
                                            tensorflow::TensorShape(
                                              {iNumOfBlks32x32, 32, 32, 1}
                                            )
           );
-          // input_tensor_mapped is
+          // InputTensorxxMapped is
           // - an interface to the data of ``input_tensor``
           // - it is used to copy data into the ``input_tensor``
           auto InputTensor08Mapped = InputTensor08.tensor<float, 4>();
@@ -3231,7 +3199,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 8) {
             for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 8) {
               blk_idx += 1;
-              MapPositionToIndicesSize08[blk_x][blk_y] = blk_idx;
+              TFGlobalVars::MapPositionToIndicesSize08[blk_x][blk_y] = blk_idx;
               // later use this ``mp`` to find the idx for slicing the batch tensor
               const Pel *pOrgPelForOneBlk = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
               // row <=> y
@@ -3249,7 +3217,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 16) {
             for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 16) {
               blk_idx_16x16 += 1;
-              MapPositionToIndicesSize16[blk_x][blk_y] = blk_idx_16x16;
+              TFGlobalVars::MapPositionToIndicesSize16[blk_x][blk_y] = blk_idx_16x16;
               // later use this ``mp`` to find the idx for slicing the batch tensor
               const Pel *pOrgPelForOneBlk2 = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
               // row <=> y
@@ -3267,7 +3235,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           for (int blk_y = 0; blk_y < uiPicHeight; blk_y += 32) {
             for (int blk_x = 0; blk_x < uiPicWidth; blk_x += 32) {
               blk_idx3 += 1;
-              MapPositionToIndicesSize32[blk_x][blk_y] = blk_idx3;
+              TFGlobalVars::MapPositionToIndicesSize32[blk_x][blk_y] = blk_idx3;
               const Pel *pOrgPelForOneBlk3 = &pOrg[blk_y * iStride + blk_x];  // Y pel CU pointer
               for (int row = 0; row < 32; row++) {
                 for (int col = 0; col < 32; col++) {
@@ -3282,10 +3250,23 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //          std::chrono::system_clock::time_point time_before = std::chrono::system_clock::now();
           /// do things for size 08x08 start
           Status RunStatus08FirstBatch = (*session)->Run({{input_layer, InputTensor08.Slice(0, iNumOfBlks / 2)}},
-                                                         {output_layer}, {}, &OutputsOfFirstBatchSize08);
+                                                         {output_layer},
+                                                         {},
+                                                         &TFGlobalVars::OutputsOfFirstBatchSize08);
+          if (!RunStatus08FirstBatch.ok()) {
+            LOG(ERROR) << "Running model failed: " << RunStatus08FirstBatch;
+            return;
+          }
+
           Status RunStatus08SeconBatch = (*session)->Run(
             {{input_layer, InputTensor08.Slice(iNumOfBlks / 2, iNumOfBlks)}},
-            {output_layer}, {}, &OutputsOfSeconBatchSize08);
+            {output_layer},
+            {},
+            &TFGlobalVars::OutputsOfSeconBatchSize08);
+          if (!RunStatus08SeconBatch.ok()) {
+            LOG(ERROR) << "Running model failed: " << RunStatus08SeconBatch;
+            return;
+          }
 //          std::cout << outputs[0].DebugString() << std::endl;
 //          std::cout << outputs[0].dims() << std::endl;
 //          auto sliced_outputs_eval = outputs[0].Slice(0, 1);
@@ -3305,24 +3286,19 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //          printf("[real-world time] Every sample in this session took %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after - time_before).count() / 1000000.0 / iNumOfBlks);
 //          std::cout << std::endl;
           /// ending time
-          if (!RunStatus08FirstBatch.ok()) {
-            LOG(ERROR) << "Running model failed: " << RunStatus08FirstBatch;
-            return;
-          }
-          if (!RunStatus08SeconBatch.ok()) {
-            LOG(ERROR) << "Running model failed: " << RunStatus08SeconBatch;
-            return;
-          }
-          Status GetTopLabelStatus08FirstBatch = GetTopLabelsForBatch(OutputsOfFirstBatchSize08, iNumOfK / 2,
-                                                                      &FirstBatchOfIndicesSize08,
-                                                                      &FirstBatchOfScoresSize08);
+          Status GetTopLabelStatus08FirstBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfFirstBatchSize08,
+                                                                      iNumOfK / 2,
+                                                                      &TFGlobalVars::FirstBatchOfIndicesSize08,
+                                                                      &TFGlobalVars::FirstBatchOfScoresSize08);
           if (!GetTopLabelStatus08FirstBatch.ok()) {
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus08FirstBatch;
             return;
           }
-          Status GetTopLabelStatus08SeconBatch = GetTopLabelsForBatch(OutputsOfSeconBatchSize08, iNumOfK / 2,
-                                                                      &SeconBatchOfIndicesSize08,
-                                                                      &SeconBatchOfScoresSize08);
+
+          Status GetTopLabelStatus08SeconBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfSeconBatchSize08,
+                                                                      iNumOfK / 2,
+                                                                      &TFGlobalVars::SeconBatchOfIndicesSize08,
+                                                                      &TFGlobalVars::SeconBatchOfScoresSize08);
           if (!GetTopLabelStatus08SeconBatch.ok()) {
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus08SeconBatch;
             return;
@@ -3330,105 +3306,94 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           /// do things for size 08x08 end
           /// do things for size 16x16 start
           Status RunStatus16FirstBatch = (*session2)->Run({{input_layer, InputTensor16.Slice(0, iNumOfBlks16x16 / 2)}},
-                                                          {output_layer}, {}, &OutputsOfFirstBatchSize16);
-          Status RunStatus16SeconBatch = (*session2)->Run(
-            {{input_layer, InputTensor16.Slice(iNumOfBlks16x16 / 2, iNumOfBlks16x16)}},
-            {output_layer}, {}, &OutputsOfSeconBatchSize16);
+                                                          {output_layer},
+                                                          {},
+                                                          &TFGlobalVars::OutputsOfFirstBatchSize16);
           if (!RunStatus16FirstBatch.ok()) {
             LOG(ERROR) << "Running model failed: " << RunStatus16FirstBatch;
             return;
           }
+
+          Status RunStatus16SeconBatch = (*session2)->Run(
+            {{input_layer, InputTensor16.Slice(iNumOfBlks16x16 / 2, iNumOfBlks16x16)}},
+            {output_layer},
+            {},
+            &TFGlobalVars::OutputsOfSeconBatchSize16);
+
           if (!RunStatus16SeconBatch.ok()) {
             LOG(ERROR) << "Running model failed: " << RunStatus16SeconBatch;
             return;
           }
-          Status GetTopLabelStatus16FirstBatch = GetTopLabelsForBatch(OutputsOfFirstBatchSize16, iNumOfBlks16x16 / 2,
-                                                                      &FirstBatchOfIndicesSize16,
-                                                                      &FirstBatchOfScoresSize16);
+
+          Status GetTopLabelStatus16FirstBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfFirstBatchSize16,
+                                                                      iNumOfBlks16x16 / 2,
+                                                                      &TFGlobalVars::FirstBatchOfIndicesSize16,
+                                                                      &TFGlobalVars::FirstBatchOfScoresSize16);
           if (!GetTopLabelStatus16FirstBatch.ok()) {
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus16FirstBatch;
             return;
           }
-          Status GetTopLabelStatus16SeconBatch = GetTopLabelsForBatch(OutputsOfSeconBatchSize16, iNumOfBlks16x16 / 2,
-                                                                      &SeconBatchOfIndicesSize16,
-                                                                      &SeconBatchOfScoresSize16);
+
+          Status GetTopLabelStatus16SeconBatch = GetTopLabelsForBatch(TFGlobalVars::OutputsOfSeconBatchSize16,
+                                                                      iNumOfBlks16x16 / 2,
+                                                                      &TFGlobalVars::SeconBatchOfIndicesSize16,
+                                                                      &TFGlobalVars::SeconBatchOfScoresSize16);
           if (!GetTopLabelStatus16SeconBatch.ok()) {
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus16SeconBatch;
             return;
           }
           /// do things for size 16x16 end
           /// do things for size 32x32 start
-          Status RunStatus32FirstBatch = (*session3)->Run({{input_layer, InputTensor32.Slice(0, iNumOfBlks32x32 / 2)}},
-                                                          {output_layer}, {}, &OutputsOfFirstBatchSize32);
-          Status RunStatus32SeconBatch = (*session3)->Run(
-            {{input_layer, InputTensor32.Slice(iNumOfBlks32x32 / 2, iNumOfBlks32x32)}},
-            {output_layer}, {}, &OutputsOfSeconBatchSize32);
-
+          Status RunStatus32FirstBatch = (*session3)->Run(
+            {{input_layer, InputTensor32.Slice(0, iNumOfBlks32x32 / 2)}},
+            {output_layer},
+            {},
+            &TFGlobalVars::OutputsOfFirstBatchSize32);
           if (!RunStatus32FirstBatch.ok()) {
             LOG(ERROR) << "Running model failed: " << RunStatus32FirstBatch;
             return;
           }
 
+          Status RunStatus32SeconBatch = (*session3)->Run(
+            {{input_layer, InputTensor32.Slice(iNumOfBlks32x32 / 2, iNumOfBlks32x32)}},
+            {output_layer},
+            {},
+            &TFGlobalVars::OutputsOfSeconBatchSize32);
           if (!RunStatus32SeconBatch.ok()) {
             LOG(ERROR) << "Running model failed: " << RunStatus32SeconBatch;
             return;
           }
 
-          Status GetTopLabelStatus32FirstBatch = GetTopLabelsForBatch(OutputsOfFirstBatchSize32, iNumOfBlks32x32 / 2,
-                                                                      &FirstBatchOfIndicesSize32,
-                                                                      &FirstBatchOfScoresSize32);
+          Status GetTopLabelStatus32FirstBatch = GetTopLabelsForBatch(
+            TFGlobalVars::OutputsOfFirstBatchSize32,
+            iNumOfBlks32x32 / 2,
+            &TFGlobalVars::FirstBatchOfIndicesSize32,
+            &TFGlobalVars::FirstBatchOfScoresSize32
+          );
           if (!GetTopLabelStatus32FirstBatch.ok()) {
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus32FirstBatch;
             return;
           }
 
-          Status GetTopLabelStatus32SeconBatch = GetTopLabelsForBatch(OutputsOfSeconBatchSize32, iNumOfBlks32x32 / 2,
-                                                                      &SeconBatchOfIndicesSize32,
-                                                                      &SeconBatchOfScoresSize32);
+          Status GetTopLabelStatus32SeconBatch = GetTopLabelsForBatch(
+            TFGlobalVars::OutputsOfSeconBatchSize32,
+            iNumOfBlks32x32 / 2,
+            &TFGlobalVars::SeconBatchOfIndicesSize32,
+            &TFGlobalVars::SeconBatchOfScoresSize32
+          );
           if (!GetTopLabelStatus32SeconBatch.ok()) {
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus32SeconBatch;
             return;
           }
           /// do things for size 32x32 end
-
-////          std::cout<< input_tensor16x16.DebugString() << std::endl;
-//
-//          Status run_status2 = (*session2)->Run({{input_layer, InputTensor16}},
-//                                              {output_layer}, {}, &outputs2);
-//          if (!run_status2.ok()) {
-//            LOG(ERROR) << "Running model failed: " << run_status2;
-//            return;
-//          }
-//          Status get_top_label_status2 = GetTopLabelsForBatch(outputs2, iNumOfK, &batchOfIndices2, &batchOfScores2);
-//          if (!get_top_label_status2.ok()) {
-//            LOG(ERROR) << "get_top_label failed: " << get_top_label_status2;
-//            return;
-//          }
-////          outputs2 = outputs;
-////          batchOfIndices2 = batchOfIndices;
-////          batchOfScores2 = batchOfScores;
-//
-//          Status run_status3 = (*session3)->Run({{input_layer, InputTensor32}},
-//                                              {output_layer}, {}, &outputs3);
-//          if (!run_status3.ok()) {
-//            LOG(ERROR) << "Running model failed: " << run_status3;
-//            return;
-//          }
-//          Status get_top_label_status3 = GetTopLabelsForBatch(outputs3, iNumOfK, &batchOfIndices3, &batchOfScores3);
-//          if (!get_top_label_status3.ok()) {
-//            LOG(ERROR) << "get_top_label failed: " << get_top_label_status3;
-//            return;
-//          }
-//        }
-
           if (uiDepth == 3 && uiInitTrDepth == 0) {
-            Int iSlicingIdx = MapPositionToIndicesSize08[uiLPelX][uiTPelY];
+            Int iSlicingIdx = TFGlobalVars::MapPositionToIndicesSize08[uiLPelX][uiTPelY];
             Tensor indices;
             if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
               iSlicingIdx -= iNumOfBlks / 2;
-              indices = SeconBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
+              indices = TFGlobalVars::SeconBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
             } else {
-              indices = FirstBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
+              indices = TFGlobalVars::FirstBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
             }
 
             tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
@@ -3439,29 +3404,17 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
                 vec.push_back(34);
               }
             }
-//        METHOD OF getting zscan idx and raster scan idx
-//          UInt uiZScanAbsIdx = pcCU->getZorderIdxInCtu();
-//          std::cout << "" << std::endl;
-//          std::cout << "uiZScanAbsIdx : " << uiZScanAbsIdx << std::endl;
-//          std::cout << "uiRasterAbsIdx: " << g_auiZscanToRaster[uiZScanAbsIdx] << std::endl;
-            /// starting time
-//          std::chrono::system_clock::time_point time_before_get_top_labels = std::chrono::system_clock::now();
-//          !!! DO_SOMETHING_HERE !!!
-//          std::chrono::system_clock::time_point time_after_get_top_labels  = std::chrono::system_clock::now();
-//          printf("[real-world time] get top label for 1 CU: %12.9f seconds \n", std::chrono::duration_cast<std::chrono::microseconds>(time_after_get_top_labels - time_before_get_top_labels).count() / 1000000.0);
-//          std::cout << std::endl;
-            /// ending time
             // push back planar and DC modes
             vec.push_back(0);
             vec.push_back(1);
           } else if (uiDepth == 2 && uiInitTrDepth == 0) {//size 16x16
-            Int iSlicingIdx2 = MapPositionToIndicesSize16[uiLPelX][uiTPelY];
+            Int iSlicingIdx2 = TFGlobalVars::MapPositionToIndicesSize16[uiLPelX][uiTPelY];
             Tensor indices2;
             if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
               iSlicingIdx2 -= iNumOfBlks16x16 / 2;
-              indices2 = SeconBatchOfIndicesSize08.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
+              indices2 = TFGlobalVars::SeconBatchOfIndicesSize16.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
             } else {
-              indices2 = FirstBatchOfIndicesSize08.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
+              indices2 = TFGlobalVars::FirstBatchOfIndicesSize16.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
             }
             tensorflow::TTypes<int32>::Flat indices_flat2 = indices2.flat<int32>();
             for (int pos = 0; pos < iNumOfK; ++pos) {
@@ -3474,13 +3427,13 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             vec.push_back(0);
             vec.push_back(1);
           } else if (uiDepth == 1 && uiInitTrDepth == 0) {//size 32x32
-            Int iSlicingIdx3 = MapPositionToIndicesSize32[uiLPelX][uiTPelY];
+            Int iSlicingIdx3 = TFGlobalVars::MapPositionToIndicesSize32[uiLPelX][uiTPelY];
             Tensor indices3;
             if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
               iSlicingIdx3 -= iNumOfBlks32x32 / 2;
-              indices3 = SeconBatchOfIndicesSize08.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
+              indices3 = TFGlobalVars::SeconBatchOfIndicesSize32.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
             } else {
-              indices3 = FirstBatchOfIndicesSize08.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
+              indices3 = TFGlobalVars::FirstBatchOfIndicesSize32.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
             }
             tensorflow::TTypes<int32>::Flat indices_flat3 = indices3.flat<int32>();
             for (int pos = 0; pos < iNumOfK; ++pos) {
@@ -3510,7 +3463,8 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
       // A Few Notes on keyword ``auto``
       // ******************************
       // The auto keyword is simply asking the compiler to deduce the type of the variable from the initialization.
-      // The auto keyword simply allows you to take advantage of this knowledge - if you (compiler) know the right type, just choose for me!
+      // The auto keyword simply allows you to take advantage of this
+      // knowledge - if you (compiler) know the right type, just choose for me!
       // vector<int>::iterator v = vec.begin(); (same as using auto like the line below)
       // ******************************
       auto v = vec.begin();
@@ -3687,7 +3641,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
 //#if DMM1_TIME_MEASURE
                   // ending time
                   dmmTime = (Double) (clock() - ltimeBefore) / CLOCKS_PER_SEC;
-                  g_dmm1TimeCost += dmmTime;
+                  DMM1TimeCost::g_dmm1TimeCost += dmmTime;
 //#endif
                   pcCU->setDmm1WedgeTabIdxSubParts( uiTabIdx,  uiPartOffset, uiDepth + uiInitTrDepth );
                   (getWedgeListScaled( puRect.width )->at( pcCU->getDmm1WedgeTabIdx( uiAbsPartIdx ) )).getPatternScaledCopy( puRect.width, biSegPattern );
