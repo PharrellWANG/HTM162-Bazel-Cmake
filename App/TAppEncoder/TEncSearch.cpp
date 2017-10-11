@@ -3143,6 +3143,10 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         string input_layer = "input";
         string output_layer = "logits/fdc_output_node";
         Int iNumOfK = 16;
+
+        const int iNumOfBlks = uiPicWidth * uiPicHeight / 8 / 8;
+        const int iNumOfBlks16x16 = uiPicWidth * uiPicHeight / 16 / 16;
+        const int iNumOfBlks32x32 = uiPicWidth * uiPicHeight / 32 / 32;
         // pha.zx
         // ==============
         // ui_depth  cu_size
@@ -3151,7 +3155,7 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
         // 2        16
         // 3        08
         // ==============
-        // only do the predictions once per frame
+        // start: only do the predictions once per frame /////////////////////////////////////////////////////////////
         if (uiLPelX == 0 && uiTPelY == 0 && uiRPelX == 63 && uiBPelY == 63) {
           // read tensor of shape [num_of_blks, width, height, channel]
           // i.e.,
@@ -3161,9 +3165,6 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
           // - for video of size 1920*1088
           //    read the pel data of blks into
           //    a tensor of shape [32640, 8, 8, 1]
-          const int iNumOfBlks = uiPicWidth * uiPicHeight / 8 / 8;
-          const int iNumOfBlks16x16 = uiPicWidth * uiPicHeight / 16 / 16;
-          const int iNumOfBlks32x32 = uiPicWidth * uiPicHeight / 32 / 32;
           tensorflow::Tensor InputTensor08(tensorflow::DT_FLOAT,
                                            tensorflow::TensorShape(
                                              {iNumOfBlks, 8, 8, 1}
@@ -3385,79 +3386,81 @@ TEncSearch::estIntraPredLumaQT(std::unique_ptr<tensorflow::Session> *session,
             LOG(ERROR) << "get_top_label failed: " << GetTopLabelStatus32SeconBatch;
             return;
           }
-          /// do things for size 32x32 end
-          if (uiDepth == 3 && uiInitTrDepth == 0) {
-            Int iSlicingIdx = TFGlobalVars::MapPositionToIndicesSize08[uiLPelX][uiTPelY];
-            Tensor indices;
-            if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
-              iSlicingIdx -= iNumOfBlks / 2;
-              indices = TFGlobalVars::SeconBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
-            } else {
-              indices = TFGlobalVars::FirstBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
-            }
-
-            tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
-            for (int pos = 0; pos < iNumOfK; ++pos) {
-              const int label_index = indices_flat(pos);
-              vec.push_back(label_index + 2);
-              if (label_index == 0) {
-                vec.push_back(34);
-              }
-            }
-            // push back planar and DC modes
-            vec.push_back(0);
-            vec.push_back(1);
-          } else if (uiDepth == 2 && uiInitTrDepth == 0) {//size 16x16
-            Int iSlicingIdx2 = TFGlobalVars::MapPositionToIndicesSize16[uiLPelX][uiTPelY];
-            Tensor indices2;
-            if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
-              iSlicingIdx2 -= iNumOfBlks16x16 / 2;
-              indices2 = TFGlobalVars::SeconBatchOfIndicesSize16.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
-            } else {
-              indices2 = TFGlobalVars::FirstBatchOfIndicesSize16.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
-            }
-            tensorflow::TTypes<int32>::Flat indices_flat2 = indices2.flat<int32>();
-            for (int pos = 0; pos < iNumOfK; ++pos) {
-              const int label_index2 = indices_flat2(pos);
-              vec.push_back(label_index2 + 2);
-              if (label_index2 == 0) {
-                vec.push_back(34);
-              }
-            }
-            vec.push_back(0);
-            vec.push_back(1);
-          } else if (uiDepth == 1 && uiInitTrDepth == 0) {//size 32x32
-            Int iSlicingIdx3 = TFGlobalVars::MapPositionToIndicesSize32[uiLPelX][uiTPelY];
-            Tensor indices3;
-            if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
-              iSlicingIdx3 -= iNumOfBlks32x32 / 2;
-              indices3 = TFGlobalVars::SeconBatchOfIndicesSize32.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
-            } else {
-              indices3 = TFGlobalVars::FirstBatchOfIndicesSize32.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
-            }
-            tensorflow::TTypes<int32>::Flat indices_flat3 = indices3.flat<int32>();
-            for (int pos = 0; pos < iNumOfK; ++pos) {
-              const int label_index3 = indices_flat3(pos);
-              vec.push_back(label_index3 + 2);
-              if (label_index3 == 0) {
-                vec.push_back(34);
-              }
-            }
-            vec.push_back(0);
-            vec.push_back(1);
+        }
+        /// do things for size 32x32 end
+        // start: only do the predictions once per frame /////////////////////////////////////////////////////////////
+        if (uiDepth == 3 && uiInitTrDepth == 0) {
+          Int iSlicingIdx = TFGlobalVars::MapPositionToIndicesSize08[uiLPelX][uiTPelY];
+          Tensor indices;
+          if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
+            iSlicingIdx -= iNumOfBlks / 2;
+            indices = TFGlobalVars::SeconBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
           } else {
-            int i;
-            vec.push_back(0);
-            vec.push_back(1);
-            for (i = 2; i < 34; i += 1) {
-              vec.push_back(i);
-              if (i == 2) {
-                vec.push_back(34);
-              }
+            indices = TFGlobalVars::FirstBatchOfIndicesSize08.Slice(iSlicingIdx, iSlicingIdx + 1);
+          }
+
+          tensorflow::TTypes<int32>::Flat indices_flat = indices.flat<int32>();
+          for (int pos = 0; pos < iNumOfK; ++pos) {
+            const int label_index = indices_flat(pos);
+            vec.push_back(label_index + 2);
+            if (label_index == 0) {
+              vec.push_back(34);
+            }
+          }
+          // push back planar and DC modes
+          vec.push_back(0);
+          vec.push_back(1);
+        } else if (uiDepth == 2 && uiInitTrDepth == 0) {//size 16x16
+          Int iSlicingIdx2 = TFGlobalVars::MapPositionToIndicesSize16[uiLPelX][uiTPelY];
+          Tensor indices2;
+          if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
+            iSlicingIdx2 -= iNumOfBlks16x16 / 2;
+            indices2 = TFGlobalVars::SeconBatchOfIndicesSize16.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
+          } else {
+            indices2 = TFGlobalVars::FirstBatchOfIndicesSize16.Slice(iSlicingIdx2, iSlicingIdx2 + 1);
+          }
+          tensorflow::TTypes<int32>::Flat indices_flat2 = indices2.flat<int32>();
+          for (int pos = 0; pos < iNumOfK; ++pos) {
+            const int label_index2 = indices_flat2(pos);
+            vec.push_back(label_index2 + 2);
+            if (label_index2 == 0) {
+              vec.push_back(34);
+            }
+          }
+          vec.push_back(0);
+          vec.push_back(1);
+        } else if (uiDepth == 1 && uiInitTrDepth == 0) {//size 32x32
+          Int iSlicingIdx3 = TFGlobalVars::MapPositionToIndicesSize32[uiLPelX][uiTPelY];
+          Tensor indices3;
+          if (uiTPelY >= uiPicHeight / 2) { // 1088/2 = 544
+            iSlicingIdx3 -= iNumOfBlks32x32 / 2;
+            indices3 = TFGlobalVars::SeconBatchOfIndicesSize32.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
+          } else {
+            indices3 = TFGlobalVars::FirstBatchOfIndicesSize32.Slice(iSlicingIdx3, iSlicingIdx3 + 1);
+          }
+          tensorflow::TTypes<int32>::Flat indices_flat3 = indices3.flat<int32>();
+          for (int pos = 0; pos < iNumOfK; ++pos) {
+            const int label_index3 = indices_flat3(pos);
+            vec.push_back(label_index3 + 2);
+            if (label_index3 == 0) {
+              vec.push_back(34);
+            }
+          }
+          vec.push_back(0);
+          vec.push_back(1);
+        } else {
+          int i;
+          vec.push_back(0);
+          vec.push_back(1);
+          for (i = 2; i < 34; i += 1) {
+            vec.push_back(i);
+            if (i == 2) {
+              vec.push_back(34);
             }
           }
         }
       }
+
       // use iterator to access the values
       // ******************************
       // A Few Notes on keyword ``auto``
