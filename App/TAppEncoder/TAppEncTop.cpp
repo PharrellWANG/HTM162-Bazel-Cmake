@@ -45,7 +45,7 @@
 
 #include "TAppEncTop.h"
 #include "AnnexBwrite.h"
-#include "AphaTensorflowGlobalVars.h"
+#include "AphaTfPha.h"
 
 //using namespace std;
 #if ENABLE_RESNET
@@ -1106,25 +1106,25 @@ Void TAppEncTop::encode(
         Int   iNumEncoded = 0;
 
         // below vars are used in ```TEncSearch.cpp```
-        if (OutputsOfFirstBatchSize08.size() != 0) {
-          OutputsOfFirstBatchSize08.clear();
+        if (TFGlobalVars::OutputsOfFirstBatchSize08.size() != 0) {
+          TFGlobalVars::OutputsOfFirstBatchSize08.clear();
         }
-        if (OutputsOfSeconBatchSize08.size() != 0) {
-          OutputsOfSeconBatchSize08.clear();
-        }
-
-        if (OutputsOfFirstBatchSize16.size() != 0) {
-          OutputsOfFirstBatchSize16.clear();
-        }
-        if (OutputsOfSeconBatchSize16.size() != 0) {
-          OutputsOfSeconBatchSize16.clear();
+        if (TFGlobalVars::OutputsOfSeconBatchSize08.size() != 0) {
+          TFGlobalVars::OutputsOfSeconBatchSize08.clear();
         }
 
-        if (OutputsOfFirstBatchSize32.size() != 0) {
-          OutputsOfFirstBatchSize32.clear();
+        if (TFGlobalVars::OutputsOfFirstBatchSize16.size() != 0) {
+          TFGlobalVars::OutputsOfFirstBatchSize16.clear();
         }
-        if (OutputsOfSeconBatchSize32.size() != 0) {
-          OutputsOfSeconBatchSize32.clear();
+        if (TFGlobalVars::OutputsOfSeconBatchSize16.size() != 0) {
+          TFGlobalVars::OutputsOfSeconBatchSize16.clear();
+        }
+
+        if (TFGlobalVars::OutputsOfFirstBatchSize32.size() != 0) {
+          TFGlobalVars::OutputsOfFirstBatchSize32.clear();
+        }
+        if (TFGlobalVars::OutputsOfSeconBatchSize32.size() != 0) {
+          TFGlobalVars::OutputsOfSeconBatchSize32.clear();
         }
 
         // call encoding function for one frame                               

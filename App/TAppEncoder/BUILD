@@ -61,11 +61,11 @@ cc_library(
             "TDecSbac.cpp",
             "TDecEntropy.cpp",
             "TAppEncTop.cpp",
-            "TAppEncCfg.cpp"
+            "TAppEncCfg.cpp",
+            "AphaTfPha.cpp",
     		],
     hdrs = [
-            "AphaTensorflowGlobalVars.h",
-            "AphaTimeCost.h",
+            "AphaTfPha.h",
             "TAppEncCfg.h",
             "TAppEncTop.h",
             "TEncAnalyze.h",
