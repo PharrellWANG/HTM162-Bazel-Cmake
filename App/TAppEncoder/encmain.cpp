@@ -90,23 +90,45 @@ Status LoadGraph(string graph_file_name,
 
 #include "Debug.h"
 #include "AphaTimeCost.h"
+#include "AphaTensorflowGlobalVars.h"
 
 // ====================================================================================================================
 // Main function
 // ====================================================================================================================
 double g_dmm1TimeCost(0);
-//extern double getDmm1TimeCost();
+std::vector<Tensor> OutputsOfFirstBatchSize08;
+std::vector<Tensor> OutputsOfSeconBatchSize08;
+std::map<int, std::map<int, int> > MapPositionToIndicesSize08;
+Tensor FirstBatchOfIndicesSize08;
+Tensor SeconBatchOfIndicesSize08;
+Tensor FirstBatchOfScoresSize08;
+Tensor SeconBatchOfScoresSize08;
 
-int main(int argc, char* argv[])
-{
+std::vector<Tensor> OutputsOfFirstBatchSize16;
+std::vector<Tensor> OutputsOfSeconBatchSize16;
+std::map<int, std::map<int, int> > MapPositionToIndicesSize16;
+Tensor FirstBatchOfIndicesSize16;
+Tensor SeconBatchOfIndicesSize16;
+Tensor FirstBatchOfScoresSize16;
+Tensor SeconBatchOfScoresSize16;
+
+std::vector<Tensor> OutputsOfFirstBatchSize32;
+std::vector<Tensor> OutputsOfSeconBatchSize32;
+std::map<int, std::map<int, int> > MapPositionToIndicesSize32;
+Tensor FirstBatchOfIndicesSize32;
+Tensor SeconBatchOfIndicesSize32;
+Tensor FirstBatchOfScoresSize32;
+Tensor SeconBatchOfScoresSize32;
+
+int main(int argc, char *argv[]) {
 #if ENABLE_RESNET
   string homeDir= getenv("HOME");
   ///1st graph
   // path for the first graph
   // 1024x768
-  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize12288_step133049.pb";
+//  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize12288_step133049.pb";
   // 1920x1088
-//  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize32640_step133049.pb";
+  string secPart = "/frozen_graphs/frozen_resnet_for_fdc_blk8x8_batchsize32640_step133049.pb";
   string nameOfGraphOne = homeDir + secPart;
   string graph = nameOfGraphOne;
   // end first graph
@@ -120,7 +142,7 @@ int main(int argc, char* argv[])
   string output_layer = "logits/fdc_output_node";
   string root_dir = "";
 
-  std::unique_ptr<tensorflow::Session> session;024
+  std::unique_ptr<tensorflow::Session> session;
   string graph_path = tensorflow::io::JoinPath(root_dir, graph);
   Status load_graph_status = LoadGraph(graph_path, &session);
   if (!load_graph_status.ok()) {
@@ -128,9 +150,9 @@ int main(int argc, char* argv[])
     return -1;
   }
   ///2nd graph //
-  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize3072_step304857.pb";
+//  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize3072_step304857.pb";
   // 1920x1088
-//  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize8160_step304857.pb";
+  string secPart2 = "/frozen_graphs/frozen_resnet_for_fdc_blk16x16_batchsize8160_step304857.pb";
   string nameOfGraph2 = homeDir + secPart2;
   string graph2 = nameOfGraph2;
   std::unique_ptr<tensorflow::Session> session2;
@@ -141,9 +163,9 @@ int main(int argc, char* argv[])
     return -1;
   }
   ///3nd graph
-  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize768_step304857.pb";
+//  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize768_step304857.pb";
   // 1920x1088
-//  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize2040_step304857.pb";
+  string secPart3 = "/frozen_graphs/frozen_resnet_for_fdc_blk32x32_batchsize2040_step304857.pb";
   string nameOfGraph3 = homeDir + secPart3;
   string graph3 = nameOfGraph3;
   std::unique_ptr<tensorflow::Session> session3;

@@ -438,19 +438,7 @@ Void TEncTop::encode(std::unique_ptr<tensorflow::Session> *session,
                      TComList<TComPicYuv*>& rcListPicYuvRecOut,
                      std::list<AccessUnit>& accessUnitsOut,
                      Int& iNumEncoded,
-                     Int gopId,
-                     std::vector<Tensor> &outputs,
-                     std::vector<Tensor> &outputs2,
-                     std::vector<Tensor> &outputs3,
-                     std::map<int, std::map<int, int> > &mp,
-                     std::map<int, std::map<int, int> > &mp2,
-                     std::map<int, std::map<int, int> > &mp3,
-                     Tensor & batchOfIndices,
-                     Tensor & batchOfIndices2,
-                     Tensor & batchOfIndices3,
-                     Tensor & batchOfScores,
-                     Tensor & batchOfScores2,
-                     Tensor & batchOfScores3
+                     Int gopId
 )
 {
 #else
@@ -509,19 +497,7 @@ Void TEncTop::encode( Bool flush, TComPicYuv* pcPicYuvOrg, TComPicYuv* pcPicYuvT
                                  false,
                                  snrCSC,
                                  m_printFrameMSE,
-                                 gopId,
-                                 outputs,
-                                 outputs2,
-                                 outputs3,
-                                 mp,
-                                 mp2,
-                                 mp3,
-                                 batchOfIndices,
-                                 batchOfIndices2,
-                                 batchOfIndices3,
-                                 batchOfScores,
-                                 batchOfScores2,
-                                 batchOfScores3
+                                 gopId
   );
 
   if( gopId + 1 == m_cGOPEncoder.getGOPSize() )
